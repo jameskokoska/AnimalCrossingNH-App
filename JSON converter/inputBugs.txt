@@ -1,0 +1,1604 @@
+agrias butterfly
+ant
+Atlas moth
+bagworm
+banded dragonfly
+bell cricket
+blue weevil beetle
+brown cicada
+centipede
+cicada shell
+citrus long-horned beetle
+common bluebottle
+common butterfly
+cricket
+cyclommatus stag
+damselfly
+darner dragonfly
+diving beetle
+drone beetle
+dung beetle
+earth-boring dung beetle
+emperor butterfly
+evening cicada
+firefly
+flea
+fly
+giant cicada
+giant stag
+giant water bug
+giraffe stag
+golden stag
+goliath beetle
+grasshopper
+great purple emperor
+hermit crab
+honeybee
+horned atlas
+horned dynastid
+horned elephant
+horned hercules
+jewel beetle
+ladybug
+long locust
+Madagascan sunset moth
+man-faced stink bug
+mantis
+migratory locust
+miyama stag
+mole cricket
+monarch butterfly
+mosquito
+moth
+orchid mantis
+paper kite butterfly
+peacock butterfly
+pill bug
+pondskater
+Queen Alexandra's birdwing
+rainbow stag
+Rajah Brooke's birdwing
+red dragonfly
+rice grasshopper
+robust cicada
+rosalia batesi beetle
+saw stag
+scarab beetle
+scorpion
+snail
+spider
+stinkbug
+tarantula
+tiger beetle
+tiger butterfly
+violin beetle
+walker cicada
+walking leaf
+walking stick
+wasp
+wharf roach
+yellow butterfly
+
+https://acnhcdn.com/latest/BookInsectIcon/InsectMiirotatehaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectAriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectYonagunisanCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMinomushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOniyanmaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectSuzumushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHousekizoumushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectAburazemiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMukadeCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectSeminonukegaraCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectGomadarakamikiriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectAosujiagehaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMonshirochoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKohrogiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHosoakakuwagataCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectItotonboCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectGinyanmaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectGengorouCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKanabunCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectFunkorogashiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOhsenchikoganeCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMorufuochoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHigurashiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHotaruCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectNomiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHaeCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKumazemiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOhkuwagataCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectTagameCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectGirafanokogirikuwagataCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOugononikuwagataCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectGoraiasuohtsunohanamuguriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKirigirisuCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOhmurasakiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectYadokariCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMitsubachiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKohkasasuohkabutoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKabutomushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectZoukabutoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHerakuresuohkabutoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectTamamushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectTentoumushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectShoryobattaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectNishikiohtsubamegaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectJinmenkamemushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKamakiriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectTonosamabattaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMiyamakuwagataCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOkeraCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOhkabamadaraCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectGaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHanakamakiriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectOhgomamadaraCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKarasuagehaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectDangomushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectAmenboCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectArekisandoratoribaneagehaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectNijiirokuwagataCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectAkaeritoribaneagehaCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectAkiakaneCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectInagoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMinminzemiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectRuriboshikamikiriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectNokogirikuwagataCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectPurachinakoganeCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectSasoriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKatatsumuriCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKumoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKamemushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectTaranchuraCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHanmyouCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectAgehachoCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectBaiorinmushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectTsukutsukuhousiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectKonohamushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectNanafushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectHachiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectFunamushiCropped.png
+https://acnhcdn.com/latest/BookInsectIcon/InsectMonkichoCropped.png
+
+3000
+80
+3000
+600
+4500
+430
+800
+250
+300
+10
+350
+300
+160
+130
+8000
+500
+230
+800
+200
+3000
+300
+4000
+550
+300
+70
+60
+500
+10000
+2000
+12000
+12000
+8000
+160
+3000
+1000
+200
+8000
+1350
+8000
+12000
+2400
+200
+200
+2500
+1000
+430
+600
+1000
+500
+140
+130
+130
+2400
+1000
+2500
+250
+130
+4000
+6000
+2500
+180
+400
+300
+3000
+2000
+10000
+8000
+250
+600
+120
+8000
+1500
+240
+450
+400
+600
+600
+2500
+200
+160
+
+Flying near flowers
+On rotten turnips
+On trees (any kind)
+Shaking trees (hardwood or cedar only)
+Flying
+On the ground
+On palm trees
+On hardwood/cedar trees
+From hitting rocks
+Shaking trees (hardwood or cedar only)
+On tree stumps
+Flying near flowers
+Flying near flowers
+On the ground
+On palm trees
+Flying
+Flying
+On rivers/ponds
+On trees (any kind)
+Pushing snowballs
+On trees (any kind)
+Flying near flowers
+On hardwood/cedar trees
+Flying
+On villagers
+Flying near trash (boots, tires, cans) or rotten turnips
+On hardwood/cedar trees
+On trees (any kind)
+On rivers/ponds
+On palm trees
+On palm trees
+On palm trees
+On the ground
+Flying near flowers
+Disguised on shoreline
+Flying near flowers
+On palm trees
+On trees (any kind)
+On palm trees
+On palm trees
+On tree stumps
+On flowers
+On the ground
+Flying near flowers
+On flowers
+On flowers
+On the ground
+On trees (any kind)
+Underground (dig where noise is loudest)
+Flying near flowers
+Flying
+Flying near light sources
+On white flowers
+Flying near flowers
+Flying near blue/purple/black flowers
+From hitting rocks
+On rivers/ponds
+Flying near flowers
+On trees (any kind)
+Flying near flowers
+Flying
+On the ground
+On hardwood/cedar trees
+On tree stumps
+On trees (any kind)
+On trees (any kind)
+On the ground
+On rocks
+Shaking trees (hardwood or cedar only)
+On flowers
+On the ground
+On the ground
+Flying near flowers
+On tree stumps
+On hardwood/cedar trees
+Disguised under trees
+On trees (any kind)
+Shaking trees
+On beach rocks
+Flying near flowers
+
+Any except rain
+Any weather
+Any weather
+Any weather
+Any except rain
+Any except rain
+Any weather
+Any weather
+Any weather
+Any weather
+Any except rain
+Any except rain
+Any except rain
+Any except rain
+Any weather
+Any except rain
+Any except rain
+Any weather
+Any weather
+Any weather
+Any weather
+Any except rain
+Any weather
+Any except rain
+Any weather
+Any weather
+Any weather
+Any weather
+Any weather
+Any weather
+Any weather
+Any weather
+Any except rain
+Any except rain
+Any weather
+Any except rain
+Any weather
+Any weather
+Any weather
+Any weather
+Any except rain
+Any except rain
+Any weather
+Any except rain
+Any except rain
+Any except rain
+Any weather
+Any weather
+Any weather
+Any except rain
+Any except rain
+Any except rain
+Any except rain
+Any except rain
+Any except rain
+Any weather
+Any weather
+Any except rain
+Any weather
+Any except rain
+Any except rain
+Any weather
+Any weather
+Any except rain
+Any weather
+Any weather
+Any weather
+Rain only
+Any weather
+Any except rain
+Any weather
+Any except rain
+Any except rain
+Any except rain
+Any weather
+Any weather
+Any weather
+Any weather
+Any weather
+Any except rain
+
+Uncommon
+Common
+Uncommon
+Common
+Rare
+Common
+Common
+Common
+Common
+Rare
+Common
+Common
+Common
+Common
+Ultra-rare
+Common
+Common
+Common
+Common
+Common
+Common
+Uncommon
+Common
+Common
+Common
+Common
+Uncommon
+Rare
+Rare
+Ultra-rare
+Ultra-rare
+Ultra-rare
+Common
+Rare
+Common
+Common
+Ultra-rare
+Common
+Ultra-rare
+Ultra-rare
+Uncommon
+Common
+Common
+Uncommon
+Uncommon
+Common
+Uncommon
+Common
+Common
+Common
+Common
+Common
+Uncommon
+Common
+Uncommon
+Common
+Common
+Rare
+Rare
+Uncommon
+Common
+Common
+Common
+Uncommon
+Common
+Rare
+Common
+Common
+Common
+Common
+Common
+Uncommon
+Common
+Common
+Common
+Uncommon
+Uncommon
+Common
+Common
+Common
+
+8:00 AM
+All day
+7:00 PM
+All day
+8:00 AM
+5:00 PM
+All day
+8:00 AM
+4:00 PM
+All day
+All day
+4:00 AM
+4:00 AM
+5:00 PM
+5:00 PM
+All day
+8:00 AM
+8:00 AM
+All day
+All day
+All day
+5:00 PM
+4:00 AM 4:00 PM
+7:00 PM
+All day
+All day
+8:00 AM
+11:00 PM
+7:00 PM
+5:00 PM
+5:00 PM
+5:00 PM
+8:00 AM
+4:00 AM
+7:00 PM
+8:00 AM
+5:00 PM
+5:00 PM
+5:00 PM
+5:00 PM
+All day
+8:00 AM
+8:00 AM
+8:00 AM
+7:00 PM
+8:00 AM
+8:00 AM
+All day
+All day
+4:00 AM
+5:00 PM
+7:00 PM
+8:00 AM
+8:00 AM
+4:00 AM
+11:00 PM
+8:00 AM
+8:00 AM
+7:00 PM
+8:00 AM
+8:00 AM
+8:00 AM
+8:00 AM
+All day
+All day
+11:00 PM
+7:00 PM
+All day
+7:00 PM
+All day
+7:00 PM
+All day
+4:00 AM
+All day
+8:00 AM
+All day
+4:00 AM 5:00 PM
+All day
+All day
+4:00 AM
+
+5:00 PM
+All day
+4:00 AM
+All day
+5:00 PM
+8:00 AM
+All day
+5:00 PM
+11:00 PM
+All day
+All day
+7:00 PM
+7:00 PM
+8:00 AM
+8:00 AM
+All day
+5:00 PM
+7:00 PM
+All day
+All day
+All day
+8:00 AM
+8:00 AM 7:00 PM
+4:00 AM
+All day
+All day
+5:00 PM
+8:00 AM
+8:00 AM
+8:00 AM
+8:00 AM
+8:00 AM
+5:00 PM
+7:00 PM
+8:00 AM
+5:00 PM
+8:00 AM
+8:00 AM
+8:00 AM
+8:00 AM
+All day
+5:00 PM
+7:00 PM
+4:00 PM
+8:00 AM
+5:00 PM
+7:00 PM
+All day
+All day
+5:00 PM
+4:00 AM
+4:00 AM
+5:00 PM
+7:00 PM
+7:00 PM
+4:00 PM
+7:00 PM
+4:00 PM
+8:00 AM
+5:00 PM
+7:00 PM
+7:00 PM
+5:00 PM
+All day
+All day
+8:00 PM
+4:00 AM
+All day
+8:00 AM
+All day
+4:00 AM
+All day
+7:00 PM
+All day
+5:00 PM
+All day
+8:00 AM 7:00 PM
+All day
+All day
+7:00 PM
+
+Yes
+No
+No
+No
+Yes
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+Yes
+No
+Yes
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+Yes
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+
+No
+Yes
+No
+Yes
+No
+No
+No
+No
+Yes
+No
+Yes
+No
+Yes
+No
+No
+Yes
+No
+No
+No
+Yes
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+Yes
+No
+Yes
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+Yes
+Yes
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+
+No
+Yes
+No
+Yes
+No
+No
+No
+No
+Yes
+No
+Yes
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+No
+No
+No
+No
+Yes
+No
+No
+Yes
+Yes
+No
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+No
+Yes
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+Yes
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+No
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+Yes
+Yes
+
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+Yes
+No
+Yes
+Yes
+No
+No
+Yes
+Yes
+No
+No
+Yes
+Yes
+No
+No
+Yes
+Yes
+No
+No
+Yes
+No
+No
+Yes
+Yes
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+Yes
+No
+Yes
+Yes
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+No
+Yes
+No
+Yes
+Yes
+Yes
+No
+Yes
+No
+No
+No
+No
+Yes
+Yes
+No
+No
+No
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+
+No
+Yes
+No
+Yes
+No
+No
+No
+No
+Yes
+No
+Yes
+No
+Yes
+Yes
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+Yes
+Yes
+No
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+Yes
+No
+No
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+Yes
+No
+No
+Yes
+No
+No
+Yes
+Yes
+Yes
+No
+
+No
+Yes
+No
+Yes
+No
+No
+No
+No
+Yes
+No
+Yes
+No
+Yes
+No
+No
+Yes
+No
+No
+No
+Yes
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+No
+No
+Yes
+No
+Yes
+No
+Yes
+No
+No
+No
+Yes
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
+Yes
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+No
