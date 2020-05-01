@@ -106,8 +106,12 @@ class HomePage extends StatelessWidget{
   @override 
   Widget build(BuildContext context){
     double deviceWidth = MediaQuery.of(context).size.width;
+    double designedWidth = 360;
     double deviceHeight = MediaQuery.of(context).size.height;
-    
+    double designedHeight = 640;
+    double percentWidth = deviceWidth/designedWidth;
+    double percentHeight = deviceHeight/designedHeight;
+    print(deviceWidth);
     return Scaffold(
         body: 
           Center(
@@ -129,6 +133,24 @@ class HomePage extends StatelessWidget{
 
         )
       ),
+
+      new Container(
+        width: 230*percentWidth,
+        height: 30,
+        decoration: new BoxDecoration(
+          color: Color(0xa6ffffff),
+		borderRadius: BorderRadius.circular(30),
+		boxShadow: [BoxShadow(
+        color: Color(0x29000000),
+        offset: Offset(0,3),
+        blurRadius: 6,
+        spreadRadius: 0
+
+    ) ],
+
+        )
+      ),
+
                 new Container(
                   width: 230,
                   height: 30,
