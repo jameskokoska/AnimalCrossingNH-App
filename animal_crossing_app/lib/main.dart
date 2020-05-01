@@ -57,6 +57,7 @@ class _MainPageState extends State<Main> {
     morepage = MorePage();
 
     super.initState();
+    currentPageWidget = homepage;
   }
   
 
@@ -101,11 +102,138 @@ class _MainPageState extends State<Main> {
 }
 
 class HomePage extends StatelessWidget{
+
   @override 
   Widget build(BuildContext context){
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      color: Colors.black,
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+    
+    return Scaffold(
+        body: 
+          Center(
+            child: Column(
+              children: <Widget>[
+                new Container(
+        width: 267,
+        height: 35,
+        decoration: new BoxDecoration(
+          color: Color(0xa6ffffff),
+		borderRadius: BorderRadius.circular(30),
+		boxShadow: [BoxShadow(
+        color: Color(0x29000000),
+        offset: Offset(0,3),
+        blurRadius: 6,
+        spreadRadius: 0
+
+    ) ],
+
+        )
+      ),
+                new Container(
+                  width: 230,
+                  height: 30,
+                  child: Center(
+                    child: Text(
+                      "Nate's Birthday",
+                      style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: Color(0xff4e4e4e),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                      )
+                    )
+                  ),
+                  decoration: new BoxDecoration(
+                    color: Color(0xa6ffffff),
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [BoxShadow(
+                      color: Color(0x29000000),
+                      offset: Offset(0,3),
+                      blurRadius: 6,
+                      spreadRadius: 0
+                    ) ],
+                  )
+                ),
+                new Container(
+                  width: 360,
+                  height: 127,
+                  decoration: new BoxDecoration(
+                    color: Color(0xffb8e299),
+                  )
+                ),
+                new Stack(
+                  children: <Widget>[
+                    new Container(
+                      width: deviceWidth,
+                      height: 290,
+                      decoration: new BoxDecoration(
+                        color: Color(0xffdbd6f4),
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [BoxShadow(
+                          color: Color(0x40000000),
+                          offset: Offset(0,3),
+                          blurRadius: 10,
+                          spreadRadius: 0
+                        ) ],
+                      )
+                    ),
+                    Column(
+                      children: <Widget>[
+                        SizedBox(height: 50),
+                        new Container(
+                          width: 334,
+                          height: 29,
+                          decoration: new BoxDecoration(
+                            color: Color(0xffe9e7f2),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                              color: Color(0x29000000),
+                              offset: Offset(0,3),
+                              blurRadius: 6,
+                              spreadRadius: 0
+                            ) ],
+                          )
+                        ),
+                        SizedBox(height: 50),
+                        new Container(
+                          width: 334,
+                          height: 29,
+                          decoration: new BoxDecoration(
+                            color: Color(0xffe9e7f2),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                              color: Color(0x29000000),
+                              offset: Offset(0,3),
+                              blurRadius: 6,
+                              spreadRadius: 0
+                            ) ],
+                          )
+                        ),
+                        SizedBox(height: 50),
+                        new Container(
+                          width: 334,
+                          height: 29,
+                          decoration: new BoxDecoration(
+                            color: Color(0xffe9e7f2),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                              color: Color(0x29000000),
+                              offset: Offset(0,3),
+                              blurRadius: 6,
+                              spreadRadius: 0
+                            ) ],
+                          )
+                        )
+                      ],
+                    ),
+                    
+                    
+                  ],
+                ),                
+              ],
+            )
+          )
     );
   }
 }
