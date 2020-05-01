@@ -58,6 +58,9 @@ class _MainPageState extends State<Main> {
 
     super.initState();
     currentPageWidget = homepage;
+    
+    //Remove status bar
+    SystemChrome.setEnabledSystemUIOverlays([]);
   }
   
 
@@ -79,9 +82,7 @@ class _MainPageState extends State<Main> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(selectedIndex.toString()),
-      ),
+      
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Theme.of(context).backgroundColor,
         buttonBackgroundColor: Theme.of(context).accentColor,
@@ -129,49 +130,15 @@ class HomePage extends StatelessWidget{
             child: Column(
               children: <Widget>[
                 new Container(
-        width: 267,
-        height: 35,
-        decoration: new BoxDecoration(
-          color: Color(0xa6ffffff),
-		borderRadius: BorderRadius.circular(30),
-		boxShadow: [BoxShadow(
-        color: Color(0x29000000),
-        offset: Offset(0,3),
-        blurRadius: 6,
-        spreadRadius: 0
-
-    ) ],
-
-        )
-      ),
-
-      new Container(
-        width: 230*percentScale,
-        height: 30*percentScale,
-        decoration: new BoxDecoration(
-          color: Color(0xa6ffffff),
-		borderRadius: BorderRadius.circular(30),
-		boxShadow: [BoxShadow(
-        color: Color(0x29000000),
-        offset: Offset(0,3),
-        blurRadius: 6,
-        spreadRadius: 0
-
-    ) ],
-
-        )
-      ),
-
-                new Container(
-                  width: 230,
-                  height: 30,
+                  width: 230*percentScale,
+                  height: 30*percentScale,
                   child: Center(
                     child: Text(
                       "Nate's Birthday",
                       style: TextStyle(
                         fontFamily: 'ArialRoundedBold',
                         color: Color(0xff4e4e4e),
-                        fontSize: 15,
+                        fontSize: 15*percentScale,
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                       )
@@ -179,7 +146,7 @@ class HomePage extends StatelessWidget{
                   ),
                   decoration: new BoxDecoration(
                     color: Color(0xa6ffffff),
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30*percentScale),
                     boxShadow: [BoxShadow(
                       color: Color(0x29000000),
                       offset: Offset(0,3),
@@ -189,8 +156,8 @@ class HomePage extends StatelessWidget{
                   )
                 ),
                 new Container(
-                  width: 360,
-                  height: 127,
+                  width: deviceWidth,
+                  height: 127*percentScale,
                   decoration: new BoxDecoration(
                     color: Color(0xffb8e299),
                   )
@@ -199,10 +166,10 @@ class HomePage extends StatelessWidget{
                   children: <Widget>[
                     new Container(
                       width: deviceWidth,
-                      height: 290,
+                      height: 290*percentScale,
                       decoration: new BoxDecoration(
                         color: Color(0xffdbd6f4),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30*percentScale),
                         boxShadow: [BoxShadow(
                           color: Color(0x40000000),
                           offset: Offset(0,3),
@@ -211,54 +178,56 @@ class HomePage extends StatelessWidget{
                         ) ],
                       )
                     ),
-                    Column(
-                      children: <Widget>[
-                        SizedBox(height: 50),
-                        new Container(
-                          width: 334,
-                          height: 29,
-                          decoration: new BoxDecoration(
-                            color: Color(0xffe9e7f2),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(
-                              color: Color(0x29000000),
-                              offset: Offset(0,3),
-                              blurRadius: 6,
-                              spreadRadius: 0
-                            ) ],
+                    Center(
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 40*percentScale),
+                          new Container(
+                            width: 334,
+                            height: 29,
+                            decoration: new BoxDecoration(
+                              color: Color(0xffe9e7f2),
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [BoxShadow(
+                                color: Color(0x29000000),
+                                offset: Offset(0,3),
+                                blurRadius: 6,
+                                spreadRadius: 0
+                              ) ],
+                            )
+                          ),
+                          SizedBox(height: 19*percentScale),
+                          new Container(
+                            width: 334,
+                            height: 29,
+                            decoration: new BoxDecoration(
+                              color: Color(0xffe9e7f2),
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [BoxShadow(
+                                color: Color(0x29000000),
+                                offset: Offset(0,3),
+                                blurRadius: 6,
+                                spreadRadius: 0
+                              ) ],
+                            )
+                          ),
+                          SizedBox(height: 19*percentScale),
+                          new Container(
+                            width: 334,
+                            height: 29,
+                            decoration: new BoxDecoration(
+                              color: Color(0xffe9e7f2),
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [BoxShadow(
+                                color: Color(0x29000000),
+                                offset: Offset(0,3),
+                                blurRadius: 6,
+                                spreadRadius: 0
+                              ) ],
+                            )
                           )
-                        ),
-                        SizedBox(height: 50),
-                        new Container(
-                          width: 334,
-                          height: 29,
-                          decoration: new BoxDecoration(
-                            color: Color(0xffe9e7f2),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(
-                              color: Color(0x29000000),
-                              offset: Offset(0,3),
-                              blurRadius: 6,
-                              spreadRadius: 0
-                            ) ],
-                          )
-                        ),
-                        SizedBox(height: 50),
-                        new Container(
-                          width: 334,
-                          height: 29,
-                          decoration: new BoxDecoration(
-                            color: Color(0xffe9e7f2),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(
-                              color: Color(0x29000000),
-                              offset: Offset(0,3),
-                              blurRadius: 6,
-                              spreadRadius: 0
-                            ) ],
-                          )
-                        )
-                      ],
+                        ],
+                      ),
                     ),
                     
                     
