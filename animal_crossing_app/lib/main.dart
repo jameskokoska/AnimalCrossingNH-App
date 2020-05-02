@@ -39,19 +39,20 @@ class Main extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
+
 class _MainPageState extends State<Main> {
   int selectedIndex = 0;
 
-  HomePage homepage;
+  Home homepage;
   BugsPage bugspage;
   FishPage fishpage;
   MorePage morepage;
-  Widget currentPageWidget;
+  Home currentPageWidget;
 
   
   @override
   void initState(){
-    homepage = HomePage();
+    homepage = Home();
     bugspage = BugsPage();
     fishpage = FishPage();
     morepage = MorePage();
@@ -69,11 +70,11 @@ class _MainPageState extends State<Main> {
       if(index == 0){
         currentPageWidget = homepage;
       } else if (index == 1){
-        currentPageWidget = bugspage;
+        //currentPageWidget = bugspage;
       } else if (index == 2){
-        currentPageWidget = fishpage;
+        //currentPageWidget = fishpage;
       } else {
-        currentPageWidget = morepage;
+        //currentPageWidget = morepage;
       }
     });
     HapticFeedback.mediumImpact(); 

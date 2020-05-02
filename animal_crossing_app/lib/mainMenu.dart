@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 
+class Home extends StatefulWidget {
+  Home({Key key, this.title}) : super(key: key);
 
-class HomePage extends StatelessWidget{
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<Home>{
 
   @override 
   Widget build(BuildContext context){
@@ -126,199 +134,218 @@ class HomePage extends StatelessWidget{
                       child: Column(
                         children: <Widget>[
                           SizedBox(height: 44*percentScale),
-                          new Stack(
-                            //Progress BG
-                            children: <Widget>[
-                              new Center(
-                                child: new Stack(
-                                  children: <Widget>[
-                                    new Container(
-                                      width: 334*percentScale,
-                                      height: 29*percentScale,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xffe9e7f2),
-                                        borderRadius: BorderRadius.circular(10*percentScale),
-                                        boxShadow: [BoxShadow(
-                                          color: Color(0x29000000),
-                                          offset: Offset(0,3),
-                                          blurRadius: 6,
-                                          spreadRadius: 0
-                                        ) ],
-                                      )
-                                    ),
-                                    //Progress bar actual progress
-                                    new Container(
-                                      width: fossilsPercent*334*percentScale,
-                                      height: 29*percentScale,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xfff5d1ae),
-                                        borderRadius: BorderRadius.circular(10*percentScale),
-                                        boxShadow: [BoxShadow(
-                                          color: Color(0x00000000),
-                                          offset: Offset(0,3),
-                                          blurRadius: 6,
-                                          spreadRadius: 0
-                                        ) ],
-                                      )
-                                    ),
-                                  ],
+                          //Fossil Progress bar
+                          new GestureDetector(
+                            onTap: (){
+                              print("fish progress bar tapped");
+                            },
+                            child: new Stack(
+                              //Progress BG
+                              children: <Widget>[
+                                new Center(
+                                  child: new Stack(
+                                    children: <Widget>[
+                                      new Container(
+                                        width: 334*percentScale,
+                                        height: 29*percentScale,
+                                        decoration: new BoxDecoration(
+                                          color: Color(0xffe9e7f2),
+                                          borderRadius: BorderRadius.circular(10*percentScale),
+                                          boxShadow: [BoxShadow(
+                                            color: Color(0x29000000),
+                                            offset: Offset(0,3),
+                                            blurRadius: 6,
+                                            spreadRadius: 0
+                                          ) ],
+                                        )
+                                      ),
+                                      //Progress bar actual progress
+                                      new Container(
+                                        width: fossilsPercent*334*percentScale,
+                                        height: 29*percentScale,
+                                        decoration: new BoxDecoration(
+                                          color: Color(0xfff5d1ae),
+                                          borderRadius: BorderRadius.circular(10*percentScale),
+                                          boxShadow: [BoxShadow(
+                                            color: Color(0x00000000),
+                                            offset: Offset(0,3),
+                                            blurRadius: 6,
+                                            spreadRadius: 0
+                                          ) ],
+                                        )
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              //Bone icon
-                              new Container(
-                                transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
-                                child: new Image.asset(
-                                  'assets/bones.png',
-                                  height:22*percentScale,
-                                  width:22*percentScale,
-                                )
-                              ),
-                              //Progress text
-                              new Container(
-                                transform: Matrix4.translationValues(0,5*percentScale,0),
-                                child: new Center(
-                                  child: new Text("10 / 50",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff000000),
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
+                                //Bone icon
+                                new Container(
+                                  transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
+                                  child: new Image.asset(
+                                    'assets/bones.png',
+                                    height:22*percentScale,
+                                    width:22*percentScale,
+                                  )
+                                ),
+                                //Progress text
+                                new Container(
+                                  transform: Matrix4.translationValues(0,5*percentScale,0),
+                                  child: new Center(
+                                    child: new Text("10 / 50",
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRoundedBold',
+                                        color: Color(0xff000000),
+                                        fontSize: 16*percentScale,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                      )
                                     )
                                   )
-                                )
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(height: 19*percentScale),
-                          new Stack(
+                          //Bugs Progress bar
+                          new GestureDetector(
+                            onTap: (){
+                              print("bugs progress bar tapped");
+                            },
+                            child: new Stack(
                             //Progress BG
-                            children: <Widget>[
-                              new Center(
-                                child: new Stack(
-                                  children: <Widget>[
-                                    new Container(
-                                      width: 334*percentScale,
-                                      height: 29*percentScale,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xffe9e7f2),
-                                        borderRadius: BorderRadius.circular(10*percentScale),
-                                        boxShadow: [BoxShadow(
-                                          color: Color(0x29000000),
-                                          offset: Offset(0,3),
-                                          blurRadius: 6,
-                                          spreadRadius: 0
-                                        ) ],
-                                      )
-                                    ),
-                                    //Progress bar actual progress
-                                    new Container(
-                                      width: bugsPercent*334*percentScale,
-                                      height: 29*percentScale,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xffb8e299),
-                                        borderRadius: BorderRadius.circular(10*percentScale),
-                                        boxShadow: [BoxShadow(
-                                          color: Color(0x00000000),
-                                          offset: Offset(0,3),
-                                          blurRadius: 6,
-                                          spreadRadius: 0
-                                        ) ],
-                                      )
-                                    ),
-                                  ],
+                              children: <Widget>[
+                                new Center(
+                                  child: new Stack(
+                                    children: <Widget>[
+                                      new Container(
+                                        width: 334*percentScale,
+                                        height: 29*percentScale,
+                                        decoration: new BoxDecoration(
+                                          color: Color(0xffe9e7f2),
+                                          borderRadius: BorderRadius.circular(10*percentScale),
+                                          boxShadow: [BoxShadow(
+                                            color: Color(0x29000000),
+                                            offset: Offset(0,3),
+                                            blurRadius: 6,
+                                            spreadRadius: 0
+                                          ) ],
+                                        )
+                                      ),
+                                      //Progress bar actual progress
+                                      new Container(
+                                        width: bugsPercent*334*percentScale,
+                                        height: 29*percentScale,
+                                        decoration: new BoxDecoration(
+                                          color: Color(0xffb8e299),
+                                          borderRadius: BorderRadius.circular(10*percentScale),
+                                          boxShadow: [BoxShadow(
+                                            color: Color(0x00000000),
+                                            offset: Offset(0,3),
+                                            blurRadius: 6,
+                                            spreadRadius: 0
+                                          ) ],
+                                        )
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              //Bug icon
-                              new Container(
-                                transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
-                                child: new Image.asset(
-                                  'assets/bugs.png',
-                                  height:22*percentScale,
-                                  width:22*percentScale,
-                                )
-                              ),
-                              //Progress text
-                              new Container(
-                                transform: Matrix4.translationValues(0,5*percentScale,0),
-                                child: new Center(
-                                  child: new Text("50 / 76",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff000000),
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
+                                //Bug icon
+                                new Container(
+                                  transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
+                                  child: new Image.asset(
+                                    'assets/bugs.png',
+                                    height:22*percentScale,
+                                    width:22*percentScale,
+                                  )
+                                ),
+                                //Progress text
+                                new Container(
+                                  transform: Matrix4.translationValues(0,5*percentScale,0),
+                                  child: new Center(
+                                    child: new Text("50 / 76",
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRoundedBold',
+                                        color: Color(0xff000000),
+                                        fontSize: 16*percentScale,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                      )
                                     )
                                   )
-                                )
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
+                          
                           SizedBox(height: 19*percentScale),
-                          new Stack(
-                            //Progress BG
-                            children: <Widget>[
-                              new Center(
-                                child: new Stack(
-                                  children: <Widget>[
-                                    new Container(
-                                      width: 334*percentScale,
-                                      height: 29*percentScale,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xffe9e7f2),
-                                        borderRadius: BorderRadius.circular(10*percentScale),
-                                        boxShadow: [BoxShadow(
-                                          color: Color(0x29000000),
-                                          offset: Offset(0,3),
-                                          blurRadius: 6,
-                                          spreadRadius: 0
-                                        ) ],
-                                      )
-                                    ),
-                                    //Progress bar actual progress
-                                    new Container(
-                                      width: fishPercent*334*percentScale,
-                                      height: 29*percentScale,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xff9edcf4),
-                                        borderRadius: BorderRadius.circular(10*percentScale),
-                                        boxShadow: [BoxShadow(
-                                          color: Color(0x00000000),
-                                          offset: Offset(0,3),
-                                          blurRadius: 6,
-                                          spreadRadius: 0
-                                        ) ],
-                                      )
-                                    ),
-                                  ],
+                          //Fish Progress Bar
+                          new GestureDetector(
+                            onTap: (){
+                              print("fish progress bar tapped");
+                            },
+                            child: new Stack(
+                              //Progress BG
+                              children: <Widget>[
+                                new Center(
+                                  child: new Stack(
+                                    children: <Widget>[
+                                      new Container(
+                                        width: 334*percentScale,
+                                        height: 29*percentScale,
+                                        decoration: new BoxDecoration(
+                                          color: Color(0xffe9e7f2),
+                                          borderRadius: BorderRadius.circular(10*percentScale),
+                                          boxShadow: [BoxShadow(
+                                            color: Color(0x29000000),
+                                            offset: Offset(0,3),
+                                            blurRadius: 6,
+                                            spreadRadius: 0
+                                          ) ],
+                                        )
+                                      ),
+                                      //Progress bar actual progress
+                                      new Container(
+                                        width: fishPercent*334*percentScale,
+                                        height: 29*percentScale,
+                                        decoration: new BoxDecoration(
+                                          color: Color(0xff9edcf4),
+                                          borderRadius: BorderRadius.circular(10*percentScale),
+                                          boxShadow: [BoxShadow(
+                                            color: Color(0x00000000),
+                                            offset: Offset(0,3),
+                                            blurRadius: 6,
+                                            spreadRadius: 0
+                                          ) ],
+                                        )
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              //Fish icon
-                              new Container(
-                                transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
-                                child: new Image.asset(
-                                  'assets/fish.png',
-                                  height:22*percentScale,
-                                  width:22*percentScale,
-                                )
-                              ),
-                              //Progress text
-                              new Container(
-                                transform: Matrix4.translationValues(0,5*percentScale,0),
-                                child: new Center(
-                                  child: new Text("5 / 100",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff000000),
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
+                                //Fish icon
+                                new Container(
+                                  transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
+                                  child: new Image.asset(
+                                    'assets/fish.png',
+                                    height:22*percentScale,
+                                    width:22*percentScale,
+                                  )
+                                ),
+                                //Progress text
+                                new Container(
+                                  transform: Matrix4.translationValues(0,5*percentScale,0),
+                                  child: new Center(
+                                    child: new Text("5 / 100",
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRoundedBold',
+                                        color: Color(0xff000000),
+                                        fontSize: 16*percentScale,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                      )
                                     )
                                   )
-                                )
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
