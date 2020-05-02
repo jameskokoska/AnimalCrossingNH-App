@@ -100,24 +100,30 @@ class _MainPageState extends State<Main> {
     }
 
     return Scaffold(
-      
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Theme.of(context).backgroundColor,
-        buttonBackgroundColor: Theme.of(context).accentColor,
-        items: <Widget>[
-          Image.asset('assets/home.png',
-          height:20*percentScale,
-          width:20*percentScale,),
-          Icon(Icons.bug_report,size:20,color:Theme.of(context).primaryColor),
-          Icon(Icons.blur_linear,size:20,color:Theme.of(context).primaryColor),
-          Icon(Icons.more_horiz,size:20,color:Theme.of(context).primaryColor),
+      body: new Stack(
+        children: <Widget>[
+          currentPageWidget,
+          new Align(
+            alignment: Alignment.bottomCenter,
+            child:CurvedNavigationBar(
+              backgroundColor: Colors.black.withOpacity(0.1),
+              buttonBackgroundColor: Theme.of(context).accentColor,
+              items: <Widget>[
+                Image.asset('assets/home.png',
+                height:20*percentScale,
+                width:20*percentScale,),
+                Icon(Icons.bug_report,size:20,color:Theme.of(context).primaryColor),
+                Icon(Icons.blur_linear,size:20,color:Theme.of(context).primaryColor),
+                Icon(Icons.more_horiz,size:20,color:Theme.of(context).primaryColor),
+              ],
+               index: selectedIndex,
+                onTap: selectedNavBar,
+                animationCurve: Curves.easeInOut,
+                animationDuration: Duration(milliseconds:400),
+            )
+          ),
         ],
-        index: selectedIndex,
-        onTap: selectedNavBar,
-        animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds:400),
       ),
-      body: currentPageWidget,
     );
   }
 }

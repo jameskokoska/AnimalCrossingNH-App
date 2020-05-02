@@ -31,8 +31,9 @@ class HomePage extends StatelessWidget{
           physics: BouncingScrollPhysics(),
           child: Center(
             child: ColumnSuper(
-              innerDistance: -30,
+              innerDistance: -60,
               children: <Widget>[
+                SizedBox(height: 292*percentScale),
                 new Stack(
                 children: <Widget>[
                     new Container(
@@ -42,33 +43,34 @@ class HomePage extends StatelessWidget{
                         color: Color(0xffb8e299),
                       )
                     ),
-                    new Container(
-                      width: 230*percentScale,
-                      height: 30*percentScale,
-                      child: Center(
-                        child: Text(
-                          "Nate's Birthday",
-                          style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: Color(0xff4e4e4e),
-                            fontSize: 15*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
+                    new Center(
+                      child: new Container(
+                        width: 230*percentScale,
+                        height: 30*percentScale,
+                        child: Center(
+                          child: Text(
+                            "Nate's Birthday",
+                            style: TextStyle(
+                              fontFamily: 'ArialRoundedBold',
+                              color: Color(0xff4e4e4e),
+                              fontSize: 15*percentScale,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                            )
                           )
+                        ),
+                        decoration: new BoxDecoration(
+                          color: Color(0xa6ffffff),
+                          borderRadius: BorderRadius.circular(30*percentScale),
+                          boxShadow: [BoxShadow(
+                            color: Color(0x29000000),
+                            offset: Offset(0,3),
+                            blurRadius: 6,
+                            spreadRadius: 0
+                          ) ],
                         )
                       ),
-                      decoration: new BoxDecoration(
-                        color: Color(0xa6ffffff),
-                        borderRadius: BorderRadius.circular(30*percentScale),
-                        boxShadow: [BoxShadow(
-                          color: Color(0x29000000),
-                          offset: Offset(0,3),
-                          blurRadius: 6,
-                          spreadRadius: 0
-                        ) ],
-                      )
                     ),
-                    
                   ], 
                 ),
 
@@ -78,7 +80,7 @@ class HomePage extends StatelessWidget{
                     //Background
                     new Container(
                       width: deviceWidth,
-                      height: 290*percentScale,
+                      height: 274*percentScale,
                       decoration: new BoxDecoration(
                         color: Color(0xffdbd6f4),
                         borderRadius: BorderRadius.circular(30*percentScale),
