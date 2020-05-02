@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: flutter
   curved_navigation_bar: ^0.3.2
   assorted_layout_widgets: ^1.0.18
+  flutter_staggered_animations: ^0.1.2
   
 
 
