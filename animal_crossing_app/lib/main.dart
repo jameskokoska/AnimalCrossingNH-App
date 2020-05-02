@@ -81,13 +81,33 @@ class _MainPageState extends State<Main> {
   }
 
   Widget build(BuildContext context) {
+
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double designedWidth = 360;
+
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double designedHeight = 640;
+
+    double percentWidth = deviceWidth/designedWidth;
+    double percentHeight = deviceHeight/designedHeight;
+
+    double percentScale;
+
+    if(percentWidth < percentHeight){
+      percentScale = percentWidth;
+    } else {
+      percentScale = percentHeight;
+    }
+
     return Scaffold(
       
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Theme.of(context).backgroundColor,
         buttonBackgroundColor: Theme.of(context).accentColor,
         items: <Widget>[
-          Icon(Icons.home,size:20,color:Theme.of(context).primaryColor),
+          Image.asset('assets/home.png',
+          height:20*percentScale,
+          width:20*percentScale,),
           Icon(Icons.bug_report,size:20,color:Theme.of(context).primaryColor),
           Icon(Icons.blur_linear,size:20,color:Theme.of(context).primaryColor),
           Icon(Icons.more_horiz,size:20,color:Theme.of(context).primaryColor),

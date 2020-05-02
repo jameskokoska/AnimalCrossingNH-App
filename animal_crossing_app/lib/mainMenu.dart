@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
+
 
 class HomePage extends StatelessWidget{
 
@@ -21,44 +23,53 @@ class HomePage extends StatelessWidget{
       percentScale = percentHeight;
     }
 
+    
+
     return Scaffold(
         body: 
         SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Center(
-            child: Column(
+            child: ColumnSuper(
+              innerDistance: -30,
               children: <Widget>[
-                new Container(
-                  width: 230*percentScale,
-                  height: 30*percentScale,
-                  child: Center(
-                    child: Text(
-                      "Nate's Birthday",
-                      style: TextStyle(
-                        fontFamily: 'ArialRoundedBold',
-                        color: Color(0xff4e4e4e),
-                        fontSize: 15*percentScale,
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
+                new Stack(
+                children: <Widget>[
+                    new Container(
+                      width: deviceWidth,
+                      height: 127*percentScale,
+                      decoration: new BoxDecoration(
+                        color: Color(0xffb8e299),
                       )
-                    )
-                  ),
-                  decoration: new BoxDecoration(
-                    color: Color(0xa6ffffff),
-                    borderRadius: BorderRadius.circular(30*percentScale),
-                    boxShadow: [BoxShadow(
-                      color: Color(0x29000000),
-                      offset: Offset(0,3),
-                      blurRadius: 6,
-                      spreadRadius: 0
-                    ) ],
-                  )
-                ),
-                new Container(
-                  width: deviceWidth,
-                  height: 127*percentScale,
-                  decoration: new BoxDecoration(
-                    color: Color(0xffb8e299),
-                  )
+                    ),
+                    new Container(
+                      width: 230*percentScale,
+                      height: 30*percentScale,
+                      child: Center(
+                        child: Text(
+                          "Nate's Birthday",
+                          style: TextStyle(
+                            fontFamily: 'ArialRoundedBold',
+                            color: Color(0xff4e4e4e),
+                            fontSize: 15*percentScale,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          )
+                        )
+                      ),
+                      decoration: new BoxDecoration(
+                        color: Color(0xa6ffffff),
+                        borderRadius: BorderRadius.circular(30*percentScale),
+                        boxShadow: [BoxShadow(
+                          color: Color(0x29000000),
+                          offset: Offset(0,3),
+                          blurRadius: 6,
+                          spreadRadius: 0
+                        ) ],
+                      )
+                    ),
+                    
+                  ], 
                 ),
 
                 //Progress Section
@@ -163,7 +174,6 @@ class HomePage extends StatelessWidget{
 
                 //Events Section 
                 new Container(
-                  transform: Matrix4.translationValues(0,-60*1*percentScale,0),
                   child:Stack(
                     //Background
                     children: <Widget>[
@@ -214,7 +224,6 @@ class HomePage extends StatelessWidget{
 
                 //Active Creatures Section
                 new Container(
-                  transform: Matrix4.translationValues(0,-60*2*percentScale,0),
                   child:Stack(
                     //Background
                     children: <Widget>[
@@ -265,7 +274,6 @@ class HomePage extends StatelessWidget{
 
                 //Store Hours Section
                 new Container(
-                  transform: Matrix4.translationValues(0,-60*3*percentScale,0),
                   child:Stack(
                     //Background
                     children: <Widget>[
