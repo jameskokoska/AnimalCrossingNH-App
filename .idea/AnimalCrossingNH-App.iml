@@ -20,6 +20,7 @@
       <excludeFolder url="file://$MODULE_DIR$/animal_crossing_app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/animal_crossing_app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/animal_crossing_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/testapp/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/testapp/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/testapp/build" />
     </content>
