@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'fish.dart';
 import 'bugs.dart';
 import 'mainMenu.dart';
+import 'fishList.dart';
+import 'music.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,13 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData (
         primaryColor: Colors.red,
         accentColor: Colors.red[50],
-        backgroundColor: Colors.grey[50],
         fontFamily: '',
       ),
       darkTheme: ThemeData (
         primaryColor: Colors.green,
         accentColor: Colors.red[50],
-        backgroundColor: Colors.grey[50],
         fontFamily: '',
       ),
       home: Main(),
@@ -47,6 +47,8 @@ class _MainPageState extends State<Main> {
   BugsPage bugspage;
   Fish fishpage;
   MorePage morepage;
+  FishList fishlist;
+  MusicList musiclist;
   Widget currentPageWidget;
 
   
@@ -55,7 +57,8 @@ class _MainPageState extends State<Main> {
     homepage = Home();
     bugspage = BugsPage();
     fishpage = Fish();
-    morepage = MorePage();
+    fishlist = FishList();
+    musiclist = MusicList();
 
     super.initState();
     currentPageWidget = homepage;
@@ -70,11 +73,11 @@ class _MainPageState extends State<Main> {
       if(index == 0){
         currentPageWidget = homepage;
       } else if (index == 1){
-        currentPageWidget = bugspage;
+        currentPageWidget = musiclist;
       } else if (index == 2){
         currentPageWidget = fishpage;
       } else {
-        currentPageWidget = morepage;
+        currentPageWidget = fishlist;
       }
     });
     HapticFeedback.mediumImpact(); 
@@ -110,7 +113,7 @@ class _MainPageState extends State<Main> {
           new Align(
             alignment: Alignment.bottomCenter,
             child:CurvedNavigationBar(
-              backgroundColor: Colors.black.withOpacity(0.1),
+              backgroundColor: Colors.black.withOpacity(0),
               buttonBackgroundColor: Theme.of(context).accentColor,
               items: <Widget>[
                 Image.asset('assets/home.png',
