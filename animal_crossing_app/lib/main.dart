@@ -45,7 +45,7 @@ class _MainPageState extends State<Main> {
 
   Home homepage;
   BugsPage bugspage;
-  FishPage fishpage;
+  Fish fishpage;
   MorePage morepage;
   Home currentPageWidget;
 
@@ -54,7 +54,7 @@ class _MainPageState extends State<Main> {
   void initState(){
     homepage = Home();
     bugspage = BugsPage();
-    fishpage = FishPage();
+    fishpage = Fish();
     morepage = MorePage();
 
     super.initState();

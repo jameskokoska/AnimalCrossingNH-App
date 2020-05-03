@@ -18,3 +18,11 @@ class Fish extends StatefulWidget {
   @override
   _FishPageState createState() => _FishPageState();
 }
+
+class _FishPageState extends State<Fish>{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
