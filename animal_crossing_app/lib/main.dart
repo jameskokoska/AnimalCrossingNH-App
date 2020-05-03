@@ -103,7 +103,10 @@ class _MainPageState extends State<Main> {
     return Scaffold(
       body: new Stack(
         children: <Widget>[
-          currentPageWidget,
+          new AnimatedSwitcher(
+            duration: const Duration(milliseconds:150),
+            child: currentPageWidget,
+          ),
           new Align(
             alignment: Alignment.bottomCenter,
             child:CurvedNavigationBar(

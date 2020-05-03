@@ -137,7 +137,7 @@ class _HomePageState extends State<Home>{
                           //Fossil Progress bar
                           new GestureDetector(
                             onTap: (){
-                              print("fish progress bar tapped");
+                              print("fossil progress bar tapped");
                             },
                             child: new Stack(
                               //Progress BG
