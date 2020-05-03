@@ -38,6 +38,7 @@ class _FishListPageState extends State<FishList>{
             color: Color(0xFFDEFEFF),
           ),
           CustomScrollView(
+            physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
                 expandedHeight: 197*percentScale,

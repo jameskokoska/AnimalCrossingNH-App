@@ -40,6 +40,7 @@ class _MusicListPageState extends State<MusicList>{
             color: Color(0xFF81C0FF),
           ),
           CustomScrollView(
+            physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
                 expandedHeight: 197*percentScale,
