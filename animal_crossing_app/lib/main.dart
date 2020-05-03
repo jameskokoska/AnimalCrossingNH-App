@@ -47,7 +47,7 @@ class _MainPageState extends State<Main> {
   BugsPage bugspage;
   Fish fishpage;
   MorePage morepage;
-  Home currentPageWidget;
+  Widget currentPageWidget;
 
   
   @override
@@ -70,11 +70,11 @@ class _MainPageState extends State<Main> {
       if(index == 0){
         currentPageWidget = homepage;
       } else if (index == 1){
-        //currentPageWidget = bugspage;
+        currentPageWidget = bugspage;
       } else if (index == 2){
-        //currentPageWidget = fishpage;
+        currentPageWidget = fishpage;
       } else {
-        //currentPageWidget = morepage;
+        currentPageWidget = morepage;
       }
     });
     HapticFeedback.mediumImpact(); 
