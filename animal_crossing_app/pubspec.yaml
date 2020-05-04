@@ -31,6 +31,9 @@ dev_dependencies:
   assorted_layout_widgets: ^1.0.18
   flutter_staggered_animations: ^0.1.2
   wave: ^0.0.8
+  cached_network_image: ^2.2.0
+  sqflite: any
+  path_provider: any
   
 
 
