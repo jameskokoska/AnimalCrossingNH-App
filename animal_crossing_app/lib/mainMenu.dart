@@ -1,3 +1,4 @@
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 
@@ -11,7 +12,7 @@ class Home extends StatefulWidget {
 }
 
 
-Widget eventContainer(double percentScale, String enable, String name, String time, String dayNum, String dayStr, String imagePath){
+Widget eventContainer(bool darkMode, double percentScale, String enable, String name, String time, String dayNum, String dayStr, String imagePath){
   bool enableBool;
   if(enable=="true"){
     enableBool = true;
@@ -29,7 +30,7 @@ Widget eventContainer(double percentScale, String enable, String name, String ti
                 width: 334*percentScale,
                 height: 71*percentScale,
                 decoration: new BoxDecoration(
-                  color: Color(0xfff4ebd6),
+                  color: darkModeColor(darkMode, Color(0xfff4ebd6), Color(0xff414141)),
                   borderRadius: BorderRadius.circular(8)
                 )
               )
@@ -92,7 +93,7 @@ Widget eventContainer(double percentScale, String enable, String name, String ti
                   name,
                   style: TextStyle(
                   fontFamily: 'ArialRoundedBold',
-                  color: Color(0xff373737),
+                  color: darkModeColor(darkMode, Color(0xff373737), Color( 0xffF4EBD6)),
                   fontSize: 18*percentScale,
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
@@ -107,7 +108,7 @@ Widget eventContainer(double percentScale, String enable, String name, String ti
                   time,
                   style: TextStyle(
                   fontFamily: 'ArialRoundedBold',
-                  color: Color(0xff373737),
+                  color: darkModeColor(darkMode, Color(0xff373737), Color( 0xffF4EBD6)),
                   fontSize: 13*percentScale,
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
@@ -128,10 +129,14 @@ Widget eventContainer(double percentScale, String enable, String name, String ti
   );
 }
 
+
+
 class _HomePageState extends State<Home>{
 
   @override 
   Widget build(BuildContext context){
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     double deviceWidth = MediaQuery.of(context).size.width;
     double designedWidth = 360;
 
@@ -148,6 +153,12 @@ class _HomePageState extends State<Home>{
     } else {
       percentScale = percentHeight;
     }
+
+    Color textColor;
+    if(!darkMode)
+      textColor = Color( 0xff000000);
+    else
+      textColor = Color( 0xffEAEAEA);
 
     double fossilsPercent = 10/50;
     double bugsPercent = 50/76;
@@ -166,7 +177,7 @@ class _HomePageState extends State<Home>{
             new Container(
               height: deviceHeight,
               width: deviceWidth,
-              color: Color(0xff70c1ee),
+              color: darkModeColor(darkMode, Color( 0xff70c1ee), Color( 0xff1A1A1A)),
             ),
             SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -182,7 +193,7 @@ class _HomePageState extends State<Home>{
                           width: deviceWidth,
                           height: 127*percentScale,
                           decoration: new BoxDecoration(
-                            color: Color(0xffb8e299),
+                            color: darkModeColor(darkMode,Color(0xffb8e299),Color(0xff4D6839)),
                           )
                         ),
                         new Center(
@@ -224,7 +235,7 @@ class _HomePageState extends State<Home>{
                           width: deviceWidth,
                           height: 274*percentScale,
                           decoration: new BoxDecoration(
-                            color: Color(0xffdbd6f4),
+                            color: darkModeColor(darkMode,Color(0xffdbd6f4),Color(0xff0D0D0D)),
                             borderRadius: BorderRadius.circular(30*percentScale),
                             boxShadow: [BoxShadow(
                               color: Color(0x40000000),
@@ -240,10 +251,10 @@ class _HomePageState extends State<Home>{
                           width: 105*percentScale,
                           height: 35*percentScale,
                           decoration: new BoxDecoration(
-                            color: Color(0xff9d99fc),
+                            color: darkModeColor(darkMode,Color(0xff9d99fc),Color(0xff2D2D2D)),
                             borderRadius: BorderRadius.circular(30*percentScale),
                             boxShadow: [BoxShadow(
-                                color: Color(0x29000000),
+                                color:  darkModeColor(darkMode,Color(0x28000000),Color(0x409D99FC)),
                                 offset: Offset(0,3),
                                 blurRadius: 6,
                                 spreadRadius: 0
@@ -253,7 +264,7 @@ class _HomePageState extends State<Home>{
                             child: Text("Collection",
                               style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
-                              color: Color(0xff000000),
+                              color: darkModeColor(darkMode,Color(0xFF000000),Color(0xff9D99FC)),
                               fontSize: 16*percentScale,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
@@ -281,7 +292,7 @@ class _HomePageState extends State<Home>{
                                             width: 334*percentScale,
                                             height: 29*percentScale,
                                             decoration: new BoxDecoration(
-                                              color: Color(0xffe9e7f2),
+                                              color: darkModeColor(darkMode,Color( 0xffe9e7f2),Color(0xff494365)),
                                               borderRadius: BorderRadius.circular(10*percentScale),
                                               boxShadow: [BoxShadow(
                                                 color: Color(0x29000000),
@@ -296,7 +307,7 @@ class _HomePageState extends State<Home>{
                                             width: fossilsPercent*334*percentScale,
                                             height: 29*percentScale,
                                             decoration: new BoxDecoration(
-                                              color: Color(0xfff5d1ae),
+                                              color: darkModeColor(darkMode,Color( 0xfff5d1ae),Color(0xff9E744B)),
                                               borderRadius: BorderRadius.circular(10*percentScale),
                                               boxShadow: [BoxShadow(
                                                 color: Color(0x00000000),
@@ -325,7 +336,7 @@ class _HomePageState extends State<Home>{
                                         child: new Text("10 / 50",
                                           style: TextStyle(
                                             fontFamily: 'ArialRoundedBold',
-                                            color: Color(0xff000000),
+                                            color: textColor,
                                             fontSize: 16*percentScale,
                                             fontWeight: FontWeight.w400,
                                             fontStyle: FontStyle.normal,
@@ -352,7 +363,7 @@ class _HomePageState extends State<Home>{
                                             width: 334*percentScale,
                                             height: 29*percentScale,
                                             decoration: new BoxDecoration(
-                                              color: Color(0xffe9e7f2),
+                                              color: darkModeColor(darkMode,Color( 0xffe9e7f2),Color(0xff494365)),
                                               borderRadius: BorderRadius.circular(10*percentScale),
                                               boxShadow: [BoxShadow(
                                                 color: Color(0x29000000),
@@ -367,7 +378,7 @@ class _HomePageState extends State<Home>{
                                             width: bugsPercent*334*percentScale,
                                             height: 29*percentScale,
                                             decoration: new BoxDecoration(
-                                              color: Color(0xffb8e299),
+                                              color: darkModeColor(darkMode,Color( 0xffb8e299),Color(0xff68914A)),
                                               borderRadius: BorderRadius.circular(10*percentScale),
                                               boxShadow: [BoxShadow(
                                                 color: Color(0x00000000),
@@ -396,7 +407,7 @@ class _HomePageState extends State<Home>{
                                         child: new Text("50 / 76",
                                           style: TextStyle(
                                             fontFamily: 'ArialRoundedBold',
-                                            color: Color(0xff000000),
+                                            color: textColor,
                                             fontSize: 16*percentScale,
                                             fontWeight: FontWeight.w400,
                                             fontStyle: FontStyle.normal,
@@ -424,7 +435,7 @@ class _HomePageState extends State<Home>{
                                             width: 334*percentScale,
                                             height: 29*percentScale,
                                             decoration: new BoxDecoration(
-                                              color: Color(0xffe9e7f2),
+                                              color: darkModeColor(darkMode,Color( 0xffe9e7f2),Color(0xff494365)),
                                               borderRadius: BorderRadius.circular(10*percentScale),
                                               boxShadow: [BoxShadow(
                                                 color: Color(0x29000000),
@@ -439,7 +450,7 @@ class _HomePageState extends State<Home>{
                                             width: fishPercent*334*percentScale,
                                             height: 29*percentScale,
                                             decoration: new BoxDecoration(
-                                              color: Color(0xff9edcf4),
+                                              color: darkModeColor(darkMode,Color( 0xff9edcf4),Color(0xff71A3AD)),
                                               borderRadius: BorderRadius.circular(10*percentScale),
                                               boxShadow: [BoxShadow(
                                                 color: Color(0x00000000),
@@ -468,7 +479,7 @@ class _HomePageState extends State<Home>{
                                         child: new Text("5 / 100",
                                           style: TextStyle(
                                             fontFamily: 'ArialRoundedBold',
-                                            color: Color(0xff000000),
+                                            color: textColor,
                                             fontSize: 16*percentScale,
                                             fontWeight: FontWeight.w400,
                                             fontStyle: FontStyle.normal,
@@ -491,10 +502,10 @@ class _HomePageState extends State<Home>{
                       width: deviceWidth,
                       height: (35*percentScale+70*percentScale) + numEvents*(7+71)*percentScale + numDays*(25+7+16)*percentScale,
                       decoration: new BoxDecoration(
-                      color: Color(0xfffffcea),
+                      color: darkModeColor(darkMode,Color(0xfffffcea),Color(0xff202020)),
                       borderRadius: BorderRadius.circular(30*percentScale),
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FFE96B)),
                         offset: Offset(0,3),
                         blurRadius: 10,
                         spreadRadius: 0
@@ -508,10 +519,10 @@ class _HomePageState extends State<Home>{
                             width: 80*percentScale,
                             height: 35*percentScale,
                             decoration: new BoxDecoration(
-                              color: Color(0xffffe86b),
+                              color: darkModeColor(darkMode,Color(0xffffe86b),Color(0xff2D2D2D)),
                               borderRadius: BorderRadius.circular(30*percentScale),
                               boxShadow: [BoxShadow(
-                                  color: Color(0x29000000),
+                                  color: darkModeColor(darkMode,Color(0x1A000000),Color(0x40FFE86B)),
                                   offset: Offset(0,3),
                                   blurRadius: 6,
                                   spreadRadius: 0
@@ -521,7 +532,7 @@ class _HomePageState extends State<Home>{
                               child: Text("Events",
                                 style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff000000),
+                                color: darkModeColor(darkMode,Color(0xff000000),Color(0xffFFE86B)),
                                 fontSize: 16*percentScale,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
@@ -540,7 +551,7 @@ class _HomePageState extends State<Home>{
                                   "Today",
                                   style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: Color(0xff000000),
+                                  color: textColor,
                                   fontSize: 16*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
@@ -554,9 +565,9 @@ class _HomePageState extends State<Home>{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     //First Event
-                                    eventContainer(percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
+                                    eventContainer(darkMode, percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
                                     //Second event
-                                    eventContainer(percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
+                                    eventContainer(darkMode, percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
                                   ], 
                                 ),
                               ),
@@ -571,7 +582,7 @@ class _HomePageState extends State<Home>{
                                   "Tomorrow",
                                   style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: Color(0xff000000),
+                                  color: textColor,
                                   fontSize: 16*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
@@ -585,9 +596,9 @@ class _HomePageState extends State<Home>{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     //First Event
-                                    eventContainer(percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
+                                    eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
                                     //Second Event
-                                    eventContainer(percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
+                                    eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
 
                                   ], 
                                 ),
@@ -603,7 +614,7 @@ class _HomePageState extends State<Home>{
                                   "This Week",
                                   style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: Color(0xff000000),
+                                  color: textColor,
                                   fontSize: 16*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
@@ -617,9 +628,9 @@ class _HomePageState extends State<Home>{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     //First Event
-                                    eventContainer(percentScale, "true","Bug Off", "10 AM - 6 PM", "21", "Sat.", "bones.png"),
+                                    eventContainer( darkMode, percentScale, "true","Bug Off", "10 AM - 6 PM", "21", "Sat.", "bones.png"),
                                     //Second Event
-                                    eventContainer(percentScale, "true","K.K. Slider", "6 PM - 12 AM", "23", "Sat.", "bones.png"),
+                                    eventContainer(darkMode, percentScale, "true","K.K. Slider", "6 PM - 12 AM", "23", "Sat.", "bones.png"),
                                     
                                   ], 
                                 ),
@@ -639,10 +650,10 @@ class _HomePageState extends State<Home>{
                             width: deviceWidth,
                             height: 648*percentScale,
                             decoration: new BoxDecoration(
-                              color: Color(0xffffdede),
+                              color: darkModeColor(darkMode,Color(0xffffdede),Color(0xFF0D0D0D)),
                               borderRadius: BorderRadius.circular(30*percentScale),
                               boxShadow: [BoxShadow(
-                                color: Color(0x29000000),
+                                color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FF8181)),
                                 offset: Offset(0,3),
                                 blurRadius: 10,
                                 spreadRadius: 0
@@ -655,10 +666,10 @@ class _HomePageState extends State<Home>{
                             width: 159*percentScale,
                             height: 35*percentScale,
                             decoration: new BoxDecoration(
-                              color: Color(0xffff8181),
+                              color: darkModeColor(darkMode,Color( 0xffff8181),Color(0xFF0D0D0D)),
                               borderRadius: BorderRadius.circular(30*percentScale),
                               boxShadow: [BoxShadow(
-                                  color: Color(0x29000000),
+                                  color: darkModeColor(darkMode,Color( 0x28000000),Color(0x40FF8181)),
                                   offset: Offset(0,3),
                                   blurRadius: 6,
                                   spreadRadius: 0
@@ -668,7 +679,7 @@ class _HomePageState extends State<Home>{
                               child: Text("Active Creatures",
                                 style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff000000),
+                                color: darkModeColor(darkMode,Color(0xff000000),Color(0xFFFF8181)),
                                 fontSize: 16*percentScale,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
@@ -689,10 +700,10 @@ class _HomePageState extends State<Home>{
                             width: deviceWidth,
                             height: 302*percentScale,
                             decoration: new BoxDecoration(
-                              color: Color(0xffdefeff),
+                              color: darkModeColor(darkMode,Color(0xffdefeff),Color(0xFF202020)),
                               borderRadius: BorderRadius.circular(30*percentScale),
                               boxShadow: [BoxShadow(
-                                color: Color(0x29000000),
+                                color: darkModeColor(darkMode,Color( 0x40000000),Color(0xc095C8F5)),
                                 offset: Offset(0,3),
                                 blurRadius: 10,
                                 spreadRadius: 0
@@ -705,10 +716,10 @@ class _HomePageState extends State<Home>{
                             width: 123*percentScale,
                             height: 35*percentScale,
                             decoration: new BoxDecoration(
-                              color: Color(0xff95c8f5),
+                              color: darkModeColor(darkMode,Color(0xff95c8f5),Color(0xFF2D2D2D)),
                               borderRadius: BorderRadius.circular(30*percentScale),
                               boxShadow: [BoxShadow(
-                                  color: Color(0x29000000),
+                                  color: darkModeColor(darkMode,Color( 0x28000000),Color(0x4095C8F5)),
                                   offset: Offset(0,3),
                                   blurRadius: 6,
                                   spreadRadius: 0
@@ -718,7 +729,7 @@ class _HomePageState extends State<Home>{
                               child: Text("Store Hours",
                                 style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff000000),
+                                color:  darkModeColor(darkMode,Color( 0xff000000),Color(0xFF95C8F5)),
                                 fontSize: 16*percentScale,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,

@@ -1,7 +1,20 @@
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import 'dart:async';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
+class Music {
+  final int id;
+  final bool collected;
+
+  Music({this.id, this.collected});
+}
+
 
 class MusicList extends StatefulWidget {
   MusicList({Key key, this.title}) : super(key: key);
@@ -15,6 +28,7 @@ class MusicList extends StatefulWidget {
 class _MusicListPageState extends State<MusicList>{
   @override
   Widget build(BuildContext context){
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;
     double designedWidth = 360;
@@ -33,12 +47,19 @@ class _MusicListPageState extends State<MusicList>{
       percentScale = percentHeight;
     }
 
+    Color textColor;
+    if(!darkMode)
+      textColor = Color( 0xFFFFFFFF);
+    else
+      textColor = Color( 0xFFF5F5F5);
+
+      
     return Scaffold(
       body: Stack(
         children: <Widget>[
           Container(
             height: MediaQuery.of(context).size.height,
-            color: Color(0xFF81C0FF),
+            color: darkModeColor(darkMode, Color( 0xFF81C0FF), Color( 0xff08354E)),
           ),
           CustomScrollView(
             physics: BouncingScrollPhysics(),
@@ -56,7 +77,7 @@ class _MusicListPageState extends State<MusicList>{
                     child: Text("K.K. Songs",
                       style: TextStyle(
                         fontFamily: 'ArialRoundedBold',
-                        color: Color(0xffffffff),
+                        color: textColor,
                         fontSize: 30*percentScale,
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
@@ -78,7 +99,7 @@ class _MusicListPageState extends State<MusicList>{
                   delegate: 
                   SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      return songContainer(percentScale, index);
+                      return songContainer(percentScale, index, textColor);
                     },
                     childCount: albumCoverLinks.length+3,
                   ),
@@ -98,10 +119,10 @@ class _MusicListPageState extends State<MusicList>{
                   child: WaveWidget(
                     config: CustomConfig(
                       gradients: [
-                        [Color(0xaF2b74e3), Color(0xaF2b74e3)],
-                        [Color(0xaf3089ee), Color(0xaf3089ee)],
-                        [Color(0xaf3a7aee), Color(0xaf3a7aee)],
-                        [Color(0xaf5c94ff), Color(0xaF5C94FF)]
+                        [darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3)), darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3))],
+                        [darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee)), darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee))],
+                        [darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee)), darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee))],
+                        [darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff)), darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff))]
                       ],
                       durations: [13000, 25000, 9000, 32000],
                       heightPercentages: [0.10, 0.12, 0.14, 0.16],
@@ -124,10 +145,10 @@ class _MusicListPageState extends State<MusicList>{
                 child: WaveWidget(
                   config: CustomConfig(
                     gradients: [
-                      [Color(0xaF2b74e3), Color(0xaF2b74e3)],
-                      [Color(0xaf3089ee), Color(0xaf3089ee)],
-                      [Color(0xaf3a7aee), Color(0xaf3a7aee)],
-                      [Color(0xaf5c94ff), Color(0xaF5C94FF)]
+                      [darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3)), darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3))],
+                      [darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee)), darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee))],
+                      [darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee)), darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee))],
+                      [darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff)), darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff))]
                     ],
                     durations: [30000, 20000, 11000, 8000],
                     heightPercentages: [0.10, 0.11, 0.12, 0.13],
@@ -147,7 +168,7 @@ class _MusicListPageState extends State<MusicList>{
   }
 }
 
-Widget songContainer(double percentScale, int index){
+Widget songContainer(double percentScale, int index, Color textColor){
   if (index>=albumCoverLinks.length){
     return Container(
       transform: Matrix4.translationValues(-2*percentScale,-2*percentScale,0),
@@ -168,7 +189,7 @@ Widget songContainer(double percentScale, int index){
               width:99*percentScale,
               height:99*percentScale,
               decoration: new BoxDecoration(
-                color: Color(0xff81FFB3),
+                color: Color(0xb381ffb3),
                 borderRadius: BorderRadius.circular(5*percentScale),
               ),
             ),
@@ -207,7 +228,7 @@ Widget songContainer(double percentScale, int index){
         Text(albumName[index],
           style: TextStyle(
             fontFamily: 'ArialRoundedBold',
-            color: Color(0xffffffff),
+            color: textColor,
             fontSize: 10*percentScale,
             fontWeight: FontWeight.w400,
             fontStyle: FontStyle.normal,

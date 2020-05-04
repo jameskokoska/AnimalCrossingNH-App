@@ -7,6 +7,7 @@ import 'mainMenu.dart';
 import 'fishList.dart';
 import 'music.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -15,14 +16,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData (
-        primaryColor: Colors.red,
-        accentColor: Colors.red[50],
-        fontFamily: '',
+        primaryColor: Color(0xFFFAFAFA),
+        accentColor: Colors.red,
+        brightness: Brightness.light,
       ),
       darkTheme: ThemeData (
-        primaryColor: Colors.green,
+        primaryColor: Color(0xFF313131),
         accentColor: Colors.red[50],
-        fontFamily: '',
+        brightness: Brightness.dark,
       ),
       home: Main(),
     );
@@ -78,6 +79,7 @@ class _MainPageState extends State<Main> {
         currentPageWidget = fishpage;
       } else {
         currentPageWidget = fishlist;
+        print(Brightness.values);
       }
     });
     HapticFeedback.mediumImpact(); 
@@ -85,6 +87,7 @@ class _MainPageState extends State<Main> {
   }
 
   Widget build(BuildContext context) {
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;
     double designedWidth = 360;
@@ -113,15 +116,16 @@ class _MainPageState extends State<Main> {
           new Align(
             alignment: Alignment.bottomCenter,
             child:CurvedNavigationBar(
+              color: Theme.of(context).primaryColor,
               backgroundColor: Colors.black.withOpacity(0),
               buttonBackgroundColor: Theme.of(context).accentColor,
               items: <Widget>[
                 Image.asset('assets/home.png',
                 height:20*percentScale,
                 width:20*percentScale,),
-                Icon(Icons.bug_report,size:20,color:Theme.of(context).primaryColor),
-                Icon(Icons.blur_linear,size:20,color:Theme.of(context).primaryColor),
-                Icon(Icons.more_horiz,size:20,color:Theme.of(context).primaryColor),
+                Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor),
+                Icon(Icons.blur_linear,size:20,color:Theme.of(context).accentColor),
+                Icon(Icons.more_horiz,size:20,color:Theme.of(context).accentColor),
               ],
                index: selectedIndex,
                 onTap: selectedNavBar,
@@ -145,3 +149,9 @@ class MorePage extends StatelessWidget{
   }
 }
 
+Color darkModeColor(bool darkMode, Color colorLight, Color colorDark){
+  if(!darkMode)
+    return colorLight;
+  else
+    return colorDark;
+}
