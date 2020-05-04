@@ -10,6 +10,124 @@ class Home extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+
+Widget eventContainer(double percentScale, String enable, String name, String time, String dayNum, String dayStr, String imagePath){
+  bool enableBool;
+  if(enable=="true"){
+    enableBool = true;
+  } else {
+    enableBool = false;
+  }
+  return Column(
+    children: <Widget>[
+      Visibility(
+        visible: enableBool,
+        child: Stack(
+          children: <Widget>[
+            Center(
+              child: new Container(
+                width: 334*percentScale,
+                height: 71*percentScale,
+                decoration: new BoxDecoration(
+                  color: Color(0xfff4ebd6),
+                  borderRadius: BorderRadius.circular(8)
+                )
+              )
+            ),
+            new Container(
+              transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
+              child: new Image.asset(
+                'assets/'+imagePath,
+                height:41*percentScale,
+                width:41*percentScale,
+              )
+            ),
+            new Container(
+              transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
+              child: 
+                Stack(
+                children: <Widget>[
+                  new Image.asset(
+                    'assets/calendarIcon.png',
+                    height:41*percentScale,
+                    width:41*percentScale,
+                  ),
+                  Container(
+                    transform: Matrix4.translationValues(-(318/2)*percentScale,14*percentScale,0),
+                    child: Center(
+                      child: new Text(
+                        dayNum,
+                        style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: Color(0xff373737),
+                        fontSize: 19*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ),
+                  ),
+                  Container(
+                    transform: Matrix4.translationValues(-(318/2)*percentScale,1*percentScale,0),
+                    child: Center(
+                      child: new Text(
+                        dayStr,
+                        style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: Color(0xff373737),
+                        fontSize: 10*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ),
+                  )
+                ], 
+              )
+            ),
+            new Container(
+              transform: Matrix4.translationValues(0,15*percentScale,0),
+              child: new Center(
+                child: new Text(
+                  name,
+                  style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  color: Color(0xff373737),
+                  fontSize: 18*percentScale,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  )
+                )
+              ),
+            ),
+            new Container(
+              transform: Matrix4.translationValues(0,43*percentScale,0),
+              child: new Center(
+                child: new Text(
+                  time,
+                  style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  color: Color(0xff373737),
+                  fontSize: 13*percentScale,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  )
+                )
+              ),
+            ),
+          ],
+        ),
+      ),
+      Visibility(
+        visible: enableBool,
+        child:SizedBox(
+          height: 7*percentScale,
+        ),
+      ),
+    ],
+  );
+}
+
 class _HomePageState extends State<Home>{
 
   @override 
@@ -436,210 +554,9 @@ class _HomePageState extends State<Home>{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     //First Event
-                                    Visibility(
-    //                                  visible: true,
-                                      child: Stack(
-                                        children: <Widget>[
-                                          Center(
-                                            child: new Container(
-                                              width: 334*percentScale,
-                                              height: 71*percentScale,
-                                              decoration: new BoxDecoration(
-                                                color: Color(0xfff4ebd6),
-                                                borderRadius: BorderRadius.circular(8)
-                                              )
-                                            )
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-                                            child: new Image.asset(
-                                              'assets/bones.png',
-                                              height:41*percentScale,
-                                              width:41*percentScale,
-                                            )
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
-                                            child: 
-                                              Stack(
-                                              children: <Widget>[
-                                                new Image.asset(
-                                                  'assets/calendarIcon.png',
-                                                  height:41*percentScale,
-                                                  width:41*percentScale,
-                                                ),
-                                                Container(
-                                                  transform: Matrix4.translationValues(-(318/2)*percentScale,14*percentScale,0),
-                                                  child: Center(
-                                                    child: new Text(
-                                                      todayFirstBirthday[2],
-                                                      style: TextStyle(
-                                                      fontFamily: 'ArialRoundedBold',
-                                                      color: Color(0xff373737),
-                                                      fontSize: 19*percentScale,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontStyle: FontStyle.normal,
-                                                      )
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  transform: Matrix4.translationValues(-(318/2)*percentScale,1*percentScale,0),
-                                                  child: Center(
-                                                    child: new Text(
-                                                      todayFirstBirthday[1],
-                                                      style: TextStyle(
-                                                      fontFamily: 'ArialRoundedBold',
-                                                      color: Color(0xff373737),
-                                                      fontSize: 10*percentScale,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontStyle: FontStyle.normal,
-                                                      )
-                                                    ),
-                                                  ),
-                                                )
-                                              ], 
-                                            )
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(0,15*percentScale,0),
-                                            child: new Center(
-                                              child: new Text(
-                                                todayFirstBirthday[0],
-                                                style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: Color(0xff373737),
-                                                fontSize: 18*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                                )
-                                              )
-                                            ),
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(0,43*percentScale,0),
-                                            child: new Center(
-                                              child: new Text(
-                                                todayFirstBirthday[3],
-                                                style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: Color(0xff373737),
-                                                fontSize: 13*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                                )
-                                              )
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 7*percentScale,
-                                    ),
+                                    eventContainer(percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
                                     //Second event
-                                    Visibility(
-                                      visible: false,
-                                      child: Stack(
-                                        children: <Widget>[
-                                          Center(
-                                            child: new Container(
-                                              width: 334*percentScale,
-                                              height: 71*percentScale,
-                                              decoration: new BoxDecoration(
-                                                color: Color(0xfff4ebd6),
-                                                borderRadius: BorderRadius.circular(8)
-                                              )
-                                            )
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-                                            child: new Image.asset(
-                                              'assets/bones.png',
-                                              height:41*percentScale,
-                                              width:41*percentScale,
-                                            )
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
-                                            child: 
-                                              Stack(
-                                              children: <Widget>[
-                                                new Image.asset(
-                                                  'assets/calendarIcon.png',
-                                                  height:41*percentScale,
-                                                  width:41*percentScale,
-                                                ),
-                                                Container(
-                                                  transform: Matrix4.translationValues(-(318/2)*percentScale,14*percentScale,0),
-                                                  child: Center(
-                                                    child: new Text(
-                                                      "24",
-                                                      style: TextStyle(
-                                                      fontFamily: 'ArialRoundedBold',
-                                                      color: Color(0xff373737),
-                                                      fontSize: 19*percentScale,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontStyle: FontStyle.normal,
-                                                      )
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  transform: Matrix4.translationValues(-(318/2)*percentScale,1*percentScale,0),
-                                                  child: Center(
-                                                    child: new Text(
-                                                      "Sat.",
-                                                      style: TextStyle(
-                                                      fontFamily: 'ArialRoundedBold',
-                                                      color: Color(0xff373737),
-                                                      fontSize: 10*percentScale,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontStyle: FontStyle.normal,
-                                                      )
-                                                    ),
-                                                  ),
-                                                )
-                                              ], 
-                                            )
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(0,15*percentScale,0),
-                                            child: new Center(
-                                              child: new Text(
-                                                "Nate’s Birthday",
-                                                style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: Color(0xff373737),
-                                                fontSize: 18*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                                )
-                                              )
-                                            ),
-                                          ),
-                                          new Container(
-                                            transform: Matrix4.translationValues(0,43*percentScale,0),
-                                            child: new Center(
-                                              child: new Text(
-                                                "All Day",
-                                                style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: Color(0xff373737),
-                                                fontSize: 13*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                                )
-                                              )
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 7*percentScale,
-                                    ),
-
+                                    eventContainer(percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
                                   ], 
                                 ),
                               ),
@@ -668,203 +585,9 @@ class _HomePageState extends State<Home>{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     //First Event
-                                    Stack(
-                                      children: <Widget>[
-                                        Center(
-                                          child: new Container(
-                                            width: 334*percentScale,
-                                            height: 71*percentScale,
-                                            decoration: new BoxDecoration(
-                                              color: Color(0xfff4ebd6),
-                                              borderRadius: BorderRadius.circular(8)
-                                            )
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-                                          child: new Image.asset(
-                                            'assets/bones.png',
-                                            height:41*percentScale,
-                                            width:41*percentScale,
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
-                                          child: 
-                                            Stack(
-                                            children: <Widget>[
-                                              new Image.asset(
-                                                'assets/calendarIcon.png',
-                                                height:41*percentScale,
-                                                width:41*percentScale,
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,14*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "24",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 19*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,1*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "Sat.",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 10*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              )
-                                            ], 
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,15*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "Fishing Tourney",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 18*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,43*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "10 AM - 6 PM",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 13*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 7*percentScale,
-                                    ),
+                                    eventContainer(percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
                                     //Second Event
-                                    Stack(
-                                      children: <Widget>[
-                                        Center(
-                                          child: new Container(
-                                            width: 334*percentScale,
-                                            height: 71*percentScale,
-                                            decoration: new BoxDecoration(
-                                              color: Color(0xfff4ebd6),
-                                              borderRadius: BorderRadius.circular(8)
-                                            )
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-                                          child: new Image.asset(
-                                            'assets/bones.png',
-                                            height:41*percentScale,
-                                            width:41*percentScale,
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
-                                          child: 
-                                            Stack(
-                                            children: <Widget>[
-                                              new Image.asset(
-                                                'assets/calendarIcon.png',
-                                                height:41*percentScale,
-                                                width:41*percentScale,
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,14*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "24",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 19*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,1*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "Sat.",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 10*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              )
-                                            ], 
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,15*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "Nate’s Birthday",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 18*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,43*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "All Day",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 13*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 7*percentScale,
-                                    ),
+                                    eventContainer(percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
 
                                   ], 
                                 ),
@@ -894,203 +617,9 @@ class _HomePageState extends State<Home>{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     //First Event
-                                    Stack(
-                                      children: <Widget>[
-                                        Center(
-                                          child: new Container(
-                                            width: 334*percentScale,
-                                            height: 71*percentScale,
-                                            decoration: new BoxDecoration(
-                                              color: Color(0xfff4ebd6),
-                                              borderRadius: BorderRadius.circular(8)
-                                            )
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-                                          child: new Image.asset(
-                                            'assets/bones.png',
-                                            height:41*percentScale,
-                                            width:41*percentScale,
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
-                                          child: 
-                                            Stack(
-                                            children: <Widget>[
-                                              new Image.asset(
-                                                'assets/calendarIcon.png',
-                                                height:41*percentScale,
-                                                width:41*percentScale,
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,14*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "24",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 19*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,1*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "Sat.",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 10*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              )
-                                            ], 
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,15*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "Bug Off",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 18*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,43*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "10 AM - 6 PM",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 13*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 7*percentScale,
-                                    ),
+                                    eventContainer(percentScale, "true","Bug Off", "10 AM - 6 PM", "21", "Sat.", "bones.png"),
                                     //Second Event
-                                    Stack(
-                                      children: <Widget>[
-                                        Center(
-                                          child: new Container(
-                                            width: 334*percentScale,
-                                            height: 71*percentScale,
-                                            decoration: new BoxDecoration(
-                                              color: Color(0xfff4ebd6),
-                                              borderRadius: BorderRadius.circular(8)
-                                            )
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-                                          child: new Image.asset(
-                                            'assets/bones.png',
-                                            height:41*percentScale,
-                                            width:41*percentScale,
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
-                                          child: 
-                                            Stack(
-                                            children: <Widget>[
-                                              new Image.asset(
-                                                'assets/calendarIcon.png',
-                                                height:41*percentScale,
-                                                width:41*percentScale,
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,14*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "24",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 19*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                transform: Matrix4.translationValues(-(318/2)*percentScale,1*percentScale,0),
-                                                child: Center(
-                                                  child: new Text(
-                                                    "Sat.",
-                                                    style: TextStyle(
-                                                    fontFamily: 'ArialRoundedBold',
-                                                    color: Color(0xff373737),
-                                                    fontSize: 10*percentScale,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontStyle: FontStyle.normal,
-                                                    )
-                                                  ),
-                                                ),
-                                              )
-                                            ], 
-                                          )
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,15*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "K.K. Slider",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 18*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                        new Container(
-                                          transform: Matrix4.translationValues(0,43*percentScale,0),
-                                          child: new Center(
-                                            child: new Text(
-                                              "6 PM - 12 AM",
-                                              style: TextStyle(
-                                              fontFamily: 'ArialRoundedBold',
-                                              color: Color(0xff373737),
-                                              fontSize: 13*percentScale,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              )
-                                            )
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 7*percentScale,
-                                    ),
+                                    eventContainer(percentScale, "true","K.K. Slider", "6 PM - 12 AM", "23", "Sat.", "bones.png"),
                                     
                                   ], 
                                 ),

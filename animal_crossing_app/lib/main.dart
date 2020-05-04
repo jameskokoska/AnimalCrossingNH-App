@@ -107,7 +107,7 @@ class _MainPageState extends State<Main> {
       body: new Stack(
         children: <Widget>[
           new AnimatedSwitcher(
-            duration: const Duration(milliseconds:150),
+            duration: const Duration(milliseconds:200),
             child: currentPageWidget,
           ),
           new Align(
