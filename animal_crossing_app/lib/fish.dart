@@ -64,7 +64,7 @@ class _FishPageState extends State<Fish>{
                 // ---------- Card Tab ----------
                 new Center(
                   child: new Container(
-                    transform: Matrix4.translationValues(0, -60, 0),
+                    transform: Matrix4.translationValues(0, -60*percentScale, 0),
                     width: 113*percentScale,
                     height: 113*percentScale,
                     // ---------- Card Tab Image ----------
@@ -89,7 +89,7 @@ class _FishPageState extends State<Fish>{
                 ),
                 // ---------- Card Location ----------
                 new Container(
-                  transform: Matrix4.translationValues(10, 10, 0),
+                  transform: Matrix4.translationValues(10*percentScale, 10*percentScale, 0),
                   width: 60*percentScale,
                   height: 60*percentScale,
                   // ---------- Card Location Image ----------
@@ -107,7 +107,7 @@ class _FishPageState extends State<Fish>{
                 ),
                 // ---------- Card Caught ----------
                 new Container(
-                  transform: Matrix4.translationValues(290, 10, 0),
+                  transform: Matrix4.translationValues(290*percentScale, 10*percentScale, 0),
                   width: 60*percentScale,
                   height: 60*percentScale,
                     // ---------- Card Body Caught Image ----------
@@ -129,12 +129,12 @@ class _FishPageState extends State<Fish>{
                     children: [
                       // ---------- Card Centre Quote ----------
                       Container(
-                        transform: Matrix4.translationValues(0, 80, 0),
+                        transform: Matrix4.translationValues(0, 80*percentScale, 0),
                         child: Text("“I caught a red snapper! \u000bIt looks pretty dapper!”",
                           style: TextStyle(
                             fontFamily: 'Baskerville',
                             color: Color(0xff625dde),
-                            fontSize: 14,
+                            fontSize: 14*percentScale,
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.italic,
                           )
@@ -142,25 +142,25 @@ class _FishPageState extends State<Fish>{
                       ),
                       // ---------- Card Centre Name ----------
                       Container(
-                        transform: Matrix4.translationValues(0, 100, 0),
+                        transform: Matrix4.translationValues(0, 100*percentScale, 0),
                         child: new Text("Red Snapper",
                           style: TextStyle(
-                            fontFamily: 'ArialRounded',
+                            fontFamily: 'ArialRoundedBold',
                             color: Color(0xff373737),
-                            fontSize: 31,
-                            fontWeight: FontWeight.w700,
+                            fontSize: 31*percentScale,
+                            fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                           )
                         ),
                       ),
                       // ---------- Card Centre Sell Price ----------
                       Container(
-                        transform: Matrix4.translationValues(0, 120, 0),
+                        transform: Matrix4.translationValues(0, 120*percentScale, 0),
                         child: Stack(
                           children: [
                             // ---------- Card Centre Sell Price Image ----------
                             Container(
-                              transform: Matrix4.translationValues(-40, -4, 0),
+                              transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
                               child: new Image.asset(
                                 'assets/fish.png',
                                 height: 30*percentScale,
@@ -171,10 +171,10 @@ class _FishPageState extends State<Fish>{
                             Container(
                               child: new Text("5,000 bells",
                                   style: TextStyle(
-                                    fontFamily: 'ArialRounded',
+                                    fontFamily: 'ArialRoundedBold',
                                     color: Color(0xff3a3a3a),
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w700,
+                                    fontSize: 19*percentScale,
+                                    fontWeight: FontWeight.w400,
                                     fontStyle: FontStyle.normal,
                                   )
                               ),
@@ -184,12 +184,12 @@ class _FishPageState extends State<Fish>{
                       ),
                       // ---------- Card Centre Size ----------
                       Container(
-                          transform: Matrix4.translationValues(0, 120, 0),
+                          transform: Matrix4.translationValues(0, 120*percentScale, 0),
                           child: Stack(
                               children: [
                                 // ---------- Card Centre Size Image ----------
                                 Container(
-                                  transform: Matrix4.translationValues(-40, -4, 0),
+                                  transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
                                   child: new Image.asset(
                                     'assets/fish.png',
                                     height: 30*percentScale,
@@ -200,10 +200,10 @@ class _FishPageState extends State<Fish>{
                                 Container(
                                   child: new Text("Large",
                                       style: TextStyle(
-                                        fontFamily: 'ArialRounded',
+                                        fontFamily: 'ArialRoundedBold',
                                         color: Color(0xff3a3a3a),
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.w700,
+                                        fontSize: 19*percentScale,
+                                        fontWeight: FontWeight.w400,
                                         fontStyle: FontStyle.normal,
                                       )
                                   ),
@@ -213,12 +213,12 @@ class _FishPageState extends State<Fish>{
                       ),
                       // ---------- Card Centre Rarity ----------
                       Container(
-                          transform: Matrix4.translationValues(0, 120, 0),
+                          transform: Matrix4.translationValues(0, 120*percentScale, 0),
                           child: Stack(
                               children: [
                                 // ---------- Card Centre Rarity Image ----------
                                 Container(
-                                  transform: Matrix4.translationValues(-40, -4, 0),
+                                  transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
                                   child: new Image.asset(
                                     'assets/fish.png',
                                     height: 30*percentScale,
@@ -229,10 +229,10 @@ class _FishPageState extends State<Fish>{
                                 Container(
                                   child: new Text("Rare",
                                       style: TextStyle(
-                                        fontFamily: 'ArialRounded',
+                                        fontFamily: 'ArialRoundedBold',
                                         color: Color(0xff3a3a3a),
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.w700,
+                                        fontSize: 19*percentScale,
+                                        fontWeight: FontWeight.w400,
                                         fontStyle: FontStyle.normal,
                                       )
                                   ),
