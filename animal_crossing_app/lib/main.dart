@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 import 'fish.dart';
 import 'bugs.dart';
 import 'mainMenu.dart';
+import 'fishList.dart';
+import 'music.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -13,16 +16,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData (
-        primaryColor: Colors.red,
-        accentColor: Colors.red[50],
-        backgroundColor: Colors.grey[50],
-        fontFamily: '',
+        primaryColor: Color(0xFFFAFAFA),
+        accentColor: Colors.red,
+        brightness: Brightness.light,
       ),
       darkTheme: ThemeData (
-        primaryColor: Colors.green,
+        primaryColor: Color(0xFF313131),
         accentColor: Colors.red[50],
-        backgroundColor: Colors.grey[50],
-        fontFamily: '',
+        brightness: Brightness.dark,
       ),
       home: Main(),
     );
@@ -47,6 +48,8 @@ class _MainPageState extends State<Main> {
   BugsPage bugspage;
   Fish fishpage;
   MorePage morepage;
+  FishList fishlist;
+  MusicList musiclist;
   Widget currentPageWidget;
 
   
@@ -55,7 +58,8 @@ class _MainPageState extends State<Main> {
     homepage = Home();
     bugspage = BugsPage();
     fishpage = Fish();
-    morepage = MorePage();
+    fishlist = FishList();
+    musiclist = MusicList();
 
     super.initState();
     currentPageWidget = homepage;
@@ -70,11 +74,12 @@ class _MainPageState extends State<Main> {
       if(index == 0){
         currentPageWidget = homepage;
       } else if (index == 1){
-        currentPageWidget = bugspage;
+        currentPageWidget = musiclist;
       } else if (index == 2){
         currentPageWidget = fishpage;
       } else {
-        currentPageWidget = morepage;
+        currentPageWidget = fishlist;
+        print(Brightness.values);
       }
     });
     HapticFeedback.mediumImpact(); 
@@ -82,6 +87,7 @@ class _MainPageState extends State<Main> {
   }
 
   Widget build(BuildContext context) {
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;
     double designedWidth = 360;
@@ -103,19 +109,23 @@ class _MainPageState extends State<Main> {
     return Scaffold(
       body: new Stack(
         children: <Widget>[
-          currentPageWidget,
+          new AnimatedSwitcher(
+            duration: const Duration(milliseconds:200),
+            child: currentPageWidget,
+          ),
           new Align(
             alignment: Alignment.bottomCenter,
             child:CurvedNavigationBar(
-              backgroundColor: Colors.black.withOpacity(0.1),
+              color: Theme.of(context).primaryColor,
+              backgroundColor: Colors.black.withOpacity(0),
               buttonBackgroundColor: Theme.of(context).accentColor,
               items: <Widget>[
                 Image.asset('assets/home.png',
                 height:20*percentScale,
                 width:20*percentScale,),
-                Icon(Icons.bug_report,size:20,color:Theme.of(context).primaryColor),
-                Icon(Icons.blur_linear,size:20,color:Theme.of(context).primaryColor),
-                Icon(Icons.more_horiz,size:20,color:Theme.of(context).primaryColor),
+                Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor),
+                Icon(Icons.blur_linear,size:20,color:Theme.of(context).accentColor),
+                Icon(Icons.more_horiz,size:20,color:Theme.of(context).accentColor),
               ],
                index: selectedIndex,
                 onTap: selectedNavBar,
@@ -139,3 +149,19 @@ class MorePage extends StatelessWidget{
   }
 }
 
+Color darkModeColor(bool darkMode, Color colorLight, Color colorDark){
+  if(!darkMode)
+    return colorLight;
+  else
+    return colorDark;
+}
+
+String capitalize(String string) {
+  if (string == null){
+    throw ArgumentError("string: $string");
+  } 
+  if (string.isEmpty){
+    return string;
+  }
+  return string[0].toUpperCase() + string.substring(1);
+}
