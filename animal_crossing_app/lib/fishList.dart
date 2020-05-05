@@ -203,113 +203,131 @@ class _FishListPageState extends State<FishList>{
 }
 
 Widget songContainer(double percentScale, int index, String name, String iconImage, String whereHow, String nhJan){
-  return Column(
-    children: <Widget>[
-      SizedBox(
-        height:8*percentScale,
-      ),
-      new Stack(
-        children: <Widget>[
-          new Container(
-            width: 334*percentScale,
-            height: 71*percentScale,
-            decoration: new BoxDecoration(
-              color: Color(0xffb9f4fb),
-              borderRadius: BorderRadius.circular(8)
-            )
-          ),
-          Stack(
-            children: <Widget>[
-              new Container(
-                transform: Matrix4.translationValues(8*percentScale,8*percentScale,0),
-                width: 55*percentScale,
-                height: 55*percentScale,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xff9edcf4)
-                )
-              ),
-              Container(
-                transform: Matrix4.translationValues((8+5)*percentScale,(8+5)*percentScale,0),
-                child: CachedNetworkImage(
-                  imageBuilder: (context, imageProvider) => Container(
-                    width: 45*percentScale,
-                    height: 45*percentScale,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4*percentScale),
-                      image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.cover),
+  return new StatefulBuilder(
+    builder: (BuildContext context, StateSetter setState) { return Column(
+      children: <Widget>[
+        SizedBox(
+          height:8*percentScale,
+        ),
+        new Stack(
+          children: <Widget>[
+            new Container(
+              width: 334*percentScale,
+              height: 71*percentScale,
+              decoration: new BoxDecoration(
+                color: Color(0xffb9f4fb),
+                borderRadius: BorderRadius.circular(8)
+              )
+            ),
+            Stack(
+              children: <Widget>[
+                new Container(
+                  transform: Matrix4.translationValues(8*percentScale,8*percentScale,0),
+                  width: 55*percentScale,
+                  height: 55*percentScale,
+                  decoration: new BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xff9edcf4)
+                  )
+                ),
+                Container(
+                  transform: Matrix4.translationValues((8+5)*percentScale,(8+5)*percentScale,0),
+                  child: CachedNetworkImage(
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: 45*percentScale,
+                      height: 45*percentScale,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4*percentScale),
+                        image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                      ),
                     ),
+                    imageUrl: iconImage,
+                    //placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => new Icon(Icons.error),
+                    fadeInDuration: Duration(milliseconds:800),
                   ),
-                  imageUrl: iconImage,
-                  //placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => new Icon(Icons.error),
-                  fadeInDuration: Duration(milliseconds:800),
                 ),
-              ),
-              Container(
-                transform: Matrix4.translationValues((79)*percentScale,(6)*percentScale,0),
-                child: new Text((capitalize(name)),
-                  style: TextStyle(
-                  fontFamily: 'ArialRoundedBold',
-                  color: Color(0xff373737),
-                  fontSize: 19*percentScale,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                  )
+                Container(
+                  transform: Matrix4.translationValues((79)*percentScale,(6)*percentScale,0),
+                  child: new Text((capitalize(name)),
+                    style: TextStyle(
+                    fontFamily: 'ArialRoundedBold',
+                    color: Color(0xff373737),
+                    fontSize: 19*percentScale,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    )
+                  ),
                 ),
-              ),
-              Container(
-                transform: Matrix4.translationValues((79)*percentScale,(29)*percentScale,0),
-                child: new Text(nhJan,
-                  style: TextStyle(
-                  fontFamily: 'ArialRoundedBold',
-                  color: Color(0xff625dde),
-                  fontSize: 14*percentScale,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                  )
+                Container(
+                  transform: Matrix4.translationValues((79)*percentScale,(29)*percentScale,0),
+                  child: new Text(nhJan,
+                    style: TextStyle(
+                    fontFamily: 'ArialRoundedBold',
+                    color: Color(0xff625dde),
+                    fontSize: 14*percentScale,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    )
+                  ),
                 ),
-              ),
-              Container(
-                transform: Matrix4.translationValues((79)*percentScale,(46)*percentScale,0),
-                child: new Text(whereHow,
-                  style: TextStyle(
-                  fontFamily: 'ArialRoundedBold',
-                  color: Color(0xff625dde),
-                  fontSize: 14*percentScale,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                  )
+                Container(
+                  transform: Matrix4.translationValues((79)*percentScale,(46)*percentScale,0),
+                  child: new Text(whereHow,
+                    style: TextStyle(
+                    fontFamily: 'ArialRoundedBold',
+                    color: Color(0xff625dde),
+                    fontSize: 14*percentScale,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    )
+                  ),
                 ),
-              ),
-              //Checkmark background
-              new Container(
-                transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
-                width: 55*percentScale,
-                height: 55*percentScale,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFF9E4E4)
-                )
-              ),
-            ],
-          ),
-          
-          Container(
-            transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
-            width:55*percentScale,
-            height:55*percentScale,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(300*percentScale),
-              child: new StatefulBuilder(
-                builder: (BuildContext context, StateSetter setState) {
-                  return new Transform.scale(
-                    scale: 3.05*percentScale,
+                //Checkmark background
+                AnimatedPositioned(
+                  duration: Duration(milliseconds: 300),
+                  top: check ? 55*percentScale : 0,
+                  bottom: check ? 55*percentScale : 0,
+                  child: new Container(
+                    transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
+                    width: 55*percentScale,
+                    height: 55*percentScale,
+                    decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFFF9E4E4)
+                    )
+                  ),
+                ),
+                AnimatedPositioned(
+                  duration: Duration(milliseconds: 200),
+                  top: !check ? 55*percentScale : 0,
+                  bottom: !check ? 55*percentScale : 0,
+                  child: new Container(
+                    transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
+                    width: 55*percentScale,
+                    height: 55*percentScale,
+                    decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF99F9A9)
+                    )
+                  ),
+                ),
+              ],
+            ),
+            
+            Container(
+              transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
+              width:55*percentScale,
+              height:55*percentScale,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(300*percentScale),
+                  child: new Transform.scale(
+                    scale: 2.5*percentScale,
                     child: Theme(
-                      data: ThemeData(unselectedWidgetColor: Color(0xFFF9E4E4)),
+                      data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                       child: new Checkbox(
-                        activeColor: Color(0xFF99F9A9),
+                        activeColor: Color(0x0499F9A9),
                         checkColor: Color(0xFF444444),
                         value: check,
                         onChanged: (bool value) {
@@ -319,15 +337,14 @@ Widget songContainer(double percentScale, int index, String name, String iconIma
                         },
                       ),
                     ),
-                  );
-                },
+                  )
               ),
             ),
-          ),
-        ],
-      ),
-    ],
-  );
+          ],
+        ),
+      ],
+    );
+  });
 }
 
 bool check = false;
