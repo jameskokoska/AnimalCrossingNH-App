@@ -27,15 +27,15 @@ class FishList extends StatefulWidget {
 class FishData{
   final String id;
   final String name;
+  final String iconImage;
   final String critterpediaImage;
   final String furnitureImage;
   final String sell;
   final String whereHow;
   final String shadow;
+  final String totalCatchesToUnlock;
   final String rarity;
   final String rainSnow;
-  final String startTime;
-  final String endTime;
   final String nhJan;
   final String nhFeb;
   final String nhMar;
@@ -64,15 +64,16 @@ class FishData{
   final String color2;
   final String size;
   final String lightingType;
+  final String iconFilename;
   final String critterpediaFilename;
   final String furnitureFilename;
   final String internalId;
   final String uniqueEntryId;
 
-  FishData(this.id, this.name,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.rarity, this.rainSnow,this.startTime,this.endTime,
+  FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rarity, this.rainSnow,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.color1,this.color2,this.size,this.lightingType,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId);
+  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId);
   
 }
 
@@ -86,7 +87,7 @@ class _FishListPageState extends State<FishList>{
     List<FishData> fishData = [];
 
     for(var u in jsonData){
-      FishData fishDatum = FishData(u["id"],u["Name"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Rarity"],u["Rain/Snow Catch Up"],u["Start Time"],u["End Time"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rarity"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"]);
       fishData.add(fishDatum);
     }
 
@@ -134,7 +135,7 @@ class _FishListPageState extends State<FishList>{
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return songContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].critterpediaImage);
+                          return songContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].iconImage, snapshot.data[index].whereHow, snapshot.data[index].nhJan);
                       },
                       childCount: snapshot.data.length,
                     ),
@@ -159,7 +160,6 @@ class _FishListPageState extends State<FishList>{
               return CustomScrollView(
                 physics: BouncingScrollPhysics(),
                 slivers: <Widget>[
-                  
                     SliverAppBar(
                       expandedHeight: 197*percentScale,
                       backgroundColor: Color(0xFF00A1FF),
@@ -184,12 +184,14 @@ class _FishListPageState extends State<FishList>{
                         background: Image.asset('assets/fishTitle.png'),
                       ),
                     ),
-
-                  //SliverFillRemaining(
-                  //),
-
                   //Add the sliverlist parsed in future function above
                   fishListSliver,
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child:Container(
+                      height:100,
+                    )
+                  ),
                 ],
               );
             }
@@ -200,7 +202,7 @@ class _FishListPageState extends State<FishList>{
   }
 }
 
-Widget songContainer(double percentScale, int index, String name, String critterpediaImage){
+Widget songContainer(double percentScale, int index, String name, String iconImage, String whereHow, String nhJan){
   return Column(
     children: <Widget>[
       SizedBox(
@@ -227,27 +229,105 @@ Widget songContainer(double percentScale, int index, String name, String critter
                   color: Color(0xff9edcf4)
                 )
               ),
-              CachedNetworkImage(
-                imageBuilder: (context, imageProvider) => Container(
-                  width: 95*percentScale,
-                  height: 95*percentScale,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4*percentScale),
-                    image: DecorationImage(
-                      image: imageProvider, fit: BoxFit.cover),
+              Container(
+                transform: Matrix4.translationValues((8+5)*percentScale,(8+5)*percentScale,0),
+                child: CachedNetworkImage(
+                  imageBuilder: (context, imageProvider) => Container(
+                    width: 45*percentScale,
+                    height: 45*percentScale,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4*percentScale),
+                      image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                    ),
                   ),
+                  imageUrl: iconImage,
+                  //placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => new Icon(Icons.error),
+                  fadeInDuration: Duration(milliseconds:800),
                 ),
-                imageUrl: critterpediaImage,
-                //placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => new Icon(Icons.error),
-                height:95*percentScale,
-                width:95*percentScale,
-                fadeInDuration: Duration(milliseconds:800),
+              ),
+              Container(
+                transform: Matrix4.translationValues((79)*percentScale,(6)*percentScale,0),
+                child: new Text((capitalize(name)),
+                  style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  color: Color(0xff373737),
+                  fontSize: 19*percentScale,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  )
+                ),
+              ),
+              Container(
+                transform: Matrix4.translationValues((79)*percentScale,(29)*percentScale,0),
+                child: new Text(nhJan,
+                  style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  color: Color(0xff625dde),
+                  fontSize: 14*percentScale,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  )
+                ),
+              ),
+              Container(
+                transform: Matrix4.translationValues((79)*percentScale,(46)*percentScale,0),
+                child: new Text(whereHow,
+                  style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  color: Color(0xff625dde),
+                  fontSize: 14*percentScale,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  )
+                ),
+              ),
+              //Checkmark background
+              new Container(
+                transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
+                width: 55*percentScale,
+                height: 55*percentScale,
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xFFF9E4E4)
+                )
               ),
             ],
-          )
+          ),
+          
+          Container(
+            transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
+            width:55*percentScale,
+            height:55*percentScale,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(300*percentScale),
+              child: new StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  return new Transform.scale(
+                    scale: 3.05*percentScale,
+                    child: Theme(
+                      data: ThemeData(unselectedWidgetColor: Color(0xFFF9E4E4)),
+                      child: new Checkbox(
+                        activeColor: Color(0xFF99F9A9),
+                        checkColor: Color(0xFF444444),
+                        value: check,
+                        onChanged: (bool value) {
+                          setState(() {
+                            check = value;
+                          });
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     ],
   );
 }
+
+bool check = false;

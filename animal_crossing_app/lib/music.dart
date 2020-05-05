@@ -90,12 +90,16 @@ class _MusicListPageState extends State<MusicList>{
                     (BuildContext context, int index) {
                       return songContainer(percentScale, index, textColor);
                     },
-                    childCount: albumCoverLinks.length+3,
+                    childCount: albumCoverLinks.length,
                   ),
                 ),
               ),
-              //SliverFillRemaining(
-              //),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child:Container(
+                  height:170,
+                )
+              ),
             ],
           ),
           IgnorePointer(
@@ -158,74 +162,62 @@ class _MusicListPageState extends State<MusicList>{
 }
 
 Widget songContainer(double percentScale, int index, Color textColor){
-  if (index>=albumCoverLinks.length){
-    return Container(
-      transform: Matrix4.translationValues(-2*percentScale,-2*percentScale,0),
-      width:99*percentScale,
-      height:99*percentScale,
-      decoration: new BoxDecoration(
-        color: Color(0x0081FFB3),
-        borderRadius: BorderRadius.circular(5*percentScale),
-      ),
-    );
-  } else {
-    return Column(
-      children: <Widget>[
-        Stack(
-          children: <Widget>[
-            new Container(
-              transform: Matrix4.translationValues(-2*percentScale,-2*percentScale,0),
-              width:99*percentScale,
-              height:99*percentScale,
-              decoration: new BoxDecoration(
-                color: Color(0xb381ffb3),
-                borderRadius: BorderRadius.circular(5*percentScale),
-              ),
+  return Column(
+    children: <Widget>[
+      Stack(
+        children: <Widget>[
+          new Container(
+            transform: Matrix4.translationValues(-2*percentScale,-2*percentScale,0),
+            width:99*percentScale,
+            height:99*percentScale,
+            decoration: new BoxDecoration(
+              color: Color(0xb381ffb3),
+              borderRadius: BorderRadius.circular(5*percentScale),
             ),
-            new Container(
-              width:95*percentScale,
-              height:95*percentScale,
-              decoration: new BoxDecoration(
-                color: Color(0xFF81C0FF),
-                borderRadius: BorderRadius.circular(5*percentScale),
-              ),
+          ),
+          new Container(
+            width:95*percentScale,
+            height:95*percentScale,
+            decoration: new BoxDecoration(
+              color: Color(0xFF81C0FF),
+              borderRadius: BorderRadius.circular(5*percentScale),
             ),
-            new Container(
-              child: CachedNetworkImage(
-                imageBuilder: (context, imageProvider) => Container(
-                  width: 95*percentScale,
-                  height: 95*percentScale,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4*percentScale),
-                    image: DecorationImage(
-                      image: imageProvider, fit: BoxFit.cover),
-                  ),
+          ),
+          new Container(
+            child: CachedNetworkImage(
+              imageBuilder: (context, imageProvider) => Container(
+                width: 95*percentScale,
+                height: 95*percentScale,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4*percentScale),
+                  image: DecorationImage(
+                    image: imageProvider, fit: BoxFit.cover),
                 ),
-                imageUrl: albumCoverLinks[index],
-                //placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => new Icon(Icons.error),
-                height:95*percentScale,
-                width:95*percentScale,
-                fadeInDuration: Duration(milliseconds:800),
               ),
+              imageUrl: albumCoverLinks[index],
+              //placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => new Icon(Icons.error),
+              height:95*percentScale,
+              width:95*percentScale,
+              fadeInDuration: Duration(milliseconds:800),
             ),
-          ],
-        ),
-        SizedBox(
-          height: 3*percentScale,
-        ),
-        Text(albumName[index],
-          style: TextStyle(
-            fontFamily: 'ArialRoundedBold',
-            color: textColor,
-            fontSize: 10*percentScale,
-            fontWeight: FontWeight.w400,
-            fontStyle: FontStyle.normal,
-          )
-        ),
-      ],
-    );
-  }
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 3*percentScale,
+      ),
+      Text(albumName[index],
+        style: TextStyle(
+          fontFamily: 'ArialRoundedBold',
+          color: textColor,
+          fontSize: 10*percentScale,
+          fontWeight: FontWeight.w400,
+          fontStyle: FontStyle.normal,
+        )
+      ),
+    ],
+  );
 }
 
 List<String> albumCoverLinks = ["https://acnhcdn.com/latest/Audio/mjk_Keiji.png","https://acnhcdn.com/latest/Audio/mjk_Aloha.png","https://acnhcdn.com/latest/Audio/mjk_DoubutuNoMachi.png","https://acnhcdn.com/latest/Audio/mjk_Idol.png","https://acnhcdn.com/latest/Audio/mjk_Paris.png","https://acnhcdn.com/latest/Audio/mjk_ShowaKayo.png","https://acnhcdn.com/latest/Audio/mjk_EuroBeat.png","https://acnhcdn.com/latest/Audio/mjk_Drive.png","https://acnhcdn.com/latest/Audio/mjk_Sayonara.png","https://acnhcdn.com/latest/Audio/mjk_MoriNoSeikatsu.png","https://acnhcdn.com/latest/Audio/mjk_KekeRider.png","https://acnhcdn.com/latest/Audio/mjk_UtataneNoYume.png","https://acnhcdn.com/latest/Audio/mjk_Daisuki.png","https://acnhcdn.com/latest/Audio/mjk_China.png","https://acnhcdn.com/latest/Audio/mjk_Hollywood.png","https://acnhcdn.com/latest/Audio/mjk_Maria.png","https://acnhcdn.com/latest/Audio/mjk_Ballad.png","https://acnhcdn.com/latest/Audio/mjk_Roma.png","https://acnhcdn.com/latest/Audio/mjk_BirthdaySong.png","https://acnhcdn.com/latest/Audio/mjk_Blues.png","https://acnhcdn.com/latest/Audio/mjk_Bossa.png","https://acnhcdn.com/latest/Audio/mjk_Caripso.png","https://acnhcdn.com/latest/Audio/mjk_Turkey.png","https://acnhcdn.com/latest/Audio/mjk_Sanbika.png","https://acnhcdn.com/latest/Audio/mjk_Peru.png","https://acnhcdn.com/latest/Audio/mjk_Country.png","https://acnhcdn.com/latest/Audio/mjk_Urban.png","https://acnhcdn.com/latest/Audio/mjk_Drumnbass.png","https://acnhcdn.com/latest/Audio/mjk_KowaiUta.png","https://acnhcdn.com/latest/Audio/mjk_Disco.png","https://acnhcdn.com/latest/Audio/mjk_Dixie.png","https://acnhcdn.com/latest/Audio/mjk_Etude.png","https://acnhcdn.com/latest/Audio/mjk_Haisai.png","https://acnhcdn.com/latest/Audio/mjk_Flamenco.png","https://acnhcdn.com/latest/Audio/mjk_Minyo.png","https://acnhcdn.com/latest/Audio/mjk_Fusion.png","https://acnhcdn.com/latest/Audio/mjk_Raregroove.png","https://acnhcdn.com/latest/Audio/mjk_NewOrleans.png","https://acnhcdn.com/latest/Audio/mjk_House.png","https://acnhcdn.com/latest/Audio/mjk_DoubutsuNoShima.png","https://acnhcdn.com/latest/Audio/mjk_Jazz.png","https://acnhcdn.com/latest/Audio/mjk_Jongara.png","https://acnhcdn.com/latest/Audio/mjk_Enka.png","https://acnhcdn.com/latest/Audio/mjk_LoveSong.png","https://acnhcdn.com/latest/Audio/mjk_Lullaby.png","https://acnhcdn.com/latest/Audio/mjk_Mambo.png","https://acnhcdn.com/latest/Audio/mjk_Gamelan.png","https://acnhcdn.com/latest/Audio/mjk_March.png","https://acnhcdn.com/latest/Audio/mjk_Senor.png","https://acnhcdn.com/latest/Audio/mjk_Metal.png","https://acnhcdn.com/latest/Audio/mjk_Milonga.png","https://acnhcdn.com/latest/Audio/mjk_Bolero.png","https://acnhcdn.com/latest/Audio/mjk_Maharaja.png","https://acnhcdn.com/latest/Audio/mjk_Parade.png","https://acnhcdn.com/latest/Audio/mjk_RagTime.png","https://acnhcdn.com/latest/Audio/mjk_Ondo.png","https://acnhcdn.com/latest/Audio/mjk_Reggae.png","https://acnhcdn.com/latest/Audio/mjk_Rock.png","https://acnhcdn.com/latest/Audio/mjk_KekeBilly.png","https://acnhcdn.com/latest/Audio/mjk_Afro.png","https://acnhcdn.com/latest/Audio/mjk_Salsa.png","https://acnhcdn.com/latest/Audio/mjk_Samba.png","https://acnhcdn.com/latest/Audio/mjk_Ska.png","https://acnhcdn.com/latest/Audio/mjk_Sonata.png","https://acnhcdn.com/latest/Audio/mjk_KekeSong.png","https://acnhcdn.com/latest/Audio/mjk_Soul.png","https://acnhcdn.com/latest/Audio/mjk_Cossack.png","https://acnhcdn.com/latest/Audio/mjk_Osanpo.png","https://acnhcdn.com/latest/Audio/mjk_Swing.png","https://acnhcdn.com/latest/Audio/mjk_Electronica.png","https://acnhcdn.com/latest/Audio/mjk_Tango.png","https://acnhcdn.com/latest/Audio/mjk_TechnoBeat.png","https://acnhcdn.com/latest/Audio/mjk_Waltz.png","https://acnhcdn.com/latest/Audio/mjk_Western.png","https://acnhcdn.com/latest/Audio/mjk_Daimyo.png","https://acnhcdn.com/latest/Audio/mjk_Irish.png","https://acnhcdn.com/latest/Audio/mjk_HunaUta2001.png","https://acnhcdn.com/latest/Audio/mjk_Alpine.png","https://acnhcdn.com/latest/Audio/mjk_Sensei.png","https://acnhcdn.com/latest/Audio/mjk_BokuNoBasho.png","https://acnhcdn.com/latest/Audio/mjk_Napolitan.png","https://acnhcdn.com/latest/Audio/mjk_OnlyMe.png","https://acnhcdn.com/latest/Audio/mjk_KangaeChu.png","https://acnhcdn.com/latest/Audio/mjk_RocknRoll.png","https://acnhcdn.com/latest/Audio/mjk_Gospel.png","https://acnhcdn.com/latest/Audio/mjk_Minimal.png","https://acnhcdn.com/latest/Audio/mjk_HaruNoKomorebi.png","https://acnhcdn.com/latest/Audio/mjk_BlueOnigiri.png","https://acnhcdn.com/latest/Audio/mjk_NiDanZaka.png","https://acnhcdn.com/latest/Audio/mjk_Eleki.png","https://acnhcdn.com/latest/Audio/mjk_Funk.png","https://acnhcdn.com/latest/Audio/mjk_NamiNami.png","https://acnhcdn.com/latest/Audio/mjk_Ototoi.png","https://acnhcdn.com/latest/Audio/mjk_Horo.png","https://acnhcdn.com/latest/Audio/mjk_MainTheme.png"];
