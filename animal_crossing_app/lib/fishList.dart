@@ -1,5 +1,18 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import 'dart:async';
+import 'dart:convert';
+
+class Music {
+  final int id;
+  final bool collected;
+
+  Music({this.id, this.collected});
+}
+
 
 class FishList extends StatefulWidget {
   FishList({Key key, this.title}) : super(key: key);
@@ -10,9 +23,80 @@ class FishList extends StatefulWidget {
   _FishListPageState createState() => _FishListPageState();
 }
 
+
+class FishData{
+  final String id;
+  final String name;
+  final String critterpediaImage;
+  final String furnitureImage;
+  final String sell;
+  final String whereHow;
+  final String shadow;
+  final String rarity;
+  final String rainSnow;
+  final String startTime;
+  final String endTime;
+  final String nhJan;
+  final String nhFeb;
+  final String nhMar;
+  final String nhApr;
+  final String nhMay;
+  final String nhJun;
+  final String nhJul;
+  final String nhAug;
+  final String nhSep;
+  final String nhOct;
+  final String nhNov;
+  final String nhDec;
+  final String shJan;
+  final String shFeb;
+  final String shMar;
+  final String shApr;
+  final String shMay;
+  final String shJun;
+  final String shJul;
+  final String shAug;
+  final String shSep;
+  final String shOct;
+  final String shNov;
+  final String shDec;
+  final String color1;
+  final String color2;
+  final String size;
+  final String lightingType;
+  final String critterpediaFilename;
+  final String furnitureFilename;
+  final String internalId;
+  final String uniqueEntryId;
+
+  FishData(this.id, this.name,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.rarity, this.rainSnow,this.startTime,this.endTime,
+  this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
+  this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
+  this.color1,this.color2,this.size,this.lightingType,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId);
+  
+}
+
 class _FishListPageState extends State<FishList>{
+
+  Future<List<FishData>> getFishData() async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");;
+
+    final jsonData = json.decode(data);
+
+    List<FishData> fishData = [];
+
+    for(var u in jsonData){
+      FishData fishDatum = FishData(u["id"],u["Name"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Rarity"],u["Rain/Snow Catch Up"],u["Start Time"],u["End Time"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      fishData.add(fishDatum);
+    }
+
+    return fishData;
+  }
+
+
   @override
   Widget build(BuildContext context){
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;
     double designedWidth = 360;
@@ -31,46 +115,84 @@ class _FishListPageState extends State<FishList>{
       percentScale = percentHeight;
     }
 
+
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
           Container(
             height: MediaQuery.of(context).size.height,
-            color: Color(0xFFDEFEFF),
+            color: darkModeColor(darkMode, Color(0xFFDEFEFF), Color(0xFF193D69)),
           ),
-          CustomScrollView(
-            physics: BouncingScrollPhysics(),
-            slivers: <Widget>[
-              SliverAppBar(
-                expandedHeight: 197*percentScale,
-                backgroundColor: Color(0xFF00A1FF),
-                pinned: true,
-                //snap: true,
-                floating: true,
-                elevation: 10,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Container(
-                    transform: Matrix4.translationValues(0,-13*percentScale,0),
-                    child: Text("Fish",
-                      style: TextStyle(
-                        fontFamily: 'ArialRoundedBold',
-                        color: Color(0xffffffff),
-                        fontSize: 30*percentScale,
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                      )
+          FutureBuilder(
+            future:getFishData(),
+            builder: (context,snapshot){
+              Widget fishListSliver;
+              if(snapshot.hasData){
+                fishListSliver = SliverPadding(
+                  padding: EdgeInsets.only(top:10*percentScale),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          return songContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].critterpediaImage);
+                      },
+                      childCount: snapshot.data.length,
                     ),
                   ),
-                  titlePadding: EdgeInsetsDirectional.only(start: 25*percentScale),
-                  background: Image.asset('assets/fishTitle.png'),
-                ),
-              ),
-              //SliverFillRemaining(
-              //),
-              new SliverList(
-                  delegate: new SliverChildListDelegate(_buildList(50))
-              ),
-            ],
+                );
+              } else {
+                fishListSliver = SliverToBoxAdapter(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height:100*percentScale,
+                      ),
+                      SpinKitThreeBounce(
+                        color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                        size:80,
+                      )
+                    ],
+                  )
+                );
+              }
+
+              return CustomScrollView(
+                physics: BouncingScrollPhysics(),
+                slivers: <Widget>[
+                  
+                    SliverAppBar(
+                      expandedHeight: 197*percentScale,
+                      backgroundColor: Color(0xFF00A1FF),
+                      pinned: true,
+                      //snap: true,
+                      floating: true,
+                      elevation: 10,
+                      flexibleSpace: FlexibleSpaceBar(
+                        title: Container(
+                          transform: Matrix4.translationValues(0,-13*percentScale,0),
+                          child: Text("Fish",
+                            style: TextStyle(
+                              fontFamily: 'ArialRoundedBold',
+                              color: Color(0xffffffff),
+                              fontSize: 30*percentScale,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                            )
+                          ),
+                        ),
+                        titlePadding: EdgeInsetsDirectional.only(start: 25*percentScale),
+                        background: Image.asset('assets/fishTitle.png'),
+                      ),
+                    ),
+
+                  //SliverFillRemaining(
+                  //),
+
+                  //Add the sliverlist parsed in future function above
+                  fishListSliver,
+                ],
+              );
+            }
           ),
         ],
       )
@@ -78,17 +200,54 @@ class _FishListPageState extends State<FishList>{
   }
 }
 
-List _buildList(int count) {
-      List<Widget> listItems = List();
-  
-      for (int i = 0; i < count; i++) {
-        listItems.add(new Padding(padding: new EdgeInsets.all(20.0),
-            child: new Text(
-                'Item ${i.toString()}',
-                style: new TextStyle(fontSize: 25.0)
+Widget songContainer(double percentScale, int index, String name, String critterpediaImage){
+  return Column(
+    children: <Widget>[
+      SizedBox(
+        height:8*percentScale,
+      ),
+      new Stack(
+        children: <Widget>[
+          new Container(
+            width: 334*percentScale,
+            height: 71*percentScale,
+            decoration: new BoxDecoration(
+              color: Color(0xffb9f4fb),
+              borderRadius: BorderRadius.circular(8)
             )
-        ));
-      }
-  
-      return listItems;
-    }
+          ),
+          Stack(
+            children: <Widget>[
+              new Container(
+                transform: Matrix4.translationValues(8*percentScale,8*percentScale,0),
+                width: 55*percentScale,
+                height: 55*percentScale,
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xff9edcf4)
+                )
+              ),
+              CachedNetworkImage(
+                imageBuilder: (context, imageProvider) => Container(
+                  width: 95*percentScale,
+                  height: 95*percentScale,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4*percentScale),
+                    image: DecorationImage(
+                      image: imageProvider, fit: BoxFit.cover),
+                  ),
+                ),
+                imageUrl: critterpediaImage,
+                //placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => new Icon(Icons.error),
+                height:95*percentScale,
+                width:95*percentScale,
+                fadeInDuration: Duration(milliseconds:800),
+              ),
+            ],
+          )
+        ],
+      ),
+    ],
+  );
+}

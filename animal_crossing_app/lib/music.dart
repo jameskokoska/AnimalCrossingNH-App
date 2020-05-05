@@ -4,17 +4,6 @@ import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'dart:async';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-
-class Music {
-  final int id;
-  final bool collected;
-
-  Music({this.id, this.collected});
-}
-
 
 class MusicList extends StatefulWidget {
   MusicList({Key key, this.title}) : super(key: key);
@@ -88,7 +77,7 @@ class _MusicListPageState extends State<MusicList>{
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.fromLTRB(19*percentScale, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(5*percentScale, 0, 0, 0),
                 sliver: new SliverGrid(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 120*percentScale,

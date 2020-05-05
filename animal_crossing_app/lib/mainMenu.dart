@@ -740,6 +740,31 @@ class _HomePageState extends State<Home>{
                         ]
                       ),
                     ),
+                    new SizedBox(height: (120+22)*percentScale),
+                    new Center(
+                      child: Text("This application is NOT endorsed or afiliated",
+                        style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
+                        fontSize: 10*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ),
+                    new SizedBox(height: (120-15)*percentScale),
+                    new Center(
+                      child: Text("with Nintendo in any way.",
+                        style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
+                        fontSize: 10*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ),
+                    SizedBox(height: (120+30)*percentScale),
                   ],
                 )
               )
