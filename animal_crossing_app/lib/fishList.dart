@@ -339,11 +339,11 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                     ),
                   ),
                   Container(
-                    transform: Matrix4.translationValues((190)*percentScale,(20)*percentScale,0),
-                    child: Image.asset(
-                      'assets/'+determineShadowImage(shadow, whereHow)+'.png',
-                      height:60*percentScale,
-                      width:70*percentScale,
+                     transform: Matrix4.translationValues((190)*percentScale,(20)*percentScale,0),
+                     child: Image.asset(
+                       'assets/shadow'+determineShadowImage(shadow, whereHow)+'.png',
+                       height:60*percentScale,
+                       width:70*percentScale,
                     ),
                   )
                 ],
@@ -406,7 +406,17 @@ String determineShadowImage(String shadowSize, String whereHow){
     return "Long";
   } else if (whereHow.contains('Sea')||whereHow.contains('Pier')){
     return "Ocean-"+shadowSize;
-  } else if (whereHow.contains('River')){
+  } else if (whereHow.contains('River')||whereHow.contains('Pond')){
     return "River-"+shadowSize;
   }
+  return "Long";
+}
+
+String determineLocationImage(String whereHow){
+  if(whereHow.contains('Sea')||whereHow.contains('Pier')){
+    return "oceanIcon";
+  } else if (whereHow.contains('River')||whereHow.contains('Pond')){
+    return "riverIcon";
+  }
+  return "riverIcon";
 }

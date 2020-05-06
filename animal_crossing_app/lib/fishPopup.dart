@@ -105,7 +105,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100*percentScale),
                         child: new Image.asset(
-                          'assets/ocean.png',
+                          'assets/'+determineLocationImage(whereHow)+'.png',
                           height: 55*percentScale,
                           width: 55*percentScale,
                         )
@@ -210,8 +210,8 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                   ),
                 ),
                 // ---------- Card Centre Content ----------
-                new Center(
-                  child: Column(
+                
+                  Column(
                     children: [
                       // ---------- Card Centre Quote ----------
                       Container(
@@ -240,95 +240,80 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                         ),
                       ),
                       // ---------- Card Centre Sell Price ----------
-                      Container(
-                        transform: Matrix4.translationValues(0, 90*percentScale, 0),
-                        child: Stack(
-                          children: [
-                            // ---------- Card Centre Sell Price Image ----------
+                      
                             Container(
-                              transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
-                              child: new Image.asset(
-                                'assets/bellBag.png',
-                                height: 30*percentScale,
-                                width: 30*percentScale,
-                              ),
-                            ),
-                            // ---------- Card Centre Sell Price Text ----------
-                            Container(
-                              child: new Text(bellsPrice.format(int.parse(sell))+" bells",
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: Color(0xff3a3a3a),
-                                    fontSize: 19*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
+                              transform: Matrix4.translationValues((60)*percentScale, 100*percentScale, 0),
+                              child: Row(
+                                children: [
+                                  // ---------- Card Centre Sell Price Image ----------
+                                  Container(
+                                    child: new Image.asset(
+                                      'assets/bellBag.png',
+                                      height: 30*percentScale,
+                                      width: 30*percentScale,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10*percentScale,
+                                  ),
+                                  // ---------- Card Centre Sell Price Text ----------
+                                  Container(
+                                    child: new Text(bellsPrice.format(int.parse(sell))+" bells",
+                                        style: TextStyle(
+                                          fontFamily: 'ArialRoundedBold',
+                                          color: Color(0xff3a3a3a),
+                                          fontSize: 19*percentScale,
+                                          fontWeight: FontWeight.w400,
+                                          fontStyle: FontStyle.normal,
+                                        )
+                                    ),
                                   )
-                              ),
-                            )
-                          ]
-                        )
-                      ),
+                                ]
+                              )
+                            ),
                       // ---------- Card Centre Size ----------
-                      Container(
-                          transform: Matrix4.translationValues(0, 90*percentScale, 0),
-                          child: Stack(
-                              children: [
-                                // ---------- Card Centre Size Image ----------
-                                Container(
-                                  transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
-                                  child: new Image.asset(
-                                    'assets/fish.png',
-                                    height: 30*percentScale,
+                        Container(
+                            transform: Matrix4.translationValues((60)*percentScale, 90*percentScale, 0),
+                            child: Row(
+                                children: [
+                                  // ---------- Card Centre Size Image ----------
+                                  Container(
+                                    child: new Image.asset(
+                                      'assets/magnifyingGlass.png',
+                                      height: 30*percentScale,
+                                      width: 26*percentScale,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 14*percentScale,
+                                  ),
+                                  // ---------- Card Centre Size Text ----------
+                                  Container(
+                                    child: new Text(capitalize(shadow),
+                                        style: TextStyle(
+                                          fontFamily: 'ArialRoundedBold',
+                                          color: Color(0xff3a3a3a),
+                                          fontSize: 19*percentScale,
+                                          fontWeight: FontWeight.w400,
+                                          fontStyle: FontStyle.normal,
+                                        )
+                                    ),
+                                  ),
+                                  SizedBox(
                                     width: 30*percentScale,
                                   ),
-                                ),
-                                // ---------- Card Centre Size Text ----------
-                                Container(
-                                  child: new Text(capitalize(shadow),
-                                      style: TextStyle(
-                                        fontFamily: 'ArialRoundedBold',
-                                        color: Color(0xff3a3a3a),
-                                        fontSize: 19*percentScale,
-                                        fontWeight: FontWeight.w400,
-                                        fontStyle: FontStyle.normal,
-                                      )
+                                  Container(
+                                    child: new Image.asset(
+                                      'assets/shadowLeft'+determineShadowImage(shadow, whereHow)+'.png',
+                                      height: 80*percentScale,
+                                      width: 100*percentScale,
+                                    ),
                                   ),
-                                )
-                              ]
-                          )
-                      ),
-                      // // ---------- Card Centre Rarity ----------
-                      // Container(
-                      //     transform: Matrix4.translationValues(0, 90*percentScale, 0),
-                      //     child: Stack(
-                      //         children: [
-                      //           // ---------- Card Centre Rarity Image ----------
-                      //           Container(
-                      //             transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
-                      //             child: new Image.asset(
-                      //               'assets/fish.png',
-                      //               height: 30*percentScale,
-                      //               width: 30*percentScale,
-                      //             ),
-                      //           ),
-                      //           // ---------- Card Centre Rarity Text ----------
-                      //           Container(
-                      //             child: new Text("Rare",
-                      //                 style: TextStyle(
-                      //                   fontFamily: 'ArialRoundedBold',
-                      //                   color: Color(0xff3a3a3a),
-                      //                   fontSize: 19*percentScale,
-                      //                   fontWeight: FontWeight.w400,
-                      //                   fontStyle: FontStyle.normal,
-                      //                 )
-                      //             ),
-                      //           )
-                      //         ]
-                      //     )
-                      // )
+                                ]
+                            )
+                        ),
                     ],
                   )
-                )
               ],
             ),
           ],
