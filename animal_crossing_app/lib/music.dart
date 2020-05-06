@@ -192,7 +192,7 @@ Widget songContainer(double percentScale, int index, Color textColor){
                   width:99*percentScale,
                   height:99*percentScale,
                   decoration: new BoxDecoration(
-                    color: Color(0xB352C580),
+                    color: Color(0xB39DEEBD),
                     borderRadius: BorderRadius.circular(5*percentScale),
                   ),
                 ),
@@ -260,13 +260,13 @@ Widget songContainer(double percentScale, int index, Color textColor){
             ],
           ),
           SizedBox(
-            height: 3*percentScale,
+            height: 2*percentScale,
           ),
           Text(albumName[index],
             style: TextStyle(
               fontFamily: 'ArialRoundedBold',
               color: textColor,
-              fontSize: 10*percentScale,
+              fontSize: 12.5*percentScale,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
             )

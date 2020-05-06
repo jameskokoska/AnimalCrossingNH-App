@@ -3,18 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'fish.dart';
+import 'fishPopup.dart';
 
 import 'dart:async';
 import 'dart:convert';
-
-class Music {
-  final int id;
-  final bool collected;
-
-  Music({this.id, this.collected});
-}
-
 
 class FishList extends StatefulWidget {
   FishList({Key key, this.title}) : super(key: key);
@@ -24,7 +16,6 @@ class FishList extends StatefulWidget {
   @override
   _FishListPageState createState() => _FishListPageState();
 }
-
 
 class FishData{
   final String id;
@@ -137,8 +128,8 @@ class _FishListPageState extends State<FishList>{
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return fishContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].iconImage, snapshot.data[index].whereHow, snapshot.data[index].nhJan);
-                      },
+                          return fishContainer(percentScale, index, check, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec);
+                      }, 
                       childCount: snapshot.data.length,
                     ),
                   ),
@@ -205,7 +196,7 @@ class _FishListPageState extends State<FishList>{
 }
 
 
-Widget fishContainer(double percentScale, int index, String name, String iconImage, String whereHow, String nhJan){
+Widget fishContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { return Column(
       children: <Widget>[
@@ -214,7 +205,6 @@ Widget fishContainer(double percentScale, int index, String name, String iconIma
         ),
         new Stack(
           children: <Widget>[
-            
             ClipRRect(
               borderRadius: BorderRadius.circular(8*percentScale),
               child: new Container(
@@ -230,7 +220,7 @@ Widget fishContainer(double percentScale, int index, String name, String iconIma
                     },
                     onTap: (){
                       //print(index);
-                      tappedFishItem(context, percentScale, index);
+                      tappedFishItem(context, percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec);
                     },
                     child: new Container(
                       width: 334*percentScale,
@@ -370,11 +360,11 @@ Widget fishContainer(double percentScale, int index, String name, String iconIma
                           setState(() {
                             check = value;
                             HapticFeedback.mediumImpact();
-                          });
-                        },
-                      ),
+                        });
+                      },
                     ),
-                  )
+                  ),
+                )
               ),
             ),
           ],
@@ -387,232 +377,16 @@ Widget fishContainer(double percentScale, int index, String name, String iconIma
 bool check = false;
 
 
-void tappedFishItem(BuildContext context, double percentScale, int index){
+void tappedFishItem(BuildContext context, double percentScale, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
   showModalBottomSheet(
     context: context, 
     builder: (context){
       return Container(
         height: 350*percentScale,
           child: Container(
-            child: fishPopUp(percentScale, index),
+            child: fishPopUp(percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
         ),
       );
   });
 }
 
-Widget fishPopUp(double percentScale,int index){
-  return Scaffold(
-    body:
-      Column(
-        children: [
-          // ---------- Card Stack ----------
-          
-          Stack(
-            children: [
-              // ---------- Cheaty Background and curved card ----------
-              Container(
-                transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                height:400,
-                decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.circular(30*percentScale),
-                    color: Color(0xFFFFFFFF),
-                )
-              ),
-              Container(
-                transform: Matrix4.translationValues(0, 0, 0),
-                height:400,
-                decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.circular(30*percentScale),
-                    color: Color(0xFFFFFFFF),
-                )
-              ),
-              // ---------- Card Tab ----------
-              new Center(
-                child: new Container(
-                  transform: Matrix4.translationValues(0, -90*percentScale, 0),
-                  width: 113*percentScale,
-                  height: 113*percentScale,
-                  // ---------- Card Tab Image ----------
-                  child: new Center(
-                    child: new Image.asset(
-                      'assets/fish.png',
-                      height: 80*percentScale,
-                      width: 80*percentScale,
-                    )
-                  ),
-                  decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.circular(100*percentScale),
-                    color: Color(0xffdefeff),
-                    boxShadow: [BoxShadow(
-                      color: Color(0x29000000),
-                      offset: Offset(0,3),
-                      blurRadius: 6,
-                      spreadRadius: 0
-                    )],
-                  )
-                ),
-              ),
-              
-              
-              // ---------- Card Location ----------
-              new Container(
-                transform: Matrix4.translationValues(10*percentScale, -20*percentScale, 0),
-                width: 60*percentScale,
-                height: 60*percentScale,
-                // ---------- Card Location Image ----------
-                child: new Center(
-                  child: new Image.asset(
-                    'assets/fish.png',
-                    height: 50*percentScale,
-                    width: 50*percentScale,
-                  )
-                ),
-                decoration: new BoxDecoration(
-                  borderRadius: BorderRadius.circular(100*percentScale),
-                  color: Color(0xffb9f4fb)
-                )
-              ),
-              // ---------- Card Caught ----------
-              new Container(
-                transform: Matrix4.translationValues(290*percentScale, -20*percentScale, 0),
-                width: 60*percentScale,
-                height: 60*percentScale,
-                  // ---------- Card Body Caught Image ----------
-                  child: new Center(
-                    child: new Image.asset(
-                      'assets/fish.png',
-                      height: 50*percentScale,
-                      width: 50*percentScale,
-                    )
-                  ),
-                decoration: new BoxDecoration(
-                  borderRadius: BorderRadius.circular(100*percentScale),
-                  color: Color(0xff99f9a9)
-                )
-              ),
-              // ---------- Card Centre Content ----------
-              new Center(
-                child: Column(
-                  children: [
-                    // ---------- Card Centre Quote ----------
-                    Container(
-                      transform: Matrix4.translationValues(0, 50*percentScale, 0),
-                      child: Text("“I caught a red snapper! \u000bIt looks pretty dapper!”",
-                        style: TextStyle(
-                          fontFamily: 'Baskerville',
-                          color: Color(0xff625dde),
-                          fontSize: 14*percentScale,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.italic,
-                        )
-                      ),
-                    ),
-                    // ---------- Card Centre Name ----------
-                    Container(
-                      transform: Matrix4.translationValues(0, 70*percentScale, 0),
-                      child: new Text("Red Snapper" + index.toString(),
-                        style: TextStyle(
-                          fontFamily: 'ArialRoundedBold',
-                          color: Color(0xff373737),
-                          fontSize: 31*percentScale,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                        )
-                      ),
-                    ),
-                    // ---------- Card Centre Sell Price ----------
-                    Container(
-                      transform: Matrix4.translationValues(0, 90*percentScale, 0),
-                      child: Stack(
-                        children: [
-                          // ---------- Card Centre Sell Price Image ----------
-                          Container(
-                            transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
-                            child: new Image.asset(
-                              'assets/fish.png',
-                              height: 30*percentScale,
-                              width: 30*percentScale,
-                            ),
-                          ),
-                          // ---------- Card Centre Sell Price Text ----------
-                          Container(
-                            child: new Text("5,000 bells",
-                                style: TextStyle(
-                                  fontFamily: 'ArialRoundedBold',
-                                  color: Color(0xff3a3a3a),
-                                  fontSize: 19*percentScale,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                )
-                            ),
-                          )
-                        ]
-                      )
-                    ),
-                    // ---------- Card Centre Size ----------
-                    Container(
-                        transform: Matrix4.translationValues(0, 90*percentScale, 0),
-                        child: Stack(
-                            children: [
-                              // ---------- Card Centre Size Image ----------
-                              Container(
-                                transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
-                                child: new Image.asset(
-                                  'assets/fish.png',
-                                  height: 30*percentScale,
-                                  width: 30*percentScale,
-                                ),
-                              ),
-                              // ---------- Card Centre Size Text ----------
-                              Container(
-                                child: new Text("Large",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                ),
-                              )
-                            ]
-                        )
-                    ),
-                    // ---------- Card Centre Rarity ----------
-                    Container(
-                        transform: Matrix4.translationValues(0, 90*percentScale, 0),
-                        child: Stack(
-                            children: [
-                              // ---------- Card Centre Rarity Image ----------
-                              Container(
-                                transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
-                                child: new Image.asset(
-                                  'assets/fish.png',
-                                  height: 30*percentScale,
-                                  width: 30*percentScale,
-                                ),
-                              ),
-                              // ---------- Card Centre Rarity Text ----------
-                              Container(
-                                child: new Text("Rare",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                ),
-                              )
-                            ]
-                        )
-                    )
-                  ],
-                )
-              )
-            ],
-          ),
-        ],
-      )
-    );
-  } 

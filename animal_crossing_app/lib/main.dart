@@ -7,6 +7,7 @@ import 'mainMenu.dart';
 import 'fishList.dart';
 import 'music.dart';
 
+bool northernHemisphere = true;
 
 void main() => runApp(MyApp());
 
