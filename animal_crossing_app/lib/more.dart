@@ -42,12 +42,31 @@ class _MorePageState extends State<MorePage>{
 
       
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
+      body: Column(
+        children: [
+          // ---------- Top Spacer ----------
           Container(
-            height: MediaQuery.of(context).size.height,
+            height: 150 * percentScale,
             color: darkModeColor(darkMode, Color( 0xFF81C0FF), Color( 0xff08354E)),
           ),
+          // ---------- Card Body ----------
+          Stack(
+            children: [
+              Container(
+                height: 490,
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(60*percentScale),
+                color: Color(0xfffefdfc),
+                boxShadow: [BoxShadow(
+                    color: Color(0x29000000),
+                    offset: Offset(0,3),
+                    blurRadius: 6,
+                    spreadRadius: 0
+                  ) ],
+                )
+              ),
+            ],
+          )
         ],
       )
     );
