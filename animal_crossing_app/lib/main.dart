@@ -8,6 +8,7 @@ import 'fishList.dart';
 import 'music.dart';
 
 bool northernHemisphere = true;
+var currentDate = DateTime.now();
 
 void main() => runApp(MyApp());
 

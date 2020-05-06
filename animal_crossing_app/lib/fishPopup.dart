@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 
 final bellsPrice = new NumberFormat("#,##0");
 
-Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
+Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -75,15 +75,18 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 // ---------- Card Location ----------
                 new Container(
                   transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
-                  width: 55*percentScale,
-                  height: 55*percentScale,
+                  width: 80*percentScale,
+                  height: 80*percentScale,
                   // ---------- Card Location Image ----------
                   child: Stack(
                     children: <Widget>[
                       Center(
                         child: Container(
-                          transform: Matrix4.translationValues((0)*percentScale,(37)*percentScale,0),
+                          transform: Matrix4.translationValues(-13*percentScale,(31)*percentScale,0),
+                          height:30,
+                          width:70,
                           child: Text(capitalize(whereHow),
+                          textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
                                 color: Color(0xff3a3a3a),
@@ -95,8 +98,8 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                         ),
                       ),
                       new Container(
-                        width: 60*percentScale,
-                        height: 60*percentScale,
+                        width: 55*percentScale,
+                        height: 55*percentScale,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(100*percentScale),
                           color: Color(0xffB9F4FB)
@@ -186,8 +189,9 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           ),
                           Center(
                             child: Container(
+                              transform: Matrix4.translationValues(0,(1)*percentScale,0),
                               child: new Transform.scale(
-                                scale: 2.5*percentScale,
+                                scale: 2*percentScale,
                                 child: Theme(
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
@@ -216,7 +220,9 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                       // ---------- Card Centre Quote ----------
                       Container(
                         transform: Matrix4.translationValues(0, 50*percentScale, 0),
-                        child: Text("“I caught a red snapper! \u000bIt looks pretty dapper!”",
+                        width: 200*percentScale,
+                        child: Text("“"+catchphrase+"”",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Baskerville',
                             color: Color(0xff625dde),

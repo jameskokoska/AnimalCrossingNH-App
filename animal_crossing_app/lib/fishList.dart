@@ -62,25 +62,27 @@ class FishData{
   final String furnitureFilename;
   final String internalId;
   final String uniqueEntryId;
+  final String catchphrase;
+  final String museum;
 
   FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rarity, this.rainSnow,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId);
+  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum);
   
 }
 
 class _FishListPageState extends State<FishList>{
 
   Future<List<FishData>> getFishData() async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");;
+    String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");
 
     final jsonData = json.decode(data);
 
     List<FishData> fishData = [];
 
     for(var u in jsonData){
-      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rarity"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rarity"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"]);
       fishData.add(fishDatum);
     }
 
@@ -128,7 +130,7 @@ class _FishListPageState extends State<FishList>{
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return fishContainer(percentScale, index, check, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec);
+                          return fishContainer(percentScale, index, check, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
                       }, 
                       childCount: snapshot.data.length,
                     ),
@@ -196,7 +198,7 @@ class _FishListPageState extends State<FishList>{
 }
 
 
-Widget fishContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
+Widget fishContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { return Column(
       children: <Widget>[
@@ -220,7 +222,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                     },
                     onTap: (){
                       //print(index);
-                      tappedFishItem(context, percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec);
+                      tappedFishItem(context, percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase);
                     },
                     child: new Container(
                       width: 334*percentScale,
@@ -287,7 +289,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                   ),
                   Container(
                     transform: Matrix4.translationValues((79)*percentScale,(29)*percentScale,0),
-                    child: new Text(nhJan,
+                    child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
                       style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
                       color: Color(0xff625dde),
@@ -320,7 +322,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       height: 55*percentScale,
                       decoration: new BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFF9E4E4)
+                        color: Color(0x63ffa4a2)
                       )
                     ),
                   ),
@@ -334,7 +336,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       height: 55*percentScale,
                       decoration: new BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFF99F9A9)
+                        color: Color(0xD380E27E)
                       )
                     ),
                   ),
@@ -351,17 +353,17 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
             ),
             
             Container(
-              transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
+              transform: Matrix4.translationValues((271)*percentScale,(11)*percentScale,0),
               width:55*percentScale,
               height:55*percentScale,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(300*percentScale),
                   child: new Transform.scale(
-                    scale: 2.5*percentScale,
+                    scale: 2*percentScale,
                     child: Theme(
                       data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                       child: new Checkbox(
-                        activeColor: Color(0x0499F9A9),
+                        activeColor: Color(0x04b2fab4),
                         checkColor: Color(0xFF444444),
                         value: check,
                         onChanged: (bool value) {
@@ -385,14 +387,14 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
 bool check = false;
 
 
-void tappedFishItem(BuildContext context, double percentScale, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
+void tappedFishItem(BuildContext context, double percentScale, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec, String catchphrase){
   showModalBottomSheet(
     context: context, 
     builder: (context){
       return Container(
         height: 350*percentScale,
           child: Container(
-            child: fishPopUp(percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
+            child: fishPopUp(percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
         ),
       );
   });
@@ -419,4 +421,60 @@ String determineLocationImage(String whereHow){
     return "riverIcon";
   }
   return "riverIcon";
+}
+
+String determineTime(String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
+  if(northernHemisphere){
+    if(currentDate.month==1){
+      return nhJan;
+    }else if (currentDate.month==2){
+      return nhFeb;
+    }else if (currentDate.month==3){
+      return nhMar;
+    }else if (currentDate.month==4){
+      return nhApr;
+    }else if (currentDate.month==5){
+      return nhMay;
+    }else if (currentDate.month==6){
+      return nhJun;
+    }else if (currentDate.month==7){
+      return nhJul;
+    }else if (currentDate.month==8){
+      return nhAug;
+    }else if (currentDate.month==9){
+      return nhSep;
+    }else if (currentDate.month==10){
+      return nhOct;
+    }else if (currentDate.month==11){
+      return nhNov;
+    }else{
+      return nhDec;
+    }
+  }else{
+    if(currentDate.month==1){
+      return shJan;
+    }else if (currentDate.month==2){
+      return shFeb;
+    }else if (currentDate.month==3){
+      return shMar;
+    }else if (currentDate.month==4){
+      return shApr;
+    }else if (currentDate.month==5){
+      return shMay;
+    }else if (currentDate.month==6){
+      return shJun;
+    }else if (currentDate.month==7){
+      return shJul;
+    }else if (currentDate.month==8){
+      return shAug;
+    }else if (currentDate.month==9){
+      return shSep;
+    }else if (currentDate.month==10){
+      return shOct;
+    }else if (currentDate.month==11){
+      return shNov;
+    }else{
+      return shDec;
+    }
+  }
 }
