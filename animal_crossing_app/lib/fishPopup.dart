@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'fishList.dart';
 import 'package:intl/intl.dart';
 
+final bellsPrice = new NumberFormat("#,##0");
+
 Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
@@ -253,7 +255,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                             ),
                             // ---------- Card Centre Sell Price Text ----------
                             Container(
-                              child: new Text(sell+" bells",
+                              child: new Text(bellsPrice.format(int.parse(sell))+" bells",
                                   style: TextStyle(
                                     fontFamily: 'ArialRoundedBold',
                                     color: Color(0xff3a3a3a),

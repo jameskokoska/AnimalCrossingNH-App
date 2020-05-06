@@ -338,6 +338,14 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       )
                     ),
                   ),
+                  Container(
+                    transform: Matrix4.translationValues((190)*percentScale,(20)*percentScale,0),
+                    child: Image.asset(
+                      'assets/'+determineShadowImage(shadow, whereHow)+'.png',
+                      height:60*percentScale,
+                      width:70*percentScale,
+                    ),
+                  )
                 ],
               ),
             ),
@@ -390,3 +398,15 @@ void tappedFishItem(BuildContext context, double percentScale, bool caught,Strin
   });
 }
 
+String determineShadowImage(String shadowSize, String whereHow){
+  if(shadowSize.contains('Fin')){
+    return "LargeFin";
+  }
+  if(shadowSize.contains('Long')){
+    return "Long";
+  } else if (whereHow.contains('Sea')){
+    return "Ocean-"+shadowSize;
+  } else if (whereHow.contains('River')){
+    return "River-"+shadowSize;
+  }
+}
