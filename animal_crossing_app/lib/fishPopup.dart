@@ -2,6 +2,7 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
+import 'fishList.dart';
 import 'package:intl/intl.dart';
 
 Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
@@ -245,7 +246,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                             Container(
                               transform: Matrix4.translationValues(-40*percentScale, -4*percentScale, 0),
                               child: new Image.asset(
-                                'assets/fish.png',
+                                'assets/bellBag.png',
                                 height: 30*percentScale,
                                 width: 30*percentScale,
                               ),

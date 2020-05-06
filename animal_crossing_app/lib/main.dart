@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/services.dart';
-import 'fish.dart';
+import 'more.dart';
 import 'bugs.dart';
 import 'mainMenu.dart';
 import 'fishList.dart';
@@ -47,7 +47,6 @@ class _MainPageState extends State<Main> {
 
   Home homepage;
   BugsPage bugspage;
-  Fish fishpage;
   MorePage morepage;
   FishList fishlist;
   MusicList musiclist;
@@ -58,7 +57,7 @@ class _MainPageState extends State<Main> {
   void initState(){
     homepage = Home();
     bugspage = BugsPage();
-    fishpage = Fish();
+    morepage = MorePage();
     fishlist = FishList();
     musiclist = MusicList();
 
@@ -77,10 +76,9 @@ class _MainPageState extends State<Main> {
       } else if (index == 1){
         currentPageWidget = musiclist;
       } else if (index == 2){
-        currentPageWidget = fishpage;
+        currentPageWidget = morepage;
       } else {
         currentPageWidget = fishlist;
-        print(Brightness.values);
       }
     });
     HapticFeedback.mediumImpact(); 
@@ -140,15 +138,6 @@ class _MainPageState extends State<Main> {
   }
 }
 
-class MorePage extends StatelessWidget{
-  @override 
-  Widget build(BuildContext context){
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      color: Colors.grey,
-    );
-  }
-}
 
 Color darkModeColor(bool darkMode, Color colorLight, Color colorDark){
   if(!darkMode)
