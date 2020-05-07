@@ -34,6 +34,7 @@ dev_dependencies:
   cached_network_image: ^2.2.0
   path_provider: ^1.6.7
   flutter_spinkit: ^4.1.2+1
+  flare_splash_screen: ^3.0.1
   
 
 

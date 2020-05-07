@@ -26,7 +26,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                   )
                 ),
                 Container(
-                  transform: Matrix4.translationValues(0, 0, 0),
+                  transform: Matrix4.translationValues(0, 20*percentScale, 0),
                   height:400,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
@@ -61,7 +61,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color: Color(0xffdefeff),
+                      color:colorFishAccent,
                       boxShadow: [BoxShadow(
                         color: Color(0x29000000),
                         offset: Offset(0,3),
@@ -89,7 +89,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff3a3a3a),
+                                color: Color(0xff90a4ae),
                                 fontSize: 11*percentScale,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
@@ -134,7 +134,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 child: Text("Not found",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
+                                      color: Color(0xff90a4ae),
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -152,7 +152,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 child: Text("Caught!",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
+                                      color: Color(0xff90a4ae),
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -170,7 +170,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFF9E4E4)
+                                color: colorCheckRed
                               )
                             ),
                           ),
@@ -183,7 +183,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFF99F9A9)
+                                color: colorCheckGreen,
                               )
                             ),
                           ),
@@ -196,7 +196,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFF444444),
+                                    checkColor: Color(0xFFFFFFFF),
                                     value: check,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -215,110 +215,149 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 // ---------- Card Centre Content ----------
                 
-                  Column(
-                    children: [
-                      // ---------- Card Centre Quote ----------
-                      Container(
-                        transform: Matrix4.translationValues(0, 50*percentScale, 0),
-                        width: 200*percentScale,
-                        child: Text("“"+catchphrase+"”",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Baskerville',
-                            color: Color(0xff625dde),
-                            fontSize: 14*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.italic,
-                          )
-                        ),
-                      ),
-                      // ---------- Card Centre Name ----------
-                      Container(
-                        transform: Matrix4.translationValues(0, 70*percentScale, 0),
-                        child: new Text(capitalize(name),
-                          style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: Color(0xff373737),
-                            fontSize: 31*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          )
-                        ),
-                      ),
-                      // ---------- Card Centre Sell Price ----------
-                      
-                            Container(
-                              transform: Matrix4.translationValues((60)*percentScale, 100*percentScale, 0),
-                              child: Row(
-                                children: [
-                                  // ---------- Card Centre Sell Price Image ----------
-                                  Container(
-                                    child: new Image.asset(
-                                      'assets/bellBag.png',
-                                      height: 30*percentScale,
-                                      width: 30*percentScale,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10*percentScale,
-                                  ),
-                                  // ---------- Card Centre Sell Price Text ----------
-                                  Container(
-                                    child: new Text(bellsPrice.format(int.parse(sell))+" bells",
-                                        style: TextStyle(
-                                          fontFamily: 'ArialRoundedBold',
-                                          color: Color(0xff3a3a3a),
-                                          fontSize: 19*percentScale,
-                                          fontWeight: FontWeight.w400,
-                                          fontStyle: FontStyle.normal,
-                                        )
-                                    ),
-                                  )
-                                ]
+                  Center(
+                    child: Container(
+                      transform: Matrix4.translationValues(0, 50*percentScale, 0),
+                      height: 340*percentScale,
+                      width: 360*percentScale,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height:10*percentScale,
+                          ),
+                          // ---------- Card Centre Quote ----------
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds:200),
+                            opacity: check ? 1 : 0,
+                            child: Container(
+                              width: 230*percentScale,
+                              child: Text("“"+catchphrase+"”",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Baskerville',
+                                  color: colorFishTextDarkBlue,
+                                  fontSize: 14*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.italic,
+                                )
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height:10*percentScale,
+                          ),
+                          // ---------- Card Centre Name ----------
+                          Container(
+                            child: new Text(capitalize(name),
+                              style: TextStyle(
+                                fontFamily: 'ArialRoundedBold',
+                                color: Color(0xff373737),
+                                fontSize: 31*percentScale,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
                               )
                             ),
-                      // ---------- Card Centre Size ----------
-                        Container(
-                            transform: Matrix4.translationValues((60)*percentScale, 90*percentScale, 0),
+                          ),
+                          SizedBox(
+                            height:20*percentScale,
+                          ),
+                          //Shadow
+                          Stack(
+                            children: <Widget>[
+                              Center(
+                                child: Container(
+                                  width: 120*percentScale,
+                                  height: 55*percentScale,
+                                  decoration: new BoxDecoration(
+                                    color: colorLightDarkAccent,
+                                    borderRadius:  BorderRadius.circular(15*percentScale)
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: Container(
+                                  width: 90*percentScale,
+                                  height: 55*percentScale,
+                                  child: new Image.asset(
+                                    'assets/shadowNormal'+determineShadowImage(shadow, whereHow)+'.png',
+                                    height: 70*percentScale,
+                                    width: 100*percentScale,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height:8*percentScale,
+                          ),
+                          //Shadow size
+                          Container(
+                            height: 45*percentScale,
+                            width:200*percentScale,
+                            
                             child: Row(
-                                children: [
-                                  // ---------- Card Centre Size Image ----------
-                                  Container(
-                                    child: new Image.asset(
-                                      'assets/magnifyingGlass.png',
-                                      height: 30*percentScale,
-                                      width: 26*percentScale,
-                                    ),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  child: new Image.asset(
+                                    'assets/magnifyingGlass.png',
+                                    height: 30*percentScale,
+                                    width: 26*percentScale,
                                   ),
-                                  SizedBox(
-                                    width: 14*percentScale,
+                                ),
+                                SizedBox(
+                                  width: 13*percentScale,
+                                ),
+                                Container(
+                                  child: new Text(capitalize(shadow),
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRoundedBold',
+                                        color: Color(0xff3a3a3a),
+                                        fontSize: 19*percentScale,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                      )
                                   ),
-                                  // ---------- Card Centre Size Text ----------
-                                  Container(
-                                    child: new Text(capitalize(shadow),
-                                        style: TextStyle(
-                                          fontFamily: 'ArialRoundedBold',
-                                          color: Color(0xff3a3a3a),
-                                          fontSize: 19*percentScale,
-                                          fontWeight: FontWeight.w400,
-                                          fontStyle: FontStyle.normal,
-                                        )
-                                    ),
-                                  ),
-                                  SizedBox(
+                                ),
+                              ],
+                            ),
+                          ),
+                          //Sell price
+                          Container(
+                            width:200*percentScale,
+                            height: 45*percentScale,
+                           
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: new Image.asset(
+                                    'assets/bellBag.png',
+                                    height: 30*percentScale,
                                     width: 30*percentScale,
                                   ),
-                                  Container(
-                                    child: new Image.asset(
-                                      'assets/shadowLeft'+determineShadowImage(shadow, whereHow)+'.png',
-                                      height: 80*percentScale,
-                                      width: 100*percentScale,
-                                    ),
+                                ),
+                                SizedBox(
+                                  width: 10*percentScale,
+                                ),
+                                Container(
+                                  child: new Text(bellsPrice.format(int.parse(sell))+" bells",
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: Color(0xff3a3a3a),
+                                      fontSize: 19*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
                                   ),
-                                ]
+                                ),
+                              ]
                             )
-                        ),
-                    ],
+                          ),
+                          
+                        ],
+                      ),
+                    ),
                   )
               ],
             ),

@@ -154,11 +154,11 @@ class _HomePageState extends State<Home>{
       percentScale = percentHeight;
     }
 
-    Color textColor;
-    if(!darkMode)
-      textColor = Color( 0xff000000);
-    else
-      textColor = Color( 0xffEAEAEA);
+    // Color colorTextBlack;
+    // if(!darkMode)
+    //   colorTextBlack = Color( 0xff000000);
+    // else
+    //   colorTextBlack = Color( 0xffEAEAEA);
 
     double fossilsPercent = 10/50;
     double bugsPercent = 50/76;
@@ -336,7 +336,7 @@ class _HomePageState extends State<Home>{
                                         child: new Text("10 / 50",
                                           style: TextStyle(
                                             fontFamily: 'ArialRoundedBold',
-                                            color: textColor,
+                                            color: colorTextBlack,
                                             fontSize: 16*percentScale,
                                             fontWeight: FontWeight.w400,
                                             fontStyle: FontStyle.normal,
@@ -407,7 +407,7 @@ class _HomePageState extends State<Home>{
                                         child: new Text("50 / 76",
                                           style: TextStyle(
                                             fontFamily: 'ArialRoundedBold',
-                                            color: textColor,
+                                            color: colorTextBlack,
                                             fontSize: 16*percentScale,
                                             fontWeight: FontWeight.w400,
                                             fontStyle: FontStyle.normal,
@@ -479,7 +479,7 @@ class _HomePageState extends State<Home>{
                                         child: new Text("5 / 100",
                                           style: TextStyle(
                                             fontFamily: 'ArialRoundedBold',
-                                            color: textColor,
+                                            color: colorTextBlack,
                                             fontSize: 16*percentScale,
                                             fontWeight: FontWeight.w400,
                                             fontStyle: FontStyle.normal,
@@ -551,7 +551,7 @@ class _HomePageState extends State<Home>{
                                   "Today",
                                   style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: textColor,
+                                  color: colorTextBlack,
                                   fontSize: 16*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
@@ -582,7 +582,7 @@ class _HomePageState extends State<Home>{
                                   "Tomorrow",
                                   style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: textColor,
+                                  color: colorTextBlack,
                                   fontSize: 16*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
@@ -614,7 +614,7 @@ class _HomePageState extends State<Home>{
                                   "This Week",
                                   style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: textColor,
+                                  color: colorTextBlack,
                                   fontSize: 16*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,

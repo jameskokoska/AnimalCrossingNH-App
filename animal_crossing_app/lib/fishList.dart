@@ -118,7 +118,7 @@ class _FishListPageState extends State<FishList>{
         children: <Widget>[
           Container(
             height: MediaQuery.of(context).size.height,
-            color: darkModeColor(darkMode, Color(0xFFDEFEFF), Color(0xFF193D69)),
+            color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xFF193D69)),
           ),
           FutureBuilder(
             future:getFishData(),
@@ -156,8 +156,8 @@ class _FishListPageState extends State<FishList>{
                 physics: BouncingScrollPhysics(),
                 slivers: <Widget>[
                     SliverAppBar(
-                      expandedHeight: 197*percentScale,
-                      backgroundColor: Color(0xFF00A1FF),
+                      expandedHeight: 220*percentScale,
+                      backgroundColor: Color(0xFF90caf9),
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -168,7 +168,7 @@ class _FishListPageState extends State<FishList>{
                           child: Text("Fish",
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
-                              color: Color(0xffffffff),
+                              color: colorTextWhite,
                               fontSize: 30*percentScale,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
@@ -203,17 +203,17 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
     builder: (BuildContext context, StateSetter setState) { return Column(
       children: <Widget>[
         SizedBox(
-          height:8*percentScale,
+          height:4.5*percentScale,
         ),
         new Stack(
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(8*percentScale),
+              borderRadius: BorderRadius.circular(14*percentScale),
               child: new Container(
                 child: new Material(
                   child: new InkWell(
-                    highlightColor: Color(0xFF98D5DB),
-                    splashColor: Color(0xFF90DAE0),
+                    highlightColor: Color(0xFFcfd8dc),
+                    splashColor: Color(0xFFb3e5fc),
                     enableFeedback: true,
                     onLongPress: (){
                       setState(() {
@@ -226,10 +226,10 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                     },
                     child: new Container(
                       width: 334*percentScale,
-                      height: 71*percentScale,
+                      height: 75*percentScale,
                     ),
                   ),
-                  color: Color(0xffb9f4fb),
+                  color: colorWhite,
                 ),
                 
               ),
@@ -249,16 +249,16 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
               child: Stack(
                 children: <Widget>[
                   new Container(
-                    transform: Matrix4.translationValues(8*percentScale,8*percentScale,0),
+                    transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
                     width: 55*percentScale,
                     height: 55*percentScale,
                     decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color(0xff9edcf4)
+                      color: colorFishAccent,
                     )
                   ),
                   Container(
-                    transform: Matrix4.translationValues((8+5)*percentScale,(8+5)*percentScale,0),
+                    transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
                     child: CachedNetworkImage(
                       imageBuilder: (context, imageProvider) => Container(
                         width: 45*percentScale,
@@ -276,23 +276,23 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                     ),
                   ),
                   Container(
-                    transform: Matrix4.translationValues((79)*percentScale,(6)*percentScale,0),
+                    transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
                     child: new Text((capitalize(name)),
                       style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff373737),
-                      fontSize: 19*percentScale,
+                      color: colorTextBlack,
+                      fontSize: 18*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       )
                     ),
                   ),
                   Container(
-                    transform: Matrix4.translationValues((79)*percentScale,(29)*percentScale,0),
+                    transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
                     child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
                       style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff625dde),
+                      color: colorFishTextDarkBlue,
                       fontSize: 14*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -300,11 +300,11 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                     ),
                   ),
                   Container(
-                    transform: Matrix4.translationValues((79)*percentScale,(46)*percentScale,0),
+                    transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
                     child: new Text(whereHow,
                       style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff625dde),
+                      color: colorFishTextDarkBlue,
                       fontSize: 14*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -314,34 +314,34 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                   //Checkmark background
                   AnimatedPositioned(
                     duration: Duration(milliseconds: 300),
-                    top: check ? 55*percentScale : 0,
-                    bottom: check ? 55*percentScale : 0,
+                    top: check ? 40*percentScale : 0,
+                    bottom: check ? 40*percentScale : 0,
                     child: new Container(
-                      transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
-                      width: 55*percentScale,
-                      height: 55*percentScale,
+                      transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
+                      width: 40*percentScale,
+                      height: 40*percentScale,
                       decoration: new BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0x63ffa4a2)
+                        color: colorCheckRed
                       )
                     ),
                   ),
                   AnimatedPositioned(
                     duration: Duration(milliseconds: 200),
-                    top: !check ? 55*percentScale : 0,
-                    bottom: !check ? 55*percentScale : 0,
+                    top: !check ? 40*percentScale : 0,
+                    bottom: !check ? 40*percentScale : 0,
                     child: new Container(
-                      transform: Matrix4.translationValues((271)*percentScale,(8)*percentScale,0),
-                      width: 55*percentScale,
-                      height: 55*percentScale,
+                      transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
+                      width: 40*percentScale,
+                      height: 40*percentScale,
                       decoration: new BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xD380E27E)
+                        color: colorCheckGreen
                       )
                     ),
                   ),
                   Container(
-                     transform: Matrix4.translationValues((190)*percentScale,(20)*percentScale,0),
+                     transform: Matrix4.translationValues((190)*percentScale,(22)*percentScale,0),
                      child: Image.asset(
                        'assets/shadow'+determineShadowImage(shadow, whereHow)+'.png',
                        height:60*percentScale,
@@ -353,18 +353,18 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
             ),
             
             Container(
-              transform: Matrix4.translationValues((271)*percentScale,(11)*percentScale,0),
+              transform: Matrix4.translationValues((272)*percentScale,(11.5)*percentScale,0),
               width:55*percentScale,
               height:55*percentScale,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(300*percentScale),
                   child: new Transform.scale(
-                    scale: 2*percentScale,
+                    scale: 1.6*percentScale,
                     child: Theme(
                       data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                       child: new Checkbox(
                         activeColor: Color(0x04b2fab4),
-                        checkColor: Color(0xFF444444),
+                        checkColor: Color(0xFFFFFFFF),
                         value: check,
                         onChanged: (bool value) {
                           setState(() {
@@ -392,7 +392,7 @@ void tappedFishItem(BuildContext context, double percentScale, bool caught,Strin
     context: context, 
     builder: (context){
       return Container(
-        height: 350*percentScale,
+        height: 360*percentScale,
           child: Container(
             child: fishPopUp(percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
         ),

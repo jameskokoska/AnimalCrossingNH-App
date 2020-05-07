@@ -36,41 +36,35 @@ class _MusicListPageState extends State<MusicList>{
     } else {
       percentScale = percentHeight;
     }
-
-    Color textColor;
-    if(!darkMode)
-      textColor = Color( 0xFFFFFFFF);
-    else
-      textColor = Color( 0xFFF5F5F5);
-
       
     return Scaffold(
       body: Stack(
         children: <Widget>[
           Container(
             height: MediaQuery.of(context).size.height,
-            color: darkModeColor(darkMode, Color( 0xFF81C0FF), Color( 0xff08354E)),
+            color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
           ),
           CustomScrollView(
             physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
-                expandedHeight: 197*percentScale,
-                backgroundColor: Colors.transparent,
+                expandedHeight: 150*percentScale,
+                backgroundColor: colorLightDarkAccent,
                 //pinned: true,
                 //snap: true,
                 //floating: true,
                 elevation: 0,
                 flexibleSpace: FlexibleSpaceBar(
                   title: Container(
-                    transform: Matrix4.translationValues(0,-13*percentScale,0),
+                    transform: Matrix4.translationValues(2*percentScale,-13*percentScale,0),
                     child: Text("K.K. Songs",
                       style: TextStyle(
                         fontFamily: 'ArialRoundedBold',
-                        color: textColor,
-                        fontSize: 30*percentScale,
+                        color: colorTextBlack,
+                        fontSize: 25*percentScale,
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
+                        
                       )
                     ),
                   ),
@@ -78,10 +72,10 @@ class _MusicListPageState extends State<MusicList>{
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.fromLTRB(5*percentScale, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(28*percentScale, 0, 0, 0),
                 sliver: new SliverGrid(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 120*percentScale,
+                    maxCrossAxisExtent: 200*percentScale,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 0,
                     childAspectRatio: 1,
@@ -89,7 +83,7 @@ class _MusicListPageState extends State<MusicList>{
                   delegate: 
                   SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      return songContainer(percentScale, index, textColor);
+                      return songContainer(percentScale, index, colorTextBlack);
                     },
                     childCount: albumCoverLinks.length,
                   ),
@@ -107,16 +101,16 @@ class _MusicListPageState extends State<MusicList>{
             child: new Align(
               alignment: Alignment.topCenter,
               child: Container(
-                transform: Matrix4.translationValues(0,-550*percentScale,0),
+                transform: Matrix4.translationValues(0,-530*percentScale,0),
                 child: RotationTransition(
-                  turns: new AlwaysStoppedAnimation(180 / 360),
+                  turns: AlwaysStoppedAnimation(180 / 360),
                   child: WaveWidget(
                     config: CustomConfig(
                       gradients: [
-                        [darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3)), darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3))],
-                        [darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee)), darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee))],
-                        [darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee)), darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee))],
-                        [darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff)), darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff))]
+                        [Color(0x59e8eaf6), Color(0x59e8eaf6)],
+                        [Color(0xafc5cae9), Color(0x59c5cae9)],
+                        [Color(0x599fa8da), Color(0x599fa8da)],
+                        [Color(0x597986cb), Color(0x597986cb)]
                       ],
                       durations: [13000, 25000, 9000, 32000],
                       heightPercentages: [0.10, 0.12, 0.14, 0.16],
@@ -139,10 +133,10 @@ class _MusicListPageState extends State<MusicList>{
                 child: WaveWidget(
                   config: CustomConfig(
                     gradients: [
-                      [darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3)), darkModeColor(darkMode, Color(0xaF2b74e3), Color(0x592b74e3))],
-                      [darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee)), darkModeColor(darkMode, Color(0xaf3089ee), Color(0x593089ee))],
-                      [darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee)), darkModeColor(darkMode, Color(0xaf3a7aee), Color(0x593a7aee))],
-                      [darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff)), darkModeColor(darkMode, Color(0xaf5c94ff), Color(0x595c94ff))]
+                      [Color(0x59e8eaf6), Color(0x59e8eaf6)],
+                      [Color(0xafc5cae9), Color(0x59c5cae9)],
+                      [Color(0x599fa8da), Color(0x599fa8da)],
+                      [Color(0x597986cb), Color(0x597986cb)]
                     ],
                     durations: [30000, 20000, 11000, 8000],
                     heightPercentages: [0.10, 0.11, 0.12, 0.13],
@@ -162,56 +156,51 @@ class _MusicListPageState extends State<MusicList>{
   }
 }
 
-Widget songContainer(double percentScale, int index, Color textColor){
+Widget songContainer(double percentScale, int index, Color colorTextBlack){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return Column(
+      return Stack(
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              //Not collected Background
-              AnimatedOpacity(
-                duration: Duration(milliseconds:300),
-                opacity: check ? 0 : 1,
-                child: new Container(
-                  transform: Matrix4.translationValues(-2*percentScale,-2*percentScale,0),
-                  width:99*percentScale,
-                  height:99*percentScale,
-                  decoration: new BoxDecoration(
-                    color: Color(0x7EFF6C6C),
-                    borderRadius: BorderRadius.circular(5*percentScale),
-                  ),
-                ),
-              ),
-              //Collected Background
-              AnimatedOpacity(
-                duration: Duration(milliseconds:300),
-                opacity: !check ? 0 : 1,
-                child: new Container(
-                  transform: Matrix4.translationValues(-2*percentScale,-2*percentScale,0),
-                  width:99*percentScale,
-                  height:99*percentScale,
-                  decoration: new BoxDecoration(
-                    color: Color(0xB39DEEBD),
-                    borderRadius: BorderRadius.circular(5*percentScale),
-                  ),
-                ),
-              ),
-              new Container(
-                width:95*percentScale,
-                height:95*percentScale,
-                decoration: new BoxDecoration(
-                  color: Color(0xFF81C0FF),
-                  borderRadius: BorderRadius.circular(5*percentScale),
-                ),
-              ),
-              new Container(
-                child: CachedNetworkImage(
+          new Container(
+            width: 143*percentScale,
+            height: 162*percentScale,
+            decoration: new BoxDecoration(
+              color: Color(0xffffffff),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [BoxShadow(
+                  color: Color(0x0C000000),
+                  offset: Offset(0,3),
+                  blurRadius: 6,
+                  spreadRadius: 0
+              ) ],
+            )
+          ),
+          
+          new Container(
+            transform: Matrix4.translationValues(13*percentScale,13*percentScale,0),
+            width:117*percentScale,
+            height:117*percentScale,
+            decoration: new BoxDecoration(
+              color: Color(0x83D7EBFF),
+              borderRadius: BorderRadius.circular(5*percentScale),
+            ),
+          ),
+          new Container(
+            transform: Matrix4.translationValues(13*percentScale,13*percentScale,0),
+            child: Column(
+              children: <Widget>[
+                CachedNetworkImage(
                   imageBuilder: (context, imageProvider) => Container(
-                    width: 95*percentScale,
-                    height: 95*percentScale,
+                    width: 117*percentScale,
+                    height: 117*percentScale,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4*percentScale),
+                      boxShadow: [BoxShadow(
+                        color: Color(0x29000000),
+                        offset: Offset(0,2),
+                        blurRadius: 2,
+                        spreadRadius: 0
+                      )],
                       image: DecorationImage(
                         image: imageProvider, fit: BoxFit.cover),
                     ),
@@ -223,52 +212,88 @@ Widget songContainer(double percentScale, int index, Color textColor){
                   width:95*percentScale,
                   fadeInDuration: Duration(milliseconds:800),
                 ),
-              ),
-              AnimatedOpacity(
-                duration: ((){
-                  if(check == true)
-                    return Duration(milliseconds:1200);
-                  else
-                    return Duration(milliseconds:10);
-                }()),
-                opacity: check ? 0 : 1,
-                child: Container(
-                  width:95*percentScale,
-                  height:95*percentScale,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(300*percentScale),
-                      child: new Transform.scale(
-                        scale: 3*percentScale,
-                        child: Theme(
-                          data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                          child: new Checkbox(
-                            activeColor: Color(0x04FFFFFF),
-                            checkColor: Color(0xFF444444),
-                            value: check,
-                            onChanged: (bool value) {
-                              setState(() {
-                                check = value;
-                                HapticFeedback.mediumImpact();
-                              });
-                            },
-                          ),
-                        ),
-                      )
-                  ),
+                SizedBox(
+                  height: 8*percentScale,
+                ),
+                Text(albumName[index],
+                  style: TextStyle(
+                    fontFamily: 'ArialRoundedBold',
+                    color: colorTextBlack,
+                    fontSize: 13*percentScale,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                  )
+                ),
+              ],
+            ),
+          ),
+          Center(
+            child: AnimatedOpacity(
+              duration: ((){
+                if(check == true)
+                  return Duration(milliseconds:1200);
+                else
+                  return Duration(milliseconds:10);
+              }()),
+              opacity: check ? 0 : 1,
+              child: Container(
+                width:120*percentScale,
+                height:120*percentScale,
+                transform: Matrix4.translationValues(-11*percentScale,-8*percentScale,0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(300*percentScale),
+                  child: new Transform.scale(
+                    scale: 3*percentScale,
+                    child: Theme(
+                      data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                      child: new Checkbox(
+                        activeColor: Color(0x04FFFFFF),
+                        checkColor: Color(0xFF444444),
+                        value: check,
+                        onChanged: (bool value) {
+                          setState(() {
+                            check = value;
+                            HapticFeedback.mediumImpact();
+                          });
+                        },
+                      ),
+                    ),
+                  )
                 ),
               ),
-            ],
+            ),
           ),
-          SizedBox(
-            height: 2*percentScale,
-          ),
-          Text(albumName[index],
-            style: TextStyle(
-              fontFamily: 'ArialRoundedBold',
-              color: textColor,
-              fontSize: 12.5*percentScale,
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.normal,
+          AnimatedOpacity(
+            duration: Duration(milliseconds:400),
+            opacity: check ? 1 : 0,
+            child: Container(
+              transform: Matrix4.translationValues(113*percentScale,113*percentScale,0),
+              height: 29,
+              width: 29,
+              decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                color: colorCheckGreen,
+                boxShadow: [BoxShadow(
+                  color: Color(0x29000000),
+                  offset: Offset(0,3),
+                  blurRadius: 6,
+                  spreadRadius: 0
+                ) ],
+              ),
+              child: Theme(
+                data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                child: new Checkbox(
+                  activeColor: Color(0x00000000),
+                  checkColor: Color(0xFF444444),
+                  value: check,
+                  onChanged: (bool value) {
+                    setState(() {
+                      check = value;
+                      HapticFeedback.mediumImpact();
+                    });
+                  },
+                ),
+              ),
             )
           ),
         ],

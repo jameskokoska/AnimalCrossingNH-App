@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'more.dart';
 import 'bugs.dart';
 import 'mainMenu.dart';
 import 'fishList.dart';
 import 'music.dart';
+
+//---------------------------
+Color colorLightDarkAccent = Color(0xFFF5F5F5);
+Color colorTextBlack = Color(0xff373737);
+Color colorTextWhite = Color(0xFFFFFFFF);
+Color colorWhite = Color(0xFFFFFFFF);
+Color colorCheckRed = Color(0xFFF8DFE3);
+Color colorCheckGreen = Color(0xFFA0DDA1);
+Color colorFishAccent = Color(0xFFE3F2FD);
+Color colorFishTextDarkBlue = Color(0xff3F51B5);
+//---------------------------
 
 bool northernHemisphere = true;
 var currentDate = DateTime.now();
@@ -16,9 +28,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter',
       theme: ThemeData (
-        primaryColor: Color(0xFFFAFAFA),
+        primaryColor: Color(0xFFFFFFFF),
         accentColor: Colors.red,
         brightness: Brightness.light,
       ),
@@ -27,16 +39,20 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.red[50],
         brightness: Brightness.dark,
       ),
-      home: Main(),
+      home: SplashScreen.navigate(
+        name: 'assets/animatedSplash.flr',
+        startAnimation: 'animation',
+        next: (context) => Main(),
+        until: () => Future.delayed(Duration(seconds: 0)),
+        //backgroundColor: Colors.blue,
+      ),
     );
   }
 }
 
 
 class Main extends StatefulWidget {
-  Main({Key key, this.title}) : super(key: key);
-
-  final String title;
+  Main({Key key}) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -86,6 +102,7 @@ class _MainPageState extends State<Main> {
     print(currentPageWidget);
   }
 
+  @override
   Widget build(BuildContext context) {
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
@@ -113,25 +130,40 @@ class _MainPageState extends State<Main> {
             duration: const Duration(milliseconds:200),
             child: currentPageWidget,
           ),
-          new Align(
-            alignment: Alignment.bottomCenter,
-            child:CurvedNavigationBar(
-              color: Theme.of(context).primaryColor,
-              backgroundColor: Colors.black.withOpacity(0),
-              buttonBackgroundColor: Theme.of(context).accentColor,
-              items: <Widget>[
-                Image.asset('assets/home.png',
-                height:20*percentScale,
-                width:20*percentScale,),
-                Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor),
-                Icon(Icons.blur_linear,size:20,color:Theme.of(context).accentColor),
-                Icon(Icons.more_horiz,size:20,color:Theme.of(context).accentColor),
-              ],
-               index: selectedIndex,
-                onTap: selectedNavBar,
-                animationCurve: Curves.easeInOut,
-                animationDuration: Duration(milliseconds:400),
-            )
+          Container(
+            transform: Matrix4.translationValues(0, 13*percentScale, 0),
+            child: new Align(
+              alignment: Alignment.bottomCenter,
+              child:Container(
+                decoration:
+                BoxDecoration(
+            		borderRadius: BorderRadius.circular(5),
+                  boxShadow: [BoxShadow(
+                      color: Color(0x10000000),
+                      offset: Offset(0,-6),
+                      blurRadius: 3,
+                      spreadRadius: 0
+                  ) ],
+                ),
+                child: CurvedNavigationBar(
+                  color: Theme.of(context).primaryColor,
+                  backgroundColor: Colors.black.withOpacity(0),
+                  buttonBackgroundColor: Theme.of(context).accentColor,
+                  items: <Widget>[
+                    Image.asset('assets/home.png',
+                    height:20*percentScale,
+                    width:20*percentScale,),
+                    Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor),
+                    Icon(Icons.blur_linear,size:20,color:Theme.of(context).accentColor),
+                    Icon(Icons.more_horiz,size:20,color:Theme.of(context).accentColor),
+                  ],
+                  index: selectedIndex,
+                  onTap: selectedNavBar,
+                  animationCurve: Curves.easeInOut,
+                  animationDuration: Duration(milliseconds:400),
+                ),
+              )
+            ),
           ),
         ],
       ),
