@@ -40,10 +40,10 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: SplashScreen.navigate(
-        name: 'assets/animatedSplash.flr',
-        startAnimation: 'animation',
+        name: 'assets/animatedSplashPlane.flr',
+        startAnimation: 'Splash',
         next: (context) => Main(),
-        until: () => Future.delayed(Duration(seconds: 0)),
+        until: () => Future.delayed(Duration(milliseconds: 1)),
         //backgroundColor: Colors.blue,
       ),
     );
