@@ -139,7 +139,7 @@ class _MainPageState extends State<Main> {
               height: 70*percentScale,
               decoration: new BoxDecoration(
                 borderRadius: BorderRadius.circular(30*percentScale),
-                color: Color(0xFFFFFFFF),
+                color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
                 boxShadow: [BoxShadow(
                   color: Color(0x10000000),
                   offset: Offset(0,-3*percentScale),
@@ -164,6 +164,7 @@ class _MainPageState extends State<Main> {
                 hasNotch: false,
                 hasInk: true,
                 inkColor: Colors.blueGrey[50],
+                backgroundColor: Colors.transparent,
                 items: <BubbleBottomBarItem>[
                     BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
                     BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
