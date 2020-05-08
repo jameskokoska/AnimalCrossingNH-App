@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'more.dart';
@@ -89,6 +89,8 @@ class _MainPageState extends State<Main> {
 
   void selectedNavBar(int index){
     setState(() {
+      if(index!=selectedIndex)
+        HapticFeedback.mediumImpact(); 
       if(index == 0){
         currentPageWidget = homepage;
       } else if (index == 1){
@@ -99,7 +101,7 @@ class _MainPageState extends State<Main> {
         currentPageWidget = fishlist;
       }
     });
-    HapticFeedback.mediumImpact(); 
+    selectedIndex = index;
     print(currentPageWidget);
   }
 
@@ -125,47 +127,52 @@ class _MainPageState extends State<Main> {
     }
 
     return Scaffold(
-      body: new Stack(
+      body: Stack(
         children: <Widget>[
           new AnimatedSwitcher(
             duration: const Duration(milliseconds:200),
             child: currentPageWidget,
           ),
+          new Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 70*percentScale,
+              decoration: new BoxDecoration(
+                borderRadius: BorderRadius.circular(30*percentScale),
+                color: Color(0xFFFFFFFF),
+                boxShadow: [BoxShadow(
+                  color: Color(0x10000000),
+                  offset: Offset(0,-3*percentScale),
+                  blurRadius: 5*percentScale,
+                  spreadRadius: 0
+                ) ],
+              ),
+            )
+          ),
           Container(
-            transform: Matrix4.translationValues(0, 13*percentScale, 0),
+            //not centerd properly oops
+            transform: Matrix4.translationValues(30*percentScale, -11*percentScale, 0),
             child: new Align(
               alignment: Alignment.bottomCenter,
-              child:Container(
-                decoration:
-                BoxDecoration(
-            		borderRadius: BorderRadius.circular(5),
-                  boxShadow: [BoxShadow(
-                      color: Color(0x10000000),
-                      offset: Offset(0,-6),
-                      blurRadius: 3,
-                      spreadRadius: 0
-                  ) ],
-                ),
-                child: CurvedNavigationBar(
-                  color: Theme.of(context).primaryColor,
-                  backgroundColor: Colors.black.withOpacity(0),
-                  buttonBackgroundColor: Theme.of(context).accentColor,
-                  items: <Widget>[
-                    Image.asset('assets/home.png',
-                    height:20*percentScale,
-                    width:20*percentScale,),
-                    Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor),
-                    Icon(Icons.blur_linear,size:20,color:Theme.of(context).accentColor),
-                    Icon(Icons.more_horiz,size:20,color:Theme.of(context).accentColor),
-                  ],
-                  index: selectedIndex,
-                  onTap: selectedNavBar,
-                  animationCurve: Curves.easeInOut,
-                  animationDuration: Duration(milliseconds:400),
-                ),
-              )
-            ),
-          ),
+              child: BubbleBottomBar(
+                opacity: .2,
+                currentIndex: selectedIndex,
+                onTap: selectedNavBar,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(30*percentScale)),
+                elevation: 0,
+                fabLocation: BubbleBottomBarFabLocation.end,
+                hasNotch: false,
+                hasInk: true,
+                inkColor: Colors.blueGrey[50],
+                items: <BubbleBottomBarItem>[
+                    BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
+                    BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
+                    BubbleBottomBarItem(backgroundColor: Colors.yellow, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Fish')),
+                    BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs'))
+                ],
+              ),
+            )
+          )
         ],
       ),
     );

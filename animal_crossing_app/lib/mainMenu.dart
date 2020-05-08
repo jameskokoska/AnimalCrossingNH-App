@@ -228,7 +228,17 @@ class _HomePageState extends State<Home>{
                                   fontSize: 56*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(0, 3),
+                                      blurRadius: 7,
+                                      color: Color(0x2F000000),
+                                    ),
+                                  ]
                                 )
+                              ),
+                              SizedBox(
+                                width: 6*percentScale,
                               ),
                               Container(
                                 transform: Matrix4.translationValues(0, 8*percentScale, 0),
@@ -239,6 +249,13 @@ class _HomePageState extends State<Home>{
                                     fontSize: 32*percentScale,
                                     fontWeight: FontWeight.w400,
                                     fontStyle: FontStyle.normal,
+                                    shadows: <Shadow>[
+                                      Shadow(
+                                        offset: Offset(0, 3),
+                                        blurRadius: 7,
+                                        color: Color(0x2F000000),
+                                      ),
+                                    ]
                                   )
                                 ),
                               ),
@@ -254,20 +271,20 @@ class _HomePageState extends State<Home>{
                                   color: Color(0xFFFFFFFF),
                                   borderRadius: BorderRadius.circular(40),
                                   boxShadow: [BoxShadow(
-                                    color: Color(0x0C000000),
+                                    color: Color(0x2F000000),
                                     offset: Offset(0,3),
-                                    blurRadius: 6,
+                                    blurRadius: 7,
                                     spreadRadius: 0
                                     ) 
                                   ],
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.only(
-                                            left: 10,
-                                            right: 10,
-                                            top: 4,
-                                            bottom: 4,
-                                          ),
+                                    left: 10,
+                                    right: 10,
+                                    top: 4,
+                                    bottom: 4,
+                                  ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -278,6 +295,7 @@ class _HomePageState extends State<Home>{
                                           fontSize: 28*percentScale,
                                           fontWeight: FontWeight.w400,
                                           fontStyle: FontStyle.normal,
+                                          
                                         )
                                       ),
                                       SizedBox(
@@ -317,6 +335,7 @@ class _HomePageState extends State<Home>{
                           SizedBox(
                             height:13,
                           ),
+                          //Actual date
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             //crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,6 +347,13 @@ class _HomePageState extends State<Home>{
                                   fontSize: 28*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(0, 3),
+                                      blurRadius: 7,
+                                      color: Color(0x2F000000),
+                                    ),
+                                  ]
                                 )
                               ),
                               SizedBox(
@@ -338,9 +364,9 @@ class _HomePageState extends State<Home>{
                                   color: Color(0xffffffff),
                                   borderRadius: BorderRadius.circular(40),
                                   boxShadow: [BoxShadow(
-                                    color: Color(0x0C000000),
+                                    color: Color(0x23000000),
                                     offset: Offset(0,3),
-                                    blurRadius: 6,
+                                    blurRadius: 7,
                                     spreadRadius: 0
                                     ) 
                                   ],

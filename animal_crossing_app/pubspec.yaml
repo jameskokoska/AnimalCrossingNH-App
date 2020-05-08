@@ -35,6 +35,10 @@ dev_dependencies:
   path_provider: ^1.6.7
   flutter_spinkit: ^4.1.2+1
   flare_splash_screen: ^3.0.1
+  #persistent_bottom_nav_bar: ^1.5.4
+  #bottom_navy_bar: ^5.4.0
+  #google_nav_bar: ^2.2.0
+  bubble_bottom_bar: ^1.2.0
   
 
 
