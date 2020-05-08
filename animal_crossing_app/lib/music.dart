@@ -98,8 +98,8 @@ class _MusicListPageState extends State<MusicList>{
             ],
           ),
           IgnorePointer(
-            child: Container(
-              transform: Matrix4.translationValues(0,-530*percentScale,0),
+            child: new Align(
+              alignment: Alignment.topCenter,
               child: RotationTransition(
                 turns: AlwaysStoppedAnimation(180 / 360),
                 child: WaveWidget(
@@ -116,31 +116,33 @@ class _MusicListPageState extends State<MusicList>{
                     gradientEnd: Alignment.topRight,
                   ),
                   backgroundColor: Colors.transparent,
-                  size: Size(double.infinity, double.infinity),
-                  waveAmplitude: 13,
+                  size: Size(double.infinity, 60*percentScale),
+                  waveAmplitude: 14,
                 ),
               ),
             ),
           ),
           IgnorePointer(
-            child: Container(
-              transform: Matrix4.translationValues(0,480*percentScale,0),
-              child: WaveWidget(
-                config: CustomConfig(
-                  gradients: [
-                    [Color(0x59e8eaf6), Color(0x59e8eaf6)],
-                    [Color(0xafc5cae9), Color(0x59c5cae9)],
-                    [Color(0x599fa8da), Color(0x599fa8da)],
-                    [Color(0x597986cb), Color(0x597986cb)]
-                  ],
-                  durations: [30000, 20000, 11000, 8000],
-                  heightPercentages: [0.10, 0.11, 0.12, 0.13],
-                  gradientBegin: Alignment.bottomLeft,
-                  gradientEnd: Alignment.topRight,
+            child: new Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                child: WaveWidget(
+                  config: CustomConfig(
+                    gradients: [
+                      [Color(0x59e8eaf6), Color(0x59e8eaf6)],
+                      [Color(0xafc5cae9), Color(0x59c5cae9)],
+                      [Color(0x599fa8da), Color(0x599fa8da)],
+                      [Color(0x597986cb), Color(0x597986cb)]
+                    ],
+                    durations: [30000, 20000, 11000, 8000],
+                    heightPercentages: [0.10, 0.11, 0.12, 0.13],
+                    gradientBegin: Alignment.bottomLeft,
+                    gradientEnd: Alignment.topRight,
+                  ),
+                  backgroundColor: Colors.transparent,
+                  size: Size(double.infinity, 114*percentScale),
+                  waveAmplitude: 8,
                 ),
-                backgroundColor: Colors.transparent,
-                size: Size(double.infinity, double.infinity),
-                waveAmplitude: 8,
               ),
             ),
           ),
