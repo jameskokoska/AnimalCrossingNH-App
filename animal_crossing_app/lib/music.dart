@@ -98,38 +98,10 @@ class _MusicListPageState extends State<MusicList>{
             ],
           ),
           IgnorePointer(
-            child: new Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                transform: Matrix4.translationValues(0,-530*percentScale,0),
-                child: RotationTransition(
-                  turns: AlwaysStoppedAnimation(180 / 360),
-                  child: WaveWidget(
-                    config: CustomConfig(
-                      gradients: [
-                        [Color(0x59e8eaf6), Color(0x59e8eaf6)],
-                        [Color(0xafc5cae9), Color(0x59c5cae9)],
-                        [Color(0x599fa8da), Color(0x599fa8da)],
-                        [Color(0x597986cb), Color(0x597986cb)]
-                      ],
-                      durations: [13000, 25000, 9000, 32000],
-                      heightPercentages: [0.10, 0.12, 0.14, 0.16],
-                      gradientBegin: Alignment.bottomLeft,
-                      gradientEnd: Alignment.topRight,
-                    ),
-                    backgroundColor: Colors.transparent,
-                    size: Size(double.infinity, double.infinity),
-                    waveAmplitude: 13,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          IgnorePointer(
-            child: new Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                transform: Matrix4.translationValues(0,480*percentScale,0),
+            child: Container(
+              transform: Matrix4.translationValues(0,-530*percentScale,0),
+              child: RotationTransition(
+                turns: AlwaysStoppedAnimation(180 / 360),
                 child: WaveWidget(
                   config: CustomConfig(
                     gradients: [
@@ -138,15 +110,37 @@ class _MusicListPageState extends State<MusicList>{
                       [Color(0x599fa8da), Color(0x599fa8da)],
                       [Color(0x597986cb), Color(0x597986cb)]
                     ],
-                    durations: [30000, 20000, 11000, 8000],
-                    heightPercentages: [0.10, 0.11, 0.12, 0.13],
+                    durations: [13000, 25000, 9000, 32000],
+                    heightPercentages: [0.10, 0.12, 0.14, 0.16],
                     gradientBegin: Alignment.bottomLeft,
                     gradientEnd: Alignment.topRight,
                   ),
                   backgroundColor: Colors.transparent,
                   size: Size(double.infinity, double.infinity),
-                  waveAmplitude: 8,
+                  waveAmplitude: 13,
                 ),
+              ),
+            ),
+          ),
+          IgnorePointer(
+            child: Container(
+              transform: Matrix4.translationValues(0,480*percentScale,0),
+              child: WaveWidget(
+                config: CustomConfig(
+                  gradients: [
+                    [Color(0x59e8eaf6), Color(0x59e8eaf6)],
+                    [Color(0xafc5cae9), Color(0x59c5cae9)],
+                    [Color(0x599fa8da), Color(0x599fa8da)],
+                    [Color(0x597986cb), Color(0x597986cb)]
+                  ],
+                  durations: [30000, 20000, 11000, 8000],
+                  heightPercentages: [0.10, 0.11, 0.12, 0.13],
+                  gradientBegin: Alignment.bottomLeft,
+                  gradientEnd: Alignment.topRight,
+                ),
+                backgroundColor: Colors.transparent,
+                size: Size(double.infinity, double.infinity),
+                waveAmplitude: 8,
               ),
             ),
           ),
