@@ -19,7 +19,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 // ---------- Cheaty Background and curved card ----------
                 Container(
                   transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                  height:400,
+                  height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: Color(0xFFFFFFFF),
@@ -27,7 +27,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 Container(
                   transform: Matrix4.translationValues(0, 20*percentScale, 0),
-                  height:400,
+                  height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: Color(0xFFFFFFFF),
