@@ -75,10 +75,10 @@ class _MusicListPageState extends State<MusicList>{
                 padding: EdgeInsets.fromLTRB(28*percentScale, 0, 0, 0),
                 sliver: new SliverGrid(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200*percentScale,
-                    mainAxisSpacing: 10*percentScale,
+                    maxCrossAxisExtent: 200,
+                    mainAxisSpacing: 10,
                     crossAxisSpacing: 0,
-                    childAspectRatio: 0.9*percentScale,
+                    childAspectRatio: 1,
                   ),
                   delegate: 
                   SliverChildBuilderDelegate(
@@ -92,7 +92,7 @@ class _MusicListPageState extends State<MusicList>{
               SliverFillRemaining(
                 hasScrollBody: false,
                 child:Container(
-                  height:170,
+                  height:160*percentScale,
                 )
               ),
             ],
@@ -116,8 +116,8 @@ class _MusicListPageState extends State<MusicList>{
                     gradientEnd: Alignment.topRight,
                   ),
                   backgroundColor: Colors.transparent,
-                  size: Size(double.infinity, 60*percentScale),
-                  waveAmplitude: 14,
+                  size: Size(360*percentScale, 60*percentScale),
+                  waveAmplitude: 13*percentScale,
                 ),
               ),
             ),
@@ -140,8 +140,8 @@ class _MusicListPageState extends State<MusicList>{
                     gradientEnd: Alignment.topRight,
                   ),
                   backgroundColor: Colors.transparent,
-                  size: Size(double.infinity, 114*percentScale),
-                  waveAmplitude: 8,
+                  size: Size(360*percentScale, 114*percentScale),
+                  waveAmplitude: 7*percentScale,
                 ),
               ),
             ),
@@ -264,8 +264,8 @@ Widget songContainer(double percentScale, int index, Color colorTextBlack){
             opacity: check ? 1 : 0,
             child: Container(
               transform: Matrix4.translationValues(113*percentScale,113*percentScale,0),
-              height: 29,
-              width: 29,
+              height: 25*percentScale,
+              width: 25*percentScale,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 color: colorCheckGreen,

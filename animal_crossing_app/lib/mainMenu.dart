@@ -143,6 +143,7 @@ class _HomePageState extends State<Home>{
 
   void getTime() {
     final DateTime now = DateTime.now();
+    if (!mounted) return;
     setState(() {
       seconds = now.second;
     });
