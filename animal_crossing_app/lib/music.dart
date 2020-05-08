@@ -76,9 +76,9 @@ class _MusicListPageState extends State<MusicList>{
                 sliver: new SliverGrid(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 200*percentScale,
-                    mainAxisSpacing: 20,
+                    mainAxisSpacing: 10*percentScale,
                     crossAxisSpacing: 0,
-                    childAspectRatio: 1,
+                    childAspectRatio: 0.9*percentScale,
                   ),
                   delegate: 
                   SliverChildBuilderDelegate(

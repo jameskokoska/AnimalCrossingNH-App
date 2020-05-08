@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         startAnimation: 'Splash',
         next: (context) => Main(),
         until: () => Future.delayed(Duration(milliseconds: 1)),
-        //backgroundColor: Colors.blue,
+        backgroundColor: Colors.blueGrey[800],
       ),
     );
   }
