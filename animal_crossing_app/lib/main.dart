@@ -83,6 +83,7 @@ class _MainPageState extends State<Main> {
     
     //Remove status bar
     SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
   
 
