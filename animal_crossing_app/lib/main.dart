@@ -129,6 +129,7 @@ class _MainPageState extends State<Main> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Stack(
         children: <Widget>[
           new AnimatedSwitcher(

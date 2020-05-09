@@ -11,6 +11,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
+        resizeToAvoidBottomPadding: false,
         body: Column(
           children: [
             // ---------- Card Stack ----------

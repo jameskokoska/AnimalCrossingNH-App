@@ -74,21 +74,24 @@ class FishData{
 
 class _FishListPageState extends State<FishList>{
 
-  Future<List<FishData>> getFishData() async{
+  Future<List<FishData>> getFishData(String search) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");
 
     final jsonData = json.decode(data);
 
     List<FishData> fishData = [];
-
     for(var u in jsonData){
       FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rarity"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"]);
-      fishData.add(fishDatum);
+      if(search == '*'){
+        fishData.add(fishDatum);
+      } else if (u["Name"].contains(search)){
+        fishData.add(fishDatum);
+      }
     }
-
     return fishData;
   }
 
+  String search = "*";
 
   @override
   Widget build(BuildContext context){
@@ -122,16 +125,16 @@ class _FishListPageState extends State<FishList>{
           ),
           
           FutureBuilder(
-            future:getFishData(),
+            future: getFishData(search),
             builder: (context,snapshot){
               Widget fishListSliver;
               if(snapshot.hasData){
                 fishListSliver = SliverPadding(
                   padding: EdgeInsets.only(top:0),
-                    sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                          return fishContainer(percentScale, index, check, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return fishContainer(percentScale, index, check, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
                       }, 
                       childCount: snapshot.data.length,
                     ),
@@ -157,32 +160,32 @@ class _FishListPageState extends State<FishList>{
                 physics: BouncingScrollPhysics(),
                 
                 slivers: <Widget>[
-                    SliverAppBar(
-                      expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFFA2D0F7),
-                      pinned: true,
-                      //snap: true,
-                      floating: true,
-                      elevation: 10,
-                      flexibleSpace: FlexibleSpaceBar(
-                        title: Container(
-                          transform: Matrix4.translationValues(0,-13*percentScale,0),
-                          child: Text("Fish",
-                            style: TextStyle(
-                              fontFamily: 'ArialRoundedBold',
-                              color: colorTextWhite,
-                              fontSize: 30*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                            )
-                          ),
+                  SliverAppBar(
+                    expandedHeight: 219*percentScale,
+                    backgroundColor: Color(0xFFA2D0F7),
+                    pinned: true,
+                    //snap: true,
+                    floating: true,
+                    elevation: 10,
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: Container(
+                        transform: Matrix4.translationValues(0,-13*percentScale,0),
+                        child: Text("Fish",
+                          style: TextStyle(
+                            fontFamily: 'ArialRoundedBold',
+                            color: colorTextWhite,
+                            fontSize: 30*percentScale,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          )
                         ),
-                        titlePadding: EdgeInsetsDirectional.only(start: 25*percentScale),
-                        background: Image.asset('assets/fishTitle.png'),
                       ),
+                      titlePadding: EdgeInsetsDirectional.only(start: 25*percentScale),
+                      background: Image.asset('assets/fishTitle.png'),
                     ),
+                  ),
+
                   //Add the sliverlist parsed in future function above
-                  
                   SliverPadding(
                     padding: EdgeInsets.only(top:10*percentScale),
                     sliver: SliverList(
@@ -191,6 +194,8 @@ class _FishListPageState extends State<FishList>{
                           scale: 0.7*percentScale,
                           child: TextField(
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: colorWhite,
                               border: OutlineInputBorder(),
                               labelText: 'Search',
                               labelStyle: TextStyle(
@@ -201,6 +206,14 @@ class _FishListPageState extends State<FishList>{
                                 fontStyle: FontStyle.normal,
                               ),
                             ),
+                            onChanged: (string){
+                              setState(() {
+                                search = string;
+                              });
+                              //getFishData("*");
+                              
+                              print(string);
+                            },
                           ),
                         ),
                       ],),
