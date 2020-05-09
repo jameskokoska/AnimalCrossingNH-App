@@ -86,6 +86,8 @@ class _FishListPageState extends State<FishList>{
         fishData.add(fishDatum);
       } else if (u["Name"].contains(search)){
         fishData.add(fishDatum);
+      } else if (u["Where/How"].contains(search)){
+        fishData.add(fishDatum);
       }
     }
     return fishData;
@@ -117,120 +119,135 @@ class _FishListPageState extends State<FishList>{
 
 
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height,
-            color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xFF193D69)),
-          ),
-          
-          FutureBuilder(
-            future: getFishData(search),
-            builder: (context,snapshot){
-              Widget fishListSliver;
-              if(snapshot.hasData){
-                fishListSliver = SliverPadding(
-                  padding: EdgeInsets.only(top:0),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        return fishContainer(percentScale, index, check, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
-                      }, 
-                      childCount: snapshot.data.length,
-                    ),
-                  ),
-                );
-              } else {
-                fishListSliver = SliverToBoxAdapter(
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height:100*percentScale,
-                      ),
-                      SpinKitThreeBounce(
-                        color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
-                        size:80,
-                      )
-                    ],
-                  )
-                );
-              }
-
-              return CustomScrollView(
-                physics: BouncingScrollPhysics(),
-                
-                slivers: <Widget>[
-                  SliverAppBar(
-                    expandedHeight: 219*percentScale,
-                    backgroundColor: Color(0xFFA2D0F7),
-                    pinned: true,
-                    //snap: true,
-                    floating: true,
-                    elevation: 10,
-                    flexibleSpace: FlexibleSpaceBar(
-                      title: Container(
-                        transform: Matrix4.translationValues(0,-13*percentScale,0),
-                        child: Text("Fish",
-                          style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorTextWhite,
-                            fontSize: 30*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          )
-                        ),
-                      ),
-                      titlePadding: EdgeInsetsDirectional.only(start: 25*percentScale),
-                      background: Image.asset('assets/fishTitle.png'),
-                    ),
-                  ),
-
-                  //Add the sliverlist parsed in future function above
-                  SliverPadding(
-                    padding: EdgeInsets.only(top:10*percentScale),
+      body: GestureDetector(
+        //exit keyboard when tapping anywhere else
+        onTap: (){FocusScope.of(context).requestFocus(new FocusNode());},
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height,
+              color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xFF193D69)),
+            ),
+            
+            FutureBuilder(
+              future: getFishData(search),
+              builder: (context,snapshot){
+                Widget fishListSliver;
+                if(snapshot.hasData){
+                  fishListSliver = SliverPadding(
+                    padding: EdgeInsets.only(top:0),
                     sliver: SliverList(
-                      delegate: SliverChildListDelegate([
-                        Transform.scale(
-                          scale: 0.7*percentScale,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: colorWhite,
-                              border: OutlineInputBorder(),
-                              labelText: 'Search',
-                              labelStyle: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: Colors.blueGrey[300],
-                                fontSize: 20*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              ),
-                            ),
-                            onChanged: (string){
-                              setState(() {
-                                search = string;
-                              });
-                              //getFishData("*");
-                              
-                              print(string);
-                            },
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          return fishContainer(percentScale, index, check, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
+                        }, 
+                        childCount: snapshot.data.length,
+                      ),
+                    ),
+                  );
+                } else {
+                  fishListSliver = SliverToBoxAdapter(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height:100*percentScale,
+                        ),
+                        SpinKitThreeBounce(
+                          color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                          size:80,
+                        )
+                      ],
+                    )
+                  );
+                }
+
+                return CustomScrollView(
+                  physics: BouncingScrollPhysics(),
+                  
+                  slivers: <Widget>[
+                    SliverAppBar(
+                      expandedHeight: 219*percentScale,
+                      backgroundColor: Color(0xFFA2D0F7),
+                      pinned: true,
+                      //snap: true,
+                      floating: true,
+                      elevation: 10,
+                      flexibleSpace: FlexibleSpaceBar(
+                        title: Container(
+                          transform: Matrix4.translationValues(0,-13*percentScale,0),
+                          child: Text("Fish",
+                            style: TextStyle(
+                              fontFamily: 'ArialRoundedBold',
+                              color: colorTextWhite,
+                              fontSize: 30*percentScale,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                            )
                           ),
                         ),
-                      ],),
+                        titlePadding: EdgeInsetsDirectional.only(start: 25*percentScale),
+                        background: Image.asset('assets/fishTitle.png'),
+                      ),
                     ),
-                  ),
-                  fishListSliver,
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child:Container(
-                      height:100,
-                    )
-                  ),
-                ],
-              );
-            }
-          ),
-        ],
+
+                    //Add the sliverlist parsed in future function above
+                    SliverPadding(
+                      padding: EdgeInsets.only(top:10*percentScale),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate([
+                          Transform.scale(
+                            scale: 0.7*percentScale,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.blueGrey[100], width: 2.5*percentScale),
+                                  borderRadius: const BorderRadius.all(
+                                    const Radius.circular(5.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white, width: 0.0),
+                                  borderRadius: const BorderRadius.all(
+                                    const Radius.circular(10),
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: colorWhite,
+                                labelText: 'Search',
+                                labelStyle: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: Colors.blueGrey[300],
+                                  fontSize: 20*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                ),
+                              ),
+                              onChanged: (string){
+                                setState(() {
+                                  search = string;
+                                });
+                                //getFishData("*");
+                                
+                                print(string);
+                              },
+                            ),
+                          ),
+                        ],),
+                      ),
+                    ),
+                    fishListSliver,
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child:Container(
+                        height:100,
+                      )
+                    ),
+                  ],
+                );
+              }
+            ),
+          ],
+        ),
       )
     );
   }
@@ -271,6 +288,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       },
                       onTap: (){
                         //print(index);
+                        FocusScope.of(context).requestFocus(new FocusNode());
                         tappedFishItem(context, percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase);
                       },
                       child: new Container(
