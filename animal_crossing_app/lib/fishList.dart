@@ -120,13 +120,14 @@ class _FishListPageState extends State<FishList>{
             height: MediaQuery.of(context).size.height,
             color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xFF193D69)),
           ),
+          
           FutureBuilder(
             future:getFishData(),
             builder: (context,snapshot){
               Widget fishListSliver;
               if(snapshot.hasData){
                 fishListSliver = SliverPadding(
-                  padding: EdgeInsets.only(top:10*percentScale),
+                  padding: EdgeInsets.only(top:0),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
@@ -154,10 +155,11 @@ class _FishListPageState extends State<FishList>{
 
               return CustomScrollView(
                 physics: BouncingScrollPhysics(),
+                
                 slivers: <Widget>[
                     SliverAppBar(
-                      expandedHeight: 220*percentScale,
-                      backgroundColor: Color(0xFF90caf9),
+                      expandedHeight: 219*percentScale,
+                      backgroundColor: Color(0xFFA2D0F7),
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -180,6 +182,30 @@ class _FishListPageState extends State<FishList>{
                       ),
                     ),
                   //Add the sliverlist parsed in future function above
+                  
+                  SliverPadding(
+                    padding: EdgeInsets.only(top:10*percentScale),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        Transform.scale(
+                          scale: 0.7*percentScale,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Search',
+                              labelStyle: TextStyle(
+                                fontFamily: 'ArialRoundedBold',
+                                color: Colors.blueGrey[300],
+                                fontSize: 20*percentScale,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],),
+                    ),
+                  ),
                   fishListSliver,
                   SliverFillRemaining(
                     hasScrollBody: false,
@@ -200,187 +226,198 @@ class _FishListPageState extends State<FishList>{
 
 Widget fishContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
   return new StatefulBuilder(
-    builder: (BuildContext context, StateSetter setState) { return Column(
-      children: <Widget>[
-        SizedBox(
-          height:4.5*percentScale,
-        ),
-        new Stack(
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(14*percentScale),
-              child: new Container(
-                child: new Material(
-                  child: new InkWell(
-                    highlightColor: Color(0xFFcfd8dc),
-                    splashColor: Color(0xFFb3e5fc),
-                    enableFeedback: true,
-                    onLongPress: (){
-                      setState(() {
-                        check = !check;
-                      });
-                    },
-                    onTap: (){
-                      //print(index);
-                      tappedFishItem(context, percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase);
-                    },
-                    child: new Container(
-                      width: 334*percentScale,
-                      height: 75*percentScale,
-                    ),
-                  ),
-                  color: colorWhite,
-                ),
-                
-              ),
-            ),
-            // 
-            // new Container(
-            //     width: 334*percentScale,
-            //     height: 71*percentScale,
-            //     decoration: new BoxDecoration(
-            //       color: Color(0xffb9f4fb),
-            //       borderRadius: BorderRadius.circular(8)
-            //     )
-            //   ),
-            //
-            //
-            IgnorePointer(
-              child: Stack(
-                children: <Widget>[
-                  new Container(
-                    transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
-                    width: 55*percentScale,
-                    height: 55*percentScale,
-                    decoration: new BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: colorFishAccent,
-                    )
-                  ),
-                  Container(
-                    transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
-                    child: CachedNetworkImage(
-                      imageBuilder: (context, imageProvider) => Container(
-                        width: 45*percentScale,
-                        height: 45*percentScale,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4*percentScale),
-                          image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover),
-                        ),
-                      ),
-                      imageUrl: iconImage,
-                      //placeholder: (context, url) => CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => new Icon(Icons.error),
-                      fadeInDuration: Duration(milliseconds:800),
-                    ),
-                  ),
-                  Container(
-                    transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
-                    child: new Text((capitalize(name)),
-                      style: TextStyle(
-                      fontFamily: 'ArialRoundedBold',
-                      color: colorTextBlack,
-                      fontSize: 18*percentScale,
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      )
-                    ),
-                  ),
-                  Container(
-                    transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
-                    child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
-                      style: TextStyle(
-                      fontFamily: 'ArialRoundedBold',
-                      color: colorFishTextDarkBlue,
-                      fontSize: 14*percentScale,
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      )
-                    ),
-                  ),
-                  Container(
-                    transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
-                    child: new Text(whereHow,
-                      style: TextStyle(
-                      fontFamily: 'ArialRoundedBold',
-                      color: colorFishTextDarkBlue,
-                      fontSize: 14*percentScale,
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      )
-                    ),
-                  ),
-                  //Checkmark background
-                  AnimatedPositioned(
-                    duration: Duration(milliseconds: 300),
-                    top: check ? 40*percentScale : 0,
-                    bottom: check ? 40*percentScale : 0,
-                    child: new Container(
-                      transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
-                      width: 40*percentScale,
-                      height: 40*percentScale,
-                      decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: colorCheckRed
-                      )
-                    ),
-                  ),
-                  AnimatedPositioned(
-                    duration: Duration(milliseconds: 200),
-                    top: !check ? 40*percentScale : 0,
-                    bottom: !check ? 40*percentScale : 0,
-                    child: new Container(
-                      transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
-                      width: 40*percentScale,
-                      height: 40*percentScale,
-                      decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: colorCheckGreen
-                      )
-                    ),
-                  ),
-                  Container(
-                     transform: Matrix4.translationValues((190)*percentScale,(22)*percentScale,0),
-                     child: Image.asset(
-                       'assets/shadow'+determineShadowImage(shadow, whereHow)+'.png',
-                       height:60*percentScale,
-                       width:70*percentScale,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            
-            Container(
-              transform: Matrix4.translationValues((272)*percentScale,(11.5)*percentScale,0),
-              width:55*percentScale,
-              height:55*percentScale,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(300*percentScale),
-                  child: new Transform.scale(
-                    scale: 1.6*percentScale,
-                    child: Theme(
-                      data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
-                      child: new Checkbox(
-                        activeColor: Color(0x04b2fab4),
-                        checkColor: Color(0xFFFFFFFF),
-                        value: check,
-                        onChanged: (bool value) {
-                          setState(() {
-                            check = value;
-                            HapticFeedback.mediumImpact();
+    builder: (BuildContext context, StateSetter setState) { 
+      return Visibility(
+        visible: (){
+          if(!showListOnlyActive)
+            return true;
+          else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA')
+            return false;
+          else
+            return true;
+        }(),
+        child: Column(
+        children: <Widget>[
+          SizedBox(
+            height:4.5*percentScale,
+          ),
+          new Stack(
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(14*percentScale),
+                child: new Container(
+                  child: new Material(
+                    child: new InkWell(
+                      highlightColor: Color(0xFFcfd8dc),
+                      splashColor: Color(0xFFb3e5fc),
+                      enableFeedback: true,
+                      onLongPress: (){
+                        setState(() {
+                          check = !check;
                         });
                       },
+                      onTap: (){
+                        //print(index);
+                        tappedFishItem(context, percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase);
+                      },
+                      child: new Container(
+                        width: 334*percentScale,
+                        height: 75*percentScale,
+                      ),
                     ),
+                    color: colorWhite,
                   ),
-                )
+                  
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
-    );
+              // 
+              // new Container(
+              //     width: 334*percentScale,
+              //     height: 71*percentScale,
+              //     decoration: new BoxDecoration(
+              //       color: Color(0xffb9f4fb),
+              //       borderRadius: BorderRadius.circular(8)
+              //     )
+              //   ),
+              //
+              //
+              IgnorePointer(
+                child: Stack(
+                  children: <Widget>[
+                    new Container(
+                      transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
+                      width: 55*percentScale,
+                      height: 55*percentScale,
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colorFishAccent,
+                      )
+                    ),
+                    Container(
+                      transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
+                      child: CachedNetworkImage(
+                        imageBuilder: (context, imageProvider) => Container(
+                          width: 45*percentScale,
+                          height: 45*percentScale,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4*percentScale),
+                            image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                          ),
+                        ),
+                        imageUrl: iconImage,
+                        //placeholder: (context, url) => CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => new Icon(Icons.error),
+                        fadeInDuration: Duration(milliseconds:800),
+                      ),
+                    ),
+                    Container(
+                      transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
+                      child: new Text((capitalize(name)),
+                        style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: colorTextBlack,
+                        fontSize: 18*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ),
+                    Container(
+                      transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
+                      child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
+                        style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: colorFishTextDarkBlue,
+                        fontSize: 14*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ),
+                    Container(
+                      transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
+                      child: new Text(whereHow,
+                        style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: colorFishTextDarkBlue,
+                        fontSize: 14*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ),
+                    //Checkmark background
+                    AnimatedPositioned(
+                      duration: Duration(milliseconds: 300),
+                      top: check ? 40*percentScale : 0,
+                      bottom: check ? 40*percentScale : 0,
+                      child: new Container(
+                        transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
+                        width: 40*percentScale,
+                        height: 40*percentScale,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: colorCheckRed
+                        )
+                      ),
+                    ),
+                    AnimatedPositioned(
+                      duration: Duration(milliseconds: 200),
+                      top: !check ? 40*percentScale : 0,
+                      bottom: !check ? 40*percentScale : 0,
+                      child: new Container(
+                        transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
+                        width: 40*percentScale,
+                        height: 40*percentScale,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: colorCheckGreen
+                        )
+                      ),
+                    ),
+                    Container(
+                       transform: Matrix4.translationValues((190)*percentScale,(22)*percentScale,0),
+                       child: Image.asset(
+                         'assets/shadow'+determineShadowImage(shadow, whereHow)+'.png',
+                         height:60*percentScale,
+                         width:70*percentScale,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              
+              Container(
+                transform: Matrix4.translationValues((272)*percentScale,(11.5)*percentScale,0),
+                width:55*percentScale,
+                height:55*percentScale,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(300*percentScale),
+                    child: new Transform.scale(
+                      scale: 1.6*percentScale,
+                      child: Theme(
+                        data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
+                        child: new Checkbox(
+                          activeColor: Color(0x04b2fab4),
+                          checkColor: Color(0xFFFFFFFF),
+                          value: check,
+                          onChanged: (bool value) {
+                            setState(() {
+                              check = value;
+                              HapticFeedback.mediumImpact();
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ),
+              ),
+            ],
+          ),
+        ],
+    ),
+      );
   });
 }
 
@@ -406,7 +443,7 @@ String determineShadowImage(String shadowSize, String whereHow){
   }
   if(shadowSize.contains('Long')){
     return "Long";
-  } else if (whereHow.contains('Sea')||whereHow.contains('Pier')){
+  } else if (whereHow.contains('Ocean')||whereHow.contains('Pier')){
     return "Ocean-"+shadowSize;
   } else if (whereHow.contains('River')||whereHow.contains('Pond')){
     return "River-"+shadowSize;
@@ -415,7 +452,7 @@ String determineShadowImage(String shadowSize, String whereHow){
 }
 
 String determineLocationImage(String whereHow){
-  if(whereHow.contains('Sea')||whereHow.contains('Pier')){
+  if(whereHow.contains('Ocean')||whereHow.contains('Pier')){
     return "oceanIcon";
   } else if (whereHow.contains('River')||whereHow.contains('Pond')){
     return "riverIcon";

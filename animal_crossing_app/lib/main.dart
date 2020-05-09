@@ -20,6 +20,8 @@ Color colorFishTextDarkBlue = Color(0xff3F51B5);
 //---------------------------
 
 bool northernHemisphere = true;
+bool showCatchPhraseNow = false;    //always show the catchphrase
+bool showListOnlyActive = true;     //only list fish you can catch
 var currentDate = DateTime.now();
 
 void main() => runApp(MyApp());

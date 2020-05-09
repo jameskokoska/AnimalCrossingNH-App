@@ -228,9 +228,9 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           // ---------- Card Centre Quote ----------
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: check ? 1 : 0,
+                            opacity: check||showCatchPhraseNow ? 1 : 0,
                             child: Container(
-                              width: 230*percentScale,
+                              width: 220*percentScale,
                               child: Text("“"+catchphrase+"”",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
