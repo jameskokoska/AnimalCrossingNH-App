@@ -84,9 +84,9 @@ class _FishListPageState extends State<FishList>{
       FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rarity"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"]);
       if(search == '*'){
         fishData.add(fishDatum);
-      } else if (u["Name"].contains(search)){
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
         fishData.add(fishDatum);
-      } else if (u["Where/How"].contains(search)){
+      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
         fishData.add(fishDatum);
       }
     }
