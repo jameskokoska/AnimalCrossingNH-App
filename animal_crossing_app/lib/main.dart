@@ -195,28 +195,33 @@ class _MainPageState extends State<Main> {
               ),
             )
           ),
-          Container(
-            transform: Matrix4.translationValues(0, -12, 0),
-            child: new Align(
-              alignment: Alignment.bottomCenter,
-              child: BubbleBottomBar(
-                opacity: .2,
-                currentIndex: selectedIndex,
-                onTap: selectedNavBar,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30*percentScale)),
-                elevation: 0,
-                hasNotch: false,
-                hasInk: true,
-                inkColor: Colors.blueGrey[50],
-                backgroundColor: Colors.transparent,
-                items: <BubbleBottomBarItem>[
-                    BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
-                    BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
-                    BubbleBottomBarItem(backgroundColor: Colors.yellow, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Fish')),
-                    BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs')),
-                ],
-              ),
-            )
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 70*percentScale,
+              child: Center(
+                child: new Align(
+                  alignment: Alignment.center,
+                  child: BubbleBottomBar(
+                    opacity: .2,
+                    currentIndex: selectedIndex,
+                    onTap: selectedNavBar,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(30*percentScale)),
+                    elevation: 0,
+                    hasNotch: false,
+                    hasInk: true,
+                    inkColor: Colors.blueGrey[50],
+                    backgroundColor: Colors.transparent,
+                    items: <BubbleBottomBarItem>[
+                        BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
+                        BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
+                        BubbleBottomBarItem(backgroundColor: Colors.yellow, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Fish')),
+                        BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs')),
+                    ],
+                  ),
+                ),
+              )
+            ),
           )
         ],
       ),
