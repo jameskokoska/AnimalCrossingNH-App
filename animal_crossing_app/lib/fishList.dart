@@ -17,6 +17,8 @@ class FishList extends StatefulWidget {
   _FishListPageState createState() => _FishListPageState();
 }
 
+String searchFish = '';
+
 class FishData{
   final String id;
   final String name;
@@ -73,12 +75,8 @@ class FishData{
   
 }
 
-class _FishListPageState extends State<FishList>{
 
-  void callback() {
-    setState(() {
-    });
-  }
+class _FishListPageState extends State<FishList>{
 
   Future<List<FishData>> getFishData(String search) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");
@@ -90,7 +88,7 @@ class _FishListPageState extends State<FishList>{
       getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
         caught = indexResult;
         FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rarity"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
-        if(search == '*'){
+        if(search == ''){
           fishData.add(fishDatum);
         } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
           fishData.add(fishDatum);
@@ -101,8 +99,6 @@ class _FishListPageState extends State<FishList>{
     }
     return fishData;
   }
-
-  String search = "*";
 
   @override
   Widget build(BuildContext context){
@@ -138,7 +134,7 @@ class _FishListPageState extends State<FishList>{
             ),
             
             FutureBuilder(
-              future: getFishData(search),
+              future: getFishData(searchFish),
               builder: (context,snapshot){
                 Widget fishListSliver;
                 if(snapshot.hasData){
@@ -199,12 +195,13 @@ class _FishListPageState extends State<FishList>{
                     ),
 
                     //Add the sliverlist parsed in future function above
+                    //search bar
                     SliverPadding(
                       padding: EdgeInsets.only(top:10*percentScale),
                       sliver: SliverList(
                         delegate: SliverChildListDelegate([
                           Transform.scale(
-                            scale: 0.7*percentScale,
+                            scale: 0.804*percentScale,
                             child: TextField(
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.search),
@@ -233,7 +230,7 @@ class _FishListPageState extends State<FishList>{
                               ),
                               onChanged: (string){
                                 setState(() {
-                                  search = string;
+                                  searchFish = string;
                                 });
                               },
                             ),
@@ -268,7 +265,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
           visible: (){
             if(!showListOnlyActive)
               return true;
-            else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA')
+            else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchFish=="")
               return false;
             else
               return true;
@@ -294,8 +291,23 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                           });
                         },
                         onTap: (){
+                          currentCaught = caught;
                           FocusScope.of(context).requestFocus(new FocusNode());
-                          tappedFishItem(context, percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase);
+                          Future<void> future = showModalBottomSheet(
+                            context: context, 
+                            builder: (context){
+                              return Container(
+                                height: 360*percentScale,
+                                  child: Container(
+                                    child: fishPopUp(percentScale, currentCaught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
+                                ),
+                              );
+                          });
+                          future.then((void value)=> setState(() {
+                            getStoredBool("fishCheckList"+name, false).then((indexResult){
+                                caught = indexResult;
+                            });
+                          }));
                         },
                         child: new Container(
                           width: 334*percentScale,
@@ -458,20 +470,6 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
       );
     }),
   );
-}
-
-
-void tappedFishItem(BuildContext context, double percentScale, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec, String catchphrase){
-  showModalBottomSheet(
-    context: context, 
-    builder: (context){
-      return Container(
-        height: 360*percentScale,
-          child: Container(
-            child: fishPopUp(percentScale, caught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
-        ),
-      );
-  });
 }
 
 String determineShadowImage(String shadowSize, String whereHow){

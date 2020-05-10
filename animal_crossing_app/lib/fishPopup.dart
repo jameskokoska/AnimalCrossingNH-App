@@ -6,6 +6,8 @@ import 'fishList.dart';
 import 'package:intl/intl.dart';
 
 final bellsPrice = new NumberFormat("#,##0");
+bool currentCaught = false;
+
 
 Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
   return new StatefulBuilder(
@@ -198,12 +200,12 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: Color(0xFFFFFFFF),
-                                    value: caught,
+                                    value: currentCaught,
                                     onChanged: (bool value) {
                                       setState(() {
                                         caught = value;
+                                        currentCaught = value;
                                         saveBool("fishCheckList"+name, false, caught);
-                                        callback();
                                         HapticFeedback.mediumImpact();
                                       });
                                     },

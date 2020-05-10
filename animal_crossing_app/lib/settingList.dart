@@ -15,8 +15,6 @@ class SettingList extends StatefulWidget {
 
 class _SettingListPageState extends State<SettingList>{
 
-  
-
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;

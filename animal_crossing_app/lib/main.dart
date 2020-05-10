@@ -184,7 +184,7 @@ class _MainPageState extends State<Main> {
             child: Container(
               height: 70*percentScale,
               decoration: new BoxDecoration(
-                borderRadius: BorderRadius.circular(30*percentScale),
+                borderRadius: BorderRadius.only(topRight:Radius.circular(30*percentScale),topLeft:Radius.circular(30*percentScale)),
                 color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
                 boxShadow: [BoxShadow(
                   color: Color(0x10000000),
@@ -196,8 +196,7 @@ class _MainPageState extends State<Main> {
             )
           ),
           Container(
-            //not centerd properly oops
-            transform: Matrix4.translationValues(30*percentScale, -11*percentScale, 0),
+            transform: Matrix4.translationValues(0, -11*percentScale, 0),
             child: new Align(
               alignment: Alignment.bottomCenter,
               child: BubbleBottomBar(
@@ -206,7 +205,6 @@ class _MainPageState extends State<Main> {
                 onTap: selectedNavBar,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30*percentScale)),
                 elevation: 0,
-                fabLocation: BubbleBottomBarFabLocation.end,
                 hasNotch: false,
                 hasInk: true,
                 inkColor: Colors.blueGrey[50],
@@ -215,7 +213,7 @@ class _MainPageState extends State<Main> {
                     BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
                     BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
                     BubbleBottomBarItem(backgroundColor: Colors.yellow, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Fish')),
-                    BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs'))
+                    BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs')),
                 ],
               ),
             )
