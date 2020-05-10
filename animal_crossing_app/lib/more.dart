@@ -50,16 +50,16 @@ class _MorePageState extends State<MorePage>{
               children: <Widget>[
                 // ---------- Top Spacer ----------
                 SizedBox(
-                  height: 80 * percentScale,
+                  height: 60 * percentScale,
                 ),
                 Stack(
                   children: <Widget>[
                     // ---------- Card Body ----------
                     Container(
-                      height: 560 * percentScale,
+                      height: 580 * percentScale,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(60*percentScale),
-                        color: Color(0xfffefdfc),
+                        color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF000000)),
                         boxShadow: [BoxShadow(
                           color: Color(0x29000000),
                           offset: Offset(0,3),
@@ -72,7 +72,7 @@ class _MorePageState extends State<MorePage>{
                         primary: false,
                         slivers: <Widget>[
                           SliverPadding(
-                            padding: EdgeInsets.only(top:40 * percentScale),
+                            padding: EdgeInsets.only(top:60 * percentScale),
                             sliver: SliverGrid(
                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
@@ -80,7 +80,7 @@ class _MorePageState extends State<MorePage>{
                               ),
                               delegate: SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
-                                return appContainer(percentScale, index, textColor);
+                                return appContainer(percentScale, index, textColor, darkMode);
                                 },
                                 childCount: appColour.length,
                               ),
@@ -103,7 +103,7 @@ class _MorePageState extends State<MorePage>{
                         width: 105*percentScale,
                         height: 35*percentScale,
                         decoration: new BoxDecoration(
-                          color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF000000)),
+                          color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xff202020)),
                           borderRadius: BorderRadius.circular(30*percentScale),
                           boxShadow: [BoxShadow(
                               color:  darkModeColor(darkMode,Color(0x28000000),Color(0x409D99FC)),
@@ -136,7 +136,7 @@ class _MorePageState extends State<MorePage>{
   }
 }
 
-Widget appContainer(double percentScale, int index, Color textColor){
+Widget appContainer(double percentScale, int index, Color textColor, bool darkMode){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) {
       return Column(
@@ -167,7 +167,7 @@ Widget appContainer(double percentScale, int index, Color textColor){
           Text(appName[index],
             style: TextStyle(
               fontFamily: 'ArialRoundedBold',
-              color: Color(0xff64622c),
+              color: darkModeColor(darkMode,Color(0xff64622c),Color(0xfff4ebd6)),
               fontSize: 16,
               fontWeight: FontWeight.w700,
               fontStyle: FontStyle.normal,
