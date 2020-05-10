@@ -1,4 +1,5 @@
 import 'main.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -77,6 +78,11 @@ class FishData{
 
 
 class _FishListPageState extends State<FishList>{
+  @override
+  void initState(){
+    super.initState();
+    searchFish = '';
+  }
 
   Future<List<FishData>> getFishData(String search) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");
@@ -165,9 +171,10 @@ class _FishListPageState extends State<FishList>{
                   );
                 }
 
+                double top = 0;
+
                 return CustomScrollView(
                   physics: BouncingScrollPhysics(),
-                  
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
@@ -176,68 +183,66 @@ class _FishListPageState extends State<FishList>{
                       //snap: true,
                       floating: true,
                       elevation: 10,
-                      flexibleSpace: FlexibleSpaceBar(
-                        title: Container(
-                          transform: Matrix4.translationValues(0,-13*percentScale,0),
-                          child: Text("Fish",
-                            style: TextStyle(
-                              fontFamily: 'ArialRoundedBold',
-                              color: colorTextWhite,
-                              fontSize: 30*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                            )
-                          ),
-                        ),
-                        titlePadding: EdgeInsetsDirectional.only(start: 25*percentScale),
-                        background: Image.asset('assets/fishTitle.png'),
-                      ),
-                    ),
-
-                    //Add the sliverlist parsed in future function above
-                    //search bar
-                    SliverPadding(
-                      padding: EdgeInsets.only(top:10*percentScale),
-                      sliver: SliverList(
-                        delegate: SliverChildListDelegate([
-                          Transform.scale(
-                            scale: 0.804*percentScale,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.search),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.blueGrey[100], width: 2.5*percentScale),
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(5.0),
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white, width: 0.0),
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(10),
-                                  ),
-                                ),
-                                filled: true,
-                                fillColor: colorWhite,
-                                labelText: 'Search',
-                                labelStyle: TextStyle(
+                      flexibleSpace: LayoutBuilder(
+                        builder: (BuildContext context, BoxConstraints constraints){
+                          top = constraints.biggest.height;
+                          print(top);
+                          return FlexibleSpaceBar(
+                            title: Container(
+                              transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
+                              child: Text("Fish",
+                                style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: Colors.blueGrey[300],
-                                  fontSize: 20*percentScale,
+                                  color: colorTextWhite,
+                                  fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
-                                ),
+                                )
                               ),
-                              onChanged: (string){
-                                setState(() {
-                                  searchFish = string;
-                                });
-                              },
                             ),
-                          ),
-                        ],),
-                      ),
+                            titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
+                            background: Stack(
+                              children: <Widget>[
+                                Image.asset('assets/fishTitle.png'),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom:20,right:10),
+                                    child: Container(
+                                      height: 35*percentScale,
+                                      width: 300*percentScale,
+                                      child: CupertinoTextField(
+                                        maxLength: 15,
+                                        placeholder: 'Search',
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8.0),
+                                          color: Color(0x75F0F1F5),
+                                        ),
+                                        prefix: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right:13, left:7),
+                                          child: Icon(
+                                            Icons.search,
+                                            color: Color(0xADFFFFFF),
+                                          ),
+                                        ),
+                                        onChanged: (string){
+                                          setState(() {
+                                            searchFish = string;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      )
+                      
                     ),
+                    //Add the sliverlist parsed in future function above
                     fishListSliver,
                     SliverFillRemaining(
                       hasScrollBody: false,

@@ -43,6 +43,12 @@ saveBool(String key, bool defaultState, bool toStoreValue) async{
   await prefs.setBool(key, storedBool);
 }
 
+clearData() async{
+  SharedPreferences prefs;
+  prefs.clear();
+  print("clear");
+}
+
 //------------------------------------------------
 
 void main() => runApp(MyApp());

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class SettingList extends StatefulWidget {
   SettingList({Key key, this.title}) : super(key: key);
@@ -88,7 +90,89 @@ class _SettingListPageState extends State<SettingList>{
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child:Container(
-                    height:375*percentScale,
+                    height:335*percentScale,
+                  )
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    GestureDetector(
+                      onTap: (){
+                        HapticFeedback.mediumImpact();
+                        return showDialog<void>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return CupertinoAlertDialog(
+                              title:  Text(
+                                'Would you like to delete all data?',
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              content: Text(
+                                'This action cannot be undone',
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  fontWeight: FontWeight.w100,
+                                ),
+                              ),
+                              actions: <Widget>[
+                                CupertinoDialogAction(
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold'
+                                    ),
+                                  ),
+                                  onPressed: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                CupertinoDialogAction(
+                                  child: Text(
+                                    'Delete',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontFamily: 'ArialRoundedBold'
+                                    ),
+                                  ),
+                                  onPressed: (){
+                                    HapticFeedback.mediumImpact();
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 120, right:120),
+                        child: Container(
+                          height: 40*percentScale,
+                          decoration: BoxDecoration(
+                            color: Color(0xffff7070),
+                            border: Border.all(width: 1.00, color: Color(0xffdc0000),), borderRadius: BorderRadius.circular(50.00), 
+                          ), 
+                          child: Center(
+                            child: Text(
+                              'Delete Data',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'ArialRoundedBold'
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ])
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child:Container(
+                    height:85*percentScale,
                   )
                 ),
               ],

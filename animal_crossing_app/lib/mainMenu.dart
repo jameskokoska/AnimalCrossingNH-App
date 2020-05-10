@@ -31,7 +31,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
                 width: 334*percentScale,
                 height: 71*percentScale,
                 decoration: new BoxDecoration(
-                  color: darkModeColor(darkMode, Color(0xfff4ebd6), Color(0xff414141)),
+                  color: darkModeColor(darkMode, colorWhite, Color(0xff414141)),
                   borderRadius: BorderRadius.circular(8)
                 )
               )
@@ -449,9 +449,9 @@ class _HomePageState extends State<Home>{
                             //Background
                             new Container(
                               width: deviceWidth,
-                              height: 314*percentScale,
+                              height: 344*percentScale,
                               decoration: new BoxDecoration(
-                                color: darkModeColor(darkMode,Color(0xffdbd6f4),Color(0xff0D0D0D)),
+                                color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff0D0D0D)),
                                 borderRadius: BorderRadius.circular(30*percentScale),
                                 boxShadow: [BoxShadow(
                                   color: Color(0x40000000),
@@ -492,7 +492,7 @@ class _HomePageState extends State<Home>{
                             Center(
                               child: Column(
                                 children: <Widget>[
-                                  SizedBox(height: 44*percentScale),
+                                  SizedBox(height: 59*percentScale),
                                   //Fossil Progress bar
                                   new GestureDetector(
                                     onTap: (){
@@ -508,14 +508,8 @@ class _HomePageState extends State<Home>{
                                                 width: 334*percentScale,
                                                 height: 29*percentScale,
                                                 decoration: new BoxDecoration(
-                                                  color: darkModeColor(darkMode,Color( 0xffe9e7f2),Color(0xff494365)),
+                                                  color: darkModeColor(darkMode,colorWhite,Color(0xff494365)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x29000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                               //Progress bar actual progress
@@ -525,12 +519,6 @@ class _HomePageState extends State<Home>{
                                                 decoration: new BoxDecoration(
                                                   color: darkModeColor(darkMode,Color( 0xfff5d1ae),Color(0xff9E744B)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x00000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                             ],
@@ -579,14 +567,8 @@ class _HomePageState extends State<Home>{
                                                 width: 334*percentScale,
                                                 height: 29*percentScale,
                                                 decoration: new BoxDecoration(
-                                                  color: darkModeColor(darkMode,Color( 0xffe9e7f2),Color(0xff494365)),
+                                                  color: darkModeColor(darkMode,colorWhite,Color(0xff494365)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x29000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                               //Progress bar actual progress
@@ -596,12 +578,6 @@ class _HomePageState extends State<Home>{
                                                 decoration: new BoxDecoration(
                                                   color: darkModeColor(darkMode,Color( 0xffb8e299),Color(0xff68914A)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x00000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                             ],
@@ -651,14 +627,8 @@ class _HomePageState extends State<Home>{
                                                 width: 334*percentScale,
                                                 height: 29*percentScale,
                                                 decoration: new BoxDecoration(
-                                                  color: darkModeColor(darkMode,Color( 0xffe9e7f2),Color(0xff494365)),
+                                                  color: darkModeColor(darkMode,colorWhite,Color(0xff494365)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x29000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                               //Progress bar actual progress
@@ -668,12 +638,6 @@ class _HomePageState extends State<Home>{
                                                 decoration: new BoxDecoration(
                                                   color: darkModeColor(darkMode,Color( 0xff9edcf4),Color(0xff71A3AD)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x00000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                             ],
@@ -722,14 +686,8 @@ class _HomePageState extends State<Home>{
                                                 width: 334*percentScale,
                                                 height: 29*percentScale,
                                                 decoration: new BoxDecoration(
-                                                  color: darkModeColor(darkMode,Color( 0xffe9e7f2),Color(0xff494365)),
+                                                  color: darkModeColor(darkMode,colorWhite,Color(0xff494365)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x29000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                               //Progress bar actual progress
@@ -739,18 +697,12 @@ class _HomePageState extends State<Home>{
                                                 decoration: new BoxDecoration(
                                                   color: darkModeColor(darkMode,Color( 0xfffdd835),Color(0xffcbc26d)),
                                                   borderRadius: BorderRadius.circular(10*percentScale),
-                                                  boxShadow: [BoxShadow(
-                                                    color: Color(0x00000000),
-                                                    offset: Offset(0,3),
-                                                    blurRadius: 6,
-                                                    spreadRadius: 0
-                                                  ) ],
                                                 )
                                               ),
                                             ],
                                           ),
                                         ),
-                                        //Bone icon
+                                        //Music icon
                                         new Container(
                                           transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
                                           child: new Image.asset(
@@ -789,7 +741,7 @@ class _HomePageState extends State<Home>{
                           width: deviceWidth,
                           height: (35*percentScale+70*percentScale) + numEvents*(7+71)*percentScale + numDays*(25+7+16)*percentScale,
                           decoration: new BoxDecoration(
-                          color: darkModeColor(darkMode,Color(0xfffffcea),Color(0xff202020)),
+                          color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff202020)),
                           borderRadius: BorderRadius.circular(30*percentScale),
                           boxShadow: [BoxShadow(
                             color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FFE96B)),
@@ -937,7 +889,7 @@ class _HomePageState extends State<Home>{
                                 width: deviceWidth,
                                 height: 648*percentScale,
                                 decoration: new BoxDecoration(
-                                  color: darkModeColor(darkMode,Color(0xffffdede),Color(0xFF0D0D0D)),
+                                  color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF0D0D0D)),
                                   borderRadius: BorderRadius.circular(30*percentScale),
                                   boxShadow: [BoxShadow(
                                     color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FF8181)),
@@ -987,7 +939,7 @@ class _HomePageState extends State<Home>{
                                 width: deviceWidth,
                                 height: 302*percentScale,
                                 decoration: new BoxDecoration(
-                                  color: darkModeColor(darkMode,Color(0xffdefeff),Color(0xFF202020)),
+                                  color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF202020)),
                                   borderRadius: BorderRadius.circular(30*percentScale),
                                   boxShadow: [BoxShadow(
                                     color: darkModeColor(darkMode,Color( 0x40000000),Color(0xc095C8F5)),
@@ -1029,19 +981,7 @@ class _HomePageState extends State<Home>{
                         ),
                         new SizedBox(height: (150+22)*percentScale),
                         new Center(
-                          child: Text("This application is NOT endorsed or afiliated",
-                            style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
-                            fontSize: 10*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            )
-                          ),
-                        ),
-                        new SizedBox(height: (120-15)*percentScale),
-                        new Center(
-                          child: Text("with Nintendo in any way.",
+                          child: Text("This application is NOT endorsed or afiliated with Nintendo",
                             style: TextStyle(
                             fontFamily: 'ArialRoundedBold',
                             color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
