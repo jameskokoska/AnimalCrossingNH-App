@@ -39,6 +39,7 @@ dev_dependencies:
   #bottom_navy_bar: ^5.4.0
   #google_nav_bar: ^2.2.0
   bubble_bottom_bar: ^1.2.0
+  shared_preferences: ^0.5.7+1
   
 
 

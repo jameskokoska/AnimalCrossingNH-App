@@ -1027,7 +1027,7 @@ class _HomePageState extends State<Home>{
                             ]
                           ),
                         ),
-                        new SizedBox(height: (120+22)*percentScale),
+                        new SizedBox(height: (150+22)*percentScale),
                         new Center(
                           child: Text("This application is NOT endorsed or afiliated",
                             style: TextStyle(
@@ -1051,7 +1051,19 @@ class _HomePageState extends State<Home>{
                             )
                           ),
                         ),
-                        SizedBox(height: (120+30)*percentScale),
+                        SizedBox(height: (190+22)*percentScale),
+                        new Container(
+                          transform: Matrix4.translationValues(0,553*percentScale,0),
+                          child: Text("Plz dont sue",
+                            style: TextStyle(
+                            fontFamily: 'ArialRoundedBold',
+                            color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
+                            fontSize: 10*percentScale,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            )
+                          ),
+                        ),
                       ],
                     )
                   ),
