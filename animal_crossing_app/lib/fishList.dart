@@ -78,10 +78,11 @@ class FishData{
 
 
 class _FishListPageState extends State<FishList>{
+  TextEditingController textController;
+
   @override
   void initState(){
     super.initState();
-    searchFish = '';
   }
 
   Future<List<FishData>> getFishData(String search) async{
@@ -213,7 +214,13 @@ class _FishListPageState extends State<FishList>{
                                       width: 300*percentScale,
                                       child: CupertinoTextField(
                                         maxLength: 15,
-                                        placeholder: 'Search',
+                                        placeholder: (){
+                                          if (searchFish==''){
+                                            return 'Search';
+                                          } else {
+                                            return searchFish;
+                                          }
+                                        }(),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(8.0),
                                           color: Color(0x75F0F1F5),
