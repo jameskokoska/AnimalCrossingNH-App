@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
-
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'dart:async';
-import 'dart:convert';
 
 class SettingList extends StatefulWidget {
   SettingList({Key key, this.title}) : super(key: key);
@@ -162,7 +157,7 @@ Widget settingContainer(double percentScale, String settingTitle, String setting
                         }
                         HapticFeedback.mediumImpact();
                       });
-                      saveSettings(settingKey, true, state);
+                      saveBool(settingKey, true, state);
                     }),
                   ),
                 ),
