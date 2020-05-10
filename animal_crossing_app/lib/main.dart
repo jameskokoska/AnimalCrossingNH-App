@@ -196,7 +196,7 @@ class _MainPageState extends State<Main> {
             )
           ),
           Container(
-            transform: Matrix4.translationValues(0, -11*percentScale, 0),
+            transform: Matrix4.translationValues(0, -12, 0),
             child: new Align(
               alignment: Alignment.bottomCenter,
               child: BubbleBottomBar(
