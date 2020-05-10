@@ -128,7 +128,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                         children: <Widget>[
                           AnimatedOpacity(
                             duration: Duration(milliseconds:300),
-                            opacity: check ? 0 : 1,
+                            opacity: caught ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -146,7 +146,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           ),
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !check ? 0 : 1,
+                            opacity: !caught ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -164,8 +164,8 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: check ? 55*percentScale : 0,     //check needs changing to be based on current state
-                            bottom: check ? 55*percentScale : 0,
+                            top: caught ? 55*percentScale : 0,     //check needs changing to be based on current state
+                            bottom: caught ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -177,8 +177,8 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !check ? 55*percentScale : 0,      //check needs changing to be based on current state
-                            bottom: !check ? 55*percentScale : 0,
+                            top: !caught ? 55*percentScale : 0,      //check needs changing to be based on current state
+                            bottom: !caught ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -198,10 +198,12 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: Color(0xFFFFFFFF),
-                                    value: check,
+                                    value: caught,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        check = value;
+                                        caught = value;
+                                        saveBool("fishCheckList"+name, false, caught);
+                                        callback();
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -229,7 +231,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           // ---------- Card Centre Quote ----------
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: check||showCatchPhraseNow ? 1 : 0,
+                            opacity: caught||showCatchPhraseNow ? 1 : 0,
                             child: Container(
                               width: 220*percentScale,
                               child: Text("“"+catchphrase+"”",

@@ -10,7 +10,7 @@ import 'fishList.dart';
 import 'music.dart';
 import 'settingList.dart';
 
-//---------------------------
+//----------Global Colours-----------
 Color colorLightDarkAccent = Color(0xFFF5F5F5);
 Color colorTextBlack = Color(0xff373737);
 Color colorTextWhite = Color(0xFFFFFFFF);
@@ -20,7 +20,7 @@ Color colorCheckGreen = Color(0xFFA0DDA1);
 Color colorFishAccent = Color(0xFFE3F2FD);
 Color colorFishTextDarkBlue = Color(0xff3F51B5);
 //---------------------------
-
+//----------Globals----------
 bool northernHemisphere = true;
 bool showCatchPhraseNow = false;    //always show the catchphrase
 bool showListOnlyActive = true;     //only list fish you can catch
@@ -28,20 +28,22 @@ bool skipSplash = false;
 
 var currentDate = DateTime.now();
 
-
-getLastSettings(String key, bool defaultState) async{
+//----------Database Functions---------------
+getStoredBool(String key, bool defaultState) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = prefs.getBool(key) ?? defaultState;
   print('read $key $storedBool');
   return storedBool;
 }
 
-saveSettings(String key, bool defaultState, bool toStoreValue) async{
+saveBool(String key, bool defaultState, bool toStoreValue) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = toStoreValue ?? defaultState;
-  print('Stored $storedBool');
+  print('Stored $key $storedBool');
   await prefs.setBool(key, storedBool);
 }
+
+//------------------------------------------------
 
 void main() => runApp(MyApp());
 
@@ -109,16 +111,16 @@ class _MainPageState extends State<Main> {
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
-    getLastSettings('northernHemisphere', true).then((indexResult){
+    getStoredBool('northernHemisphere', true).then((indexResult){
       northernHemisphere = indexResult;
     });
-    getLastSettings('showCatchPhraseNow', false).then((indexResult){
+    getStoredBool('showCatchPhraseNow', false).then((indexResult){
       showCatchPhraseNow = indexResult;
     });
-    getLastSettings('showListOnlyActive', true).then((indexResult){
+    getStoredBool('showListOnlyActive', true).then((indexResult){
       showListOnlyActive = indexResult;
     });
-    getLastSettings('skipSplash', false).then((indexResult){
+    getStoredBool('skipSplash', false).then((indexResult){
       skipSplash = indexResult;
     });
     
