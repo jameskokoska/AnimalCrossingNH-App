@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'more.dart';
 import 'bugs.dart';
 import 'mainMenu.dart';
 import 'fishList.dart';
 import 'music.dart';
+import 'settingList.dart';
 
 //---------------------------
 Color colorLightDarkAccent = Color(0xFFF5F5F5);
@@ -22,7 +24,24 @@ Color colorFishTextDarkBlue = Color(0xff3F51B5);
 bool northernHemisphere = true;
 bool showCatchPhraseNow = false;    //always show the catchphrase
 bool showListOnlyActive = true;     //only list fish you can catch
+bool skipSplash = false;
+
 var currentDate = DateTime.now();
+
+
+getLastSettings(String key, bool defaultState) async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool storedBool = prefs.getBool(key) ?? defaultState;
+  print('read $key $storedBool');
+  return storedBool;
+}
+
+saveSettings(String key, bool defaultState, bool toStoreValue) async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool storedBool = toStoreValue ?? defaultState;
+  print('Stored $storedBool');
+  await prefs.setBool(key, storedBool);
+}
 
 void main() => runApp(MyApp());
 
@@ -30,7 +49,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter',
+      title: 'ACNH Pocket Guide',
       theme: ThemeData (
         primaryColor: Color(0xFFFFFFFF),
         accentColor: Colors.red,
@@ -41,13 +60,19 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.red[50],
         brightness: Brightness.dark,
       ),
-      home: SplashScreen.navigate(
-        name: 'assets/animatedSplashPlane.flr',
-        startAnimation: 'Splash',
-        next: (context) => Main(),
-        until: () => Future.delayed(Duration(milliseconds: 1)),
-        backgroundColor: Colors.blueGrey[800],
-      ),
+      home: (){
+        if(skipSplash == true){
+          return Main();
+        } else {
+          return SplashScreen.navigate(
+            name: 'assets/animatedSplashPlane.flr',
+            startAnimation: 'Splash',
+            next: (context) => Main(),
+            until: () => Future.delayed(Duration(milliseconds: 1)),
+            backgroundColor: Colors.blueGrey[800]
+          );
+        }
+      }(),
     );
   }
 }
@@ -69,6 +94,7 @@ class _MainPageState extends State<Main> {
   MorePage morepage;
   FishList fishlist;
   MusicList musiclist;
+  SettingList settingList;
   Widget currentPageWidget;
 
   
@@ -79,8 +105,23 @@ class _MainPageState extends State<Main> {
     morepage = MorePage();
     fishlist = FishList();
     musiclist = MusicList();
+    settingList = SettingList();
 
+    //Retrieve data for settings from sharedpreferences storage
     super.initState();
+    getLastSettings('northernHemisphere', true).then((indexResult){
+      northernHemisphere = indexResult;
+    });
+    getLastSettings('showCatchPhraseNow', false).then((indexResult){
+      showCatchPhraseNow = indexResult;
+    });
+    getLastSettings('showListOnlyActive', true).then((indexResult){
+      showListOnlyActive = indexResult;
+    });
+    getLastSettings('skipSplash', false).then((indexResult){
+      skipSplash = indexResult;
+    });
+    
     currentPageWidget = homepage;
     
     //Remove status bar
@@ -96,7 +137,7 @@ class _MainPageState extends State<Main> {
       if(index == 0){
         currentPageWidget = homepage;
       } else if (index == 1){
-        currentPageWidget = musiclist;
+        currentPageWidget = settingList;
       } else if (index == 2){
         currentPageWidget = morepage;
       } else {

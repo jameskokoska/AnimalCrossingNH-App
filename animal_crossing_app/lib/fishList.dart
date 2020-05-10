@@ -199,6 +199,7 @@ class _FishListPageState extends State<FishList>{
                             scale: 0.7*percentScale,
                             child: TextField(
                               decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.search),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.blueGrey[100], width: 2.5*percentScale),
                                   borderRadius: const BorderRadius.all(
