@@ -113,8 +113,15 @@ Widget appContainer(double percentScale, int index, Color textColor){
       return Column(
         children: <Widget>[
           new Container(
-            width: 88,
-            height: 88,
+            width: 88 * percentScale,
+            height: 88 * percentScale,
+            child: Center(
+              child: Image.asset(
+                'assets/' + appIconName[index],
+                height:50*percentScale,
+                width:50*percentScale,
+              ),
+            ),
             decoration: new BoxDecoration(
               color: Color(appColour[index]),
               borderRadius: BorderRadius.circular(30),
@@ -144,6 +151,6 @@ Widget appContainer(double percentScale, int index, Color textColor){
 }
 
 bool check = false;
-List<int> appColour = [0xffacffb5, 0xfffbff8b, 0xffffda9b, 0xff8dd1ff, 0xffffa2a2, 0xffbababa];
+List<int> appColour = [0xffacffb5, 0xfffbff8b, 0xffffda9b, 0xffffa2a2, 0xff8dd1ff, 0xffbababa];
 List<String> appIconName = ["leaf.png", "emote.png", "cat.png", "flower.png", "music.png", "settings.png"];
 List<String> appName = ["Furniture", "Emotipedia", "Villagers", "Flowers", "Music", "Settings"];
