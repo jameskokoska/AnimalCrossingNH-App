@@ -16,6 +16,10 @@ class SettingList extends StatefulWidget {
 
 
 class _SettingListPageState extends State<SettingList>{
+  Future<void> resetData() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 
   @override
   Widget build(BuildContext context){
@@ -139,6 +143,7 @@ class _SettingListPageState extends State<SettingList>{
                                   ),
                                   onPressed: (){
                                     HapticFeedback.mediumImpact();
+                                    resetData();
                                     Navigator.of(context).pop();
                                   },
                                 ),

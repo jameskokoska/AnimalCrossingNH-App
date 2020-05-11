@@ -83,9 +83,9 @@ class _MusicListPageState extends State<MusicList>{
             ),
             FutureBuilder(
               future: getMusicData(searchMusic),
-              builder: (context,snapshot2){
+              builder: (context,snapshot){
                 Widget songListSliver;
-                if(snapshot2.hasData){
+                if(snapshot.hasData){
                   songListSliver = SliverPadding(
                     padding: EdgeInsets.fromLTRB(28*percentScale, 0, 0, 0),
                     sliver: new SliverGrid(
@@ -98,9 +98,9 @@ class _MusicListPageState extends State<MusicList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return songContainer(percentScale, colorTextBlack, snapshot2.data[index].name, snapshot2.data[index].imageLink,snapshot2.data[index].collected);
+                          return songContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].collected);
                         },
-                        childCount: snapshot2.data.length,
+                        childCount: snapshot.data.length,
                       ),
                     ),
                   );
@@ -151,7 +151,7 @@ class _MusicListPageState extends State<MusicList>{
                                   Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Container(
-                                    transform: Matrix4.translationValues(0,-160*percentScale+(top/1.7)*percentScale,0),
+                                    transform: Matrix4.translationValues(0,-182*percentScale+(top*percentScale/1.7)*percentScale,0),
                                     child: Padding(
                                       padding: const EdgeInsets.only(bottom:20,right:10),
                                       child: Opacity(
