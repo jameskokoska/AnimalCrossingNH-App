@@ -78,12 +78,6 @@ class FishData{
 
 
 class _FishListPageState extends State<FishList>{
-  TextEditingController textController;
-
-  @override
-  void initState(){
-    super.initState();
-  }
 
   Future<List<FishData>> getFishData(String search) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");
@@ -204,8 +198,8 @@ class _FishListPageState extends State<FishList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                Image.asset('assets/fishTitle.png'),
-                                Align(
+                                //Image.asset('assets/fishTitle.png'),
+                                  Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom:20,right:10),

@@ -1,3 +1,4 @@
+import 'package:animal_crossing_app/museumCollection.dart';
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
@@ -103,6 +104,7 @@ class _MainPageState extends State<Main> {
   FishList fishlist;
   MusicList musiclist;
   SettingList settingList;
+  MuseumPage museumPage;
   Widget currentPageWidget;
 
   
@@ -114,6 +116,7 @@ class _MainPageState extends State<Main> {
     fishlist = FishList();
     musiclist = MusicList();
     settingList = SettingList();
+    museumPage = MuseumPage();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
@@ -149,7 +152,7 @@ class _MainPageState extends State<Main> {
       } else if (index == 2){
         currentPageWidget = morepage;
       } else {
-        currentPageWidget = fishlist;
+        currentPageWidget = museumPage;
       }
     });
     selectedIndex = index;
