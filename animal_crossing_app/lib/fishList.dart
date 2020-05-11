@@ -206,32 +206,42 @@ class _FishListPageState extends State<FishList>{
                                     child: Container(
                                       height: 35*percentScale,
                                       width: 300*percentScale,
-                                      child: CupertinoTextField(
-                                        maxLength: 15,
-                                        placeholder: (){
-                                          if (searchFish==''){
-                                            return 'Search';
+                                      child: Opacity(
+                                        opacity: (){
+                                          print(top);
+                                          if(top<280&&top>190){
+                                            return 1-((280-top)/90);
                                           } else {
-                                            return searchFish;
+                                            return 0.0;
                                           }
                                         }(),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8.0),
-                                          color: Color(0x75F0F1F5),
-                                        ),
-                                        prefix: Padding(
-                                          padding:
-                                              const EdgeInsets.only(right:13, left:7),
-                                          child: Icon(
-                                            Icons.search,
-                                            color: Color(0xADFFFFFF),
+                                        child: CupertinoTextField(
+                                          maxLength: 15,
+                                          placeholder: (){
+                                            if (searchFish==''){
+                                              return 'Search';
+                                            } else {
+                                              return searchFish;
+                                            }
+                                          }(),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(8.0),
+                                            color: Color(0x75F0F1F5),
                                           ),
+                                          prefix: Padding(
+                                            padding:
+                                                const EdgeInsets.only(right:13, left:7),
+                                            child: Icon(
+                                              Icons.search,
+                                              color: Color(0xADFFFFFF),
+                                            ),
+                                          ),
+                                          onChanged: (string){
+                                            setState(() {
+                                              searchFish = string;
+                                            });
+                                          },
                                         ),
-                                        onChanged: (string){
-                                          setState(() {
-                                            searchFish = string;
-                                          });
-                                        },
                                       ),
                                     ),
                                   ),

@@ -1,7 +1,7 @@
 import 'package:animal_crossing_app/fishList.dart';
 import 'package:animal_crossing_app/music.dart';
+import 'package:animal_crossing_app/villagerList.dart';
 
-import 'main.dart';
 import 'package:flutter/material.dart';
 
 
@@ -42,7 +42,7 @@ class _MuseumPageState extends State<MuseumPage>{
 
     return MaterialApp(
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           
           body: Stack(
@@ -50,12 +50,14 @@ class _MuseumPageState extends State<MuseumPage>{
               
               TabBarView(
                 children: <Widget>[
+                  VillagerList(),
                   FishList(),
                   MusicList(),
                 ],
               ),
               TabBar(
                 tabs: <Widget>[
+                  Tab(text:''),
                   Tab(text:''),
                   Tab(text:'')
                 ],

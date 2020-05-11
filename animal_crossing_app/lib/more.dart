@@ -73,16 +73,20 @@ class _MorePageState extends State<MorePage>{
                         slivers: <Widget>[
                           SliverPadding(
                             padding: EdgeInsets.only(top:60 * percentScale),
-                            sliver: SliverGrid(
-                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 1.2
-                              ),
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                return appContainer(percentScale, index, textColor, darkMode);
-                                },
-                                childCount: appColour.length,
+                            sliver: SliverPadding(
+                              padding: new EdgeInsets.all(45.0),
+                              sliver: SliverGrid(
+                                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 250,
+                                  mainAxisSpacing: 4, 
+                                  crossAxisSpacing: 4,
+                                ),
+                                delegate: SliverChildBuilderDelegate(
+                                  (BuildContext context, int index) {
+                                  return appContainer(percentScale, index, textColor, darkMode);
+                                  },
+                                  childCount: appColour.length,
+                                ),
                               ),
                             ),
                           ),
