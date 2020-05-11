@@ -9,6 +9,8 @@ import 'bugs.dart';
 import 'mainMenu.dart';
 import 'fishList.dart';
 import 'music.dart';
+import 'museumCollection.dart';
+import 'villagerList.dart';
 import 'settingList.dart';
 
 //----------Global Colours-----------
@@ -105,6 +107,7 @@ class _MainPageState extends State<Main> {
   MusicList musiclist;
   SettingList settingList;
   MuseumPage museumPage;
+  VillagerList villagerList;
   Widget currentPageWidget;
 
   
@@ -117,6 +120,7 @@ class _MainPageState extends State<Main> {
     musiclist = MusicList();
     settingList = SettingList();
     museumPage = MuseumPage();
+    villagerList = VillagerList();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
