@@ -1,15 +1,13 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'dart:async';
+import 'dart:convert';
 
-List<String> albumCoverLinks = ["https://acnhcdn.com/latest/Audio/mjk_Keiji.png","https://acnhcdn.com/latest/Audio/mjk_Aloha.png","https://acnhcdn.com/latest/Audio/mjk_DoubutuNoMachi.png","https://acnhcdn.com/latest/Audio/mjk_Idol.png","https://acnhcdn.com/latest/Audio/mjk_Paris.png","https://acnhcdn.com/latest/Audio/mjk_ShowaKayo.png","https://acnhcdn.com/latest/Audio/mjk_EuroBeat.png","https://acnhcdn.com/latest/Audio/mjk_Drive.png","https://acnhcdn.com/latest/Audio/mjk_Sayonara.png","https://acnhcdn.com/latest/Audio/mjk_MoriNoSeikatsu.png","https://acnhcdn.com/latest/Audio/mjk_KekeRider.png","https://acnhcdn.com/latest/Audio/mjk_UtataneNoYume.png","https://acnhcdn.com/latest/Audio/mjk_Daisuki.png","https://acnhcdn.com/latest/Audio/mjk_China.png","https://acnhcdn.com/latest/Audio/mjk_Hollywood.png","https://acnhcdn.com/latest/Audio/mjk_Maria.png","https://acnhcdn.com/latest/Audio/mjk_Ballad.png","https://acnhcdn.com/latest/Audio/mjk_Roma.png","https://acnhcdn.com/latest/Audio/mjk_BirthdaySong.png","https://acnhcdn.com/latest/Audio/mjk_Blues.png","https://acnhcdn.com/latest/Audio/mjk_Bossa.png","https://acnhcdn.com/latest/Audio/mjk_Caripso.png","https://acnhcdn.com/latest/Audio/mjk_Turkey.png","https://acnhcdn.com/latest/Audio/mjk_Sanbika.png","https://acnhcdn.com/latest/Audio/mjk_Peru.png","https://acnhcdn.com/latest/Audio/mjk_Country.png","https://acnhcdn.com/latest/Audio/mjk_Urban.png","https://acnhcdn.com/latest/Audio/mjk_Drumnbass.png","https://acnhcdn.com/latest/Audio/mjk_KowaiUta.png","https://acnhcdn.com/latest/Audio/mjk_Disco.png","https://acnhcdn.com/latest/Audio/mjk_Dixie.png","https://acnhcdn.com/latest/Audio/mjk_Etude.png","https://acnhcdn.com/latest/Audio/mjk_Haisai.png","https://acnhcdn.com/latest/Audio/mjk_Flamenco.png","https://acnhcdn.com/latest/Audio/mjk_Minyo.png","https://acnhcdn.com/latest/Audio/mjk_Fusion.png","https://acnhcdn.com/latest/Audio/mjk_Raregroove.png","https://acnhcdn.com/latest/Audio/mjk_NewOrleans.png","https://acnhcdn.com/latest/Audio/mjk_House.png","https://acnhcdn.com/latest/Audio/mjk_DoubutsuNoShima.png","https://acnhcdn.com/latest/Audio/mjk_Jazz.png","https://acnhcdn.com/latest/Audio/mjk_Jongara.png","https://acnhcdn.com/latest/Audio/mjk_Enka.png","https://acnhcdn.com/latest/Audio/mjk_LoveSong.png","https://acnhcdn.com/latest/Audio/mjk_Lullaby.png","https://acnhcdn.com/latest/Audio/mjk_Mambo.png","https://acnhcdn.com/latest/Audio/mjk_Gamelan.png","https://acnhcdn.com/latest/Audio/mjk_March.png","https://acnhcdn.com/latest/Audio/mjk_Senor.png","https://acnhcdn.com/latest/Audio/mjk_Metal.png","https://acnhcdn.com/latest/Audio/mjk_Milonga.png","https://acnhcdn.com/latest/Audio/mjk_Bolero.png","https://acnhcdn.com/latest/Audio/mjk_Maharaja.png","https://acnhcdn.com/latest/Audio/mjk_Parade.png","https://acnhcdn.com/latest/Audio/mjk_RagTime.png","https://acnhcdn.com/latest/Audio/mjk_Ondo.png","https://acnhcdn.com/latest/Audio/mjk_Reggae.png","https://acnhcdn.com/latest/Audio/mjk_Rock.png","https://acnhcdn.com/latest/Audio/mjk_KekeBilly.png","https://acnhcdn.com/latest/Audio/mjk_Afro.png","https://acnhcdn.com/latest/Audio/mjk_Salsa.png","https://acnhcdn.com/latest/Audio/mjk_Samba.png","https://acnhcdn.com/latest/Audio/mjk_Ska.png","https://acnhcdn.com/latest/Audio/mjk_Sonata.png","https://acnhcdn.com/latest/Audio/mjk_KekeSong.png","https://acnhcdn.com/latest/Audio/mjk_Soul.png","https://acnhcdn.com/latest/Audio/mjk_Cossack.png","https://acnhcdn.com/latest/Audio/mjk_Osanpo.png","https://acnhcdn.com/latest/Audio/mjk_Swing.png","https://acnhcdn.com/latest/Audio/mjk_Electronica.png","https://acnhcdn.com/latest/Audio/mjk_Tango.png","https://acnhcdn.com/latest/Audio/mjk_TechnoBeat.png","https://acnhcdn.com/latest/Audio/mjk_Waltz.png","https://acnhcdn.com/latest/Audio/mjk_Western.png","https://acnhcdn.com/latest/Audio/mjk_Daimyo.png","https://acnhcdn.com/latest/Audio/mjk_Irish.png","https://acnhcdn.com/latest/Audio/mjk_HunaUta2001.png","https://acnhcdn.com/latest/Audio/mjk_Alpine.png","https://acnhcdn.com/latest/Audio/mjk_Sensei.png","https://acnhcdn.com/latest/Audio/mjk_BokuNoBasho.png","https://acnhcdn.com/latest/Audio/mjk_Napolitan.png","https://acnhcdn.com/latest/Audio/mjk_OnlyMe.png","https://acnhcdn.com/latest/Audio/mjk_KangaeChu.png","https://acnhcdn.com/latest/Audio/mjk_RocknRoll.png","https://acnhcdn.com/latest/Audio/mjk_Gospel.png","https://acnhcdn.com/latest/Audio/mjk_Minimal.png","https://acnhcdn.com/latest/Audio/mjk_HaruNoKomorebi.png","https://acnhcdn.com/latest/Audio/mjk_BlueOnigiri.png","https://acnhcdn.com/latest/Audio/mjk_NiDanZaka.png","https://acnhcdn.com/latest/Audio/mjk_Eleki.png","https://acnhcdn.com/latest/Audio/mjk_Funk.png","https://acnhcdn.com/latest/Audio/mjk_NamiNami.png","https://acnhcdn.com/latest/Audio/mjk_Ototoi.png","https://acnhcdn.com/latest/Audio/mjk_Horo.png","https://acnhcdn.com/latest/Audio/mjk_MainTheme.png"];
-List<String> albumNames = ["Agent K.K.","Aloha K.K.","*Animal City*","Bubblegum K.K.","Café K.K.","Comrade K.K.","DJ K.K.","*Drivin'*","*Farewell*","Forest Life","Go K.K. Rider","Hypno K.K.","I Love You","Imperial K.K.","K.K. Adventure","K.K. Aria","K.K. Ballad","K.K. Bazaar","K.K. Birthday","K.K. Blues","K.K. Bossa","K.K. Calypso","K.K. Casbah","K.K. Chorale","K.K. Condor","K.K. Country","K.K. Cruisin'","K.K. D&B","K.K. Dirge","K.K. Disco","K.K. Dixie","K.K. Étude","K.K. Faire","K.K. Flamenco","K.K. Folk","K.K. Fusion","K.K. Groove","K.K. Gumbo","K.K. House","K.K. Island","K.K. Jazz","K.K. Jongara","K.K. Lament","K.K. Love Song","K.K. Lullaby","K.K. Mambo","K.K. Marathon","K.K. March","K.K. Mariachi","K.K. Metal","K.K. Milonga","K.K. Moody","K.K. Oasis","K.K. Parade","K.K. Ragtime","K.K. Rally","K.K. Reggae","K.K. Rock","K.K. Rockabilly","K.K. Safari","K.K. Salsa","K.K. Samba","K.K. Ska","K.K. Sonata","K.K. Song","K.K. Soul","K.K. Steppe","K.K. Stroll","K.K. Swing","K.K. Synth","K.K. Tango","K.K. Technopop","K.K. Waltz","K.K. Western","King K.K.","Lucky K.K.","Marine Song 2001","Mountain Song","Mr. K.K.","My Place","Neapolitan","Only Me","Pondering","Rockin' K.K.","Soulful K.K.","Space K.K.","Spring Blossoms","Stale Cupcakes","Steep Hill","Surfin' K.K.","The K. Funk","To the Edge","Two Days Ago","Wandering","Welcome Horizons"];
 
 class VillagerList extends StatefulWidget {
   VillagerList({Key key, this.title}) : super(key: key);
@@ -20,33 +18,48 @@ class VillagerList extends StatefulWidget {
   _VillagerListPageState createState() => _VillagerListPageState();
 }
 
-String searchMusic = '';
+String searchVillager = '';
 
-class MusicData{
+class VillagerData{
   final String name;
-  final String imageLink;
-  final bool collected;
+  final String image;
+  final String species;
+  final String gender;
+  final String personality;
+  final String birthday;
+  final String catchphrase;
+  final String style1;
+  final String style2;
+  final String color1;
+  final String color2;
+  final String filename;
+  final String uniqueEntryID;
+  final bool favorite;
 
-  MusicData(this.name, this.imageLink, this.collected);
+  VillagerData(this.name,this.image,this.species,this.gender,this.personality,this.birthday,this.catchphrase,this.style1,this.style2,
+  this.color1,this.color2,this.filename,this.uniqueEntryID,this.favorite);
 }
 
 class _VillagerListPageState extends State<VillagerList>{
 
-  Future<List<MusicData>> getMusicData(String search) async{
-    bool collected = false;
-    List<MusicData> musicData = [];
-    for(int i = 0; i<albumNames.length; i++){
-      getStoredBool("songCheckList"+albumNames[i], false).then((indexResult){
-        collected = indexResult;
-        MusicData musicDatum = MusicData(albumNames[i],albumCoverLinks[i],collected);
+  Future<List<VillagerData>> getVillagerData(String search) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/villagers.json");
+
+    final jsonData = json.decode(data);
+    bool favorite = false;
+    List<VillagerData> villagerData = [];
+    for(var u in jsonData){
+      getStoredBool("villagerCheckList"+u["Name"], false).then((indexResult){
+        favorite = indexResult;
+        VillagerData villagerDatum = VillagerData(u["Name"],u["Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"],favorite);
         if(search == ''){
-          musicData.add(musicDatum);
-        } else if (albumNames[i].toLowerCase().contains(search.toLowerCase())){
-          musicData.add(musicDatum);
+          villagerData.add(villagerDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          villagerData.add(villagerDatum);
         }
       });
     }
-    return musicData;
+    return villagerData;
   }
 
   @override
@@ -83,30 +96,30 @@ class _VillagerListPageState extends State<VillagerList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: getMusicData(searchMusic),
+              future: getVillagerData(searchVillager),
               builder: (context,snapshot){
-                Widget songListSliver;
+                Widget villagerListSliver;
                 if(snapshot.hasData){
-                  songListSliver = SliverPadding(
-                    padding: EdgeInsets.fromLTRB(28*percentScale, 0, 0, 0),
+                  villagerListSliver = SliverPadding(
+                    padding: EdgeInsets.fromLTRB(20*percentScale, 0, 20*percentScale, 0),
                     sliver: new SliverGrid(
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
+                        maxCrossAxisExtent: 130,
                         mainAxisSpacing: 10,
-                        crossAxisSpacing: 0,
-                        childAspectRatio: 1,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: 0.9,
                       ),
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return songContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].collected);
+                          return villagerContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].name,snapshot.data[index].favorite);
                         },
                         childCount: snapshot.data.length,
                       ),
                     ),
                   );
                 } else {
-                  songListSliver = SliverToBoxAdapter(
+                  villagerListSliver = SliverToBoxAdapter(
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -169,10 +182,10 @@ class _VillagerListPageState extends State<VillagerList>{
                                           child: CupertinoTextField(
                                             maxLength: 15,
                                             placeholder: (){
-                                              if (searchMusic==''){
+                                              if (searchVillager==''){
                                                   return 'Search';
                                                 } else {
-                                                  return searchMusic;
+                                                  return searchVillager;
                                                 }
                                             }(),
                                             decoration: BoxDecoration(
@@ -189,7 +202,7 @@ class _VillagerListPageState extends State<VillagerList>{
                                             ),
                                             onChanged: (string){
                                               setState(() {
-                                                searchMusic = string;
+                                                searchVillager = string;
                                               });
                                             },
                                           ),
@@ -204,26 +217,8 @@ class _VillagerListPageState extends State<VillagerList>{
                         },
                       ),
                     ),
-                    songListSliver,
+                    villagerListSliver,
                     
-                    SliverPadding(
-                      padding: EdgeInsets.only(top:40*percentScale),
-                      sliver: SliverList(
-                        delegate: SliverChildListDelegate([
-                          new Center(
-                            child: Text("*These songs are only availible upon K.K. request",
-                              style: TextStyle(
-                              fontFamily: 'ArialRoundedBold',
-                              color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
-                              fontSize: 10*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                              )
-                            ),
-                          ),
-                        ],),
-                      ),
-                    ),
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(
@@ -234,56 +229,6 @@ class _VillagerListPageState extends State<VillagerList>{
                 );
               }
             ),
-            
-            IgnorePointer(
-              child: new Align(
-                alignment: Alignment.topCenter,
-                child: RotationTransition(
-                  turns: AlwaysStoppedAnimation(180 / 360),
-                  child: WaveWidget(
-                    config: CustomConfig(
-                      gradients: [
-                        [Color(0x59e8eaf6), Color(0x59e8eaf6)],
-                        [Color(0xafc5cae9), Color(0x59c5cae9)],
-                        [Color(0x599fa8da), Color(0x599fa8da)],
-                        [Color(0x597986cb), Color(0x597986cb)]
-                      ],
-                      durations: [13000, 25000, 9000, 32000],
-                      heightPercentages: [0.10, 0.12, 0.14, 0.16],
-                      gradientBegin: Alignment.bottomLeft,
-                      gradientEnd: Alignment.topRight,
-                    ),
-                    backgroundColor: Colors.transparent,
-                    size: Size(360*percentScale, 60*percentScale),
-                    waveAmplitude: 13*percentScale,
-                  ),
-                ),
-              ),
-            ),
-            IgnorePointer(
-              child: new Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  child: WaveWidget(
-                    config: CustomConfig(
-                      gradients: [
-                        [Color(0x59e8eaf6), Color(0x59e8eaf6)],
-                        [Color(0xafc5cae9), Color(0x59c5cae9)],
-                        [Color(0x599fa8da), Color(0x599fa8da)],
-                        [Color(0x597986cb), Color(0x597986cb)]
-                      ],
-                      durations: [30000, 20000, 11000, 8000],
-                      heightPercentages: [0.10, 0.11, 0.12, 0.13],
-                      gradientBegin: Alignment.bottomLeft,
-                      gradientEnd: Alignment.topRight,
-                    ),
-                    backgroundColor: Colors.transparent,
-                    size: Size(360*percentScale, 114*percentScale),
-                    waveAmplitude: 7*percentScale,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       )
@@ -291,7 +236,7 @@ class _VillagerListPageState extends State<VillagerList>{
   }
 }
 
-Widget songContainer(double percentScale, Color colorTextBlack, String name, String imageLink, bool collected){
+Widget villagerContainer(double percentScale, Color colorTextBlack, String name, String imageLink, bool collected){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Stack(
@@ -311,13 +256,16 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
             )
           ),
           
-          new Container(
-            transform: Matrix4.translationValues(13*percentScale,13*percentScale,0),
-            width:117*percentScale,
-            height:117*percentScale,
-            decoration: new BoxDecoration(
-              color: Color(0x83D7EBFF),
-              borderRadius: BorderRadius.circular(5*percentScale),
+          Align(
+            alignment: Alignment.topCenter,
+            child: new Container(
+              transform: Matrix4.translationValues(0,13*percentScale,0),
+              width:67*percentScale,
+              height:67*percentScale,
+              decoration: new BoxDecoration(
+                color: Color(0x83D7EBFF),
+                borderRadius: BorderRadius.circular(5*percentScale),
+              ),
             ),
           ),
           new Container(
@@ -326,8 +274,8 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
               children: <Widget>[
                 CachedNetworkImage(
                   imageBuilder: (context, imageProvider) => Container(
-                    width: 117*percentScale,
-                    height: 117*percentScale,
+                    width: 67*percentScale,
+                    height: 67*percentScale,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4*percentScale),
                       boxShadow: [BoxShadow(
@@ -343,8 +291,8 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
                   imageUrl: imageLink,
                   //placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => new Icon(Icons.error),
-                  height:95*percentScale,
-                  width:95*percentScale,
+                  height:67*percentScale,
+                  width:67*percentScale,
                   fadeInDuration: Duration(milliseconds:800),
                 ),
                 SizedBox(
@@ -388,7 +336,7 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
                         onChanged: (bool value) {
                           setState(() {
                             collected = value;
-                            saveBool("songCheckList"+name, false, collected);
+                            saveBool("villagerCheckList"+name, false, collected);
                             HapticFeedback.mediumImpact();
                           });
                         },
@@ -425,7 +373,7 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
                   onChanged: (bool value) {
                     setState(() {
                       collected = value;
-                      saveBool("songCheckList"+name, false, collected);
+                      saveBool("villagerCheckList"+name, false, collected);
                       //HapticFeedback.mediumImpact();
                     });
                   },

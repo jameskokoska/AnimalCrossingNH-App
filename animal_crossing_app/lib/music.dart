@@ -88,13 +88,13 @@ class _MusicListPageState extends State<MusicList>{
                 Widget songListSliver;
                 if(snapshot.hasData){
                   songListSliver = SliverPadding(
-                    padding: EdgeInsets.fromLTRB(28*percentScale, 0, 0, 0),
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
                     sliver: new SliverGrid(
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 0,
-                        childAspectRatio: 1,
+                        maxCrossAxisExtent: 250,
+                        mainAxisSpacing: 13,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: 0.9,
                       ),
                       delegate: 
                       SliverChildBuilderDelegate(
@@ -294,146 +294,151 @@ class _MusicListPageState extends State<MusicList>{
 Widget songContainer(double percentScale, Color colorTextBlack, String name, String imageLink, bool collected){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return Stack(
-        children: <Widget>[
-          new Container(
-            width: 143*percentScale,
-            height: 162*percentScale,
-            decoration: new BoxDecoration(
-              color: Color(0xffffffff),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [BoxShadow(
-                  color: Color(0x0C000000),
-                  offset: Offset(0,3),
-                  blurRadius: 6,
-                  spreadRadius: 0
-              ) ],
-            )
+      return new Container(
+          width: 120*percentScale,
+          height: 162*percentScale,
+          decoration: new BoxDecoration(
+            color: Color(0xffffffff),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [BoxShadow(
+                color: Color(0x0C000000),
+                offset: Offset(0,3),
+                blurRadius: 6,
+                spreadRadius: 0
+            ) ],
           ),
-          
-          new Container(
-            transform: Matrix4.translationValues(13*percentScale,13*percentScale,0),
-            width:117*percentScale,
-            height:117*percentScale,
-            decoration: new BoxDecoration(
-              color: Color(0x83D7EBFF),
-              borderRadius: BorderRadius.circular(5*percentScale),
-            ),
-          ),
-          new Container(
-            transform: Matrix4.translationValues(13*percentScale,13*percentScale,0),
-            child: Column(
-              children: <Widget>[
-                CachedNetworkImage(
-                  imageBuilder: (context, imageProvider) => Container(
-                    width: 117*percentScale,
-                    height: 117*percentScale,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4*percentScale),
-                      boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
-                        offset: Offset(0,2),
-                        blurRadius: 2,
-                        spreadRadius: 0
-                      )],
-                      image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.cover),
+          child:  Stack(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.topCenter,
+                child: new Container(
+                  transform: Matrix4.translationValues(0,13*percentScale,0),
+                  width:117*percentScale,
+                  height:117*percentScale,
+                  decoration: new BoxDecoration(
+                    color: Color(0x83D7EBFF),
+                    borderRadius: BorderRadius.circular(5*percentScale),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: new Container(
+                  transform: Matrix4.translationValues(0,13*percentScale,0),
+                  child: Column(
+                    children: <Widget>[
+                      CachedNetworkImage(
+                        imageBuilder: (context, imageProvider) => Container(
+                          width: 117*percentScale,
+                          height: 117*percentScale,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4*percentScale),
+                            boxShadow: [BoxShadow(
+                              color: Color(0x29000000),
+                              offset: Offset(0,2),
+                              blurRadius: 2,
+                              spreadRadius: 0
+                            )],
+                            image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                          ),
+                        ),
+                        imageUrl: imageLink,
+                        //placeholder: (context, url) => CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => new Icon(Icons.error),
+                        height:95*percentScale,
+                        width:95*percentScale,
+                        fadeInDuration: Duration(milliseconds:800),
+                      ),
+                      SizedBox(
+                        height: 8*percentScale,
+                      ),
+                      Text(name,
+                        style: TextStyle(
+                          fontFamily: 'ArialRoundedBold',
+                          color: colorTextBlack,
+                          fontSize: 13*percentScale,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                        )
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Center(
+                child: AnimatedOpacity(
+                  duration: ((){
+                    if(collected == true)
+                      return Duration(milliseconds:1200);
+                    else
+                      return Duration(milliseconds:10);
+                  }()),
+                  opacity: collected ? 0 : 1,
+                  child: Container(
+                    width:120*percentScale,
+                    height:120*percentScale,
+                    transform: Matrix4.translationValues(-11*percentScale,-8*percentScale,0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(300*percentScale),
+                      child: new Transform.scale(
+                        scale: 3*percentScale,
+                        child: Theme(
+                          data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                          child: new Checkbox(
+                            activeColor: Color(0x04FFFFFF),
+                            checkColor: Color(0xFF444444),
+                            value: collected,
+                            onChanged: (bool value) {
+                              setState(() {
+                                collected = value;
+                                saveBool("songCheckList"+name, false, collected);
+                                HapticFeedback.mediumImpact();
+                              });
+                            },
+                          ),
+                        ),
+                      )
                     ),
                   ),
-                  imageUrl: imageLink,
-                  //placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => new Icon(Icons.error),
-                  height:95*percentScale,
-                  width:95*percentScale,
-                  fadeInDuration: Duration(milliseconds:800),
                 ),
-                SizedBox(
-                  height: 8*percentScale,
-                ),
-                Text(name,
-                  style: TextStyle(
-                    fontFamily: 'ArialRoundedBold',
-                    color: colorTextBlack,
-                    fontSize: 13*percentScale,
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                  )
-                ),
-              ],
-            ),
-          ),
-          Center(
-            child: AnimatedOpacity(
-              duration: ((){
-                if(collected == true)
-                  return Duration(milliseconds:1200);
-                else
-                  return Duration(milliseconds:10);
-              }()),
-              opacity: collected ? 0 : 1,
-              child: Container(
-                width:120*percentScale,
-                height:120*percentScale,
-                transform: Matrix4.translationValues(-11*percentScale,-8*percentScale,0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(300*percentScale),
-                  child: new Transform.scale(
-                    scale: 3*percentScale,
-                    child: Theme(
-                      data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                      child: new Checkbox(
-                        activeColor: Color(0x04FFFFFF),
-                        checkColor: Color(0xFF444444),
-                        value: collected,
-                        onChanged: (bool value) {
-                          setState(() {
-                            collected = value;
-                            saveBool("songCheckList"+name, false, collected);
-                            HapticFeedback.mediumImpact();
-                          });
-                        },
-                      ),
+              ),
+              AnimatedOpacity(
+                duration: Duration(milliseconds:400),
+                opacity: collected ? 1 : 0,
+                child: Container(
+                  transform: Matrix4.translationValues(113*percentScale,113*percentScale,0),
+                  height: 25*percentScale,
+                  width: 25*percentScale,
+                  decoration: new BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: colorCheckGreen,
+                    boxShadow: [BoxShadow(
+                      color: Color(0x29000000),
+                      offset: Offset(0,3),
+                      blurRadius: 6,
+                      spreadRadius: 0
+                    ) ],
+                  ),
+                  child: Theme(
+                    data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                    child: new Checkbox(
+                      activeColor: Color(0x00000000),
+                      checkColor: Color(0xFF444444),
+                      value: collected,
+                      onChanged: (bool value) {
+                        setState(() {
+                          collected = value;
+                          saveBool("songCheckList"+name, false, collected);
+                          //HapticFeedback.mediumImpact();
+                        });
+                      },
                     ),
-                  )
-                ),
+                  ),
+                )
               ),
-            ),
-          ),
-          AnimatedOpacity(
-            duration: Duration(milliseconds:400),
-            opacity: collected ? 1 : 0,
-            child: Container(
-              transform: Matrix4.translationValues(113*percentScale,113*percentScale,0),
-              height: 25*percentScale,
-              width: 25*percentScale,
-              decoration: new BoxDecoration(
-                shape: BoxShape.circle,
-                color: colorCheckGreen,
-                boxShadow: [BoxShadow(
-                  color: Color(0x29000000),
-                  offset: Offset(0,3),
-                  blurRadius: 6,
-                  spreadRadius: 0
-                ) ],
-              ),
-              child: Theme(
-                data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                child: new Checkbox(
-                  activeColor: Color(0x00000000),
-                  checkColor: Color(0xFF444444),
-                  value: collected,
-                  onChanged: (bool value) {
-                    setState(() {
-                      collected = value;
-                      saveBool("songCheckList"+name, false, collected);
-                      //HapticFeedback.mediumImpact();
-                    });
-                  },
-                ),
-              ),
-            )
-          ),
-        ],
+          ]
+        ),
       );
     }
   );
