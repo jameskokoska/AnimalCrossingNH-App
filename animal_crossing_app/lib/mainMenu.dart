@@ -976,6 +976,42 @@ class _HomePageState extends State<Home>{
                                   ),
                                 ),
                               ),
+                              new Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  new Container(
+                                    transform: Matrix4.translationValues(-140*percentScale,35*percentScale,0),
+                                    child: Column(
+                                        children: <Widget>[
+                                          Center(
+                                            child: Text(
+                                              "Nook's Cranny: 24/7 baby",
+                                              style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: textColor,
+                                                fontSize: 16*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              "Able Sisters: 9to9",
+                                              style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: textColor,
+                                                fontSize: 16*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ]
                           ),
                         ),
