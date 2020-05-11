@@ -94,7 +94,7 @@ class _MusicListPageState extends State<MusicList>{
                         maxCrossAxisExtent: 250,
                         mainAxisSpacing: 13,
                         crossAxisSpacing: 10,
-                        childAspectRatio: 0.9,
+                        childAspectRatio: 0.91,
                       ),
                       delegate: 
                       SliverChildBuilderDelegate(
@@ -167,6 +167,9 @@ class _MusicListPageState extends State<MusicList>{
                                           height: 35*percentScale,
                                           width: 300*percentScale,
                                           child: CupertinoTextField(
+                                            onTap: (){
+                                              searchMusic='';
+                                            },
                                             maxLength: 15,
                                             placeholder: (){
                                               if (searchMusic==''){
@@ -378,7 +381,7 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
                   child: Container(
                     width:120*percentScale,
                     height:120*percentScale,
-                    transform: Matrix4.translationValues(-11*percentScale,-8*percentScale,0),
+                    transform: Matrix4.translationValues(0,-8*percentScale,0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(300*percentScale),
                       child: new Transform.scale(
@@ -403,39 +406,42 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
                   ),
                 ),
               ),
-              AnimatedOpacity(
-                duration: Duration(milliseconds:400),
-                opacity: collected ? 1 : 0,
-                child: Container(
-                  transform: Matrix4.translationValues(113*percentScale,113*percentScale,0),
-                  height: 25*percentScale,
-                  width: 25*percentScale,
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: colorCheckGreen,
-                    boxShadow: [BoxShadow(
-                      color: Color(0x29000000),
-                      offset: Offset(0,3),
-                      blurRadius: 6,
-                      spreadRadius: 0
-                    ) ],
-                  ),
-                  child: Theme(
-                    data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                    child: new Checkbox(
-                      activeColor: Color(0x00000000),
-                      checkColor: Color(0xFF444444),
-                      value: collected,
-                      onChanged: (bool value) {
-                        setState(() {
-                          collected = value;
-                          saveBool("songCheckList"+name, false, collected);
-                          //HapticFeedback.mediumImpact();
-                        });
-                      },
+              Align(
+                alignment: Alignment.bottomRight,
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds:400),
+                  opacity: collected ? 1 : 0,
+                  child: Container(
+                    transform: Matrix4.translationValues(-6*percentScale,-24*percentScale,0),
+                    height: 25*percentScale,
+                    width: 25*percentScale,
+                    decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: colorCheckGreen,
+                      boxShadow: [BoxShadow(
+                        color: Color(0x29000000),
+                        offset: Offset(0,3),
+                        blurRadius: 6,
+                        spreadRadius: 0
+                      ) ],
                     ),
-                  ),
-                )
+                    child: Theme(
+                      data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                      child: new Checkbox(
+                        activeColor: Color(0x00000000),
+                        checkColor: Color(0xFF444444),
+                        value: collected,
+                        onChanged: (bool value) {
+                          setState(() {
+                            collected = value;
+                            saveBool("songCheckList"+name, false, collected);
+                            //HapticFeedback.mediumImpact();
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ),
               ),
           ]
         ),

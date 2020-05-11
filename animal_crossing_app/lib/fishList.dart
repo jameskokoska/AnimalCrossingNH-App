@@ -216,6 +216,9 @@ class _FishListPageState extends State<FishList>{
                                           }
                                         }(),
                                         child: CupertinoTextField(
+                                          onTap: (){
+                                            searchFish='';
+                                          },
                                           maxLength: 15,
                                           placeholder: (){
                                             if (searchFish==''){
@@ -310,10 +313,12 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                           currentCaught = caught;
                           FocusScope.of(context).requestFocus(new FocusNode());
                           Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                            isScrollControlled:true,
                             context: context, 
                             builder: (context){
                               return Container(
-                                height: 360*percentScale,
+                                height: 400*percentScale,
                                   child: Container(
                                     child: fishPopUp(percentScale, currentCaught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
                                 ),

@@ -1,5 +1,6 @@
 import 'package:animal_crossing_app/fishList.dart';
 import 'package:animal_crossing_app/music.dart';
+import 'package:animal_crossing_app/settingList.dart';
 import 'package:animal_crossing_app/villagerList.dart';
 
 import 'package:flutter/material.dart';
@@ -51,8 +52,8 @@ class _MuseumPageState extends State<MuseumPage>{
               TabBarView(
                 children: <Widget>[
                   VillagerList(),
-                  FishList(),
                   MusicList(),
+                  FishList(),
                 ],
               ),
               TabBar(
