@@ -106,10 +106,10 @@ class _MorePageState extends State<MorePage>{
                           color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xff202020)),
                           borderRadius: BorderRadius.circular(30*percentScale),
                           boxShadow: [BoxShadow(
-                              color:  darkModeColor(darkMode,Color(0x28000000),Color(0x409D99FC)),
-                              offset: Offset(0,3),
-                              blurRadius: 6,
-                              spreadRadius: 0
+                            color:  darkModeColor(darkMode,Color(0x28000000),Color(0x409D99FC)),
+                            offset: Offset(0,3),
+                            blurRadius: 6,
+                            spreadRadius: 0
                           ) ],
                         ),
                         child: Center(
