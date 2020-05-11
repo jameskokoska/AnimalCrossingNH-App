@@ -37,14 +37,14 @@ var currentDate = DateTime.now();
 getStoredBool(String key, bool defaultState) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = prefs.getBool(key) ?? defaultState;
-  print('read $key $storedBool');
+  //print('read $key $storedBool');
   return storedBool;
 }
 
 saveBool(String key, bool defaultState, bool toStoreValue) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = toStoreValue ?? defaultState;
-  print('Stored $key $storedBool');
+  //print('Stored $key $storedBool');
   await prefs.setBool(key, storedBool);
 }
 

@@ -2,14 +2,13 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'fishList.dart';
 import 'package:intl/intl.dart';
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentCaughtFish = false;
+bool currentFavoriteVillager = false;
 
 
-Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget villagerPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -30,7 +29,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 Container(
                   transform: Matrix4.translationValues(0, 20*percentScale, 0),
-                  height:340*percentScale,
+                  height:440*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: Color(0xFFFFFFFF),
@@ -55,7 +54,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: iconImage,
+                          imageUrl: imageLink,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -64,7 +63,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:colorFishAccent,
+                      color:Color(0xFFE0F2F1),
                       boxShadow: [BoxShadow(
                         color: Color(0x29000000),
                         offset: Offset(0,3),
@@ -80,49 +79,11 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                   transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
                   width: 80*percentScale,
                   height: 80*percentScale,
-                  // ---------- Card Location Image ----------
-                  child: Stack(
-                    children: <Widget>[
-                      Center(
-                        child: Container(
-                          transform: Matrix4.translationValues(-13*percentScale,(31)*percentScale,0),
-                          height:30,
-                          width:70,
-                          child: Text(capitalize(whereHow),
-                          textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff90a4ae),
-                                fontSize: 11*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              )
-                          ),
-                        ),
-                      ),
-                      new Container(
-                        width: 55*percentScale,
-                        height: 55*percentScale,
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(100*percentScale),
-                          color: Color(0xffB9F4FB)
-                        )
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100*percentScale),
-                        child: new Image.asset(
-                          'assets/'+determineLocationImage(whereHow)+'.png',
-                          height: 55*percentScale,
-                          width: 55*percentScale,
-                        )
-                      ),
-                    ],
-                  ),
                 ),
-                // ---------- Card Caught ----------
+                // ---------- Card favorite ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
-                  // ---------- Card Body Caught Image ----------
+                  // ---------- Card Body favorite Image ----------
                   child: Container(
                     width: 55*percentScale,
                     height: 55*percentScale,
@@ -130,11 +91,11 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                         children: <Widget>[
                           AnimatedOpacity(
                             duration: Duration(milliseconds:300),
-                            opacity: caught ? 0 : 1,
+                            opacity: favorite ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                child: Text("Not found",
+                                child: Text("",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: Color(0xff90a4ae),
@@ -148,11 +109,11 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           ),
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !caught ? 0 : 1,
+                            opacity: !favorite ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                child: Text("Caught!",
+                                child: Text("Favorite",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: Color(0xff90a4ae),
@@ -166,28 +127,41 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: caught ? 55*percentScale : 0,     //check needs changing to be based on current state
-                            bottom: caught ? 55*percentScale : 0,
+                            top: favorite ? 55*percentScale : 0,     //check needs changing to be based on current state
+                            bottom: favorite ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: colorCheckRed
+                                color: Color(0xFFE0F2F1)
                               )
                             ),
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !caught ? 55*percentScale : 0,      //check needs changing to be based on current state
-                            bottom: !caught ? 55*percentScale : 0,
+                            top: !favorite ? 55*percentScale : 0,      //check needs changing to be based on current state
+                            bottom: !favorite ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: colorCheckGreen,
+                                color: colorVillagerAccent,
                               )
+                            ),
+                          ),
+                          Container(
+                            transform: Matrix4.translationValues(0,(1)*percentScale,0),
+                            child: Center(
+                              child: AnimatedContainer(
+                                duration: Duration(milliseconds: 200),
+                                width: favorite ? 30*percentScale : 0,
+                                height: favorite ? 30*percentScale : 0,
+                                child: Image.asset(
+                                    'assets/heart.png',
+                                ),
+                              ),
                             ),
                           ),
                           Center(
@@ -199,13 +173,13 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
-                                    value: currentCaughtFish,
+                                    checkColor: Color(0x00FFFFFF),
+                                    value: currentFavoriteVillager,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        caught = value;
-                                        currentCaughtFish = value;
-                                        saveBool("fishCheckList"+name, false, caught);
+                                        favorite = value;
+                                        currentFavoriteVillager = value;
+                                        saveBool("villagerCheckList"+name, false, favorite);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -222,36 +196,11 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 
                   Center(
                     child: Container(
-                      transform: Matrix4.translationValues(0, 50*percentScale, 0),
+                      transform: Matrix4.translationValues(0, 40*percentScale, 0),
                       height: 340*percentScale,
                       width: 360*percentScale,
                       child: Column(
                         children: [
-                          SizedBox(
-                            height:10*percentScale,
-                          ),
-                          // ---------- Card Centre Quote ----------
-                          AnimatedOpacity(
-                            duration: Duration(milliseconds:200),
-                            opacity: caught||showCatchPhraseNow ? 1 : 0,
-                            child: Container(
-                              width: 220*percentScale,
-                              child: Text("“"+catchphrase+"”",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Baskerville',
-                                  color: colorFishTextDarkBlue,
-                                  fontSize: 14*percentScale,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.italic,
-                                )
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height:10*percentScale,
-                          ),
-                          // ---------- Card Centre Name ----------
                           Container(
                             child: new Text(capitalize(name),
                               style: TextStyle(
@@ -264,48 +213,35 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                             ),
                           ),
                           SizedBox(
-                            height:20*percentScale,
+                            height:10*percentScale,
                           ),
-                          //Shadow
-                          Stack(
-                            children: <Widget>[
-                              Center(
-                                child: Container(
-                                  width: 120*percentScale,
-                                  height: 55*percentScale,
-                                  decoration: new BoxDecoration(
-                                    color: colorLightDarkAccent,
-                                    borderRadius:  BorderRadius.circular(15*percentScale)
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Container(
-                                  width: 90*percentScale,
-                                  height: 55*percentScale,
-                                  child: new Image.asset(
-                                    'assets/shadowNormal'+determineShadowImage(shadow, whereHow)+'.png',
-                                    height: 70*percentScale,
-                                    width: 100*percentScale,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          Container(
+                            width: 220*percentScale,
+                            child: Text(getGenderString(gender) + " - “"+catchphrase+"”",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Baskerville',
+                                color: colorFishTextDarkBlue,
+                                fontSize: 14*percentScale,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.italic,
+                              )
+                            ),
                           ),
                           SizedBox(
-                            height:8*percentScale,
+                            height:30*percentScale,
                           ),
-                          //Shadow size
+
+                          //birthday
                           Container(
                             height: 45*percentScale,
                             width:200*percentScale,
-                            
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Container(
                                   child: new Image.asset(
-                                    'assets/magnifyingGlass.png',
+                                    'assets/birthdayCake.png',
                                     height: 25*percentScale,
                                     width: 25*percentScale,
                                   ),
@@ -314,20 +250,20 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   width: 10*percentScale,
                                 ),
                                 Container(
-                                  child: new Text(capitalize(shadow),
-                                      style: TextStyle(
-                                        fontFamily: 'ArialRoundedBold',
-                                        color: Color(0xff3a3a3a),
-                                        fontSize: 19*percentScale,
-                                        fontWeight: FontWeight.w400,
-                                        fontStyle: FontStyle.normal,
-                                      )
+                                  child: new Text(birthday,
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: Color(0xff3a3a3a),
+                                      fontSize: 19*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          //Sell price
+                          //species
                           Container(
                             width:200*percentScale,
                             height: 45*percentScale,
@@ -337,7 +273,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                               children: [
                                 Container(
                                   child: new Image.asset(
-                                    'assets/bellBag.png',
+                                    'assets/personailityEmoji.png',
                                     height: 25*percentScale,
                                     width: 25*percentScale,
                                   ),
@@ -346,7 +282,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   width: 10*percentScale,
                                 ),
                                 Container(
-                                  child: new Text(bellsPrice.format(int.parse(sell))+" bells",
+                                  child: new Text(personality,
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: Color(0xff3a3a3a),
@@ -358,6 +294,107 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 ),
                               ]
                             )
+                          ),
+                          //species
+                          Container(
+                            width:200*percentScale,
+                            height: 45*percentScale,
+                           
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: new Image.asset(
+                                    'assets/cat.png',
+                                    height: 25*percentScale,
+                                    width: 25*percentScale,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10*percentScale,
+                                ),
+                                Container(
+                                  child: new Text(species,
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: Color(0xff3a3a3a),
+                                      fontSize: 19*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
+                                  ),
+                                ),
+                              ]
+                            )
+                          ),
+                          Container(
+                            width:200*percentScale,
+                            height: 45*percentScale,
+                           
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: new Image.asset(
+                                    'assets/styleEmoji.png',
+                                    height: 25*percentScale,
+                                    width: 25*percentScale,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10*percentScale,
+                                ),
+                                Container(
+                                  child: new Text((){
+                                      if (style1 == style2){
+                                        return style1;
+                                      } else {
+                                        return style1 + ", " + style2;
+                                      }
+                                    }(),
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: Color(0xff3a3a3a),
+                                      fontSize: 19*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
+                                  ),
+                                ),
+                              ]
+                            )
+                          ),
+                          //Colours
+                          Container(
+                            height: 45*percentScale,
+                            width:200*percentScale,
+                            
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  child: new Image.asset(
+                                    'assets/colorPalette.png',
+                                    height: 25*percentScale,
+                                    width: 25*percentScale,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 13*percentScale,
+                                ),
+                                Container(
+                                  child: new Text(color1 + ", " + color2,
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: Color(0xff3a3a3a),
+                                      fontSize: 19*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           
                         ],
@@ -372,3 +409,14 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
     }
   );
 } 
+
+
+String getGenderString(String gender){
+  if(gender.toLowerCase()=="male"){
+    return "he/him";
+  } else if (gender.toLowerCase()=="female"){
+    return "she/her";
+  } else {
+    return "no assumption";
+  }
+}

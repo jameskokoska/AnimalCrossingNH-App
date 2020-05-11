@@ -307,10 +307,11 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                         onLongPress: (){
                           setState(() {
                             caught = !caught;
+                            saveBool("fishCheckList"+name, false, caught);
                           });
                         },
                         onTap: (){
-                          currentCaught = caught;
+                          currentCaughtFish = caught;
                           FocusScope.of(context).requestFocus(new FocusNode());
                           Future<void> future = showModalBottomSheet(
                             //by setting this to true, we can avoid the half screen limit
@@ -320,7 +321,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                               return Container(
                                 height: 400*percentScale,
                                   child: Container(
-                                    child: fishPopUp(percentScale, currentCaught, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
+                                    child: fishPopUp(percentScale, currentCaughtFish, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
                                 ),
                               );
                           });
