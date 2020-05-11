@@ -151,7 +151,7 @@ class _MusicListPageState extends State<MusicList>{
                                   Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Container(
-                                    transform: Matrix4.translationValues(0,-210*percentScale+(top*percentScale/1.7*percentScale)*percentScale,0),
+                                    transform: Matrix4.translationValues(0,-160+(top/1.7),0),
                                     child: Padding(
                                       padding: const EdgeInsets.only(bottom:20,right:10),
                                       child: Opacity(
