@@ -74,7 +74,7 @@ class _MorePageState extends State<MorePage>{
                           SliverPadding(
                             padding: EdgeInsets.only(top:60 * percentScale),
                             sliver: SliverPadding(
-                              padding: new EdgeInsets.all(45.0),
+                              padding: EdgeInsets.all(30.0 * percentScale),
                               sliver: SliverGrid(
                                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                                   maxCrossAxisExtent: 250,

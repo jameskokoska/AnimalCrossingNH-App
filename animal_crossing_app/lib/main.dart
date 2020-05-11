@@ -12,6 +12,7 @@ import 'music.dart';
 import 'museumCollection.dart';
 import 'villagerList.dart';
 import 'settingList.dart';
+import 'art.dart';
 
 //----------Global Colours-----------
 Color colorLightDarkAccent = Color(0xFFF5F5F5);
@@ -108,6 +109,7 @@ class _MainPageState extends State<Main> {
   SettingList settingList;
   MuseumPage museumPage;
   VillagerList villagerList;
+  ArtPage artPage;
   Widget currentPageWidget;
 
   
@@ -121,6 +123,7 @@ class _MainPageState extends State<Main> {
     settingList = SettingList();
     museumPage = MuseumPage();
     villagerList = VillagerList();
+    artPage = ArtPage();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
@@ -154,7 +157,7 @@ class _MainPageState extends State<Main> {
       } else if (index == 1){
         currentPageWidget = settingList;
       } else if (index == 2){
-        currentPageWidget = morepage;
+        currentPageWidget = artPage;
       } else {
         currentPageWidget = museumPage;
       }
