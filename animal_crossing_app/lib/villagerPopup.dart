@@ -194,213 +194,68 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                 ),
                 // ---------- Card Centre Content ----------
                 
-                  Center(
-                    child: Container(
-                      transform: Matrix4.translationValues(0, 40*percentScale, 0),
-                      height: 340*percentScale,
-                      width: 360*percentScale,
-                      child: Column(
-                        children: [
-                          Container(
-                            child: new Text(capitalize(name),
-                              style: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff373737),
-                                fontSize: 31*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              )
-                            ),
+                Center(
+                  child: Container(
+                    transform: Matrix4.translationValues(0, 40*percentScale, 0),
+                    height: 340*percentScale,
+                    width: 360*percentScale,
+                    child: Column(
+                      children: [
+                        Container(
+                          child: new Text(capitalize(name),
+                            style: TextStyle(
+                              fontFamily: 'ArialRoundedBold',
+                              color: Color(0xff373737),
+                              fontSize: 31*percentScale,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                            )
                           ),
-                          SizedBox(
-                            height:10*percentScale,
+                        ),
+                        SizedBox(
+                          height:10*percentScale,
+                        ),
+                        Container(
+                          width: 220*percentScale,
+                          child: Text(getGenderString(gender) + " - “"+catchphrase+"”",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Baskerville',
+                              color: colorFishTextDarkBlue,
+                              fontSize: 14*percentScale,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.italic,
+                            )
                           ),
-                          Container(
-                            width: 220*percentScale,
-                            child: Text(getGenderString(gender) + " - “"+catchphrase+"”",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Baskerville',
-                                color: colorFishTextDarkBlue,
-                                fontSize: 14*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.italic,
-                              )
-                            ),
-                          ),
-                          SizedBox(
-                            height:30*percentScale,
-                          ),
+                        ),
+                        SizedBox(
+                          height:30*percentScale,
+                        ),
 
-                          //birthday
-                          Container(
-                            height: 45*percentScale,
-                            width:200*percentScale,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                  child: new Image.asset(
-                                    'assets/birthdayCake.png',
-                                    height: 25*percentScale,
-                                    width: 25*percentScale,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10*percentScale,
-                                ),
-                                Container(
-                                  child: new Text(birthday,
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          //species
-                          Container(
-                            width:200*percentScale,
-                            height: 45*percentScale,
-                           
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: new Image.asset(
-                                    'assets/personailityEmoji.png',
-                                    height: 25*percentScale,
-                                    width: 25*percentScale,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10*percentScale,
-                                ),
-                                Container(
-                                  child: new Text(personality,
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                  ),
-                                ),
-                              ]
-                            )
-                          ),
-                          //species
-                          Container(
-                            width:200*percentScale,
-                            height: 45*percentScale,
-                           
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: new Image.asset(
-                                    'assets/cat.png',
-                                    height: 25*percentScale,
-                                    width: 25*percentScale,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10*percentScale,
-                                ),
-                                Container(
-                                  child: new Text(species,
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                  ),
-                                ),
-                              ]
-                            )
-                          ),
-                          Container(
-                            width:200*percentScale,
-                            height: 45*percentScale,
-                           
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: new Image.asset(
-                                    'assets/styleEmoji.png',
-                                    height: 25*percentScale,
-                                    width: 25*percentScale,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10*percentScale,
-                                ),
-                                Container(
-                                  child: new Text((){
-                                      if (style1 == style2){
-                                        return style1;
-                                      } else {
-                                        return style1 + ", " + style2;
-                                      }
-                                    }(),
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                  ),
-                                ),
-                              ]
-                            )
-                          ),
-                          //Colours
-                          Container(
-                            height: 45*percentScale,
-                            width:200*percentScale,
-                            
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                  child: new Image.asset(
-                                    'assets/colorPalette.png',
-                                    height: 25*percentScale,
-                                    width: 25*percentScale,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 13*percentScale,
-                                ),
-                                Container(
-                                  child: new Text(color1 + ", " + color2,
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          
-                        ],
-                      ),
+                        //birthday
+                        infoContainer(percentScale, 'birthdayCake.png', birthday),
+                        //species
+                        infoContainer(percentScale, 'cat.png',species),
+                        //personaility
+                        infoContainer(percentScale, 'personailityEmoji.png', personality),
+                        //style
+                        Container(
+                          child: (){
+                            String style;
+                            if (style1 == style2){
+                              style = style1;
+                            } else {
+                              style = style1 + ", " + style2;
+                            }
+                            return infoContainer(percentScale, 'styleEmoji.png', style);
+                          }()
+                        ),
+                        //colours
+                        infoContainer(percentScale, 'colorPalette.png',color1 + ", " + color2),
+                      ],
                     ),
-                  )
+                  ),
+                )
               ],
             ),
           ],
@@ -419,4 +274,38 @@ String getGenderString(String gender){
   } else {
     return "no assumption";
   }
+}
+
+
+Widget infoContainer(double percentScale, String imageIcon, String displayString){
+  return Container(
+    width:200*percentScale,
+    height: 45*percentScale,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: new Image.asset(
+            'assets/'+imageIcon,
+            height: 25*percentScale,
+            width: 25*percentScale,
+          ),
+        ),
+        SizedBox(
+          width: 10*percentScale,
+        ),
+        Container(
+          child: new Text(displayString,
+            style: TextStyle(
+              fontFamily: 'ArialRoundedBold',
+              color: Color(0xff3a3a3a),
+              fontSize: 19*percentScale,
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.normal,
+            )
+          ),
+        ),
+      ]
+    )
+  );
 }

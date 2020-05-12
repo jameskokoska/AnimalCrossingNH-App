@@ -13,6 +13,7 @@ import 'museumCollection.dart';
 import 'villagerList.dart';
 import 'settingList.dart';
 import 'art.dart';
+import 'emojipedia.dart';
 
 //----------Global Colours-----------
 Color colorLightDarkAccent = Color(0xFFF5F5F5);
@@ -111,6 +112,7 @@ class _MainPageState extends State<Main> {
   MuseumPage museumPage;
   VillagerList villagerList;
   ArtPage artPage;
+  EmojiList emojiList; 
   Widget currentPageWidget;
 
   
@@ -125,6 +127,7 @@ class _MainPageState extends State<Main> {
     museumPage = MuseumPage();
     villagerList = VillagerList();
     artPage = ArtPage();
+    emojiList = EmojiList();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();

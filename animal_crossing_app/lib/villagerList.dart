@@ -143,7 +143,7 @@ class _VillagerListPageState extends State<VillagerList>{
                       pinned: true,
                       //snap: true,
                       floating: true,
-                      elevation: 0,
+                      elevation: 10,
                       flexibleSpace: LayoutBuilder(
                         builder: (BuildContext context, BoxConstraints constraints){
                           top = constraints.biggest.height;
