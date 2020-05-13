@@ -24,6 +24,8 @@ Color colorCheckRed = Color(0xFFF8DFE3);
 Color colorCheckGreen = Color(0xFFA0DDA1);
 Color colorFishAccent = Color(0xFFE3F2FD);
 Color colorFishTextDarkBlue = Color(0xff3F51B5);
+Color colorBugAccent = Color(0xFFe8f5e9);
+Color colorBugTextDarkGreen = Color(0xFF1b5e20);
 Color colorVillagerAccent = Color(0xFFB2DFDB);
 //---------------------------
 //----------Globals----------

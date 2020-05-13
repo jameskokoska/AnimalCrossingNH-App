@@ -2,14 +2,15 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'bugList.dart';
 import 'package:intl/intl.dart';
+import 'popupFunctions.dart';
+
 
 final bellsPrice = new NumberFormat("#,##0");
 bool currentCaughtBug = false;
 
 
-Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String weather,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -64,7 +65,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:colorFishAccent,
+                      color:colorBugAccent,
                       boxShadow: [BoxShadow(
                         color: Color(0x29000000),
                         offset: Offset(0,3),
@@ -240,7 +241,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'Baskerville',
-                                  color: colorFishTextDarkBlue,
+                                  color: colorBugTextDarkGreen,
                                   fontSize: 14*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.italic,
@@ -266,100 +267,8 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                           SizedBox(
                             height:20*percentScale,
                           ),
-                          //Shadow
-                          Stack(
-                            children: <Widget>[
-                              Center(
-                                child: Container(
-                                  width: 120*percentScale,
-                                  height: 55*percentScale,
-                                  decoration: new BoxDecoration(
-                                    color: colorLightDarkAccent,
-                                    borderRadius:  BorderRadius.circular(15*percentScale)
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Container(
-                                  width: 90*percentScale,
-                                  height: 55*percentScale,
-                                  // child: new Image.asset(
-                                  //   'assets/shadowNormal'+determineShadowImage(shadow, whereHow)+'.png',
-                                  //   height: 70*percentScale,
-                                  //   width: 100*percentScale,
-                                  // ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height:8*percentScale,
-                          ),
-                          //Shadow size
-                          Container(
-                            height: 45*percentScale,
-                            width:200*percentScale,
-                            
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                  child: new Image.asset(
-                                    'assets/magnifyingGlass.png',
-                                    height: 25*percentScale,
-                                    width: 25*percentScale,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10*percentScale,
-                                ),
-                                Container(
-                                  child: new Text(capitalize(shadow),
-                                      style: TextStyle(
-                                        fontFamily: 'ArialRoundedBold',
-                                        color: Color(0xff3a3a3a),
-                                        fontSize: 19*percentScale,
-                                        fontWeight: FontWeight.w400,
-                                        fontStyle: FontStyle.normal,
-                                      )
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          //Sell price
-                          Container(
-                            width:200*percentScale,
-                            height: 45*percentScale,
-                           
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: new Image.asset(
-                                    'assets/bellBag.png',
-                                    height: 25*percentScale,
-                                    width: 25*percentScale,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10*percentScale,
-                                ),
-                                Container(
-                                  child: new Text(bellsPrice.format(int.parse(sell))+" bells",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff3a3a3a),
-                                      fontSize: 19*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                  ),
-                                ),
-                              ]
-                            )
-                          ),
-                          
+                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(sell))+" bells"),
+                          infoContainer(percentScale, 'bellBag.png', whereHow),
                         ],
                       ),
                     ),
