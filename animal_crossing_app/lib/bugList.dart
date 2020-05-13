@@ -4,25 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'fishPopup.dart';
+import 'bugPopup.dart';
 import 'popupFunctions.dart';
-
 
 import 'dart:async';
 import 'dart:convert';
 
-class FishList extends StatefulWidget {
-  FishList({Key key, this.title}) : super(key: key);
+class BugList extends StatefulWidget {
+  BugList({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _FishListPageState createState() => _FishListPageState();
+  _BugListPageState createState() => _BugListPageState();
 }
 
-String searchFish = '';
+String searchBug = '';
 
-class FishData{
+class BugData{
   final String id;
   final String name;
   final String iconImage;
@@ -30,9 +29,8 @@ class FishData{
   final String furnitureImage;
   final String sell;
   final String whereHow;
-  final String shadow;
+  final String weather;
   final String totalCatchesToUnlock;
-  final String rainSnow;
   final String nhJan;
   final String nhFeb;
   final String nhMar;
@@ -59,8 +57,6 @@ class FishData{
   final String shDec;
   final String color1;
   final String color2;
-  final String size;
-  final String lightingType;
   final String iconFilename;
   final String critterpediaFilename;
   final String furnitureFilename;
@@ -70,36 +66,36 @@ class FishData{
   final String museum;
   final bool caught;
 
-  FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rainSnow,
+  BugData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.weather,this.totalCatchesToUnlock,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
+  this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
   
 }
 
 
-class _FishListPageState extends State<FishList>{
+class _BugListPageState extends State<BugList>{
 
-  Future<List<FishData>> getFishData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/fish.json");
+  Future<List<BugData>> getBugData(String search) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/bug.json");
 
     final jsonData = json.decode(data);
     bool caught = false;
-    List<FishData> fishData = [];
+    List<BugData> bugData = [];
     for(var u in jsonData){
-      getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
+      getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
         caught = indexResult;
-        FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+        BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
         if(search == ''){
-          fishData.add(fishDatum);
+          bugData.add(bugDatum);
         } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          fishData.add(fishDatum);
+          bugData.add(bugDatum);
         } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
-          fishData.add(fishDatum);
+          bugData.add(bugDatum);
         }
       });
     }
-    return fishData;
+    return bugData;
   }
 
   @override
@@ -136,23 +132,23 @@ class _FishListPageState extends State<FishList>{
             ),
             
             FutureBuilder(
-              future: getFishData(searchFish),
+              future: getBugData(searchBug),
               builder: (context,snapshot){
-                Widget fishListSliver;
+                Widget bugListSliver;
                 if(snapshot.hasData){
-                  fishListSliver = SliverPadding(
+                  bugListSliver = SliverPadding(
                     padding: EdgeInsets.only(top:0),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return fishContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
+                          return bugContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
                         }, 
                         childCount: snapshot.data.length,
                       ),
                     ),
                   );
                 } else {
-                  fishListSliver = SliverToBoxAdapter(
+                  bugListSliver = SliverToBoxAdapter(
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -186,7 +182,7 @@ class _FishListPageState extends State<FishList>{
                           return FlexibleSpaceBar(
                             title: Container(
                               transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
-                              child: Text("Fish",
+                              child: Text("Bug",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
                                   color: colorTextWhite,
@@ -199,7 +195,7 @@ class _FishListPageState extends State<FishList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/fishTitle.png'),
+                                //Image.asset('assets/bugTitle.png'),
                                   Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
@@ -218,14 +214,14 @@ class _FishListPageState extends State<FishList>{
                                         }(),
                                         child: CupertinoTextField(
                                           onTap: (){
-                                            searchFish='';
+                                            searchBug='';
                                           },
                                           maxLength: 15,
                                           placeholder: (){
-                                            if (searchFish==''){
+                                            if (searchBug==''){
                                               return 'Search';
                                             } else {
-                                              return searchFish;
+                                              return searchBug;
                                             }
                                           }(),
                                           decoration: BoxDecoration(
@@ -242,7 +238,7 @@ class _FishListPageState extends State<FishList>{
                                           ),
                                           onChanged: (string){
                                             setState(() {
-                                              searchFish = string;
+                                              searchBug = string;
                                             });
                                           },
                                         ),
@@ -258,7 +254,7 @@ class _FishListPageState extends State<FishList>{
                       
                     ),
                     //Add the sliverlist parsed in future function above
-                    fishListSliver,
+                    bugListSliver,
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(
@@ -277,7 +273,7 @@ class _FishListPageState extends State<FishList>{
 }
 
 
-Widget fishContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget bugContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
   return Center(
     child: new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) { 
@@ -285,7 +281,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
           visible: (){
             if(!showListOnlyActive)
               return true;
-            else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchFish=="")
+            else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchBug=="")
               return false;
             else
               return true;
@@ -308,11 +304,11 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                         onLongPress: (){
                           setState(() {
                             caught = !caught;
-                            saveBool("fishCheckList"+name, false, caught);
+                            saveBool("bugCheckList"+name, false, caught);
                           });
                         },
                         onTap: (){
-                          currentCaughtFish = caught;
+                          currentCaughtBug = caught;
                           FocusScope.of(context).requestFocus(new FocusNode());
                           Future<void> future = showModalBottomSheet(
                             //by setting this to true, we can avoid the half screen limit
@@ -322,12 +318,12 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                               return Container(
                                 height: 400*percentScale,
                                   child: Container(
-                                    child: fishPopUp(percentScale, currentCaughtFish, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
+                                    child: bugPopUp(percentScale, currentCaughtBug, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
                                 ),
                               );
                           });
                           future.then((void value)=> setState(() {
-                            getStoredBool("fishCheckList"+name, false).then((indexResult){
+                            getStoredBool("bugCheckList"+name, false).then((indexResult){
                                 caught = indexResult;
                             });
                           }));
@@ -379,9 +375,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                           ),
                           imageUrl: iconImage,
                           //placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
-                          height:45*percentScale,
-                          width:45*percentScale,
+                          errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
                         ),
                       ),
@@ -452,11 +446,11 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       ),
                       Container(
                          transform: Matrix4.translationValues((190)*percentScale,(22)*percentScale,0),
-                         child: Image.asset(
-                           'assets/shadow'+determineShadowImage(shadow, whereHow)+'.png',
-                           height:60*percentScale,
-                           width:70*percentScale,
-                        ),
+                        //  child: Image.asset(
+                        //    'assets/shadow'+determineShadowImage(shadow, whereHow)+'.png',
+                        //    height:60*percentScale,
+                        //    width:70*percentScale,
+                        // ),
                       )
                     ],
                   ),
@@ -479,7 +473,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                             onChanged: (bool value) {
                               setState(() {
                                 caught = value;
-                                saveBool("fishCheckList"+name, false, caught);
+                                saveBool("bugCheckList"+name, false, caught);
                                 HapticFeedback.mediumImpact();
                             });
                           },
@@ -496,27 +490,3 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
     }),
   );
 }
-
-String determineShadowImage(String shadowSize, String whereHow){
-  if(shadowSize.contains('Fin')){
-    return "LargeFin";
-  }
-  if(shadowSize.contains('Long')){
-    return "Long";
-  } else if (whereHow.contains('Ocean')||whereHow.contains('Pier')){
-    return "Ocean-"+shadowSize;
-  } else if (whereHow.contains('River')||whereHow.contains('Pond')){
-    return "River-"+shadowSize;
-  }
-  return "Long";
-}
-
-String determineLocationImage(String whereHow){
-  if(whereHow.contains('Ocean')||whereHow.contains('Pier')){
-    return "oceanIcon";
-  } else if (whereHow.contains('River')||whereHow.contains('Pond')){
-    return "riverIcon";
-  }
-  return "riverIcon";
-}
-

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'popupFunctions.dart';
+
 
 final bellsPrice = new NumberFormat("#,##0");
 bool currentFavoriteVillager = false;
@@ -276,36 +278,3 @@ String getGenderString(String gender){
   }
 }
 
-
-Widget infoContainer(double percentScale, String imageIcon, String displayString){
-  return Container(
-    width:200*percentScale,
-    height: 45*percentScale,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          child: new Image.asset(
-            'assets/'+imageIcon,
-            height: 25*percentScale,
-            width: 25*percentScale,
-          ),
-        ),
-        SizedBox(
-          width: 10*percentScale,
-        ),
-        Container(
-          child: new Text(displayString,
-            style: TextStyle(
-              fontFamily: 'ArialRoundedBold',
-              color: Color(0xff3a3a3a),
-              fontSize: 19*percentScale,
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.normal,
-            )
-          ),
-        ),
-      ]
-    )
-  );
-}

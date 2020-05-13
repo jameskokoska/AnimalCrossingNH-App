@@ -5,9 +5,9 @@ import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'more.dart';
-import 'bugs.dart';
 import 'mainMenu.dart';
 import 'fishList.dart';
+import 'bugList.dart';
 import 'music.dart';
 import 'museumCollection.dart';
 import 'villagerList.dart';
@@ -104,9 +104,9 @@ class _MainPageState extends State<Main> {
   int selectedIndex = 0;
 
   Home homepage;
-  BugsPage bugspage;
   MorePage morepage;
   FishList fishlist;
+  BugList buglist;
   MusicList musiclist;
   SettingList settingList;
   MuseumPage museumPage;
@@ -119,9 +119,9 @@ class _MainPageState extends State<Main> {
   @override
   void initState(){
     homepage = Home();
-    bugspage = BugsPage();
     morepage = MorePage();
     fishlist = FishList();
+    buglist = BugList();
     musiclist = MusicList();
     settingList = SettingList();
     museumPage = MuseumPage();

@@ -71,7 +71,7 @@ class _MusicListPageState extends State<MusicList>{
     }
     
     double top = 0;
-
+    
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: GestureDetector(
@@ -348,9 +348,9 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
                         ),
                         imageUrl: imageLink,
                         //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => new Icon(Icons.error),
-                        height:95*percentScale,
-                        width:95*percentScale,
+                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 117*percentScale,height:117*percentScale),
+                        height:117*percentScale,
+                        width:117*percentScale,
                         fadeInDuration: Duration(milliseconds:800),
                       ),
                       SizedBox(

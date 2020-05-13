@@ -337,7 +337,7 @@ Widget villagerContainer(double percentScale, String name, String imageLink, boo
                             ),
                             imageUrl: imageLink,
                             //placeholder: (context, url) => CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => new Icon(Icons.error),
+                            errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 67*percentScale,height:67*percentScale),
                             height:67*percentScale,
                             width:67*percentScale,
                             fadeInDuration: Duration(milliseconds:800),

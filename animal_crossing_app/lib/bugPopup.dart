@@ -2,16 +2,14 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'fishList.dart';
+import 'bugList.dart';
 import 'package:intl/intl.dart';
-import 'popupFunctions.dart';
-
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentCaughtFish = false;
+bool currentCaughtBug = false;
 
 
-Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -112,11 +110,11 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                       ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100*percentScale),
-                        child: new Image.asset(
-                          'assets/'+determineLocationImage(whereHow)+'.png',
-                          height: 55*percentScale,
-                          width: 55*percentScale,
-                        )
+                        // child: new Image.asset(
+                        //   //'assets/'+determineLocationImage(whereHow)+'.png',
+                        //   height: 55*percentScale,
+                        //   width: 55*percentScale,
+                        // )
                       ),
                     ],
                   ),
@@ -202,12 +200,12 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: Color(0xFFFFFFFF),
-                                    value: currentCaughtFish,
+                                    value: currentCaughtBug,
                                     onChanged: (bool value) {
                                       setState(() {
                                         caught = value;
-                                        currentCaughtFish = value;
-                                        saveBool("fishCheckList"+name, false, caught);
+                                        currentCaughtBug = value;
+                                        saveBool("bugCheckList"+name, false, caught);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -285,11 +283,11 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 child: Container(
                                   width: 90*percentScale,
                                   height: 55*percentScale,
-                                  child: new Image.asset(
-                                    'assets/shadowNormal'+determineShadowImage(shadow, whereHow)+'.png',
-                                    height: 70*percentScale,
-                                    width: 100*percentScale,
-                                  ),
+                                  // child: new Image.asset(
+                                  //   'assets/shadowNormal'+determineShadowImage(shadow, whereHow)+'.png',
+                                  //   height: 70*percentScale,
+                                  //   width: 100*percentScale,
+                                  // ),
                                 ),
                               ),
                             ],
@@ -297,9 +295,71 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           SizedBox(
                             height:8*percentScale,
                           ),
-                          infoContainer(percentScale, 'magnifyingGlass.png', capitalize(shadow)),
                           //Shadow size
-                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(sell))+" bells"),
+                          Container(
+                            height: 45*percentScale,
+                            width:200*percentScale,
+                            
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  child: new Image.asset(
+                                    'assets/magnifyingGlass.png',
+                                    height: 25*percentScale,
+                                    width: 25*percentScale,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10*percentScale,
+                                ),
+                                Container(
+                                  child: new Text(capitalize(shadow),
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRoundedBold',
+                                        color: Color(0xff3a3a3a),
+                                        fontSize: 19*percentScale,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                      )
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          //Sell price
+                          Container(
+                            width:200*percentScale,
+                            height: 45*percentScale,
+                           
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: new Image.asset(
+                                    'assets/bellBag.png',
+                                    height: 25*percentScale,
+                                    width: 25*percentScale,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10*percentScale,
+                                ),
+                                Container(
+                                  child: new Text(bellsPrice.format(int.parse(sell))+" bells",
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: Color(0xff3a3a3a),
+                                      fontSize: 19*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
+                                  ),
+                                ),
+                              ]
+                            )
+                          ),
+                          
                         ],
                       ),
                     ),

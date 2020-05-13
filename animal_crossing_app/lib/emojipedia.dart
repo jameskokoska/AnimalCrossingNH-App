@@ -268,9 +268,9 @@ Widget emojiContainer(double percentScale, Color colorTextBlack, String name, St
                         ),
                         imageUrl: imageLink,
                         //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => new Icon(Icons.error),
-                        height:95*percentScale,
-                        width:95*percentScale,
+                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 67*percentScale,height:67*percentScale),
+                        height:67*percentScale,
+                        width:67*percentScale,
                         fadeInDuration: Duration(milliseconds:800),
                       ),
                       SizedBox(
