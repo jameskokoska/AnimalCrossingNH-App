@@ -2,6 +2,8 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'dart:async';
+import 'package:intl/intl.dart';
+
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -133,19 +135,29 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
 
 
 class _HomePageState extends State<Home>{
-  int seconds=DateTime.now().second;
+  bool morning = false;
+  String currentTime;
+  String afternoonString;
+  String date;
+  String weekday;
+
+  
   @override
   void initState() {
     //seconds = _formatDateTime(DateTime.now());
     Timer.periodic(Duration(seconds: 1), (Timer t) => getTime());
     super.initState();
+    getTime();
   }
 
   void getTime() {
-    final DateTime now = DateTime.now();
     if (!mounted) return;
     setState(() {
-      seconds = now.second;
+      String time = DateFormat.jm().format(new DateTime.now()).toString();
+      currentTime = time.substring(0,time.length-3);
+      afternoonString = time.substring(time.length-2,time.length);
+      date = DateFormat.MMMMd().format(new DateTime.now()).toString();
+      weekday = DateFormat.E().format(new DateTime.now()).toString();
     });
   }
 
@@ -202,17 +214,6 @@ class _HomePageState extends State<Home>{
               child: Column(
                 children: <Widget>[
                   Container(
-                    transform: Matrix4.translationValues(0, 65*percentScale, 0),
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Image.asset(
-                          'assets/TestClock2.png',
-                          height:157*percentScale,
-                          width:236*percentScale,
-                      ),
-                    ),
-                  ),
-                  Container(
                     transform: Matrix4.translationValues(0, 69*percentScale, 0),
                     child: Align(
                       alignment: Alignment.topCenter,
@@ -221,7 +222,7 @@ class _HomePageState extends State<Home>{
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text(currentDate.hour.toString()+":"+seconds.toString(),
+                              Text(currentTime,
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
                                   color: Colors.white,
@@ -242,7 +243,7 @@ class _HomePageState extends State<Home>{
                               ),
                               Container(
                                 transform: Matrix4.translationValues(0, 8*percentScale, 0),
-                                child: Text("PM",
+                                child: Text(afternoonString,
                                   style: TextStyle(
                                     fontFamily: 'ArialRoundedBold',
                                     color: colorTextWhite,
@@ -288,7 +289,7 @@ class _HomePageState extends State<Home>{
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Text("March 23",
+                                      Text(date,
                                         style: TextStyle(
                                           fontFamily: 'ArialRoundedBold',
                                           color: Color(0x00FFFFFF),
@@ -314,7 +315,7 @@ class _HomePageState extends State<Home>{
                                             bottom: 4,
                                           ),
                                           child: Center(
-                                            child: Text("Mon.",
+                                            child: Text(weekday + ".",
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color: Colors.transparent,
@@ -340,7 +341,7 @@ class _HomePageState extends State<Home>{
                             mainAxisAlignment: MainAxisAlignment.center,
                             //crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text("March 23",
+                              Text(date,
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
                                   color: Colors.white,
@@ -379,7 +380,7 @@ class _HomePageState extends State<Home>{
                                     bottom: 6,
                                   ),
                                   child: Center(
-                                    child: Text("Mon.",
+                                    child: Text(weekday + ".",
                                       style: TextStyle(
                                         fontFamily: 'ArialRoundedBold',
                                         color: Colors.black,

@@ -300,7 +300,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                       child: new Material(
                         child: new InkWell(
                           highlightColor: Color(0xFFcfd8dc),
-                          splashColor: Color(0xFFb3e5fc),
+                          splashColor: Color(0xFFA0D8A5),
                           enableFeedback: true,
                           onLongPress: (){
                             setState(() {
