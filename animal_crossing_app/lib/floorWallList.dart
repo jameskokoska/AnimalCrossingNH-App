@@ -50,6 +50,62 @@ class RugsData{
   this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
 }
 
+class FloorsData{
+  final String name;
+  final String image;
+  final String diy;
+  final String buy;
+  final String sell;
+  final String color1;
+  final String color2;
+  final String size;
+  final String milesPrice;
+  final String source;
+  final String sourceNotes;
+  final String version;
+  final String hhaConcept1;
+  final String hhaConcept2;
+  final String hhaSeries;
+  final String tag;
+  final String catalog;
+  final String filename;
+  final String internalId;
+  final String uniqueEntryId;
+  final bool collected;
+
+
+  FloorsData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
+  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
+}
+
+class WallpapersData{
+  final String name;
+  final String image;
+  final String diy;
+  final String buy;
+  final String sell;
+  final String color1;
+  final String color2;
+  final String size;
+  final String milesPrice;
+  final String source;
+  final String sourceNotes;
+  final String version;
+  final String hhaConcept1;
+  final String hhaConcept2;
+  final String hhaSeries;
+  final String tag;
+  final String catalog;
+  final String filename;
+  final String internalId;
+  final String uniqueEntryId;
+  final bool collected;
+
+
+  WallpapersData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
+  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
+}
+
 class _FloorWallsListPageState extends State<FloorWallsList>{
 
   Future<List<RugsData>> getRugsData(String search) async{
@@ -70,6 +126,46 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
       });
     }
     return rugsData;
+  }
+
+  Future<List<FloorsData>> getFloorsData(String search) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/flooring.json");
+
+    final jsonData = json.decode(data);
+    bool collected = false;
+    List<FloorsData> floorsData = [];
+    for(var u in jsonData){
+      getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
+        collected = indexResult;
+        FloorsData floorsDatum = FloorsData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
+        if(search == ''){
+          floorsData.add(floorsDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          floorsData.add(floorsDatum);
+        }
+      });
+    }
+    return floorsData;
+  }
+
+  Future<List<WallpapersData>> getWallpapersData(String search) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/wallpaper.json");
+
+    final jsonData = json.decode(data);
+    bool collected = false;
+    List<WallpapersData> wallpapersData = [];
+    for(var u in jsonData){
+      getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
+        collected = indexResult;
+        WallpapersData wallpapersDatum = WallpapersData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
+        if(search == ''){
+          wallpapersData.add(wallpapersDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          wallpapersData.add(wallpapersDatum);
+        }
+      });
+    }
+    return wallpapersData;
   }
 
   @override
@@ -106,9 +202,11 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: getRugsData(searchfloorWalls),
+              future: Future.wait([getRugsData(searchfloorWalls), getFloorsData(searchfloorWalls),getWallpapersData(searchfloorWalls)]),
               builder: (context,snapshot){
                 Widget rugsListSliver;
+                Widget floorsListSliver;
+                Widget wallpapersListSliver;
                 if(snapshot.hasData){
                   rugsListSliver = SliverPadding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -122,9 +220,45 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].image,snapshot.data[index].source,snapshot.data[index].collected);
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected);
                         },
-                        childCount: snapshot.data.length,
+                        childCount: snapshot.data[0].length,
+                      ),
+                    ),
+                  );
+                  floorsListSliver = SliverPadding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    sliver: new SliverGrid(
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 130,
+                        mainAxisSpacing: 13,
+                        crossAxisSpacing: 17,
+                        childAspectRatio: 0.78,
+                      ),
+                      delegate: 
+                      SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected);
+                        },
+                        childCount: snapshot.data[1].length,
+                      ),
+                    ),
+                  );
+                  wallpapersListSliver = SliverPadding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    sliver: new SliverGrid(
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 130,
+                        mainAxisSpacing: 13,
+                        crossAxisSpacing: 17,
+                        childAspectRatio: 0.78,
+                      ),
+                      delegate: 
+                      SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected);
+                        },
+                        childCount: snapshot.data[2].length,
                       ),
                     ),
                   );
@@ -140,6 +274,14 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                           size:80,
                         )
                       ],
+                    )
+                  );
+                  floorsListSliver = SliverToBoxAdapter(
+                    child: Container(
+                    )
+                  );
+                  wallpapersListSliver= SliverToBoxAdapter(
+                    child: Container(
                     )
                   );
                 }
@@ -236,6 +378,20 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       )
                     ),
                     rugsListSliver,
+                    SliverToBoxAdapter(
+                      child:Container(
+                        height:20*percentScale,
+                        color: Colors.black,
+                      )
+                    ),
+                    floorsListSliver,
+                    SliverToBoxAdapter(
+                      child:Container(
+                        height:20*percentScale,
+                        color: Colors.black,
+                      )
+                    ),
+                    wallpapersListSliver,
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(
