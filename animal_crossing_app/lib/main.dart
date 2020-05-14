@@ -1,3 +1,4 @@
+import 'package:animal_crossing_app/floorWallList.dart';
 import 'package:animal_crossing_app/museumCollection.dart';
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -13,6 +14,7 @@ import 'museumCollection.dart';
 import 'villagerList.dart';
 import 'settingList.dart';
 import 'art.dart';
+import 'floorWallList.dart';
 import 'emojipedia.dart';
 
 //----------Global Colours-----------
@@ -115,6 +117,7 @@ class _MainPageState extends State<Main> {
   VillagerList villagerList;
   ArtPage artPage;
   EmojiList emojiList; 
+  FloorWallsList floorWallsList;
   Widget currentPageWidget;
 
   
@@ -130,6 +133,7 @@ class _MainPageState extends State<Main> {
     villagerList = VillagerList();
     artPage = ArtPage();
     emojiList = EmojiList();
+    floorWallsList = FloorWallsList();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
