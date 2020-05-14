@@ -178,7 +178,6 @@ class _BugListPageState extends State<BugList>{
                       flexibleSpace: LayoutBuilder(
                         builder: (BuildContext context, BoxConstraints constraints){
                           top = constraints.biggest.height;
-                          print(top);
                           return FlexibleSpaceBar(
                             title: Container(
                               transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
