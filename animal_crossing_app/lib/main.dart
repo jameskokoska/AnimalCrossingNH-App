@@ -12,7 +12,7 @@ import 'music.dart';
 import 'museumCollection.dart';
 import 'villagerList.dart';
 import 'settingList.dart';
-import 'art.dart';
+import 'artList.dart';
 import 'emojipedia.dart';
 
 //----------Global Colours-----------
@@ -113,7 +113,7 @@ class _MainPageState extends State<Main> {
   SettingList settingList;
   MuseumPage museumPage;
   VillagerList villagerList;
-  ArtPage artPage;
+  ArtList artList;
   EmojiList emojiList; 
   Widget currentPageWidget;
 
@@ -128,7 +128,7 @@ class _MainPageState extends State<Main> {
     settingList = SettingList();
     museumPage = MuseumPage();
     villagerList = VillagerList();
-    artPage = ArtPage();
+    artList = ArtList();
     emojiList = EmojiList();
 
     //Retrieve data for settings from sharedpreferences storage
@@ -163,7 +163,7 @@ class _MainPageState extends State<Main> {
       } else if (index == 1){
         currentPageWidget = settingList;
       } else if (index == 2){
-        currentPageWidget = artPage;
+        currentPageWidget = artList;
       } else {
         currentPageWidget = museumPage;
       }
