@@ -132,7 +132,80 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
   );
 }
 
-
+Widget storeContainer(String enable, double percentScale, String storeName, String storeState, bool nook) {
+  bool enableBool;
+  if(enable=="true"){
+    enableBool = true;
+  } else {
+    enableBool = false;
+  }
+  return Column(
+    children: <Widget>[
+      Visibility(
+        visible: enableBool,
+        child: Stack(
+          children: <Widget>[
+            Center(
+              child: Container(
+                width: 334*percentScale,
+                height: 71*percentScale,
+                decoration: new BoxDecoration(
+                    color: darkModeColor(false, colorWhite, Color(0xff414141)),
+                    borderRadius: BorderRadius.circular(18)
+                ),
+              ),
+            ),
+            Container(
+              transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale, 0),
+              child: new Image.asset(
+                'assets/bones.png',
+                height: 40*percentScale,
+                width: 40*percentScale,
+              ),
+            ),
+            Visibility(
+              visible: nook,
+              child: Stack(
+                children: <Widget>[
+                new Container(
+                  transform: Matrix4.translationValues(-(318/20)*percentScale,14*percentScale,0),
+                  child: Center(
+                    child: new Text(
+                      storeState + ": " + storeName,
+                      style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: Color(0xff373737),
+                        fontSize: 19*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                       ),
+                    ),
+                  ),
+                ),
+                ],
+              ),
+            ),
+            Container(
+              transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale,0),
+              child: Center(
+                child: new Text(
+                  "Turnips cannot be sold on Sundays",
+                  style: TextStyle(
+                    fontFamily: 'ArialRoundedBold',
+                    color: Color(0xff373737),
+                    fontSize: 30*percentScale,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
 
 class _HomePageState extends State<Home>{
   bool morning = false;
@@ -978,36 +1051,17 @@ class _HomePageState extends State<Home>{
                                 ),
                               ),
                               new Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                //crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   new Container(
-                                    transform: Matrix4.translationValues(-140*percentScale,35*percentScale,0),
+                                    transform: Matrix4.translationValues(percentScale,30*percentScale,0),
                                     child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Center(
-                                            child: Text(
-                                              "Nook's Cranny: 24/7 baby",
-                                              style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: textColor,
-                                                fontSize: 16*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                              ),
-                                            ),
-                                          ),
-                                          Center(
-                                            child: Text(
-                                              "Able Sisters: 9to9",
-                                              style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: textColor,
-                                                fontSize: 16*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                              ),
-                                            ),
-                                          ),
+                                          eventContainer(darkMode, percentScale, "true","Able Sis", "9 AM - 9 PM", "12", "Tues", "bones.png"),
+                                          storeContainer("true", percentScale, "Able", "Closed", false),
+                                          storeContainer("true", percentScale, "Nook", "Open", true),
                                         ],
                                     ),
                                   ),
