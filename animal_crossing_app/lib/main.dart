@@ -15,6 +15,8 @@ import 'villagerList.dart';
 import 'settingList.dart';
 import 'art.dart';
 import 'floorWallList.dart';
+import 'toolsList.dart';
+import 'clothingList.dart';
 import 'emojipedia.dart';
 
 //----------Global Colours-----------
@@ -118,6 +120,8 @@ class _MainPageState extends State<Main> {
   ArtPage artPage;
   EmojiList emojiList; 
   FloorWallsList floorWallsList;
+  ToolsList toolsList;
+  ClothingList clothingList;
   Widget currentPageWidget;
 
   
@@ -134,6 +138,8 @@ class _MainPageState extends State<Main> {
     artPage = ArtPage();
     emojiList = EmojiList();
     floorWallsList = FloorWallsList();
+    toolsList = ToolsList();
+    clothingList = ClothingList();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();

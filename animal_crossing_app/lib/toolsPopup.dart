@@ -7,10 +7,10 @@ import 'popupFunctions.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentCollectedFloorWalls = false;
+bool currentCollectedTools = false;
 
 
-Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
+Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -176,12 +176,12 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: Color(0x00FFFFFF),
-                                    value: currentCollectedFloorWalls,
+                                    value: currentCollectedTools,
                                     onChanged: (bool value) {
                                       setState(() {
                                         favorite = value;
-                                        currentCollectedFloorWalls = value;
-                                        saveBool("floorWallsCheckList"+name, false, favorite);
+                                        currentCollectedTools = value;
+                                        saveBool("toolsCheckList"+name, false, favorite);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },

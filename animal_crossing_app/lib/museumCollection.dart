@@ -5,6 +5,8 @@ import 'package:animal_crossing_app/floorWallList.dart';
 import 'package:animal_crossing_app/music.dart';
 import 'package:animal_crossing_app/settingList.dart';
 import 'package:animal_crossing_app/villagerList.dart';
+import 'package:animal_crossing_app/ToolsList.dart';
+import 'package:animal_crossing_app/Clothinglist.dart';
 
 import 'package:flutter/material.dart';
 
@@ -46,7 +48,7 @@ class _MuseumPageState extends State<MuseumPage>{
 
     return MaterialApp(
       home: DefaultTabController(
-        length: 6,
+        length: 8,
         child: Scaffold(
           
           body: Stack(
@@ -54,6 +56,8 @@ class _MuseumPageState extends State<MuseumPage>{
               
               TabBarView(
                 children: <Widget>[
+                  ClothingList(),
+                  ToolsList(),
                   FloorWallsList(),
                   BugList(),
                   EmojiList(),
@@ -64,6 +68,8 @@ class _MuseumPageState extends State<MuseumPage>{
               ),
               TabBar(
                 tabs: <Widget>[
+                  Tab(text:''),
+                  Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),
