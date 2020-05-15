@@ -157,7 +157,6 @@ class _EmojiListPageState extends State<EmojiList>{
                                       padding: const EdgeInsets.only(bottom:20,right:10),
                                       child: Opacity(
                                         opacity: (){
-                                          print(top);
                                           if(top<280&&top>190){
                                             return 1-((280-top)/90);
                                           } else {
@@ -237,18 +236,18 @@ Widget emojiContainer(double percentScale, Color colorTextBlack, String name, St
       return new Stack(
             children: <Widget>[
               Container(
-          width: 120*percentScale,
-          height: 162*percentScale,
-          decoration: new BoxDecoration(
-            color: Color(0xffffffff),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [BoxShadow(
-                color: Color(0x0C000000),
-                offset: Offset(0,3),
-                blurRadius: 6,
-                spreadRadius: 0
-            ) ],
-          ),
+                width: 120*percentScale,
+                height: 162*percentScale,
+                decoration: new BoxDecoration(
+                  color: colorWhite,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(
+                      color: Color(0x0C000000),
+                      offset: Offset(0,3),
+                      blurRadius: 6,
+                      spreadRadius: 0
+                  ) ],
+                ),
               ),
               Align(
                 alignment: Alignment.topCenter,

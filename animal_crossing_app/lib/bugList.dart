@@ -178,7 +178,6 @@ class _BugListPageState extends State<BugList>{
                       flexibleSpace: LayoutBuilder(
                         builder: (BuildContext context, BoxConstraints constraints){
                           top = constraints.biggest.height;
-                          print(top);
                           return FlexibleSpaceBar(
                             title: Container(
                               transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
@@ -300,7 +299,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                       child: new Material(
                         child: new InkWell(
                           highlightColor: Color(0xFFcfd8dc),
-                          splashColor: Color(0xFFb3e5fc),
+                          splashColor: Color(0xFFA0D8A5),
                           enableFeedback: true,
                           onLongPress: (){
                             setState(() {

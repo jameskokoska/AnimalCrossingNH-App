@@ -156,7 +156,6 @@ class _MusicListPageState extends State<MusicList>{
                                       padding: const EdgeInsets.only(bottom:20,right:10),
                                       child: Opacity(
                                         opacity: (){
-                                          print(top);
                                           if(top<280&&top>190){
                                             return 1-((280-top)/90);
                                           } else {
