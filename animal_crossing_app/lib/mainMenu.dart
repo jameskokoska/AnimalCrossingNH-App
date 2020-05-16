@@ -163,41 +163,41 @@ Widget storeContainer(String enable, double percentScale, String storeName, Stri
                 width: 40*percentScale,
               ),
             ),
-            Visibility(
-              visible: nook,
-              child: Stack(
-                children: <Widget>[
-                new Container(
-                  transform: Matrix4.translationValues(-(318/20)*percentScale,14*percentScale,0),
-                  child: Center(
-                    child: new Text(
-                      storeState + ": " + storeName,
-                      style: TextStyle(
-                        fontFamily: 'ArialRoundedBold',
-                        color: Color(0xff373737),
-                        fontSize: 19*percentScale,
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                       ),
-                    ),
-                  ),
-                ),
-                ],
-              ),
-            ),
-            Container(
-              transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale,0),
+            new Container(
+              transform: Matrix4.translationValues(-(318/20)*percentScale,14*percentScale,0),
               child: Center(
                 child: new Text(
-                  "Turnips cannot be sold on Sundays",
+                  storeState + ": " + storeName,
                   style: TextStyle(
                     fontFamily: 'ArialRoundedBold',
                     color: Color(0xff373737),
-                    fontSize: 30*percentScale,
+                    fontSize: 19*percentScale,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   ),
                 ),
+              ),
+            ),
+            Visibility(
+              visible: nook,
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale,0),
+                    child: Center(
+                      child: new Text(
+                        "\n\nTurnips cannot be sold on Sundays",
+                        style: TextStyle(
+                          fontFamily: 'ArialRoundedBold',
+                          color: Color(0xff373737),
+                          fontSize: 14*percentScale,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -1059,7 +1059,6 @@ class _HomePageState extends State<Home>{
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          eventContainer(darkMode, percentScale, "true","Able Sis", "9 AM - 9 PM", "12", "Tues", "bones.png"),
                                           storeContainer("true", percentScale, "Able", "Closed", false),
                                           storeContainer("true", percentScale, "Nook", "Open", true),
                                         ],
