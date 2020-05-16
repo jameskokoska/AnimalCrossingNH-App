@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'bugPopup.dart';
+import 'artPopup.dart';
 import 'popupFunctions.dart';
 
 import 'dart:async';
@@ -19,80 +19,67 @@ class ArtList extends StatefulWidget {
   _ArtListPageState createState() => _ArtListPageState();
 }
 
-String searchBug = '';
+String searchArt = '';
 
 class ArtData{
-  final String id;
   final String name;
-  final String iconImage;
-  final String critterpediaImage;
-  final String furnitureImage;
+  final String image;
+  final String genuine;
+  final String category;
+  final String buy;
   final String sell;
-  final String whereHow;
-  final String weather;
-  final String totalCatchesToUnlock;
-  final String nhJan;
-  final String nhFeb;
-  final String nhMar;
-  final String nhApr;
-  final String nhMay;
-  final String nhJun;
-  final String nhJul;
-  final String nhAug;
-  final String nhSep;
-  final String nhOct;
-  final String nhNov;
-  final String nhDec;
-  final String shJan;
-  final String shFeb;
-  final String shMar;
-  final String shApr;
-  final String shMay;
-  final String shJun;
-  final String shJul;
-  final String shAug;
-  final String shSep;
-  final String shOct;
-  final String shNov;
-  final String shDec;
   final String color1;
   final String color2;
-  final String iconFilename;
-  final String critterpediaFilename;
-  final String furnitureFilename;
-  final String internalId;
-  final String uniqueEntryId;
-  final String catchphrase;
-  final String museum;
-  final bool caught;
+  final String size;
+  final String realArtworkTitle;
+  final String artist;
+  final String museumDescription;
+  final String source;
+  final String version;
+  final String hhaConcept1;
+  final String hhaConcept2;
+  final String hhaSeries;
+  final String hhaSet;
+  final String interact;
+  final String tag;
+  final String speakerType;
+  final String lightingType;
+  final String catalog;
+  final String filename;
+  final String internalID;
+  final String uniqueEntryID;
+  final bool collected;
 
-  ArtData(this.name,this.genuine,this.category,this.r,this.sell,this.color1,this.color2,this.size,this.realArtworkTitle,this.artist,this.museumDescription,this.source,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.hhaSet,this.interact,this.tag,this.speakerType,this.lightingType,this.catalog,this.filename,this.internalID,this.uniqueEntryID);
+  ArtData(this.name,this.image,this.genuine,this.category,this.buy,this.sell,this.color1,this.color2,this.size,this.realArtworkTitle,this.artist,this.museumDescription,this.source,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.hhaSet,this.interact,this.tag,this.speakerType,this.lightingType,this.catalog,this.filename,this.internalID,this.uniqueEntryID,this.collected);
 
 }
 
 
 class _ArtListPageState extends State<ArtList>{
 
-  Future<List<BugData>> getBugData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/bug.json");
+  Future<List<ArtData>> getArtData(String search) async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/art.json");
 
     final jsonData = json.decode(data);
-    bool caught = false;
-    List<BugData> bugData = [];
+    bool collected = false;
+    List<ArtData> artData = [];
+    String previousName="";
     for(var u in jsonData){
-      getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
-        caught = indexResult;
-        BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
-        if(search == ''){
-          bugData.add(bugDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          bugData.add(bugDatum);
-        } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
-          bugData.add(bugDatum);
+      getStoredBool("toolsCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
+        collected = indexResult;
+        ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
+        if(u["Name"]!=previousName){
+          if(search == ''){
+            if(u["Name"]!=previousName)
+              artData.add(artDatum);
+          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+            artData.add(artDatum);
+          }
         }
+        previousName = u["Name"];
       });
     }
-    return bugData;
+    return artData;
   }
 
   @override
@@ -129,23 +116,23 @@ class _ArtListPageState extends State<ArtList>{
               ),
 
               FutureBuilder(
-                  future: getBugData(searchBug),
+                  future: getArtData(searchArt),
                   builder: (context,snapshot){
-                    Widget bugListSliver;
+                    Widget artListSliver;
                     if(snapshot.hasData){
-                      bugListSliver = SliverPadding(
+                      artListSliver = SliverPadding(
                         padding: EdgeInsets.only(top:0),
                         sliver: SliverList(
                           delegate: SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
-                              return bugContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].weather,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
+                              return artContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name,snapshot.data[index].image,snapshot.data[index].genuine,snapshot.data[index].category,snapshot.data[index].buy,snapshot.data[index].sell,snapshot.data[index].color1,snapshot.data[index].color2,snapshot.data[index].size,snapshot.data[index].realArtworkTitle,snapshot.data[index].artist,snapshot.data[index].museumDescription,snapshot.data[index].source,snapshot.data[index].version,snapshot.data[index].hhaConcept1,snapshot.data[index].hhaConcept2,snapshot.data[index].hhaSeries,snapshot.data[index].hhaSet,snapshot.data[index].interact,snapshot.data[index].tag,snapshot.data[index].speakerType,snapshot.data[index].lightingType,snapshot.data[index].catalog,snapshot.data[index].filename,snapshot.data[index].internalID,snapshot.data[index].uniqueEntryID);
                             },
                             childCount: snapshot.data.length,
                           ),
                         ),
                       );
                     } else {
-                      bugListSliver = SliverToBoxAdapter(
+                      artListSliver = SliverToBoxAdapter(
                           child: Column(
                             children: <Widget>[
                               SizedBox(
@@ -179,7 +166,7 @@ class _ArtListPageState extends State<ArtList>{
                                 return FlexibleSpaceBar(
                                   title: Container(
                                     transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
-                                    child: Text("Bugs",
+                                    child: Text("Artwork",
                                         style: TextStyle(
                                           fontFamily: 'ArialRoundedBold',
                                           color: colorTextWhite,
@@ -192,7 +179,7 @@ class _ArtListPageState extends State<ArtList>{
                                   titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                                   background: Stack(
                                     children: <Widget>[
-                                      //Image.asset('assets/bugTitle.png'),
+                                      //Image.asset('assets/artTitle.png'),
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
@@ -211,14 +198,14 @@ class _ArtListPageState extends State<ArtList>{
                                               }(),
                                               child: CupertinoTextField(
                                                 onTap: (){
-                                                  searchBug='';
+                                                  searchArt='';
                                                 },
                                                 maxLength: 15,
                                                 placeholder: (){
-                                                  if (searchBug==''){
+                                                  if (searchArt==''){
                                                     return 'Search';
                                                   } else {
-                                                    return searchBug;
+                                                    return searchArt;
                                                   }
                                                 }(),
                                                 decoration: BoxDecoration(
@@ -235,7 +222,7 @@ class _ArtListPageState extends State<ArtList>{
                                                 ),
                                                 onChanged: (string){
                                                   setState(() {
-                                                    searchBug = string;
+                                                    searchArt = string;
                                                   });
                                                 },
                                               ),
@@ -251,7 +238,7 @@ class _ArtListPageState extends State<ArtList>{
 
                         ),
                         //Add the sliverlist parsed in future function above
-                        bugListSliver,
+                        artListSliver,
                         SliverFillRemaining(
                             hasScrollBody: false,
                             child:Container(
@@ -270,7 +257,7 @@ class _ArtListPageState extends State<ArtList>{
 }
 
 
-Widget bugContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String weather,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget artContainer(double percentScale,int index,bool collected,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID){
   return Center(
     child: new StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -278,8 +265,8 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
             visible: (){
               if(!showListOnlyActive)
                 return true;
-              else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchBug=="")
-                return false;
+//              else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchArt=="")
+//                return false;
               else
                 return true;
             }(),
@@ -301,12 +288,12 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                               enableFeedback: true,
                               onLongPress: (){
                                 setState(() {
-                                  caught = !caught;
-                                  saveBool("bugCheckList"+name, false, caught);
+                                  collected = !collected;
+                                  saveBool("artCheckList"+name, false, collected);
                                 });
                               },
                               onTap: (){
-                                currentCaughtBug = caught;
+                                currentCollectedArt = collected;
                                 FocusScope.of(context).requestFocus(new FocusNode());
                                 Future<void> future = showModalBottomSheet(
                                   //by setting this to true, we can avoid the half screen limit
@@ -316,13 +303,13 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                                       return Container(
                                         height: 400*percentScale,
                                         child: Container(
-                                          child: bugPopUp(percentScale, currentCaughtBug, name, iconImage, sell, whereHow, weather, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
+                                          child: artPopUp(percentScale,collected,name,image,genuine,category,buy,sell,color1,color2,size,realArtworkTitle,artist,museumDescription,source,version,hhaConcept1,hhaConcept2,hhaSeries,hhaSet,interact,tag,speakerType,lightingType,catalog,filename,internalID,uniqueEntryID),
                                         ),
                                       );
                                     });
                                 future.then((void value)=> setState(() {
-                                  getStoredBool("bugCheckList"+name, false).then((indexResult){
-                                    caught = indexResult;
+                                  getStoredBool("artCheckList"+name, false).then((indexResult){
+                                    collected = indexResult;
                                   });
                                 }));
                               },
@@ -346,7 +333,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                                 height: 55*percentScale,
                                 decoration: new BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: colorBugAccent,
+                                  color: colorArtAccent,
                                 )
                             ),
                             Container(
@@ -361,7 +348,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                                         image: imageProvider, fit: BoxFit.cover),
                                   ),
                                 ),
-                                imageUrl: iconImage,
+                                imageUrl: image,
                                 //placeholder: (context, url) => CircularProgressIndicator(),
                                 errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
                                 height:45*percentScale,
@@ -369,47 +356,47 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                                 fadeInDuration: Duration(milliseconds:800),
                               ),
                             ),
-                            Container(
-                              transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
-                              child: new Text((capitalize(name)),
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: colorTextBlack,
-                                    fontSize: 18*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                  )
-                              ),
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
-                              child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: colorBugTextDarkGreen,
-                                    fontSize: 14*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                  )
-                              ),
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
-                              child: new Text(whereHow,
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: colorBugTextDarkGreen,
-                                    fontSize: 14*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                  )
-                              ),
-                            ),
+//                            Container(
+//                              transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
+//                              child: new Text((capitalize(name)),
+//                                  style: TextStyle(
+//                                    fontFamily: 'ArialRoundedBold',
+//                                    color: colorTextBlack,
+//                                    fontSize: 18*percentScale,
+//                                    fontWeight: FontWeight.w400,
+//                                    fontStyle: FontStyle.normal,
+//                                  )
+//                              ),
+//                            ),
+//                            Container(
+//                              transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
+//                              child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
+//                                  style: TextStyle(
+//                                    fontFamily: 'ArialRoundedBold',
+//                                    color: colorArtTextDarkGreen,
+//                                    fontSize: 14*percentScale,
+//                                    fontWeight: FontWeight.w400,
+//                                    fontStyle: FontStyle.normal,
+//                                  )
+//                              ),
+//                            ),
+//                            Container(
+//                              transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
+//                              child: new Text(artist,
+//                                  style: TextStyle(
+//                                    fontFamily: 'ArialRoundedBold',
+//                                    color: colorArtTextDarkGreen,
+//                                    fontSize: 14*percentScale,
+//                                    fontWeight: FontWeight.w400,
+//                                    fontStyle: FontStyle.normal,
+//                                  )
+//                              ),
+//                            ),
                             //Checkmark background
                             AnimatedPositioned(
                               duration: Duration(milliseconds: 300),
-                              top: caught ? 40*percentScale : 0,
-                              bottom: caught ? 40*percentScale : 0,
+                              top: collected ? 40*percentScale : 0,
+                              bottom: collected ? 40*percentScale : 0,
                               child: new Container(
                                   transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
                                   width: 40*percentScale,
@@ -422,8 +409,8 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                             ),
                             AnimatedPositioned(
                               duration: Duration(milliseconds: 200),
-                              top: !caught ? 40*percentScale : 0,
-                              bottom: !caught ? 40*percentScale : 0,
+                              top: !collected ? 40*percentScale : 0,
+                              bottom: !collected ? 40*percentScale : 0,
                               child: new Container(
                                   transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
                                   width: 40*percentScale,
@@ -451,11 +438,11 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                                 child: new Checkbox(
                                   activeColor: Color(0x04b2fab4),
                                   checkColor: Color(0xFFFFFFFF),
-                                  value: caught,
+                                  value: collected,
                                   onChanged: (bool value) {
                                     setState(() {
-                                      caught = value;
-                                      saveBool("bugCheckList"+name, false, caught);
+                                      collected = value;
+                                      saveBool("artCheckList"+name, false, collected);
                                       HapticFeedback.mediumImpact();
                                     });
                                   },

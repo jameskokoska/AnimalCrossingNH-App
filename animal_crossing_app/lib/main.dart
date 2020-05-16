@@ -30,6 +30,8 @@ Color colorFishAccent = Color(0xFFE3F2FD);
 Color colorFishTextDarkBlue = Color(0xff3F51B5);
 Color colorBugAccent = Color(0xFFe8f5e9);
 Color colorBugTextDarkGreen = Color(0xFF1b5e20);
+Color colorArtAccent = Color(0xFFe8f5e9);
+Color colorArtTextDarkGreen = Color(0xFF1b5e20);
 Color colorVillagerAccent = Color(0xFFB2DFDB);
 //---------------------------
 //----------Globals----------
