@@ -33,7 +33,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
                 width: 334*percentScale,
                 height: 71*percentScale,
                 decoration: new BoxDecoration(
-                  color: darkModeColor(darkMode, colorWhite, Color(0xff414141)),
+                  color: darkModeColor(darkMode, colorWhite, Color(0xffDEFEFF)),
                   borderRadius: BorderRadius.circular(8)
                 )
               )
@@ -124,7 +124,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
       ),
       Visibility(
         visible: enableBool,
-        child:SizedBox(
+        child: SizedBox(
           height: 7*percentScale,
         ),
       ),
@@ -132,12 +132,19 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
   );
 }
 
-Widget storeContainer(String enable, double percentScale, String storeName, String storeState, bool nook) {
+Widget storeContainer(String enable, double percentScale, bool darkMode, String storeName, String storeState, bool nook) {
   bool enableBool;
+  Color bubble;
   if(enable=="true"){
     enableBool = true;
   } else {
     enableBool = false;
+  }
+
+  if(nook) {
+    bubble = Color(0xffB9FBC8);
+  }else {
+    bubble = Color(0xffFFC9CE);
   }
   return Column(
     children: <Widget>[
@@ -150,7 +157,7 @@ Widget storeContainer(String enable, double percentScale, String storeName, Stri
                 width: 334*percentScale,
                 height: 71*percentScale,
                 decoration: new BoxDecoration(
-                    color: darkModeColor(false, colorWhite, Color(0xff414141)),
+                    color: darkModeColor(!darkMode, colorWhite, bubble),
                     borderRadius: BorderRadius.circular(18)
                 ),
               ),
@@ -1013,7 +1020,7 @@ class _HomePageState extends State<Home>{
                                 width: deviceWidth,
                                 height: 302*percentScale,
                                 decoration: new BoxDecoration(
-                                  color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF202020)),
+                                  color: darkModeColor(!darkMode,colorLightDarkAccent,Color(0xFFDEFEFF)),
                                   borderRadius: BorderRadius.circular(30*percentScale),
                                   boxShadow: [BoxShadow(
                                     color: darkModeColor(darkMode,Color( 0x40000000),Color(0xc095C8F5)),
@@ -1059,8 +1066,8 @@ class _HomePageState extends State<Home>{
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          storeContainer("true", percentScale, "Able", "Closed", false),
-                                          storeContainer("true", percentScale, "Nook", "Open", true),
+                                          storeContainer("true", percentScale, false, "Nook", "Open", true),
+                                          storeContainer("true", percentScale, false, "Able", "Closed", false),
                                         ],
                                     ),
                                   ),
