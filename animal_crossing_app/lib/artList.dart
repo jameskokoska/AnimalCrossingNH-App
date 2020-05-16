@@ -65,7 +65,7 @@ class _ArtListPageState extends State<ArtList>{
     List<ArtData> artData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("toolsCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
+      getStoredBool("artCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
         collected = indexResult;
         ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
         if(u["Name"]!=previousName){
@@ -356,18 +356,18 @@ Widget artContainer(double percentScale,int index,bool collected,String name,Str
                                 fadeInDuration: Duration(milliseconds:800),
                               ),
                             ),
-//                            Container(
-//                              transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
-//                              child: new Text((capitalize(name)),
-//                                  style: TextStyle(
-//                                    fontFamily: 'ArialRoundedBold',
-//                                    color: colorTextBlack,
-//                                    fontSize: 18*percentScale,
-//                                    fontWeight: FontWeight.w400,
-//                                    fontStyle: FontStyle.normal,
-//                                  )
-//                              ),
-//                            ),
+                            Container(
+                              transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
+                              child: new Text((capitalize(name)),
+                                  style: TextStyle(
+                                    fontFamily: 'ArialRoundedBold',
+                                    color: colorTextBlack,
+                                    fontSize: 18*percentScale,
+                                    fontWeight: FontWeight.w400,
+                                    fontStyle: FontStyle.normal,
+                                  )
+                              ),
+                            ),
 //                            Container(
 //                              transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
 //                              child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
@@ -380,18 +380,18 @@ Widget artContainer(double percentScale,int index,bool collected,String name,Str
 //                                  )
 //                              ),
 //                            ),
-//                            Container(
-//                              transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
-//                              child: new Text(artist,
-//                                  style: TextStyle(
-//                                    fontFamily: 'ArialRoundedBold',
-//                                    color: colorArtTextDarkGreen,
-//                                    fontSize: 14*percentScale,
-//                                    fontWeight: FontWeight.w400,
-//                                    fontStyle: FontStyle.normal,
-//                                  )
-//                              ),
-//                            ),
+                            Container(
+                              transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
+                              child: new Text(artist,
+                                  style: TextStyle(
+                                    fontFamily: 'ArialRoundedBold',
+                                    color: colorArtTextDarkGreen,
+                                    fontSize: 14*percentScale,
+                                    fontWeight: FontWeight.w400,
+                                    fontStyle: FontStyle.normal,
+                                  )
+                              ),
+                            ),
                             //Checkmark background
                             AnimatedPositioned(
                               duration: Duration(milliseconds: 300),
