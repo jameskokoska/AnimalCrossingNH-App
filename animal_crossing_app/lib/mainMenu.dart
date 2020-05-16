@@ -33,7 +33,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
                 width: 334*percentScale,
                 height: 71*percentScale,
                 decoration: new BoxDecoration(
-                  color: darkModeColor(darkMode, colorWhite, Color(0xff414141)),
+                  color: darkModeColor(darkMode, colorWhite, Color(0xffDEFEFF)),
                   borderRadius: BorderRadius.circular(8)
                 )
               )
@@ -124,7 +124,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
       ),
       Visibility(
         visible: enableBool,
-        child:SizedBox(
+        child: SizedBox(
           height: 7*percentScale,
         ),
       ),
@@ -132,7 +132,87 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
   );
 }
 
+Widget storeContainer(String enable, double percentScale, bool darkMode, String storeName, String storeState, bool nook) {
+  bool enableBool;
+  Color bubble;
+  if(enable=="true"){
+    enableBool = true;
+  } else {
+    enableBool = false;
+  }
 
+  if(nook) {
+    bubble = Color(0xffB9FBC8);
+  }else {
+    bubble = Color(0xffFFC9CE);
+  }
+  return Column(
+    children: <Widget>[
+      Visibility(
+        visible: enableBool,
+        child: Stack(
+          children: <Widget>[
+            Center(
+              child: Container(
+                width: 334*percentScale,
+                height: 71*percentScale,
+                decoration: new BoxDecoration(
+                    color: darkModeColor(!darkMode, colorWhite, bubble),
+                    borderRadius: BorderRadius.circular(18)
+                ),
+              ),
+            ),
+            Container(
+              transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale, 0),
+              child: new Image.asset(
+                'assets/bones.png',
+                height: 40*percentScale,
+                width: 40*percentScale,
+              ),
+            ),
+            new Container(
+              transform: Matrix4.translationValues(-(318/20)*percentScale,14*percentScale,0),
+              child: Center(
+                child: new Text(
+                  storeState + ": " + storeName,
+                  style: TextStyle(
+                    fontFamily: 'ArialRoundedBold',
+                    color: Color(0xff373737),
+                    fontSize: 19*percentScale,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: nook,
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale,0),
+                    child: Center(
+                      child: new Text(
+                        "\n\nTurnips cannot be sold on Sundays",
+                        style: TextStyle(
+                          fontFamily: 'ArialRoundedBold',
+                          color: Color(0xff373737),
+                          fontSize: 14*percentScale,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
 
 class _HomePageState extends State<Home>{
   bool morning = false;
@@ -940,7 +1020,7 @@ class _HomePageState extends State<Home>{
                                 width: deviceWidth,
                                 height: 302*percentScale,
                                 decoration: new BoxDecoration(
-                                  color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF202020)),
+                                  color: darkModeColor(!darkMode,colorLightDarkAccent,Color(0xFFDEFEFF)),
                                   borderRadius: BorderRadius.circular(30*percentScale),
                                   boxShadow: [BoxShadow(
                                     color: darkModeColor(darkMode,Color( 0x40000000),Color(0xc095C8F5)),
@@ -978,36 +1058,16 @@ class _HomePageState extends State<Home>{
                                 ),
                               ),
                               new Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                //crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   new Container(
-                                    transform: Matrix4.translationValues(-140*percentScale,35*percentScale,0),
+                                    transform: Matrix4.translationValues(percentScale,30*percentScale,0),
                                     child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Center(
-                                            child: Text(
-                                              "Nook's Cranny: 24/7 baby",
-                                              style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: textColor,
-                                                fontSize: 16*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                              ),
-                                            ),
-                                          ),
-                                          Center(
-                                            child: Text(
-                                              "Able Sisters: 9to9",
-                                              style: TextStyle(
-                                                fontFamily: 'ArialRoundedBold',
-                                                color: textColor,
-                                                fontSize: 16*percentScale,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                              ),
-                                            ),
-                                          ),
+                                          storeContainer("true", percentScale, false, "Nook", "Open", true),
+                                          storeContainer("true", percentScale, false, "Able", "Closed", false),
                                         ],
                                     ),
                                   ),
