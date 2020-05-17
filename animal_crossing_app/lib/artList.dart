@@ -65,7 +65,7 @@ class _ArtListPageState extends State<ArtList>{
     List<ArtData> artData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("artCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
+      getStoredBool("artCheckList"+u["Name"]+u["Genuine"], false).then((indexResult){
         collected = indexResult;
         ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
         if(u["Name"]!=previousName){
