@@ -10,7 +10,7 @@ final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedTools = false;
 
 
-Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
+Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -219,7 +219,7 @@ Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink
                         ),
                         Container(
                           width: 220*percentScale,
-                          child: Text(" - “"+catchphrase+"”",
+                          child: Text(uses + "Uses",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Baskerville',
@@ -235,25 +235,11 @@ Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink
                         ),
 
                         //birthday
-                        infoContainer(percentScale, 'birthdayCake.png', birthday),
+                        infoContainer(percentScale, 'bellBag.png', buy),
                         //species
-                        infoContainer(percentScale, 'cat.png',species),
+                        infoContainer(percentScale, 'bellBag.png',sell),
                         //personaility
-                        infoContainer(percentScale, 'personailityEmoji.png', personality),
-                        //style
-                        Container(
-                          child: (){
-                            String style;
-                            if (style1 == style2){
-                              style = style1;
-                            } else {
-                              style = style1 + ", " + style2;
-                            }
-                            return infoContainer(percentScale, 'styleEmoji.png', style);
-                          }()
-                        ),
-                        //colours
-                        infoContainer(percentScale, 'colorPalette.png',color1 + ", " + color2),
+                        infoContainer(percentScale, 'magnifyingGlass.png', source),
                       ],
                     ),
                   ),

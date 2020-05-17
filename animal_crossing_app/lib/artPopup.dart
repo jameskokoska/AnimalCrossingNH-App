@@ -115,7 +115,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                 child: Center(
                                   child: Container(
                                     transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                    child: Text("Favorite",
+                                    child: Text("Collected",
                                         style: TextStyle(
                                           fontFamily: 'ArialRoundedBold',
                                           color: Color(0xff90a4ae),
@@ -181,7 +181,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                           setState(() {
                                             collected = value;
                                             currentCollectedArt = value;
-                                            saveBool("toolsCheckList"+name, false, collected);
+                                            saveBool("artCheckList"+name, false, collected);
                                             HapticFeedback.mediumImpact();
                                           });
                                         },
@@ -219,7 +219,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             ),
                             Container(
                               width: 220*percentScale,
-                              child: Text(" - “"+name+"”",
+                              child: Text(" - “"+artist+"”",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: 'Baskerville',
@@ -235,23 +235,11 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             ),
 
                             //birthday
-                            infoContainer(percentScale, 'birthdayCake.png', name),
+                            infoContainer(percentScale, 'birthdayCake.png', ''),
                             //species
-                            infoContainer(percentScale, 'cat.png',realArtworkTitle),
+                            infoContainer(percentScale, 'cat.png', ''),
                             //personaility
-                            infoContainer(percentScale, 'personailityEmoji.png', artist),
-                            //style
-                            Container(
-                                child: (){
-                                  String style;
-                                  if (color1 == color2){
-                                    style = color1;
-                                  } else {
-                                    style = color1 + ", " + color2;
-                                  }
-                                  return infoContainer(percentScale, 'styleEmoji.png', style);
-                                }()
-                            ),
+                            infoContainer(percentScale, 'personailityEmoji.png', ''),
                             //colours
                             infoContainer(percentScale, 'colorPalette.png',color1 + ", " + color2),
                           ],
@@ -266,3 +254,4 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
       }
   );
 }
+
