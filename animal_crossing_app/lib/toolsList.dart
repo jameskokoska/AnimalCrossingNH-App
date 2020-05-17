@@ -44,11 +44,11 @@ class ToolsData{
   final String variantID;
   final String internalID;
   final String uniqueEntryID;
-  final bool favorite;
+  final bool collected;
 
 
   ToolsData(this.name,this.image,this.variation,this.bodyTitle,this.diy,this.customize,this.kitCost,this.uses,this.stackSize,this.buy,this.sell,
-  this.color1,this.color2,this.size,this.set,this.milesPrice,this.source,this.version,this.filename,this.variantID,this.internalID,this.uniqueEntryID,this.favorite);
+  this.color1,this.color2,this.size,this.set,this.milesPrice,this.source,this.version,this.filename,this.variantID,this.internalID,this.uniqueEntryID,this.collected);
 }
 
 class _ToolsListPageState extends State<ToolsList>{
@@ -57,13 +57,13 @@ class _ToolsListPageState extends State<ToolsList>{
     String data = await DefaultAssetBundle.of(context).loadString("assets/tools.json");
 
     final jsonData = json.decode(data);
-    bool favorite = false;
+    bool collected = false;
     List<ToolsData> toolsData = [];
     String previousName="";
     for(var u in jsonData){
       getStoredBool("toolsCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        favorite = indexResult;
-        ToolsData toolsDatum = ToolsData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["DIY"],u["Customize"],u["Kit Cost"],u["Uses"],u["Stack Size"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Set"],u["Miles Price"],u["Source"],u["Version"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"],favorite);
+        collected = indexResult;
+        ToolsData toolsDatum = ToolsData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["DIY"],u["Customize"],u["Kit Cost"],u["Uses"],u["Stack Size"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Set"],u["Miles Price"],u["Source"],u["Version"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"],collected);
         if(u["Name"]!=previousName){
           if(search == ''){
             if(u["Name"]!=previousName)
@@ -130,7 +130,7 @@ class _ToolsListPageState extends State<ToolsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return toolsContainer(percentScale, index, snapshot.data[index].favorite, snapshot.data[index].name, snapshot.data[index].image,snapshot.data[index].variation,snapshot.data[index].bodyTitle,snapshot.data[index].diy,snapshot.data[index].customize,snapshot.data[index].kitCost,snapshot.data[index].uses,snapshot.data[index].stackSize,snapshot.data[index].buy,snapshot.data[index].sell,snapshot.data[index].color1,snapshot.data[index].color2,snapshot.data[index].size,snapshot.data[index].set,snapshot.data[index].milesPrice,snapshot.data[index].source,snapshot.data[index].version,snapshot.data[index].filename,snapshot.data[index].variantID,snapshot.data[index].internalID,snapshot.data[index].uniqueEntryID);
+                          return toolsContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name, snapshot.data[index].image,snapshot.data[index].variation,snapshot.data[index].bodyTitle,snapshot.data[index].diy,snapshot.data[index].customize,snapshot.data[index].kitCost,snapshot.data[index].uses,snapshot.data[index].stackSize,snapshot.data[index].buy,snapshot.data[index].sell,snapshot.data[index].color1,snapshot.data[index].color2,snapshot.data[index].size,snapshot.data[index].set,snapshot.data[index].milesPrice,snapshot.data[index].source,snapshot.data[index].version,snapshot.data[index].filename,snapshot.data[index].variantID,snapshot.data[index].internalID,snapshot.data[index].uniqueEntryID);
                         },
                         childCount: snapshot.data.length,
                       ),
@@ -259,7 +259,7 @@ class _ToolsListPageState extends State<ToolsList>{
   }
 }
 
-Widget toolsContainer(double percentScale, int index, bool favorite,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
+Widget toolsContainer(double percentScale, int index, bool collected,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return new Stack(
@@ -292,28 +292,28 @@ Widget toolsContainer(double percentScale, int index, bool favorite,String name,
                   enableFeedback: true,
                   onLongPress: (){
                     setState(() {
-                      favorite = !favorite;
-                      saveBool("toolsCheckList"+name+variation, false, favorite);
+                      collected = !collected;
+                      saveBool("toolsCheckList"+name+variation, false, collected);
                     });
                   },
                   onTap: (){
-                    currentCollectedTools = favorite;
+                    currentCollectedTool = collected;
                     FocusScope.of(context).requestFocus(new FocusNode());
                     Future<void> future = showModalBottomSheet(
                       //by setting this to true, we can avoid the half screen limit
                       isScrollControlled:true,
-                      context: context, 
+                      context: context,
                       builder: (context){
                         return Container(
                           height: 450*percentScale,
                             child: Container(
-                              child: toolsPopUp(percentScale, favorite, name, imageLink, variation, bodyTile, diy, customize, kitCost, uses, stackSize, buy, sell, color1, color2, size, set, milesPrice, source, version, filename, variantID, internalID, uniqueEntryID)
+                              child: toolsPopUp(percentScale, collected, name, imageLink, variation, bodyTile, diy, customize, kitCost, uses, stackSize, buy, sell, color1, color2, size, set, milesPrice, source, version, filename, variantID, internalID, uniqueEntryID)
                           ),
                         );
                     });
                     future.then((void value)=> setState(() {
                       getStoredBool("toolsCheckList"+name+variation, false).then((indexResult){
-                          favorite = indexResult;
+                          collected = indexResult;
                       });
                     }));
                   },
@@ -351,7 +351,7 @@ Widget toolsContainer(double percentScale, int index, bool favorite,String name,
                         fadeInDuration: Duration(milliseconds:800),
                       ),
                     ),
-                    
+
                     Container(
                       height:40*percentScale,
                       padding: const EdgeInsets.all(6.0),
@@ -370,44 +370,6 @@ Widget toolsContainer(double percentScale, int index, bool favorite,String name,
                     ),
                   ],
                 ),
-            ),
-          ),
-          
-          Align(
-            alignment: Alignment.topRight,
-            child: AnimatedOpacity(
-              duration: Duration(milliseconds:400),
-              opacity: favorite ? 1 : 0,
-              child: Container(
-                transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                height: 25*percentScale,
-                width: 25*percentScale,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorCheckGreen,
-                  boxShadow: [BoxShadow(
-                    color: Color(0x29000000),
-                    offset: Offset(0,3),
-                    blurRadius: 6,
-                    spreadRadius: 0
-                  ) ],
-                ),
-                child: Theme(
-                  data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                  child: new Checkbox(
-                    activeColor: Color(0x00000000),
-                    checkColor: Color(0xFF444444),
-                    value: favorite,
-                    onChanged: (bool value) {
-                      setState(() {
-                        favorite = value;
-                        saveBool("toolsCheckList"+name, false, favorite);
-                        //HapticFeedback.mediumImpact();
-                      });
-                    },
-                  ),
-                ),
-              )
             ),
           ),
         ]

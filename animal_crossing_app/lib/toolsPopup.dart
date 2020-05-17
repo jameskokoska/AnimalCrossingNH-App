@@ -7,10 +7,10 @@ import 'popupFunctions.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentCollectedTools = false;
+bool currentCollectedTool = false;
 
 
-Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
+Widget toolsPopUp(double percentScale,bool collected,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -85,15 +85,15 @@ Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink
                 // ---------- Card favorite ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
-                  // ---------- Card Body favorite Image ----------
+                  // ---------- Card Body Collected Image ----------
                   child: Container(
-                    width: 55*percentScale,
-                    height: 55*percentScale,
+                      width: 55*percentScale,
+                      height: 55*percentScale,
                       child: Stack(
                         children: <Widget>[
                           AnimatedOpacity(
                             duration: Duration(milliseconds:300),
-                            opacity: favorite ? 0 : 1,
+                            opacity: collected ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -111,11 +111,11 @@ Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink
                           ),
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !favorite ? 0 : 1,
+                            opacity: !collected ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                child: Text("Favorite",
+                                child: Text("Collected",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: Color(0xff90a4ae),
@@ -129,41 +129,28 @@ Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: favorite ? 55*percentScale : 0,     //check needs changing to be based on current state
-                            bottom: favorite ? 55*percentScale : 0,
+                            top: collected ? 55*percentScale : 0,     //check needs changing to be based on current state
+                            bottom: collected ? 55*percentScale : 0,
                             child: new Container(
-                              width: 55*percentScale,
-                              height: 55*percentScale,
-                              decoration: new BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xFFE0F2F1)
-                              )
+                                width: 55*percentScale,
+                                height: 55*percentScale,
+                                decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: colorCheckRed
+                                )
                             ),
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !favorite ? 55*percentScale : 0,      //check needs changing to be based on current state
-                            bottom: !favorite ? 55*percentScale : 0,
+                            top: !collected ? 55*percentScale : 0,      //check needs changing to be based on current state
+                            bottom: !collected ? 55*percentScale : 0,
                             child: new Container(
-                              width: 55*percentScale,
-                              height: 55*percentScale,
-                              decoration: new BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: colorFishAccent,
-                              )
-                            ),
-                          ),
-                          Container(
-                            transform: Matrix4.translationValues(0,(1)*percentScale,0),
-                            child: Center(
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 200),
-                                width: favorite ? 30*percentScale : 0,
-                                height: favorite ? 30*percentScale : 0,
-                                child: Image.asset(
-                                    'assets/heart.png',
-                                ),
-                              ),
+                                width: 55*percentScale,
+                                height: 55*percentScale,
+                                decoration: new BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: colorCheckGreen,
+                                )
                             ),
                           ),
                           Center(
@@ -175,13 +162,13 @@ Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0x00FFFFFF),
-                                    value: currentCollectedTools,
+                                    checkColor: Color(0xFFFFFFFF),
+                                    value: currentCollectedTool,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        favorite = value;
-                                        currentCollectedTools = value;
-                                        saveBool("toolsCheckList"+name, false, favorite);
+                                        collected = value;
+                                        currentCollectedTool = value;
+                                        saveBool("toolsCheckList"+name+variation, false, collected);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -219,7 +206,7 @@ Widget toolsPopUp(double percentScale,bool favorite,String name,String imageLink
                         ),
                         Container(
                           width: 220*percentScale,
-                          child: Text(uses + "Uses",
+                          child: Text(uses + " Uses",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Baskerville',
