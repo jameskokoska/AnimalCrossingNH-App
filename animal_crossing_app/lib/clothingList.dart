@@ -751,7 +751,7 @@ class _ClothingListPageState extends State<ClothingList>{
                   );
                 }
                 return CustomScrollView(
-                  controller: scrollController,
+                  // controller: scrollController,
                   physics: BouncingScrollPhysics(),
                   slivers: <Widget>[
                     SliverAppBar(
@@ -842,6 +842,7 @@ class _ClothingListPageState extends State<ClothingList>{
                         height:20*percentScale,
                       )
                     ),
+                    
                     headwearListSliver,
                     SliverToBoxAdapter(
                       child:Container(
