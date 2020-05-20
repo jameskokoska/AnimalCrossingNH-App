@@ -52,6 +52,13 @@ class ToolsData{
 }
 
 class _ToolsListPageState extends State<ToolsList>{
+  @override
+  void initState(){
+    super.initState();
+    getStoredBool('showListVariations', true).then((indexResult){
+      showListVariations = indexResult;
+    });
+  }
 
   Future<List<ToolsData>> getToolsData(String search) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/tools.json");
@@ -64,12 +71,11 @@ class _ToolsListPageState extends State<ToolsList>{
       getStoredBool("toolsCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
         collected = indexResult;
         ToolsData toolsDatum = ToolsData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["DIY"],u["Customize"],u["Kit Cost"],u["Uses"],u["Stack Size"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Set"],u["Miles Price"],u["Source"],u["Version"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
+        if(u["Name"]!=previousName||showListVariations==true){
           if(search == ''){
-            if(u["Name"]!=previousName)
-              toolsData.add(toolsDatum);
+            toolsData.add(toolsDatum);
           } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-              toolsData.add(toolsDatum);
+            toolsData.add(toolsDatum);
           }
         }
         previousName = u["Name"];

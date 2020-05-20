@@ -88,6 +88,7 @@ class _SettingListPageState extends State<SettingList>{
                       //settingContainer(percentScale, 'Splash Screen', 'skipSplash', skipSplash, 'phone'),
                       settingContainer(percentScale, 'Always show catchphrase', 'showCatchPhraseNow', showCatchPhraseNow, 'speechBubble'),
                       settingContainer(percentScale, 'List only active creatures', 'showListOnlyActive', showListOnlyActive, 'alarmClock'),
+                      settingContainer(percentScale, 'Show variations in lists', 'showListVariations', showListVariations, 'dice'),
                     ],),
                   ),
                 ),
@@ -237,6 +238,9 @@ Widget settingContainer(double percentScale, String settingTitle, String setting
                           currentValue = state;
                         }else if(settingKey == 'showListOnlyActive') {
                           showListOnlyActive= state;
+                          currentValue = state;
+                        }else if(settingKey == 'showListVariations') {
+                          skipSplash = state;
                           currentValue = state;
                         }else if(settingKey == 'skipSplash') {
                           skipSplash = state;

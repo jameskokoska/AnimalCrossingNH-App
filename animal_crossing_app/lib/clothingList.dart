@@ -297,6 +297,26 @@ class BagsData{
 
 
 class _ClothingListPageState extends State<ClothingList>{
+  
+  // ScrollController scrollController = ScrollController();
+
+  @override
+  void initState(){
+    super.initState();
+    getStoredBool('showListVariations', true).then((indexResult){
+      showListVariations = indexResult;
+    });
+    // scrollController.addListener(() {
+    //   if(scrollController.position.pixels==scrollController.position.maxScrollExtent){
+    //     loadMoreElements();
+    //   }
+    // });
+  }
+
+  // loadMoreElements(){
+  //   print("end");
+  // }
+  
 
   Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/headwear.json");
@@ -309,10 +329,12 @@ class _ClothingListPageState extends State<ClothingList>{
       getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
         collected = indexResult;
         HeadwearData headwearDatum = HeadwearData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
+        if(u["Name"]!=previousName||showListVariations==true){
           if(search == ''){
             headwearData.add(headwearDatum);
           } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+            headwearData.add(headwearDatum);
+          } else if (u["Style"].toLowerCase().contains(search.toLowerCase())){
             headwearData.add(headwearDatum);
           }
         }
@@ -729,6 +751,7 @@ class _ClothingListPageState extends State<ClothingList>{
                   );
                 }
                 return CustomScrollView(
+                  // controller: scrollController,
                   physics: BouncingScrollPhysics(),
                   slivers: <Widget>[
                     SliverAppBar(
@@ -819,6 +842,7 @@ class _ClothingListPageState extends State<ClothingList>{
                         height:20*percentScale,
                       )
                     ),
+                    
                     headwearListSliver,
                     SliverToBoxAdapter(
                       child:Container(

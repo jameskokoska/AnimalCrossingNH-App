@@ -38,6 +38,7 @@ Color colorVillagerAccent = Color(0xFFB2DFDB);
 bool northernHemisphere = true;
 bool showCatchPhraseNow = false;    //always show the catchphrase
 bool showListOnlyActive = true;     //only list fish you can catch
+bool showListVariations = true;     //Show variations of furniture, clothing etc all colours in item lists
 bool skipSplash = false;
 
 var currentDate = DateTime.now();
@@ -153,6 +154,9 @@ class _MainPageState extends State<Main> {
     });
     getStoredBool('showListOnlyActive', true).then((indexResult){
       showListOnlyActive = indexResult;
+    });
+    getStoredBool('showListVariations', true).then((indexResult){
+      showListVariations = indexResult;
     });
     getStoredBool('skipSplash', false).then((indexResult){
       skipSplash = indexResult;
