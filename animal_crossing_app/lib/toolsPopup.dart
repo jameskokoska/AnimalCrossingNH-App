@@ -31,7 +31,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                 ),
                 Container(
                   transform: Matrix4.translationValues(0, 20*percentScale, 0),
-                  height:440*percentScale,
+                  height:400*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: Color(0xFFFFFFFF),
@@ -40,7 +40,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                 // ---------- Card Tab ----------
                 new Center(
                   child: new Container(
-                    transform: Matrix4.translationValues(0, -90*percentScale, 0),
+                    transform: Matrix4.translationValues(0, -60*percentScale, 0),
                     width: 113*percentScale,
                     height: 113*percentScale,
                     // ---------- Card Tab Image ----------
@@ -185,7 +185,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                 
                 Center(
                   child: Container(
-                    transform: Matrix4.translationValues(0, 40*percentScale, 0),
+                    transform: Matrix4.translationValues(0, 70*percentScale, 0),
                     height: 340*percentScale,
                     width: 360*percentScale,
                     child: Column(
@@ -218,7 +218,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                           ),
                         ),
                         SizedBox(
-                          height:30*percentScale,
+                          height:10*percentScale,
                         ),
 
                         //birthday
