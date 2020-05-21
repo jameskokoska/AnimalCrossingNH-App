@@ -132,9 +132,43 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
   );
 }
 
-Widget storeContainer(String enable, double percentScale, bool darkMode, String storeName, String storeState, bool nook) {
+Widget storeContainer(String enable, double percentScale, bool darkMode, String storeName, bool nook) {
+  String storeState;
   bool enableBool;
   Color bubble;
+  String date = DateFormat.jm().format(new DateTime.now()).toString();
+  String timeStr = date.substring(0,date.length-3);
+  String meridian = date.substring(date.length-2,date.length);
+  String timeHr;
+  String timeMin;
+  int timeHour;
+  int timeMinute;
+  if(timeStr[1] == ":") {
+    timeHr = timeStr.substring(0,1);
+    timeMin = timeStr.substring(2,);
+  }else {
+    timeHr = timeStr.substring(0,2);
+    timeMin = timeStr.substring(3,);
+  }
+  timeHour = int.parse(timeHr);
+  timeMinute = int.parse(timeMin);
+
+  if(nook) {
+    if((timeHour >= 8 && meridian == "AM") || (timeHour < 10 && meridian == "PM")) {
+      storeState = "open";
+    }else {
+      storeState = "closed";
+    }
+  }else {
+    if((timeHour >= 9 && meridian == "AM") || (timeHour < 9 && meridian == "PM")) {
+      storeState = "open";
+    }else {
+      storeState = "closed";
+    }
+  }
+
+
+
   if(enable=="true"){
     enableBool = true;
   } else {
@@ -165,7 +199,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
             Container(
               transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale, 0),
               child: new Image.asset(
-                'assets/bones.png',
+                'assets/nook.png',
                 height: 40*percentScale,
                 width: 40*percentScale,
               ),
@@ -1066,8 +1100,8 @@ class _HomePageState extends State<Home>{
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          storeContainer("true", percentScale, false, "Nook", "Open", true),
-                                          storeContainer("true", percentScale, false, "Able", "Closed", false),
+                                          storeContainer("true", percentScale, false, "Nook", true),
+                                          storeContainer("true", percentScale, false, "Able", false),
                                         ],
                                     ),
                                   ),

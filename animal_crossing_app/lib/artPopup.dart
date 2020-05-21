@@ -195,7 +195,6 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                       ),
                     ),
                     // ---------- Card Centre Content ----------
-
                     Center(
                       child: Container(
                         transform: Matrix4.translationValues(0, 40*percentScale, 0),
@@ -233,7 +232,6 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             SizedBox(
                               height:30*percentScale,
                             ),
-
                             //birthday
                             infoContainer(percentScale, 'birthdayCake.png', ''),
                             //species
