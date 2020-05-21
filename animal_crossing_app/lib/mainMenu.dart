@@ -199,7 +199,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
             Container(
               transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale, 0),
               child: new Image.asset(
-                'assets/bones.png',
+                'assets/nook.png',
                 height: 40*percentScale,
                 width: 40*percentScale,
               ),
