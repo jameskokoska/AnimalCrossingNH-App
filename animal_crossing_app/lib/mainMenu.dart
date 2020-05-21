@@ -134,6 +134,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
 
 Widget storeContainer(String enable, double percentScale, bool darkMode, String storeName, bool nook) {
   String storeState;
+  String storeTitle;
   bool enableBool;
   Color bubble;
   String date = DateFormat.jm().format(new DateTime.now()).toString();
@@ -155,16 +156,18 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
 
   if(nook) {
     if((timeHour >= 8 && meridian == "AM") || (timeHour < 10 && meridian == "PM")) {
-      storeState = "open";
+      storeState = "Open";
     }else {
-      storeState = "closed";
+      storeState = "Closed";
     }
+    storeTitle = "Nook's Cranny";
   }else {
     if((timeHour >= 9 && meridian == "AM") || (timeHour < 9 && meridian == "PM")) {
-      storeState = "open";
+      storeState = "Open";
     }else {
-      storeState = "closed";
+      storeState = "Closed";
     }
+    storeTitle = "Able Sisters";
   }
 
 
@@ -197,9 +200,9 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               ),
             ),
             Container(
-              transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale, 0),
+              transform: Matrix4.translationValues((318/20)*percentScale, 14*percentScale, 0),
               child: new Image.asset(
-                'assets/nook.png',
+                'assets/' + storeName + '.png',
                 height: 40*percentScale,
                 width: 40*percentScale,
               ),
@@ -208,7 +211,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               transform: Matrix4.translationValues(-(318/20)*percentScale,14*percentScale,0),
               child: Center(
                 child: new Text(
-                  storeState + ": " + storeName,
+                  storeState + ": " + storeTitle,
                   style: TextStyle(
                     fontFamily: 'ArialRoundedBold',
                     color: Color(0xff373737),
@@ -1100,8 +1103,8 @@ class _HomePageState extends State<Home>{
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          storeContainer("true", percentScale, false, "Nook", true),
-                                          storeContainer("true", percentScale, false, "Able", false),
+                                          storeContainer("true", percentScale, false, "nook", true),
+                                          storeContainer("true", percentScale, false, "able", false),
                                         ],
                                     ),
                                   ),
