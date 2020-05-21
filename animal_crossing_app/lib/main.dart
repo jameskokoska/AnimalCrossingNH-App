@@ -17,6 +17,7 @@ import 'artList.dart';
 import 'floorWallList.dart';
 import 'toolsList.dart';
 import 'clothingList.dart';
+import 'furnitureList.dart';
 import 'emojipedia.dart';
 
 //----------Global Colours-----------
@@ -125,6 +126,7 @@ class _MainPageState extends State<Main> {
   FloorWallsList floorWallsList;
   ToolsList toolsList;
   ClothingList clothingList;
+  FurnitureList furnitureList;
   Widget currentPageWidget;
 
   
@@ -143,6 +145,7 @@ class _MainPageState extends State<Main> {
     floorWallsList = FloorWallsList();
     toolsList = ToolsList();
     clothingList = ClothingList();
+    furnitureList = FurnitureList();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
@@ -169,7 +172,6 @@ class _MainPageState extends State<Main> {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
   
-
   void selectedNavBar(int index){
     setState(() {
       if(index!=selectedIndex)
