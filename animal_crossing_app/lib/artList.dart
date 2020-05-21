@@ -103,29 +103,36 @@ class _ArtListPageState extends State<ArtList>{
       percentScale = percentHeight;
     }
 
+    double top = 0;
 
     return Scaffold(
+        resizeToAvoidBottomPadding: false,
         body: GestureDetector(
-          //exit keyboard when tapping anywhere else
           onTap: (){FocusScope.of(context).requestFocus(new FocusNode());},
           child: Stack(
             children: <Widget>[
               Container(
                 height: MediaQuery.of(context).size.height,
-                color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xFF193D69)),
+                color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xffFFFFFF)),
               ),
-
               FutureBuilder(
                   future: getArtData(searchArt),
                   builder: (context,snapshot){
                     Widget artListSliver;
                     if(snapshot.hasData){
                       artListSliver = SliverPadding(
-                        padding: EdgeInsets.only(top:0),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
+                        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        sliver: new SliverGrid(
+                          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            mainAxisSpacing: 13,
+                            crossAxisSpacing: 17,
+                            childAspectRatio: 1.0,
+                          ),
+                          delegate:
+                          SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
-                              return artContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name,snapshot.data[index].image,snapshot.data[index].genuine,snapshot.data[index].category,snapshot.data[index].buy,snapshot.data[index].sell,snapshot.data[index].color1,snapshot.data[index].color2,snapshot.data[index].size,snapshot.data[index].realArtworkTitle,snapshot.data[index].artist,snapshot.data[index].museumDescription,snapshot.data[index].source,snapshot.data[index].version,snapshot.data[index].hhaConcept1,snapshot.data[index].hhaConcept2,snapshot.data[index].hhaSeries,snapshot.data[index].hhaSet,snapshot.data[index].interact,snapshot.data[index].tag,snapshot.data[index].speakerType,snapshot.data[index].lightingType,snapshot.data[index].catalog,snapshot.data[index].filename,snapshot.data[index].internalID,snapshot.data[index].uniqueEntryID);
+                              return artContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name, snapshot.data[index].image, snapshot.data[index].genuine, snapshot.data[index].category, snapshot.data[index].buy, snapshot.data[index].sell, snapshot.data[index].color1,  snapshot.data[index].color2, snapshot.data[index].size, snapshot.data[index].realArtworkTitle, snapshot.data[index].artist, snapshot.data[index].museumDescription, snapshot.data[index].source, snapshot.data[index].version, snapshot.data[index].hhaConcept1, snapshot.data[index].hhaConcept2, snapshot.data[index].hhaSeries, snapshot.data[index].hhaSet, snapshot.data[index].interact, snapshot.data[index].tag, snapshot.data[index].speakerType, snapshot.data[index].lightingType, snapshot.data[index].catalog, snapshot.data[index].filename, snapshot.data[index].internalID, snapshot.data[index].uniqueEntryID);
                             },
                             childCount: snapshot.data.length,
                           ),
@@ -146,56 +153,51 @@ class _ArtListPageState extends State<ArtList>{
                           )
                       );
                     }
-
-                    double top = 0;
-
                     return CustomScrollView(
                       physics: BouncingScrollPhysics(),
                       slivers: <Widget>[
                         SliverAppBar(
-                            expandedHeight: 219*percentScale,
-                            backgroundColor: Color(0xFFa5d6a7),
-                            pinned: true,
-                            //snap: true,
-                            floating: true,
-                            elevation: 10,
-                            flexibleSpace: LayoutBuilder(
-                              builder: (BuildContext context, BoxConstraints constraints){
-                                top = constraints.biggest.height;
-                                print(top);
-                                return FlexibleSpaceBar(
-                                  title: Container(
-                                    transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
-                                    child: Text("Artwork",
-                                        style: TextStyle(
-                                          fontFamily: 'ArialRoundedBold',
-                                          color: colorTextWhite,
-                                          fontSize: 30*percentScale,
-                                          fontWeight: FontWeight.w400,
-                                          fontStyle: FontStyle.normal,
-                                        )
-                                    ),
+                          expandedHeight: 219*percentScale,
+                          backgroundColor: Color(0xFF730000),
+                          pinned: true,
+                          //snap: true,
+                          floating: true,
+                          elevation: 10,
+                          flexibleSpace: LayoutBuilder(
+                            builder: (BuildContext context, BoxConstraints constraints){
+                              top = constraints.biggest.height;
+                              return FlexibleSpaceBar(
+                                title: Container(
+                                  transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
+                                  child: Text("Artwork",
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRoundedBold',
+                                        color: colorTextWhite,
+                                        fontSize: 30*percentScale,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                      )
                                   ),
-                                  titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
-                                  background: Stack(
-                                    children: <Widget>[
-                                      //Image.asset('assets/artTitle.png'),
-                                      Align(
-                                        alignment: Alignment.bottomCenter,
+                                ),
+                                titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
+                                background: Stack(
+                                  children: <Widget>[
+                                    Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Container(
                                         child: Padding(
                                           padding: const EdgeInsets.only(bottom:20,right:10),
-                                          child: Container(
-                                            height: 35*percentScale,
-                                            width: 300*percentScale,
-                                            child: Opacity(
-                                              opacity: (){
-                                                print(top);
-                                                if(top<280&&top>190){
-                                                  return 1-((280-top)/90);
-                                                } else {
-                                                  return 0.0;
-                                                }
-                                              }(),
+                                          child: Opacity(
+                                            opacity: (){
+                                              if(top<280&&top>190){
+                                                return 1-((280-top)/90);
+                                              } else {
+                                                return 0.0;
+                                              }
+                                            }(),
+                                            child: Container(
+                                              height: 35*percentScale,
+                                              width: 300*percentScale,
                                               child: CupertinoTextField(
                                                 onTap: (){
                                                   searchArt='';
@@ -210,14 +212,14 @@ class _ArtListPageState extends State<ArtList>{
                                                 }(),
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(8.0),
-                                                  color: Color(0x75F0F1F5),
+                                                  color: Color(0x75D4D4D4),
                                                 ),
                                                 prefix: Padding(
                                                   padding:
                                                   const EdgeInsets.only(right:13, left:7),
                                                   child: Icon(
                                                     Icons.search,
-                                                    color: Color(0xADFFFFFF),
+                                                    color: Color(0xAD6B6B6B),
                                                   ),
                                                 ),
                                                 onChanged: (string){
@@ -230,19 +232,22 @@ class _ArtListPageState extends State<ArtList>{
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            )
-
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                        //Add the sliverlist parsed in future function above
-                        artListSliver,
-                        SliverFillRemaining(
-                            hasScrollBody: false,
+                        SliverToBoxAdapter(
                             child:Container(
-                              height:100,
+                              height:20*percentScale,
+                            )
+                        ),
+                        artListSliver,
+                        SliverToBoxAdapter(
+                            child:Container(
+                              height:100*percentScale,
                             )
                         ),
                       ],
@@ -258,205 +263,155 @@ class _ArtListPageState extends State<ArtList>{
 
 
 Widget artContainer(double percentScale,int index,bool collected,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID){
-  return Center(
-    child: new StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return Visibility(
-            visible: (){
-              if(!showListOnlyActive)
-                return true;
-//              else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchArt=="")
-//                return false;
-              else
-                return true;
-            }(),
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height:4.5*percentScale,
+  return new StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return new Stack(
+            children: <Widget>[
+              //Shadow
+              IgnorePointer(
+                child: Container(
+                  width: 300*percentScale,
+                  height: 300*percentScale,
+                  decoration: new BoxDecoration(
+                    color: colorWhite,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [BoxShadow(
+                        color: Color(0x0C000000),
+                        offset: Offset(0,3),
+                        blurRadius: 5,
+                        spreadRadius: 0
+                    ) ],
                   ),
-                  new Stack(
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(14*percentScale),
-                        child: new Container(
-                          child: new Material(
-                            child: new InkWell(
-                              highlightColor: Color(0xFFcfd8dc),
-                              splashColor: Color(0xFFb3e5fc),
-                              enableFeedback: true,
-                              onLongPress: (){
-                                setState(() {
-                                  collected = !collected;
-                                  saveBool("artCheckList"+name, false, collected);
-                                });
-                              },
-                              onTap: (){
-                                currentCollectedArt = collected;
-                                FocusScope.of(context).requestFocus(new FocusNode());
-                                Future<void> future = showModalBottomSheet(
-                                  //by setting this to true, we can avoid the half screen limit
-                                    isScrollControlled:true,
-                                    context: context,
-                                    builder: (context){
-                                      return Container(
-                                        height: 400*percentScale,
-                                        child: Container(
-                                          child: artPopUp(percentScale,collected,name,image,genuine,category,buy,sell,color1,color2,size,realArtworkTitle,artist,museumDescription,source,version,hhaConcept1,hhaConcept2,hhaSeries,hhaSet,interact,tag,speakerType,lightingType,catalog,filename,internalID,uniqueEntryID),
-                                        ),
-                                      );
-                                    });
-                                future.then((void value)=> setState(() {
-                                  getStoredBool("artCheckList"+name, false).then((indexResult){
-                                    collected = indexResult;
-                                  });
-                                }));
-                              },
-                              child: new Container(
-                                width: 334*percentScale,
-                                height: 75*percentScale,
-                              ),
-                            ),
-                            color: colorWhite,
-                          ),
-
-                        ),
-                      ),
-
-                      IgnorePointer(
-                        child: Stack(
-                          children: <Widget>[
-                            new Container(
-                                transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
-                                width: 55*percentScale,
-                                height: 55*percentScale,
-                                decoration: new BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: colorArtAccent,
-                                )
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
-                              child: CachedNetworkImage(
-                                imageBuilder: (context, imageProvider) => Container(
-                                  width: 45*percentScale,
-                                  height: 45*percentScale,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4*percentScale),
-                                    image: DecorationImage(
-                                        image: imageProvider, fit: BoxFit.cover),
+                ),
+              ),
+              //Tap region inkwell
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(14*percentScale),
+                  child: new Container(
+                    child: new Material(
+                      child: new InkWell(
+                        highlightColor: Color(0xFFcfd8dc),
+                        splashColor: Color(0xFFb3e5fc),
+                        enableFeedback: true,
+                        onLongPress: (){
+                          setState(() {
+                            collected = !collected;
+                            saveBool("artCheckList"+name+genuine, false, collected);
+                          });
+                        },
+                        onTap: (){
+                          currentCollectedArt = collected;
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                              isScrollControlled:true,
+                              context: context,
+                              builder: (context){
+                                return Container(
+                                  height: 450*percentScale,
+                                  child: Container(
+                                      child: artPopUp(percentScale, collected, name, image, genuine, category, buy, sell, color1,  color2, size, realArtworkTitle, artist, museumDescription, source, version,  hhaConcept1, hhaConcept2, hhaSeries, hhaSet, interact, tag, speakerType, lightingType, catalog, filename, internalID, uniqueEntryID)
                                   ),
-                                ),
-                                imageUrl: image,
-                                //placeholder: (context, url) => CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
-                                height:45*percentScale,
-                                width:45*percentScale,
-                                fadeInDuration: Duration(milliseconds:800),
-                              ),
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
-                              child: new Text((capitalize(name)),
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: colorTextBlack,
-                                    fontSize: 18*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                  )
-                              ),
-                            ),
-//                            Container(
-//                              transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
-//                              child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
-//                                  style: TextStyle(
-//                                    fontFamily: 'ArialRoundedBold',
-//                                    color: colorArtTextDarkGreen,
-//                                    fontSize: 14*percentScale,
-//                                    fontWeight: FontWeight.w400,
-//                                    fontStyle: FontStyle.normal,
-//                                  )
-//                              ),
-//                            ),
-                            Container(
-                              transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
-                              child: new Text(artist,
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: colorArtTextDarkGreen,
-                                    fontSize: 14*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                  )
-                              ),
-                            ),
-                            //Checkmark background
-                            AnimatedPositioned(
-                              duration: Duration(milliseconds: 300),
-                              top: collected ? 40*percentScale : 0,
-                              bottom: collected ? 40*percentScale : 0,
-                              child: new Container(
-                                  transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
-                                  width: 40*percentScale,
-                                  height: 40*percentScale,
-                                  decoration: new BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: colorCheckRed
-                                  )
-                              ),
-                            ),
-                            AnimatedPositioned(
-                              duration: Duration(milliseconds: 200),
-                              top: !collected ? 40*percentScale : 0,
-                              bottom: !collected ? 40*percentScale : 0,
-                              child: new Container(
-                                  transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
-                                  width: 40*percentScale,
-                                  height: 40*percentScale,
-                                  decoration: new BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: colorCheckGreen
-                                  )
-                              ),
-                            ),
-                          ],
+                                );
+                              });
+                          future.then((void value)=> setState(() {
+                            getStoredBool("artCheckList"+name+genuine, false).then((indexResult){
+                              collected = indexResult;
+                            });
+                          }));
+                        },
+                        child: new Container(
+                          width: 350*percentScale,
+                          height: 350*percentScale,
                         ),
                       ),
-
+                      color: colorWhite,
+                    ),
+                  )
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: AnimatedOpacity(
+                    duration: Duration(milliseconds:400),
+                    opacity: collected ? 1 : 0,
+                    child: Container(
+                      transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                      height: 25*percentScale,
+                      width: 25*percentScale,
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colorCheckGreen,
+                        boxShadow: [BoxShadow(
+                            color: Color(0x29000000),
+                            offset: Offset(0,3),
+                            blurRadius: 6,
+                            spreadRadius: 0
+                        ) ],
+                      ),
+                      child: Theme(
+                        data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                        child: new Checkbox(
+                          activeColor: Color(0x00000000),
+                          checkColor: Color(0xFF444444),
+                          value: collected,
+                          onChanged: (bool value) {
+                            setState(() {
+                              collected = value;
+                              saveBool("artCheckList"+name+genuine, false, collected);
+                              //HapticFeedback.mediumImpact();
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                ),
+              ),
+              IgnorePointer(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: <Widget>[
                       Container(
-                        transform: Matrix4.translationValues((272)*percentScale,(8.5)*percentScale,0),
-                        width:55*percentScale,
-                        height:55*percentScale,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(300*percentScale),
-                            child: new Transform.scale(
-                              scale: 1.6*percentScale,
-                              child: Theme(
-                                data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
-                                child: new Checkbox(
-                                  activeColor: Color(0x04b2fab4),
-                                  checkColor: Color(0xFFFFFFFF),
-                                  value: collected,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      collected = value;
-                                      saveBool("artCheckList"+name, false, collected);
-                                      HapticFeedback.mediumImpact();
-                                    });
-                                  },
-                                ),
-                              ),
-                            )
+                        transform: Matrix4.translationValues(0,4*percentScale,0),
+                        child: CachedNetworkImage(
+                          imageBuilder: (context, imageProvider) => Container(
+                            width: 100*percentScale,
+                            height: 100*percentScale,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4*percentScale),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover),
+                            ),
+                          ),
+                          imageUrl: image,
+                          //placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                          height:70*percentScale,
+                          width:70*percentScale,
+                          fadeInDuration: Duration(milliseconds:800),
+                        ),
+                      ),
+                      Container(
+                        height:30*percentScale,
+                        child: Center(
+                          child: Text(name,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'ArialRoundedBold',
+                                color: colorTextBlack,
+                                fontSize: 12*percentScale,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                              )
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-          );
-        }),
+            ]
+        );
+      }
   );
 }

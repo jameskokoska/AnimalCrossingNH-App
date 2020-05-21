@@ -30,7 +30,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                         )
                     ),
                     Container(
-                        transform: Matrix4.translationValues(0, 20*percentScale, 0),
+                        transform: Matrix4.translationValues(0, 40*percentScale, 0),
                         height:440*percentScale,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(30*percentScale),
@@ -136,7 +136,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                     height: 55*percentScale,
                                     decoration: new BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color(0xFFE0F2F1)
+                                        color: colorCheckRed
                                     )
                                 ),
                               ),
@@ -149,21 +149,21 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                     height: 55*percentScale,
                                     decoration: new BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: colorFishAccent,
+                                      color: colorCheckRed,
                                     )
                                 ),
                               ),
-                              Container(
-                                transform: Matrix4.translationValues(0,(1)*percentScale,0),
-                                child: Center(
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
-                                    width: collected ? 30*percentScale : 0,
-                                    height: collected ? 30*percentScale : 0,
-                                    child: Image.asset(
-                                      'assets/heart.png',
-                                    ),
-                                  ),
+                              AnimatedPositioned(
+                                duration: Duration(milliseconds: 200),
+                                top: !collected ? 55*percentScale : 0,      //check needs changing to be based on current state
+                                bottom: !collected ? 55*percentScale : 0,
+                                child: new Container(
+                                    width: 55*percentScale,
+                                    height: 55*percentScale,
+                                    decoration: new BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: colorCheckGreen,
+                                    )
                                 ),
                               ),
                               Center(
@@ -175,13 +175,13 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                       data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                       child: new Checkbox(
                                         activeColor: Color(0x0499F9A9),
-                                        checkColor: Color(0x00FFFFFF),
+                                        checkColor: Color(0xFFFFFFFF),
                                         value: currentCollectedArt,
                                         onChanged: (bool value) {
                                           setState(() {
                                             collected = value;
                                             currentCollectedArt = value;
-                                            saveBool("artCheckList"+name, false, collected);
+                                            saveBool("artCheckList"+name+genuine, false, collected);
                                             HapticFeedback.mediumImpact();
                                           });
                                         },
@@ -197,7 +197,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                     // ---------- Card Centre Content ----------
                     Center(
                       child: Container(
-                        transform: Matrix4.translationValues(0, 40*percentScale, 0),
+                        transform: Matrix4.translationValues(0, 60*percentScale, 0),
                         height: 340*percentScale,
                         width: 360*percentScale,
                         child: Column(
@@ -218,7 +218,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             ),
                             Container(
                               width: 220*percentScale,
-                              child: Text(" - “"+artist+"”",
+                              child: Text(artist,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: 'Baskerville',
