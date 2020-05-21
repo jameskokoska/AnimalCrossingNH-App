@@ -208,7 +208,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               ),
             ),
             new Container(
-              transform: Matrix4.translationValues(-(318/20)*percentScale,14*percentScale,0),
+              transform: Matrix4.translationValues((318/20)*percentScale,14*percentScale,0),
               child: Center(
                 child: new Text(
                   storeState + ": " + storeTitle,
@@ -227,7 +227,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               child: Stack(
                 children: <Widget>[
                   Container(
-                    transform: Matrix4.translationValues((-318/20)*percentScale, 14*percentScale,0),
+                    transform: Matrix4.translationValues((518/20)*percentScale, 14*percentScale,0),
                     child: Center(
                       child: new Text(
                         "\n\nTurnips cannot be sold on Sundays",
