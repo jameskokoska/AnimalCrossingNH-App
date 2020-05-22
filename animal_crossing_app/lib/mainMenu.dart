@@ -200,11 +200,11 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               ),
             ),
             Container(
-              transform: Matrix4.translationValues((318/20)*percentScale, 14*percentScale, 0),
+              transform: Matrix4.translationValues((368/20)*percentScale, -3*percentScale, 0),
               child: new Image.asset(
                 'assets/' + storeName + '.png',
-                height: 40*percentScale,
-                width: 40*percentScale,
+                height: 70*percentScale,
+                width: 70*percentScale,
               ),
             ),
             new Container(
@@ -215,7 +215,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
                   style: TextStyle(
                     fontFamily: 'ArialRoundedBold',
                     color: Color(0xff373737),
-                    fontSize: 19*percentScale,
+                    fontSize: 20*percentScale,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   ),
@@ -227,14 +227,14 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               child: Stack(
                 children: <Widget>[
                   Container(
-                    transform: Matrix4.translationValues((518/20)*percentScale, 14*percentScale,0),
+                    transform: Matrix4.translationValues((318/20)*percentScale, 14*percentScale,0),
                     child: Center(
                       child: new Text(
                         "\n\nTurnips cannot be sold on Sundays",
                         style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
                           color: Color(0xff373737),
-                          fontSize: 14*percentScale,
+                          fontSize: 12*percentScale,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
                         ),
