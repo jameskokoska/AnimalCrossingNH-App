@@ -5,10 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'artPopup.dart';
-import 'popupFunctions.dart';
-
-import 'dart:async';
-import 'dart:convert';
+import 'databases.dart';
 
 class ArtList extends StatefulWidget {
   ArtList({Key key, this.title}) : super(key: key);
@@ -21,67 +18,7 @@ class ArtList extends StatefulWidget {
 
 String searchArt = '';
 
-class ArtData{
-  final String name;
-  final String image;
-  final String genuine;
-  final String category;
-  final String buy;
-  final String sell;
-  final String color1;
-  final String color2;
-  final String size;
-  final String realArtworkTitle;
-  final String artist;
-  final String museumDescription;
-  final String source;
-  final String version;
-  final String hhaConcept1;
-  final String hhaConcept2;
-  final String hhaSeries;
-  final String hhaSet;
-  final String interact;
-  final String tag;
-  final String speakerType;
-  final String lightingType;
-  final String catalog;
-  final String filename;
-  final String internalID;
-  final String uniqueEntryID;
-  final bool collected;
-
-  ArtData(this.name,this.image,this.genuine,this.category,this.buy,this.sell,this.color1,this.color2,this.size,this.realArtworkTitle,this.artist,this.museumDescription,this.source,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.hhaSet,this.interact,this.tag,this.speakerType,this.lightingType,this.catalog,this.filename,this.internalID,this.uniqueEntryID,this.collected);
-
-}
-
-
 class _ArtListPageState extends State<ArtList>{
-
-  Future<List<ArtData>> getArtData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/art.json");
-
-    final jsonData = json.decode(data);
-    bool collected = false;
-    List<ArtData> artData = [];
-    String previousName="";
-    for(var u in jsonData){
-      getStoredBool("artCheckList"+u["Name"]+u["Genuine"], false).then((indexResult){
-        collected = indexResult;
-        ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            if(u["Name"]!=previousName)
-              artData.add(artDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            artData.add(artDatum);
-          }
-        }
-        previousName = u["Name"];
-      });
-    }
-    return artData;
-  }
-
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -386,8 +323,8 @@ Widget artContainer(double percentScale,int index,bool collected,String name,Str
                           imageUrl: image,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                          height:70*percentScale,
-                          width:70*percentScale,
+                          height:100*percentScale,
+                          width:100*percentScale,
                           fadeInDuration: Duration(milliseconds:800),
                         ),
                       ),
