@@ -5,9 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'villagerPopup.dart';
-
-import 'dart:async';
-import 'dart:convert';
+import 'databases.dart';
 
 
 class VillagerList extends StatefulWidget {
@@ -21,47 +19,10 @@ class VillagerList extends StatefulWidget {
 
 String searchVillager = '';
 
-class VillagerData{
-  final String name;
-  final String image;
-  final String species;
-  final String gender;
-  final String personality;
-  final String birthday;
-  final String catchphrase;
-  final String style1;
-  final String style2;
-  final String color1;
-  final String color2;
-  final String filename;
-  final String uniqueEntryID;
-  final bool favorite;
-
-  VillagerData(this.name,this.image,this.species,this.gender,this.personality,this.birthday,this.catchphrase,this.style1,this.style2,
-  this.color1,this.color2,this.filename,this.uniqueEntryID,this.favorite);
-}
 
 class _VillagerListPageState extends State<VillagerList>{
 
-  Future<List<VillagerData>> getVillagerData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/villagers.json");
-
-    final jsonData = json.decode(data);
-    bool favorite = false;
-    List<VillagerData> villagerData = [];
-    for(var u in jsonData){
-      getStoredBool("villagerCheckList"+u["Name"], false).then((indexResult){
-        favorite = indexResult;
-        VillagerData villagerDatum = VillagerData(u["Name"],u["Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"],favorite);
-        if(search == ''){
-          villagerData.add(villagerDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          villagerData.add(villagerDatum);
-        }
-      });
-    }
-    return villagerData;
-  }
+  
 
   @override
   Widget build(BuildContext context){

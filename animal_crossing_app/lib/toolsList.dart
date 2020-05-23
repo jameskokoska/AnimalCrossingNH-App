@@ -4,9 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'dart:async';
-import 'dart:convert';
+
 import 'toolsPopup.dart';
+import 'databases.dart';
+
 
 class ToolsList extends StatefulWidget {
   ToolsList({Key key, this.title}) : super(key: key);
@@ -21,35 +22,6 @@ String searchTools = '';
 
 
 
-class ToolsData{
-  final String name;
-  final String image;
-  final String variation;
-  final String bodyTitle;
-  final String diy;
-  final String customize;
-  final String kitCost;
-  final String uses;
-  final String stackSize;
-  final String buy;
-  final String sell;
-  final String color1;
-  final String color2;
-  final String size;
-  final String set;
-  final String milesPrice;
-  final String source;
-  final String version;
-  final String filename;
-  final String variantID;
-  final String internalID;
-  final String uniqueEntryID;
-  final bool collected;
-
-
-  ToolsData(this.name,this.image,this.variation,this.bodyTitle,this.diy,this.customize,this.kitCost,this.uses,this.stackSize,this.buy,this.sell,
-  this.color1,this.color2,this.size,this.set,this.milesPrice,this.source,this.version,this.filename,this.variantID,this.internalID,this.uniqueEntryID,this.collected);
-}
 
 class _ToolsListPageState extends State<ToolsList>{
   @override
@@ -60,30 +32,7 @@ class _ToolsListPageState extends State<ToolsList>{
     });
   }
 
-  Future<List<ToolsData>> getToolsData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/tools.json");
-
-    final jsonData = json.decode(data);
-    bool collected = false;
-    List<ToolsData> toolsData = [];
-    String previousName="";
-    for(var u in jsonData){
-      getStoredBool("toolsCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        ToolsData toolsDatum = ToolsData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["DIY"],u["Customize"],u["Kit Cost"],u["Uses"],u["Stack Size"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Set"],u["Miles Price"],u["Source"],u["Version"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName||showListVariations==true){
-          if(search == ''){
-            toolsData.add(toolsDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            toolsData.add(toolsDatum);
-          }
-        }
-        previousName = u["Name"];
-      });
-      
-    }
-    return toolsData;
-  }
+  
 
 
   @override

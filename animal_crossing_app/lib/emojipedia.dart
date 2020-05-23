@@ -4,8 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'dart:async';
-import 'dart:convert';
+import 'databases.dart';
+
 
 
 class EmojiList extends StatefulWidget {
@@ -19,36 +19,8 @@ class EmojiList extends StatefulWidget {
 
 String searchEmoji = '';
 
-class EmojiData{
-  final String name;
-  final String imageLink;
-  final String source;
-  final bool collected;
-
-  EmojiData(this.name, this.imageLink, this.source,this.collected);
-}
 
 class _EmojiListPageState extends State<EmojiList>{
-
-  Future<List<EmojiData>> getEmojiData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/emojis.json");
-
-    final jsonData = json.decode(data);
-    bool collected = false;
-    List<EmojiData> emojiData = [];
-    for(var u in jsonData){
-      getStoredBool("emojiCheckList"+u["Name"], false).then((indexResult){
-        collected = indexResult;
-        EmojiData villagerDatum = EmojiData(u["Name"],u["Image"],u["Source"],collected);
-        if(search == ''){
-          emojiData.add(villagerDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          emojiData.add(villagerDatum);
-        }
-      });
-    }
-    return emojiData;
-  }
 
   @override
   Widget build(BuildContext context){

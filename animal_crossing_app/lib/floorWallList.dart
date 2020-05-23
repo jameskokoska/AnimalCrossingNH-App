@@ -4,9 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'dart:async';
-import 'dart:convert';
+
 import 'floorWallListPopup.dart';
+import 'databases.dart';
+
 
 
 class FloorWallsList extends StatefulWidget {
@@ -22,151 +23,10 @@ String searchfloorWalls = '';
 
 
 
-class RugsData{
-  final String name;
-  final String image;
-  final String diy;
-  final String buy;
-  final String sell;
-  final String color1;
-  final String color2;
-  final String size;
-  final String milesPrice;
-  final String source;
-  final String sourceNotes;
-  final String version;
-  final String hhaConcept1;
-  final String hhaConcept2;
-  final String hhaSeries;
-  final String tag;
-  final String catalog;
-  final String filename;
-  final String internalId;
-  final String uniqueEntryId;
-  final bool collected;
-
-
-  RugsData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
-  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
-}
-
-class FloorsData{
-  final String name;
-  final String image;
-  final String diy;
-  final String buy;
-  final String sell;
-  final String color1;
-  final String color2;
-  final String size;
-  final String milesPrice;
-  final String source;
-  final String sourceNotes;
-  final String version;
-  final String hhaConcept1;
-  final String hhaConcept2;
-  final String hhaSeries;
-  final String tag;
-  final String catalog;
-  final String filename;
-  final String internalId;
-  final String uniqueEntryId;
-  final bool collected;
-
-
-  FloorsData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
-  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
-}
-
-class WallpapersData{
-  final String name;
-  final String image;
-  final String diy;
-  final String buy;
-  final String sell;
-  final String color1;
-  final String color2;
-  final String size;
-  final String milesPrice;
-  final String source;
-  final String sourceNotes;
-  final String version;
-  final String hhaConcept1;
-  final String hhaConcept2;
-  final String hhaSeries;
-  final String tag;
-  final String catalog;
-  final String filename;
-  final String internalId;
-  final String uniqueEntryId;
-  final bool collected;
-
-
-  WallpapersData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
-  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
-}
 
 class _FloorWallsListPageState extends State<FloorWallsList>{
 
-  Future<List<RugsData>> getRugsData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/rugs.json");
-
-    final jsonData = json.decode(data);
-    bool collected = false;
-    List<RugsData> rugsData = [];
-    for(var u in jsonData){
-      getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
-        collected = indexResult;
-        RugsData rugsDatum = RugsData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(search == ''){
-          rugsData.add(rugsDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          rugsData.add(rugsDatum);
-        }
-      });
-    }
-    return rugsData;
-  }
-
-  Future<List<FloorsData>> getFloorsData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/flooring.json");
-
-    final jsonData = json.decode(data);
-    bool collected = false;
-    List<FloorsData> floorsData = [];
-    for(var u in jsonData){
-      getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
-        collected = indexResult;
-        FloorsData floorsDatum = FloorsData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(search == ''){
-          floorsData.add(floorsDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          floorsData.add(floorsDatum);
-        }
-      });
-    }
-    return floorsData;
-  }
-
-  Future<List<WallpapersData>> getWallpapersData(String search) async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/wallpaper.json");
-
-    final jsonData = json.decode(data);
-    bool collected = false;
-    List<WallpapersData> wallpapersData = [];
-    for(var u in jsonData){
-      getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
-        collected = indexResult;
-        WallpapersData wallpapersDatum = WallpapersData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(search == ''){
-          wallpapersData.add(wallpapersDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          wallpapersData.add(wallpapersDatum);
-        }
-      });
-    }
-    return wallpapersData;
-  }
+  
 
   @override
   Widget build(BuildContext context){
