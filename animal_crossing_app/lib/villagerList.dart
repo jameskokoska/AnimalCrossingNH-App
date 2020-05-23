@@ -22,8 +22,6 @@ String searchVillager = '';
 
 class _VillagerListPageState extends State<VillagerList>{
 
-  
-
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
