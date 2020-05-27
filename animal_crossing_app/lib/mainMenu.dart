@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+//import 'databases.dart';
 
 
 class Home extends StatefulWidget {
@@ -157,20 +158,30 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   if(nook) {
     if((timeHour >= 8 && meridian == "AM") || (timeHour < 10 && meridian == "PM")) {
       storeState = "Open";
+      bubble = Color(0xffB9FBC8);
+      if(timeHour == 9 && meridian == "PM") {
+        storeState = "Open (Closing Soon)";
+        bubble = Color(0xfffdcd2e);
+      }
     }else {
       storeState = "Closed";
+      bubble = Color(0xffFFC9CE);
     }
     storeTitle = "Nook's Cranny";
   }else {
     if((timeHour >= 9 && meridian == "AM") || (timeHour < 9 && meridian == "PM")) {
       storeState = "Open";
+      bubble = Color(0xffB9FBC8);
+      if(timeHour == 8 && meridian == "PM") {
+        storeState = "Open (Closing Soon)";
+        bubble = Color(0xfffdcd2e);
+      }
     }else {
       storeState = "Closed";
+      bubble = Color(0xffFFC9CE);
     }
     storeTitle = "Able Sisters";
   }
-
-
 
   if(enable=="true"){
     enableBool = true;
@@ -178,11 +189,6 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
     enableBool = false;
   }
 
-  if(nook) {
-    bubble = Color(0xffB9FBC8);
-  }else {
-    bubble = Color(0xffFFC9CE);
-  }
   return Column(
     children: <Widget>[
       Visibility(
