@@ -197,24 +197,25 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
           children: <Widget>[
             Center(
               child: Container(
-                width: 334*percentScale,
-                height: 71*percentScale,
+                width: 344*percentScale,
+                height: 101*percentScale,
+                //margin: const EdgeInsets.all(15.0),
                 decoration: new BoxDecoration(
                     color: darkModeColor(!darkMode, colorWhite, bubble),
-                    borderRadius: BorderRadius.circular(18)
+                    borderRadius: BorderRadius.circular(18),
                 ),
               ),
             ),
             Container(
-              transform: Matrix4.translationValues((368/20)*percentScale, -3*percentScale, 0),
+              transform: Matrix4.translationValues((388/20)*percentScale, -29*percentScale, 0),
               child: new Image.asset(
                 'assets/' + storeName + '.png',
-                height: 70*percentScale,
-                width: 70*percentScale,
+                height: 150*percentScale,
+                width: 80*percentScale,
               ),
             ),
             new Container(
-              transform: Matrix4.translationValues((318/20)*percentScale,14*percentScale,0),
+              transform: Matrix4.translationValues((788/20)*percentScale,34*percentScale,0),
               child: Center(
                 child: new Text(
                   storeState + ": " + storeTitle,
@@ -233,7 +234,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               child: Stack(
                 children: <Widget>[
                   Container(
-                    transform: Matrix4.translationValues((318/20)*percentScale, 14*percentScale,0),
+                    transform: Matrix4.translationValues((788/20)*percentScale, 34*percentScale,0),
                     child: Center(
                       child: new Text(
                         "\n\nTurnips cannot be sold on Sundays",
