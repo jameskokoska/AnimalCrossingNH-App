@@ -156,7 +156,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   timeMinute = int.parse(timeMin);
 
   if(nook) {
-    if((timeHour >= 8 && meridian == "AM") || (timeHour < 10 && meridian == "PM")) {
+    if((timeHour == 12 && meridian == "PM") || (timeHour >= 8 && timeHour != 12 && meridian == "AM") || (timeHour < 10 && meridian == "PM")) {
       storeState = "Open";
       bubble = Color(0xffB9FBC8);
       if(timeHour == 9 && meridian == "PM") {
@@ -169,7 +169,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
     }
     storeTitle = "Nook's Cranny";
   }else {
-    if((timeHour >= 9 && meridian == "AM") || (timeHour < 9 && meridian == "PM")) {
+    if((timeHour == 12 && meridian == "PM") || (timeHour >= 9 && timeHour != 12 && meridian == "AM") || (timeHour < 9 && meridian == "PM")) {
       storeState = "Open";
       bubble = Color(0xffB9FBC8);
       if(timeHour == 8 && meridian == "PM") {
