@@ -40,7 +40,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                 // ---------- Card Tab ----------
                 new Center(
                   child: new Container(
-                    transform: Matrix4.translationValues(0, -60*percentScale, 0),
+                    transform: Matrix4.translationValues(0, -85*percentScale, 0),
                     width: 113*percentScale,
                     height: 113*percentScale,
                     // ---------- Card Tab Image ----------
@@ -224,7 +224,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                         //birthday
                         infoContainer(percentScale, 'bellBag.png', buy),
                         //species
-                        infoContainer(percentScale, 'bellBag.png',sell),
+                        infoContainer(percentScale, 'coin.png',sell),
                         //personaility
                         infoContainer(percentScale, 'magnifyingGlass.png', source),
                       ],
