@@ -255,6 +255,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                           // ---------- Card Centre Name ----------
                           Container(
                             child: new Text(capitalize(name),
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
                                 color: Color(0xff373737),

@@ -25,9 +25,6 @@ String searchfloorWalls = '';
 
 
 class _FloorWallsListPageState extends State<FloorWallsList>{
-
-  
-
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -80,7 +77,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected);
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag);
                         },
                         childCount: snapshot.data[0].length,
                       ),
@@ -98,8 +95,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected);
-                        },
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag);                        },
                         childCount: snapshot.data[1].length,
                       ),
                     ),
@@ -116,8 +112,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected);
-                        },
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag);                        },
                         childCount: snapshot.data[2].length,
                       ),
                     ),
@@ -268,7 +263,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
   }
 }
 
-Widget floorWallsContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source, bool collected){
+Widget floorWallsContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return new Stack(
@@ -316,7 +311,7 @@ Widget floorWallsContainer(double percentScale, Color colorTextBlack, String nam
                         return Container(
                           height: 450*percentScale,
                             child: Container(
-                              //child: villagerPopUp(percentScale,currentCollectedFloorWalls,name, imageLink, species,  gender,  personality, birthday, catchphrase, style1, style2, color1, color2)
+                              child: floorWallsPopUp(percentScale, colorTextBlack, name, image, source, currentCollectedFloorWalls, buy, milesPrice, sell,color1,color2,hhaConcept1,hhaConcept2,hhaSeries,tag),
                           ),
                         );
                     });
@@ -352,7 +347,7 @@ Widget floorWallsContainer(double percentScale, Color colorTextBlack, String nam
                               image: imageProvider, fit: BoxFit.cover),
                           ),
                         ),
-                        imageUrl: imageLink,
+                        imageUrl: image,
                         //placeholder: (context, url) => CircularProgressIndicator(),
                         errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
                         height:70*percentScale,

@@ -10,17 +10,29 @@ final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedFloorWalls = false;
 
 
-Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
+Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag){
+  String buyPriceConverted;
+  String buyPriceConvertedType;
+  if (buy=='NFS'){
+    if (milesPrice != "NA"){
+      buyPriceConverted = milesPrice;
+      buyPriceConvertedType = ' miles';
+    } else if (source == "Crafting") {
+      buyPriceConverted = "None";
+    }
+  } else {
+    buyPriceConverted = buy;
+    buyPriceConvertedType = ' bells';
+  }
+  
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
         resizeToAvoidBottomPadding: false,
         body: Column(
           children: [
-            // ---------- Card Stack ----------
             Stack(
               children: [
-                // ---------- Cheaty Background and curved card ----------
                 Container(
                   transform: Matrix4.translationValues(0, -30*percentScale, 0),
                   height:340*percentScale,
@@ -31,19 +43,17 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                 ),
                 Container(
                   transform: Matrix4.translationValues(0, 20*percentScale, 0),
-                  height:440*percentScale,
+                  height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: Color(0xFFFFFFFF),
                   )
                 ),
-                // ---------- Card Tab ----------
                 new Center(
                   child: new Container(
                     transform: Matrix4.translationValues(0, -90*percentScale, 0),
                     width: 113*percentScale,
                     height: 113*percentScale,
-                    // ---------- Card Tab Image ----------
                     child: new Center(
                       child: new Center(
                         child: CachedNetworkImage(
@@ -56,7 +66,7 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: imageLink,
+                          imageUrl: image,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -65,7 +75,7 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:Color(0xFFE0F2F1),
+                      color:colorBugAccent,
                       boxShadow: [BoxShadow(
                         color: Color(0x29000000),
                         offset: Offset(0,3),
@@ -81,41 +91,59 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                   transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
                   width: 80*percentScale,
                   height: 80*percentScale,
+                  // ---------- Card Location Image ----------
+                  child: Stack(
+                    children: <Widget>[
+                      Center(
+                        child: Container(
+                          transform: Matrix4.translationValues(-13*percentScale,(31)*percentScale,0),
+                          height:30,
+                          width:70,
+                          child: Text(capitalize(source),
+                          textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'ArialRoundedBold',
+                                color: Color(0xff90a4ae),
+                                fontSize: 11*percentScale,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                              )
+                          ),
+                        ),
+                      ),
+                      new Container(
+                        width: 55*percentScale,
+                        height: 55*percentScale,
+                        decoration: new BoxDecoration(
+                          borderRadius: BorderRadius.circular(100*percentScale),
+                          color: Color(0xffB9F4FB)
+                        )
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100*percentScale),
+                        // child: new Image.asset(
+                        //   //'assets/'+determineLocationImage(whereHow)+'.png',
+                        //   height: 55*percentScale,
+                        //   width: 55*percentScale,
+                        // )
+                      ),
+                    ],
+                  ),
                 ),
-                // ---------- Card favorite ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
-                  // ---------- Card Body favorite Image ----------
                   child: Container(
                     width: 55*percentScale,
                     height: 55*percentScale,
                       child: Stack(
                         children: <Widget>[
                           AnimatedOpacity(
-                            duration: Duration(milliseconds:300),
-                            opacity: favorite ? 0 : 1,
-                            child: Center(
-                              child: Container(
-                                transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                child: Text("",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
-                                      fontSize: 11*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                ),
-                              ),
-                            ),
-                          ),
-                          AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !favorite ? 0 : 1,
+                            opacity: !collected ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                child: Text("Favorite",
+                                child: Text("Collected",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: Color(0xff90a4ae),
@@ -129,41 +157,28 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: favorite ? 55*percentScale : 0,     //check needs changing to be based on current state
-                            bottom: favorite ? 55*percentScale : 0,
+                            top: collected ? 55*percentScale : 0, 
+                            bottom: collected ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFE0F2F1)
+                                color: colorCheckRed
                               )
                             ),
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !favorite ? 55*percentScale : 0,      //check needs changing to be based on current state
-                            bottom: !favorite ? 55*percentScale : 0,
+                            top: !collected ? 55*percentScale : 0,
+                            bottom: !collected ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: colorFishAccent,
+                                color: colorCheckGreen,
                               )
-                            ),
-                          ),
-                          Container(
-                            transform: Matrix4.translationValues(0,(1)*percentScale,0),
-                            child: Center(
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 200),
-                                width: favorite ? 30*percentScale : 0,
-                                height: favorite ? 30*percentScale : 0,
-                                child: Image.asset(
-                                    'assets/heart.png',
-                                ),
-                              ),
                             ),
                           ),
                           Center(
@@ -175,13 +190,13 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0x00FFFFFF),
+                                    checkColor: Color(0xFFFFFFFF),
                                     value: currentCollectedFloorWalls,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        favorite = value;
+                                        collected = value;
                                         currentCollectedFloorWalls = value;
-                                        saveBool("floorWallsCheckList"+name, false, favorite);
+                                        saveBool("floorWallsCheckList"+name, false, collected);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -193,18 +208,20 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                         ],
                       )
                   ),
-                ),
-                // ---------- Card Centre Content ----------
-                
+                ),                
                 Center(
                   child: Container(
-                    transform: Matrix4.translationValues(0, 40*percentScale, 0),
+                    transform: Matrix4.translationValues(0, 50*percentScale, 0),
                     height: 340*percentScale,
-                    width: 360*percentScale,
                     child: Column(
                       children: [
+                        SizedBox(
+                          height:30*percentScale,
+                        ),
                         Container(
+                          width: 250*percentScale,
                           child: new Text(capitalize(name),
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
                               color: Color(0xff373737),
@@ -215,45 +232,36 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                           ),
                         ),
                         SizedBox(
-                          height:10*percentScale,
+                          height:20*percentScale,
                         ),
-                        Container(
-                          width: 220*percentScale,
-                          child: Text(" - “"+catchphrase+"”",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Baskerville',
-                              color: colorFishTextDarkBlue,
-                              fontSize: 14*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.italic,
-                            )
+                        IntrinsicWidth(
+                          child: Row(
+                            children: <Widget>[
+                              (){
+                                if(buyPriceConverted!="None"){
+                                  return infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
+                                }
+                                return Container();
+                              }(),
+                              (){
+                                if(buyPriceConverted!="None"){
+                                  return SizedBox(width: 20*percentScale,);
+                                }
+                                return Container();
+                              }(),                                    
+                              infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells"),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          height:30*percentScale,
-                        ),
-
-                        //birthday
-                        infoContainer(percentScale, 'birthdayCake.png', birthday),
-                        //species
-                        infoContainer(percentScale, 'cat.png',species),
-                        //personaility
-                        infoContainer(percentScale, 'personailityEmoji.png', personality),
-                        //style
-                        Container(
-                          child: (){
-                            String style;
-                            if (style1 == style2){
-                              style = style1;
-                            } else {
-                              style = style1 + ", " + style2;
-                            }
-                            return infoContainer(percentScale, 'styleEmoji.png', style);
-                          }()
-                        ),
-                        //colours
-                        infoContainer(percentScale, 'colorPalette.png',color1 + ", " + color2),
+                        (){
+                          if(color2 != color1){
+                            return infoContainer(percentScale, 'colorPalette.png', color1 + ", " + color2);
+                          } else {
+                            return infoContainer(percentScale, 'colorPalette.png', color1);
+                          }
+                        }(),
+                        infoContainerHHA(percentScale, 'house.png', capitalize(hhaSeries), capitalize(hhaConcept1), capitalize(hhaConcept2)),
+                        infoContainer(percentScale, 'tag.png', tag),
                       ],
                     ),
                   ),
