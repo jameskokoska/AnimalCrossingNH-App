@@ -137,10 +137,12 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   String storeState;
   String storeTitle;
   bool enableBool;
+  bool nookSunday = false;
   Color bubble;
   String date = DateFormat.jm().format(new DateTime.now()).toString();
   String timeStr = date.substring(0,date.length-3);
   String meridian = date.substring(date.length-2,date.length);
+  String day = DateFormat.E().format(new DateTime.now()).toString();
   String timeHr;
   String timeMin;
   int timeHour;
@@ -181,6 +183,12 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
       bubble = Color(0xffFFC9CE);
     }
     storeTitle = "Able Sisters";
+  }
+
+  if(nook) {
+    if(day == "Sun") {
+      nookSunday = true;
+    }
   }
 
   if(enable=="true"){
@@ -230,7 +238,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               ),
             ),
             Visibility(
-              visible: nook,
+              visible: nookSunday,
               child: Stack(
                 children: <Widget>[
                   Container(
