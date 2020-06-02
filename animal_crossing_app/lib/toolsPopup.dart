@@ -206,19 +206,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                         SizedBox(
                           height:10*percentScale,
                         ),
-                        Container(
-                          width: 220*percentScale,
-                          child: Text(uses + " Uses",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Baskerville',
-                              color: colorFishTextDarkBlue,
-                              fontSize: 14*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.italic,
-                            )
-                          ),
-                        ),
+                        quoteContainer(percentScale, colorTextBlack, uses + " Uses"),
                         SizedBox(
                           height:10*percentScale,
                         ),

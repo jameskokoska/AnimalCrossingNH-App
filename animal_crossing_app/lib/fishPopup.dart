@@ -78,49 +78,8 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 
                 // ---------- Card Location ----------
-                new Container(
-                  transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
-                  width: 80*percentScale,
-                  height: 80*percentScale,
-                  // ---------- Card Location Image ----------
-                  child: Stack(
-                    children: <Widget>[
-                      Center(
-                        child: Container(
-                          transform: Matrix4.translationValues(-13*percentScale,(31)*percentScale,0),
-                          height:30,
-                          width:70,
-                          child: Text(capitalize(whereHow),
-                          textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff90a4ae),
-                                fontSize: 11*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              )
-                          ),
-                        ),
-                      ),
-                      new Container(
-                        width: 55*percentScale,
-                        height: 55*percentScale,
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(100*percentScale),
-                          color: Color(0xffB9F4FB)
-                        )
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100*percentScale),
-                        child: new Image.asset(
-                          'assets/'+determineLocationImage(whereHow)+'.png',
-                          height: 55*percentScale,
-                          width: 55*percentScale,
-                        )
-                      ),
-                    ],
-                  ),
-                ),
+                circleContainer(percentScale, determineLocationImage(whereHow)+'.png', Color(0xffB9F4FB), Color(0xff90a4ae), whereHow),
+                
                 // ---------- Card Caught ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
@@ -236,19 +195,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
                             opacity: caught||showCatchPhraseNow ? 1 : 0,
-                            child: Container(
-                              width: 220*percentScale,
-                              child: Text("“"+catchphrase+"”",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Baskerville',
-                                  color: colorFishTextDarkBlue,
-                                  fontSize: 14*percentScale,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.italic,
-                                )
-                              ),
-                            ),
+                            child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+catchphrase+"”"),
                           ),
                           SizedBox(
                             height:10*percentScale,

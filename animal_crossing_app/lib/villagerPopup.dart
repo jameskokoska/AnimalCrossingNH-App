@@ -217,19 +217,7 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                         SizedBox(
                           height:10*percentScale,
                         ),
-                        Container(
-                          width: 220*percentScale,
-                          child: Text(getGenderString(gender) + " - “"+catchphrase+"”",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Baskerville',
-                              color: colorFishTextDarkBlue,
-                              fontSize: 14*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.italic,
-                            )
-                          ),
-                        ),
+                        quoteContainer(percentScale, colorTextBlack, getGenderString(gender) + " - “"+catchphrase+"”"),
                         SizedBox(
                           height:30*percentScale,
                         ),

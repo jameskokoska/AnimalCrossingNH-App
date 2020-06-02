@@ -86,50 +86,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                   ),
                 ),
                 
-                // ---------- Card Location ----------
-                new Container(
-                  transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
-                  width: 80*percentScale,
-                  height: 80*percentScale,
-                  // ---------- Card Location Image ----------
-                  child: Stack(
-                    children: <Widget>[
-                      Center(
-                        child: Container(
-                          transform: Matrix4.translationValues(-13*percentScale,(31)*percentScale,0),
-                          height:30,
-                          width:70,
-                          child: Text(capitalize(source),
-                          textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff90a4ae),
-                                fontSize: 11*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              )
-                          ),
-                        ),
-                      ),
-                      new Container(
-                        width: 55*percentScale,
-                        height: 55*percentScale,
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(100*percentScale),
-                          color: Color(0xffB9F4FB)
-                        )
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100*percentScale),
-                        // child: new Image.asset(
-                        //   //'assets/'+determineLocationImage(whereHow)+'.png',
-                        //   height: 55*percentScale,
-                        //   width: 55*percentScale,
-                        // )
-                      ),
-                    ],
-                  ),
-                ),
+                circleContainer(percentScale, 'bellBag.png', Color(0xffB9F4FB), Color(0xff90a4ae), source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
