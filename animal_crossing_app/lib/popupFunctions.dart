@@ -288,56 +288,68 @@ Widget circleContainer(double percentScale, String imageIcon, Color imageBG, Col
         ),
         ClipRRect(
           borderRadius: BorderRadius.circular(100*percentScale),
-           child: new Image.asset(
-             'assets/'+imageIcon,
-             height: 55*percentScale,
-             width: 55*percentScale,
-           )
+           child: getIconName(text, 55*percentScale, 55*percentScale, percentScale)
         ),
       ],
     ),
   );
 }
 
-Widget getIconName(String source) {
+Widget getIconName(String source, double height, double width, double percentScale) {
   if(source.contains("Nook's Cranny")) {
     return new Image.asset(
       'assets/' + 'nook.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else if(source.contains("Crafting")) {
     return new Image.asset(
-      'assets/' + 'crafting.png'
+      'assets/' + 'crafting.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
     return new Image.asset(
-        'assets/' + 'nookCraft.png'
+      'assets/' + 'nookCraft.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else if(source.contains("Saharah")) {
     return new Image.asset(
-        'assets/' + 'saharah.png'
+      'assets/' + 'saharah.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else if(source.contains("Bug Off")) {
     return new Image.asset(
-        'assets/' + 'leaf.png'
+      'assets/' + 'leaf.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else if(source.contains("Fishing Tourney")) {
     return new Image.asset(
-        'assets/' + 'leaf.png'
+      'assets/' + 'leaf.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else if(source.contains("May Day Tour")) {
     return new Image.asset(
-        'assets/' + 'leaf.png'
+      'assets/' + 'leaf.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else {
     return new Image.asset(
-        'assets/' + 'leaf.png'
+      'assets/' + 'leaf.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
 }
