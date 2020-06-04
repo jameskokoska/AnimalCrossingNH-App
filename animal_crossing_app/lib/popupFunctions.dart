@@ -353,3 +353,38 @@ Widget getIconName(String source, double height, double width, double percentSca
     );
   }
 }
+
+String buyPriceConverted(String buy, String milesPrice, String source){
+  if (buy=='NFS'){
+    if (milesPrice != "NA"){
+      return milesPrice;
+    } else if (source == "Crafting") {
+      return "None";
+    }
+  } else {
+    return buy;
+  }
+  return "";
+}
+
+String buyPriceConvertedType(String buy, String milesPrice, String source){
+  if (buy=='NFS'){
+    if (milesPrice != "NA"){
+      return ' miles';
+    } 
+  } else {
+    return ' bells';
+  }
+  return "";
+}
+
+String buyPriceConvertedIcon(String buy, String milesPrice, String source){
+  if (buy=='NFS'){
+    if (milesPrice != "NA"){
+      return "miles.png";
+    }
+  } else {
+      return "bellBag.png";
+  }
+  return "";
+}
