@@ -181,7 +181,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                       )
                   ),
                 ),
-                circleContainer(percentScale, 'bellBag.png', Color(0xffB9F4FB), Color(0xff90a4ae), source),
+                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(

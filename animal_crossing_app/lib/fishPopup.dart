@@ -78,7 +78,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, determineLocationImage(whereHow)+'.png', Color(0xffB9F4FB), Color(0xff90a4ae), whereHow),
+                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), whereHow),
                 
                 // ---------- Card Caught ----------
                 new Container(

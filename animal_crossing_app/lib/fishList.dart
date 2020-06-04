@@ -429,13 +429,3 @@ String determineShadowImage(String shadowSize, String whereHow){
   }
   return "Long";
 }
-
-String determineLocationImage(String whereHow){
-  if(whereHow.contains('Ocean')||whereHow.contains('Pier')){
-    return "oceanIcon";
-  } else if (whereHow.contains('River')||whereHow.contains('Pond')){
-    return "riverIcon";
-  }
-  return "riverIcon";
-}
-

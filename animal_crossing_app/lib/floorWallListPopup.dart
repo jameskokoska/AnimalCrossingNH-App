@@ -86,7 +86,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                   ),
                 ),
                 
-                circleContainer(percentScale, 'bellBag.png', Color(0xffB9F4FB), Color(0xff90a4ae), source),
+                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(

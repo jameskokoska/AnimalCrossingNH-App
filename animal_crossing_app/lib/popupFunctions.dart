@@ -253,12 +253,11 @@ Widget quoteContainer(double percentScale, Color stringColor, String quotedText)
   );
 }
 
-Widget circleContainer(double percentScale, String imageIcon, Color imageBG, Color stringColor, String text){
+Widget circleContainer(double percentScale, Color imageBG, Color stringColor, String text){
   return new Container(
     transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
     width: 80*percentScale,
     height: 80*percentScale,
-    // ---------- Card Location Image ----------
     child: Stack(
       children: <Widget>[
         Center(
@@ -288,26 +287,30 @@ Widget circleContainer(double percentScale, String imageIcon, Color imageBG, Col
         ),
         ClipRRect(
           borderRadius: BorderRadius.circular(100*percentScale),
-           child: getIconName(text, 55*percentScale, 55*percentScale, percentScale)
+          child: Container(
+            width: 55*percentScale,
+            height: 55*percentScale,
+            child: Center(child: getIconName(text, percentScale))
+          ),
         ),
       ],
     ),
   );
 }
 
-Widget getIconName(String source, double height, double width, double percentScale) {
+Widget getIconName(String source, double percentScale) {
   if(source.contains("Nook's Cranny")) {
     return new Image.asset(
       'assets/' + 'nook.png',
-      height: 55*percentScale,
-      width: 55*percentScale,
+      height: 40*percentScale,
+      width: 40*percentScale,
     );
   }
   else if(source.contains("Crafting")) {
     return new Image.asset(
       'assets/' + 'crafting.png',
-      height: 55*percentScale,
-      width: 55*percentScale,
+      height: 35*percentScale,
+      width: 35*percentScale,
     );
   }
   else if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
@@ -320,8 +323,8 @@ Widget getIconName(String source, double height, double width, double percentSca
   else if(source.contains("Saharah")) {
     return new Image.asset(
       'assets/' + 'saharah.png',
-      height: 55*percentScale,
-      width: 55*percentScale,
+      height: 40*percentScale,
+      width: 40*percentScale,
     );
   }
   else if(source.contains("Bug Off")) {
@@ -345,11 +348,32 @@ Widget getIconName(String source, double height, double width, double percentSca
       width: 55*percentScale,
     );
   }
+  else if(source.contains('Ocean')||source.contains('Pier')){
+    return new Image.asset(
+      'assets/' + 'oceanIcon.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
+    );
+  }
+  else if (source.contains('River')){
+    return new Image.asset(
+      'assets/' + 'riverIcon.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
+    );
+  }
+  else if (source.contains('Pond')){
+    return new Image.asset(
+      'assets/' + 'pondIcon.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
+    );
+  }
   else {
     return new Image.asset(
       'assets/' + 'leaf.png',
-      height: 55*percentScale,
-      width: 55*percentScale,
+      height: 35*percentScale,
+      width: 35*percentScale,
     );
   }
 }

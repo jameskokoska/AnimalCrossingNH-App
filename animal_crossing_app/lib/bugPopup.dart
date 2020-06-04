@@ -77,7 +77,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, 'bellBag.png', Color(0xffB9F4FB), Color(0xff90a4ae), whereHow),
+                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), whereHow),
                 // ---------- Card Caught ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
