@@ -300,8 +300,44 @@ Widget circleContainer(double percentScale, String imageIcon, Color imageBG, Col
 }
 
 Widget getIconName(String source) {
-  if(source == "Nook's Cranny")
-  return new Image.asset(
-    'assets/'+"nook.png",
-  );
+  if(source.contains("Nook's Cranny")) {
+    return new Image.asset(
+      'assets/' + 'nook.png',
+    );
+  }
+  else if(source.contains("Crafting")) {
+    return new Image.asset(
+      'assets/' + 'crafting.png'
+    );
+  }
+  else if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
+    return new Image.asset(
+        'assets/' + 'nookCraft.png'
+    );
+  }
+  else if(source.contains("Saharah")) {
+    return new Image.asset(
+        'assets/' + 'saharah.png'
+    );
+  }
+  else if(source.contains("Bug Off")) {
+    return new Image.asset(
+        'assets/' + 'leaf.png'
+    );
+  }
+  else if(source.contains("Fishing Tourney")) {
+    return new Image.asset(
+        'assets/' + 'leaf.png'
+    );
+  }
+  else if(source.contains("May Day Tour")) {
+    return new Image.asset(
+        'assets/' + 'leaf.png'
+    );
+  }
+  else {
+    return new Image.asset(
+        'assets/' + 'leaf.png'
+    );
+  }
 }
