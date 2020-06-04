@@ -185,6 +185,24 @@ class _EmojiListPageState extends State<EmojiList>{
                       )
                     ),
                     emojiListSliver,
+                    SliverPadding(
+                      padding: EdgeInsets.only(top:40*percentScale),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate([
+                          new Center(
+                            child: Text("*These emojis are only obtainable with high friendship",
+                              style: TextStyle(
+                              fontFamily: 'ArialRoundedBold',
+                              color: colorTextBlack,
+                              fontSize: 10*percentScale,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              )
+                            ),
+                          ),
+                        ],),
+                      ),
+                    ),
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(

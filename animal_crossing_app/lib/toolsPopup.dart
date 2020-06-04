@@ -187,11 +187,13 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                   child: Container(
                     transform: Matrix4.translationValues(0, 70*percentScale, 0),
                     height: 340*percentScale,
-                    width: 360*percentScale,
+                    
                     child: Column(
                       children: [
                         Container(
+                          width: 250*percentScale,
                           child: new Text(capitalize(name),
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
                               color: Color(0xff373737),
@@ -204,19 +206,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                         SizedBox(
                           height:10*percentScale,
                         ),
-                        Container(
-                          width: 220*percentScale,
-                          child: Text(uses + " Uses",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Baskerville',
-                              color: colorFishTextDarkBlue,
-                              fontSize: 14*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.italic,
-                            )
-                          ),
-                        ),
+                        quoteContainer(percentScale, colorTextBlack, uses + " Uses"),
                         SizedBox(
                           height:10*percentScale,
                         ),
