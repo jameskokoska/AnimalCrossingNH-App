@@ -298,3 +298,10 @@ Widget circleContainer(double percentScale, String imageIcon, Color imageBG, Col
     ),
   );
 }
+
+Widget getIconName(String source) {
+  if(source == "Nook's Cranny")
+  return new Image.asset(
+    'assets/'+"nook.png",
+  );
+}
