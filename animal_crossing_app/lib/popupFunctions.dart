@@ -327,6 +327,20 @@ Widget getIconName(String source, double percentScale) {
       width: 40*percentScale,
     );
   }
+  else if(source.contains("Able")) {
+    return new Image.asset(
+      'assets/' + 'leaf.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if(source.contains("Kick")) {
+    return new Image.asset(
+      'assets/' + 'leaf.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
   else if(source.contains("Bug Off")) {
     return new Image.asset(
       'assets/' + 'leaf.png',
