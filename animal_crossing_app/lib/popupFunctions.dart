@@ -299,7 +299,14 @@ Widget circleContainer(double percentScale, Color imageBG, Color stringColor, St
 }
 
 Widget getIconName(String source, double percentScale) {
-  if(source.contains("Nook's Cranny")) {
+  if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
+  return new Image.asset(
+  'assets/' + 'nookCraft.png',
+  height: 55*percentScale,
+  width: 55*percentScale,
+  );
+  }
+  else if(source.contains("Nook's Cranny")) {
     return new Image.asset(
       'assets/' + 'nook.png',
       height: 40*percentScale,
@@ -309,15 +316,8 @@ Widget getIconName(String source, double percentScale) {
   else if(source.contains("Crafting")) {
     return new Image.asset(
       'assets/' + 'crafting.png',
-      height: 35*percentScale,
-      width: 35*percentScale,
-    );
-  }
-  else if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
-    return new Image.asset(
-      'assets/' + 'nookCraft.png',
-      height: 55*percentScale,
-      width: 55*percentScale,
+      height: 35 * percentScale,
+      width: 35 * percentScale,
     );
   }
   else if(source.contains("Saharah")) {
