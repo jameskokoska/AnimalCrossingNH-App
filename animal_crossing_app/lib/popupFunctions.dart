@@ -390,6 +390,13 @@ Widget getIconName(String source, double percentScale) {
       width: 55*percentScale,
     );
   }
+  else if (source.contains('Assessing fossils')){
+    return new Image.asset(
+      'assets/' + 'digIcon.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
   else {
     return new Image.asset(
       'assets/' + 'leaf.png',

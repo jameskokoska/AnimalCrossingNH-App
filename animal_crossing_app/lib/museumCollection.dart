@@ -2,12 +2,13 @@ import 'package:animal_crossing_app/emojipedia.dart';
 import 'package:animal_crossing_app/fishList.dart';
 import 'package:animal_crossing_app/bugList.dart';
 import 'package:animal_crossing_app/floorWallList.dart';
+import 'package:animal_crossing_app/fossilList.dart';
 import 'package:animal_crossing_app/music.dart';
 import 'package:animal_crossing_app/settingList.dart';
 import 'package:animal_crossing_app/villagerList.dart';
-import 'package:animal_crossing_app/ToolsList.dart';
-import 'package:animal_crossing_app/Clothinglist.dart';
-import 'package:animal_crossing_app/Furniturelist.dart';
+import 'package:animal_crossing_app/toolsList.dart';
+import 'package:animal_crossing_app/clothinglist.dart';
+import 'package:animal_crossing_app/furniturelist.dart';
 
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,7 @@ class _MuseumPageState extends State<MuseumPage>{
 
     return MaterialApp(
       home: DefaultTabController(
-        length: 9,
+        length: 10,
         child: Scaffold(
           
           body: Stack(
@@ -66,10 +67,12 @@ class _MuseumPageState extends State<MuseumPage>{
                   VillagerList(),
                   MusicList(),
                   FishList(),
+                  FossilList(),
                 ],
               ),
               TabBar(
                 tabs: <Widget>[
+                  Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),

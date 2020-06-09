@@ -246,7 +246,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           ),
                           infoContainer(percentScale, 'magnifyingGlass.png', capitalize(shadow)),
                           //Shadow size
-                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(sell))+" bells"),
+                          infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells"),
                         ],
                       ),
                     ),

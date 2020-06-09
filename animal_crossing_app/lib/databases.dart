@@ -1277,3 +1277,50 @@ Future<List<ArtData>> getArtData(String search) async{
   }
   return artData;
 }
+
+class FossilData{
+  final String name;
+  final String image;
+  final String buy;
+  final String sell;
+  final String color1;
+  final String color2;
+  final String size;
+  final String source;
+  final String museum;
+  final String version;
+  final String interact;
+  final String catalog;
+  final String filename;
+  final String internalId;
+  final String uniqueEntryId;
+  final bool collected;
+
+  FossilData(this.name, this.image, this.buy,this.sell,this.color1,this.color2,this.size,this.source,
+  this.museum, this.version, this.interact, this.catalog,this.filename, this.internalId, this.uniqueEntryId, this.collected);
+}
+
+Future<List<FossilData>> getFossilData(String search) async{
+  String data = await rootBundle.loadString("assets/fossil.json");
+
+  final jsonData = json.decode(data);
+  bool collected = false;
+  List<FossilData> fossilData = [];
+  String previousName="";
+  for(var u in jsonData){
+    getStoredBool("fossilCheckList"+u["Name"], false).then((indexResult){
+      collected = indexResult;
+      FossilData fossilDatum = FossilData(u["Name"],u["Image"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Museum"],u["Version"],u["Interact"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"], collected);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          if(u["Name"]!=previousName)
+            fossilData.add(fossilDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          fossilData.add(fossilDatum);
+        }
+      }
+      previousName = u["Name"];
+    });
+  }
+  return fossilData;
+}

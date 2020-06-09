@@ -337,7 +337,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                           top: caught ? 40*percentScale : 0,
                           bottom: caught ? 40*percentScale : 0,
                           child: new Container(
-                            transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
+                            transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
                             width: 40*percentScale,
                             height: 40*percentScale,
                             decoration: new BoxDecoration(
@@ -351,7 +351,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                           top: !caught ? 40*percentScale : 0,
                           bottom: !caught ? 40*percentScale : 0,
                           child: new Container(
-                            transform: Matrix4.translationValues((279)*percentScale,(8)*percentScale,0),
+                            transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
                             width: 40*percentScale,
                             height: 40*percentScale,
                             decoration: new BoxDecoration(
@@ -365,7 +365,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                   ),
                   
                   Container(
-                    transform: Matrix4.translationValues((272)*percentScale,(8.5)*percentScale,0),
+                    transform: Matrix4.translationValues((272)*percentScale,(11)*percentScale,0),
                     width:55*percentScale,
                     height:55*percentScale,
                     child: ClipRRect(
