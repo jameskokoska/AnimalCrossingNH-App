@@ -21,7 +21,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
               children: [
                 Container(
                   transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                  height:340*percentScale,
+                  height:300*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: Color(0xFFFFFFFF),
