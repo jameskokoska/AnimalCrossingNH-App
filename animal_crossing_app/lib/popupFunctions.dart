@@ -440,3 +440,31 @@ String buyPriceConvertedIcon(String buy, String milesPrice, String source){
   }
   return "";
 }
+
+Widget paintingContainerLayout(String dimensions, String imageLinkReal, String imageLinkFake){
+  List splitDimensions = dimensions.split("x");
+  if (splitDimensions[1] < splitDimensions[2]){
+    return new Row(
+      children: <Widget>[
+        Expanded(
+          child: new Image(image: AssetImage(imageLinkReal)),
+        ),
+        Expanded(
+          child: new Image(image: AssetImage(imageLinkFake)),
+        ),
+      ]
+    );
+  }
+  else{
+    return new Column(
+        children: <Widget>[
+          Expanded(
+            child: new Image(image: AssetImage(imageLinkReal)),
+          ),
+          Expanded(
+            child: new Image(image: AssetImage(imageLinkFake)),
+          ),
+        ]
+    );
+  }
+}
