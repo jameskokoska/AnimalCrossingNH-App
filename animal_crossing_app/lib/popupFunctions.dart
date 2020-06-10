@@ -58,6 +58,8 @@ String determineTime(String nhJan,String nhFeb,String nhMar,String nhApr,String 
 }
 
 Widget infoContainer(double percentScale, String imageIcon, String displayString){
+  if(displayString=="NA")
+    return Container();
   return Container(
     height: 45*percentScale,
     child: Row(
@@ -126,16 +128,18 @@ Widget infoContainerDoubleLined(double percentScale, String imageIcon, String di
 
 Widget infoContainerHHA(double percentScale, String imageIcon, String displayString1, String displayString2, String displayString3){
   int totalStrings = 3;
-  if(displayString1 == "None"){
-    totalStrings = totalStrings - 1;
-    
-  }
-  if(displayString2 == "None"){
+  if(displayString1 == "None"||displayString1 == "NA"){
     totalStrings = totalStrings - 1;
   }
-  if(displayString3 == "None"){
+  if(displayString2 == "None"||displayString2 == "NA"){
     totalStrings = totalStrings - 1;
   }
+  if(displayString3 == "None"||displayString3 == "NA"){
+    totalStrings = totalStrings - 1;
+  }
+  if (totalStrings==0)
+    return Container();
+
   return Container(
     height: 45*percentScale,
     child: Row(

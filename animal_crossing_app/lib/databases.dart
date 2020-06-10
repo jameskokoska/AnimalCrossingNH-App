@@ -131,25 +131,25 @@ class PhotosData{
   final String patternTitle;
   final String diy;
   final String bodyCustomize; //"Customize"
-  //final String patternCustomize;
+  String patternCustomize = "NA";
   final String kitCost;
   final String buy;
   final String sell;
   final String color1;
   final String color2;
   final String size;
-  //final String milesPrice;
+  String milesPrice = "NA";
   final String source;
   final String version;
-  //final String hhaConcept1;
-  //final String hhaConcept2;
-  //final String hhaSeries;
-  //final String hhaSet;
-  //final String interact;
-  //final String tag;
-  //final String outdoor;
-  //final String speakerType;
-  //final String lightingType;
+  String hhaConcept1 = "NA";
+  String hhaConcept2 = "NA";
+  String hhaSeries = "NA";
+  String hhaSet = "NA";
+  String interact = "NA";
+  String tag = "NA";
+  String outdoor = "NA";
+  String speakerType = "NA";
+  String lightingType = "NA";
   final String catalog;
   final String filename;
   final String variantId;
@@ -157,50 +157,50 @@ class PhotosData{
   final String uniqueEntryId;
   final bool collected;
 
-  PhotosData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize, this.kitCost, this.buy,
-  this.sell, this.color1,this.color2,this.size, this.source,this.version,
-  this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.collected);
+  PhotosData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
+  this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.collected);
 }
 
 class PostersData{
   final String name;
   final String image;
-  //final String variation;
-  //final String bodyTitle;
-  //final String pattern;
-  //final String patternTitle;
-  //final String diy;
-  //final String bodyCustomize; //"Customize"
-  //final String patternCustomize;
-  //final String kitCost;
+  String variation = "NA";
+  String bodyTitle = "NA";
+  String pattern = "NA";
+  String patternTitle = "NA";
+  String diy = "NA";
+  String bodyCustomize = "NA"; //"Customize"
+  String patternCustomize = "NA";
+  String kitCost = "NA";
   final String buy;
   final String sell;
   final String color1;
   final String color2;
   final String size;
-  //final String milesPrice;
+  String milesPrice = "NA";
   final String source;
   final String sourceNotes;
   final String version;
-  //final String hhaConcept1;
-  //final String hhaConcept2;
-  //final String hhaSeries;
-  //final String hhaSet;
-  //final String interact;
-  //final String tag;
-  //final String outdoor;
-  //final String speakerType;
-  //final String lightingType;
+  String hhaConcept1 = "NA";
+  String hhaConcept2 = "NA";
+  String hhaSeries = "NA";
+  String hhaSet = "NA";
+  String interact = "NA";
+  String tag = "NA";
+  String outdoor = "NA";
+  String speakerType = "NA";
+  String lightingType = "NA";
   final String catalog;
   final String filename;
-  //final String variantId;
+  String variantId = "NA";
   final String internalId;
   final String uniqueEntryId;
   final bool collected;
 
-  PostersData(this.name, this.image, this.buy,
-  this.sell, this.color1,this.color2,this.size, this.source, this.sourceNotes,this.version,
-  this.catalog, this.filename, this.internalId, this.uniqueEntryId, this.collected);
+  PostersData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
+  this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.sourceNotes, this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.collected);
 }
 
 
@@ -852,7 +852,7 @@ Future<List<PhotosData>> getPhotosData(String search) async{
   for(var u in jsonData){
     getStoredBool("furnitureCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
       collected = indexResult;
-      PhotosData photosDatum = PhotosData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Customize"],u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Version"],u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"], collected);
+      PhotosData photosDatum = PhotosData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Customize"],"NA",u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],"NA",u["Source"],u["Version"],"NA","NA","NA","NA","NA","NA","NA","NA","NA",u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"], collected);
       if(u["Name"]!=previousName||showListVariations==true){
         if(search == ''){
           photosData.add(photosDatum);
@@ -876,7 +876,7 @@ Future<List<PostersData>> getPostersData(String search) async{
   for(var u in jsonData){
     getStoredBool("furnitureCheckList"+u["Name"], false).then((indexResult){
       collected = indexResult;
-      PostersData postersDatum = PostersData(u["Name"],u["Image"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Source Notes"],u["Version"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
+      PostersData postersDatum = PostersData(u["Name"],u["Image"],"NA","NA","NA","NA","NA","NA","NA","NA",u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],"NA",u["Source"],u["Source Notes"],u["Version"],"NA","NA","NA","NA","NA","NA","NA","NA","NA",u["Catalog"],u["Filename"],"NA",u["Internal ID"],u["Unique Entry ID"],collected);
       if(u["Name"]!=previousName||showListVariations==true){
         if(search == ''){
           postersData.add(postersDatum);

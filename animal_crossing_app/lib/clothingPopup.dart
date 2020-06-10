@@ -26,7 +26,7 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: Color(0xFF310808),
                   )
                 ),
                 Container(
