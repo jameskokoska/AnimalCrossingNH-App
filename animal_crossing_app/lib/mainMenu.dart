@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
-//import 'databases.dart';
+import 'databases.dart';
 
 
 class Home extends StatefulWidget {
@@ -270,6 +270,114 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   //if()
 //}
 
+class FishData{
+  final String id;
+  final String name;
+  final String iconImage;
+  final String critterpediaImage;
+  final String furnitureImage;
+  final String sell;
+  final String whereHow;
+  final String shadow;
+  final String totalCatchesToUnlock;
+  final String rainSnow;
+  final String nhJan;
+  final String nhFeb;
+  final String nhMar;
+  final String nhApr;
+  final String nhMay;
+  final String nhJun;
+  final String nhJul;
+  final String nhAug;
+  final String nhSep;
+  final String nhOct;
+  final String nhNov;
+  final String nhDec;
+  final String shJan;
+  final String shFeb;
+  final String shMar;
+  final String shApr;
+  final String shMay;
+  final String shJun;
+  final String shJul;
+  final String shAug;
+  final String shSep;
+  final String shOct;
+  final String shNov;
+  final String shDec;
+  final String color1;
+  final String color2;
+  final String size;
+  final String lightingType;
+  final String iconFilename;
+  final String critterpediaFilename;
+  final String furnitureFilename;
+  final String internalId;
+  final String uniqueEntryId;
+  final String catchphrase;
+  final String museum;
+  final bool caught;
+
+  FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rainSnow,
+      this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
+      this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
+      this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
+
+}
+
+
+class BugData{
+  final String id;
+  final String name;
+  final String iconImage;
+  final String critterpediaImage;
+  final String furnitureImage;
+  final String sell;
+  final String whereHow;
+  final String weather;
+  final String totalCatchesToUnlock;
+  final String nhJan;
+  final String nhFeb;
+  final String nhMar;
+  final String nhApr;
+  final String nhMay;
+  final String nhJun;
+  final String nhJul;
+  final String nhAug;
+  final String nhSep;
+  final String nhOct;
+  final String nhNov;
+  final String nhDec;
+  final String shJan;
+  final String shFeb;
+  final String shMar;
+  final String shApr;
+  final String shMay;
+  final String shJun;
+  final String shJul;
+  final String shAug;
+  final String shSep;
+  final String shOct;
+  final String shNov;
+  final String shDec;
+  final String color1;
+  final String color2;
+  final String iconFilename;
+  final String critterpediaFilename;
+  final String furnitureFilename;
+  final String internalId;
+  final String uniqueEntryId;
+  final String catchphrase;
+  final String museum;
+  final bool caught;
+
+  BugData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.weather,this.totalCatchesToUnlock,
+      this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
+      this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
+      this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
+
+}
+/*
 Future<List<FishData>> getFishData(String search) async{
   String data = await rootBundle.loadString("assets/fish.json");
 
@@ -313,7 +421,7 @@ Future<List<BugData>> getBugData(String search) async{
   }
   return bugData;
 }
-
+*/
 class _HomePageState extends State<Home>{
   bool morning = false;
   String currentTime;
