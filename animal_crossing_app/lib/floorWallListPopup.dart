@@ -35,7 +35,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
               children: [
                 Container(
                   transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                  height:340*percentScale,
+                  height:450*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: Color(0xFFFFFFFF),
@@ -166,7 +166,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                     child: Column(
                       children: [
                         SizedBox(
-                          height:30*percentScale,
+                          height:20*percentScale,
                         ),
                         Container(
                           width: 250*percentScale,

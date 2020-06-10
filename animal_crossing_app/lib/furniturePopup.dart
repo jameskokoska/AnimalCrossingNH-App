@@ -147,7 +147,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                                       setState(() {
                                         collected = value;
                                         currentCollectedFurniture = value;
-                                        saveBool("furnitureCheckList"+name, false, collected);
+                                        saveBool("furnitureCheckList"+name+variation, false, collected);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -167,7 +167,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                     child: Column(
                       children: [
                         SizedBox(
-                          height:30*percentScale,
+                          height:20*percentScale,
                         ),
                         Container(
                           width: 250*percentScale,

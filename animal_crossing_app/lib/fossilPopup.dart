@@ -151,7 +151,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                     child: Column(
                       children: [
                         SizedBox(
-                          height:30*percentScale,
+                          height:20*percentScale,
                         ),
                         Container(
                           width: 250*percentScale,

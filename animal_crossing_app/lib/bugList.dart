@@ -296,6 +296,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                           ),
                         ),
                         Container(
+                          width: 200*percentScale,
                           transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
                           child: new Text((capitalize(name)),
                             style: TextStyle(
@@ -304,7 +305,8 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                             fontSize: 18*percentScale,
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
-                            )
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         Container(
@@ -320,6 +322,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                           ),
                         ),
                         Container(
+                          width: 200*percentScale,
                           transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
                           child: new Text(whereHow,
                             style: TextStyle(
@@ -328,7 +331,8 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                             fontSize: 14*percentScale,
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
-                            )
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         //Checkmark background

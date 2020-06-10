@@ -89,6 +89,41 @@ Widget infoContainer(double percentScale, String imageIcon, String displayString
   );
 }
 
+Widget infoContainerDoubleLined(double percentScale, String imageIcon, String displayString){
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+    child: Container(
+      height: 45*percentScale,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: new Image.asset(
+              'assets/'+imageIcon,
+              height: 25*percentScale,
+              width: 25*percentScale,
+            ),
+          ),
+          SizedBox(
+            width: 8*percentScale,
+          ),
+          Flexible(
+            child: new Text(displayString,
+              style: TextStyle(
+                fontFamily: 'ArialRoundedBold',
+                color: Color(0xff3a3a3a),
+                fontSize: 19*percentScale,
+                fontWeight: FontWeight.w400,
+                fontStyle: FontStyle.normal,
+              )
+            ),
+          ),
+        ]
+      )
+    ),
+  );
+}
+
 Widget infoContainerHHA(double percentScale, String imageIcon, String displayString1, String displayString2, String displayString3){
   int totalStrings = 3;
   if(displayString1 == "None"){
@@ -300,11 +335,11 @@ Widget circleContainer(double percentScale, Color imageBG, Color stringColor, St
 
 Widget getIconName(String source, double percentScale) {
   if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
-  return new Image.asset(
-  'assets/' + 'nookCraft.png',
-  height: 55*percentScale,
-  width: 55*percentScale,
-  );
+    return new Image.asset(
+      'assets/' + 'nookCraft.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
+    );
   }
   else if(source.contains("Nook's Cranny")) {
     return new Image.asset(
