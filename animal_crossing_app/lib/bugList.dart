@@ -128,7 +128,6 @@ class _BugListPageState extends State<BugList>{
                                       width: 300*percentScale,
                                       child: Opacity(
                                         opacity: (){
-                                          print(top);
                                           if(top<280&&top>190){
                                             return 1-((280-top)/90);
                                           } else {
