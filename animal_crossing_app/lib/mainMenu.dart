@@ -266,6 +266,54 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   );
 }
 
+//Widget activeCreature() {
+  //if()
+//}
+
+Future<List<FishData>> getFishData(String search) async{
+  String data = await rootBundle.loadString("assets/fish.json");
+
+  final jsonData = json.decode(data);
+  bool caught = false;
+  List<FishData> fishData = [];
+  for(var u in jsonData){
+    getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
+      caught = indexResult;
+      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+      if(search == ''){
+        fishData.add(fishDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        fishData.add(fishDatum);
+      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
+        fishData.add(fishDatum);
+      }
+    });
+  }
+  return fishData;
+}
+
+Future<List<BugData>> getBugData(String search) async{
+  String data = await rootBundle.loadString("assets/bug.json");
+
+  final jsonData = json.decode(data);
+  bool caught = false;
+  List<BugData> bugData = [];
+  for(var u in jsonData){
+    getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
+      caught = indexResult;
+      BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+      if(search == ''){
+        bugData.add(bugDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        bugData.add(bugDatum);
+      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
+        bugData.add(bugDatum);
+      }
+    });
+  }
+  return bugData;
+}
+
 class _HomePageState extends State<Home>{
   bool morning = false;
   String currentTime;
