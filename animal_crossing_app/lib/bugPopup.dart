@@ -215,7 +215,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                             height:20*percentScale,
                           ),
                           infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(sell))+" bells"),
-                          infoContainer(percentScale, 'bellBag.png', whereHow),
+                          infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', whereHow),
                         ],
                       ),
                     ),
