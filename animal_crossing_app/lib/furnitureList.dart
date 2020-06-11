@@ -1,6 +1,7 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -418,24 +419,24 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                   children: <Widget>[
                     Container(
                       transform: Matrix4.translationValues(0,4*percentScale,0),
-                      child: imageImage
-                      // CachedNetworkImage(
-                      //   imageBuilder: (context, imageProvider) => Container(
-                      //     width: 70*percentScale,
-                      //     height: 70*percentScale,
-                      //     decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.circular(4*percentScale),
-                      //       image: DecorationImage(
-                      //         image: imageProvider, fit: BoxFit.cover),
-                      //     ),
-                      //   ),
-                      //   imageUrl: image,
-                      //   //placeholder: (context, url) => CircularProgressIndicator(),
-                      //   errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                      //   height:70*percentScale,
-                      //   width:70*percentScale,
-                      //   fadeInDuration: Duration(milliseconds:800),
-                      // ),
+                      child: 
+                      OptimizedCacheImage(
+                        imageBuilder: (context, imageProvider) => Container(
+                          width: 70*percentScale,
+                          height: 70*percentScale,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4*percentScale),
+                            image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                          ),
+                        ),
+                        imageUrl: image,
+                        //placeholder: (context, url) => CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                        height:70*percentScale,
+                        width:70*percentScale,
+                        fadeInDuration: Duration(milliseconds:800),
+                      ),
                     ),
                     
                     Container(
