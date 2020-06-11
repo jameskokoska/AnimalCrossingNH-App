@@ -200,7 +200,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                         transform: Matrix4.translationValues(0, 60*percentScale, 0),
                         height: 340*percentScale,
                         width: 360*percentScale,
-                        child: Column(
+                        child: Row(
                           children: [
                             Container(
                               child: new Text(capitalize(name),
