@@ -47,6 +47,9 @@ dev_dependencies:
   bubble_bottom_bar: ^1.2.0
   shared_preferences: ^0.5.7+1
   flutter_staggered_grid_view: ^0.3.0
+  #slide_popup_dialog: ^0.0.2
+  #transparent_image: ^1.0.0
+  optimized_cached_image: ^0.1.13
   
 
 
