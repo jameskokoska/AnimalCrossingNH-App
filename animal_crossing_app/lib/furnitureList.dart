@@ -21,6 +21,7 @@ class FurnitureList extends StatefulWidget {
 }
 
 String searchFurniture = '';
+  var futureFurniture;
 
 
 class _FurnitureListPageState extends State<FurnitureList>{
@@ -33,7 +34,6 @@ class _FurnitureListPageState extends State<FurnitureList>{
     futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);
   }
   
-  var futureFurniture;
   
   @override
   Widget build(BuildContext context){
@@ -91,12 +91,12 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                           Image imageImage = new Image.network(snapshot.data[0][index].image);
-                          print(snapshot.data[0][index].name+"REQUESTED");
+                          //print(snapshot.data[0][index].name+"REQUESTED");
                           furnitureRequest.add(snapshot.data[0][index].name);
                           imageImage.image.resolve(ImageConfiguration()).addListener(
                             ImageStreamListener(
                               (info, call) {
-                                print(snapshot.data[0][index].name+'LOADED');
+                                //print(snapshot.data[0][index].name+'LOADED');
                                 furnitureRequest.remove(snapshot.data[0][index].name);
                               },
                             ),
@@ -295,6 +295,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                                             onChanged: (string){
                                               setState(() {
                                                 searchFurniture = string;
+                                                futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);
                                               });
                                             },
                                           ),
@@ -382,9 +383,10 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                   onTap: (){
                     currentCollectedFurniture = collected;
                     FocusScope.of(context).requestFocus(new FocusNode());
-                    if(furnitureRequest.length!=0){
-                      return null;
-                    }print("DONE! Loading...");
+                    // if(furnitureRequest.length!=0){
+                    //   return null;
+                    // }
+                    print("DONE! Loading...");
                     Future<void> future = showModalBottomSheet(
                       //by setting this to true, we can avoid the half screen limit
                       isScrollControlled:true,
@@ -397,10 +399,13 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                           ),
                         );
                     });
+                    print("FUTURE0");
                     future.then((void value)=> setState(() {
-                      getStoredBool("furnitureCheckList"+name+variation, false).then((indexResult){
+                      print("FUTURE1");
+                      Future.wait(getStoredBool("furnitureCheckList"+name+variation, false).then((indexResult){
                           collected = indexResult;
-                      });
+                          print("FUTURE2");
+                      }));
                     }));
                   },
                   child: new Container(
@@ -420,7 +425,7 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                     Container(
                       transform: Matrix4.translationValues(0,4*percentScale,0),
                       child: 
-                      OptimizedCacheImage(
+                      CachedNetworkImage(
                         imageBuilder: (context, imageProvider) => Container(
                           width: 70*percentScale,
                           height: 70*percentScale,
