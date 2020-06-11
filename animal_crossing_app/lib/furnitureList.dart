@@ -8,6 +8,7 @@ import 'dart:async';
 import 'furniturePopup.dart';
 import 'databases.dart';
 
+List<String> furnitureRequest = [];
 
 class FurnitureList extends StatefulWidget {
   FurnitureList({Key key, this.title}) : super(key: key);
@@ -21,19 +22,21 @@ class FurnitureList extends StatefulWidget {
 String searchFurniture = '';
 
 
-
 class _FurnitureListPageState extends State<FurnitureList>{
-
   @override
   void initState(){
     super.initState();
     getStoredBool('showListVariations', true).then((indexResult){
       showListVariations = indexResult;
     });
+    futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);
   }
-
+  
+  var futureFurniture;
+  
   @override
   Widget build(BuildContext context){
+    
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -66,7 +69,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]),
+              future: futureFurniture,
               builder: (context,snapshot){
                 Widget housewaresListSliver;
                 Widget miscellaneousListSliver;
@@ -86,7 +89,18 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag, snapshot.data[0][index].variation, snapshot.data[0][index].pattern, snapshot.data[0][index].kitCost);
+                          Image imageImage = new Image.network(snapshot.data[0][index].image);
+                          print(snapshot.data[0][index].name+"REQUESTED");
+                          furnitureRequest.add(snapshot.data[0][index].name);
+                          imageImage.image.resolve(ImageConfiguration()).addListener(
+                            ImageStreamListener(
+                              (info, call) {
+                                print(snapshot.data[0][index].name+'LOADED');
+                                furnitureRequest.remove(snapshot.data[0][index].name);
+                              },
+                            ),
+                          );
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag, snapshot.data[0][index].variation, snapshot.data[0][index].pattern, snapshot.data[0][index].kitCost, imageImage);
                         },
                         childCount: snapshot.data[0].length,
                       ),
@@ -104,7 +118,18 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag, snapshot.data[1][index].variation, snapshot.data[1][index].pattern, snapshot.data[1][index].kitCost);
+                          Image imageImage = new Image.network(snapshot.data[1][index].image);
+                          print(snapshot.data[1][index].name+"REQUESTED");
+                          furnitureRequest.add(snapshot.data[1][index].name);
+                          imageImage.image.resolve(ImageConfiguration()).addListener(
+                            ImageStreamListener(
+                              (info, call) {
+                                print(snapshot.data[1][index].name+'LOADED');
+                                furnitureRequest.remove(snapshot.data[1][index].name);
+                              },
+                            ),
+                          );
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag, snapshot.data[1][index].variation, snapshot.data[1][index].pattern, snapshot.data[1][index].kitCost, imageImage);
                         },
                         childCount: snapshot.data[1].length,
                       ),
@@ -122,7 +147,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2,  snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag, snapshot.data[2][index].variation, snapshot.data[2][index].pattern, snapshot.data[2][index].kitCost);
+                          //return furnitureContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2,  snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag, snapshot.data[2][index].variation, snapshot.data[2][index].pattern, snapshot.data[2][index].kitCost);
                         },
                         childCount: snapshot.data[2].length,
                       ),
@@ -140,7 +165,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].image,snapshot.data[3][index].source,snapshot.data[3][index].collected, snapshot.data[3][index].buy, snapshot.data[3][index].milesPrice, snapshot.data[3][index].sell, snapshot.data[3][index].color1, snapshot.data[3][index].color2,  snapshot.data[3][index].hhaConcept1, snapshot.data[3][index].hhaConcept2, snapshot.data[3][index].hhaSeries, snapshot.data[3][index].tag, snapshot.data[3][index].variation, snapshot.data[3][index].pattern, snapshot.data[3][index].kitCost);
+                          //return furnitureContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].image,snapshot.data[3][index].source,snapshot.data[3][index].collected, snapshot.data[3][index].buy, snapshot.data[3][index].milesPrice, snapshot.data[3][index].sell, snapshot.data[3][index].color1, snapshot.data[3][index].color2,  snapshot.data[3][index].hhaConcept1, snapshot.data[3][index].hhaConcept2, snapshot.data[3][index].hhaSeries, snapshot.data[3][index].tag, snapshot.data[3][index].variation, snapshot.data[3][index].pattern, snapshot.data[3][index].kitCost);
                         },
                         childCount: snapshot.data[3].length,
                       ),
@@ -158,7 +183,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].image,snapshot.data[4][index].source,snapshot.data[4][index].collected, snapshot.data[4][index].buy, snapshot.data[4][index].milesPrice, snapshot.data[4][index].sell, snapshot.data[4][index].color1, snapshot.data[4][index].color2,  snapshot.data[4][index].hhaConcept1, snapshot.data[4][index].hhaConcept2, snapshot.data[4][index].hhaSeries, snapshot.data[4][index].tag, snapshot.data[4][index].variation, snapshot.data[4][index].pattern, snapshot.data[4][index].kitCost);
+                          //return furnitureContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].image,snapshot.data[4][index].source,snapshot.data[4][index].collected, snapshot.data[4][index].buy, snapshot.data[4][index].milesPrice, snapshot.data[4][index].sell, snapshot.data[4][index].color1, snapshot.data[4][index].color2,  snapshot.data[4][index].hhaConcept1, snapshot.data[4][index].hhaConcept2, snapshot.data[4][index].hhaSeries, snapshot.data[4][index].tag, snapshot.data[4][index].variation, snapshot.data[4][index].pattern, snapshot.data[4][index].kitCost);
                         },
                         childCount: snapshot.data[4].length,
                       ),
@@ -316,7 +341,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
   }
 }
 
-Widget furnitureContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
+Widget furnitureContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost, Image imageImage){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return new Stack(
@@ -356,6 +381,9 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                   onTap: (){
                     currentCollectedFurniture = collected;
                     FocusScope.of(context).requestFocus(new FocusNode());
+                    if(furnitureRequest.length!=0){
+                      return null;
+                    }print("DONE! Loading...");
                     Future<void> future = showModalBottomSheet(
                       //by setting this to true, we can avoid the half screen limit
                       isScrollControlled:true,
@@ -390,23 +418,24 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                   children: <Widget>[
                     Container(
                       transform: Matrix4.translationValues(0,4*percentScale,0),
-                      child: CachedNetworkImage(
-                        imageBuilder: (context, imageProvider) => Container(
-                          width: 70*percentScale,
-                          height: 70*percentScale,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4*percentScale),
-                            image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
-                          ),
-                        ),
-                        imageUrl: image,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                        height:70*percentScale,
-                        width:70*percentScale,
-                        fadeInDuration: Duration(milliseconds:800),
-                      ),
+                      child: imageImage
+                      // CachedNetworkImage(
+                      //   imageBuilder: (context, imageProvider) => Container(
+                      //     width: 70*percentScale,
+                      //     height: 70*percentScale,
+                      //     decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(4*percentScale),
+                      //       image: DecorationImage(
+                      //         image: imageProvider, fit: BoxFit.cover),
+                      //     ),
+                      //   ),
+                      //   imageUrl: image,
+                      //   //placeholder: (context, url) => CircularProgressIndicator(),
+                      //   errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                      //   height:70*percentScale,
+                      //   width:70*percentScale,
+                      //   fadeInDuration: Duration(milliseconds:800),
+                      // ),
                     ),
                     
                     Container(
