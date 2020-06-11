@@ -136,6 +136,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
 Widget storeContainer(String enable, double percentScale, bool darkMode, String storeName, bool nook) {
   String storeState;
   String storeTitle;
+  String storeHours;
   bool enableBool;
   bool nookSunday = false;
   Color bubble;
@@ -158,6 +159,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   timeMinute = int.parse(timeMin);
 
   if(nook) {
+    storeHours = "8 AM - 10 PM";
     if((timeHour == 12 && meridian == "PM") || (timeHour >= 8 && timeHour != 12 && meridian == "AM") || (timeHour < 10 && meridian == "PM")) {
       storeState = "Open";
       bubble = Color(0xffB9FBC8);
@@ -171,11 +173,12 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
     }
     storeTitle = "Nook's Cranny";
   }else {
+    storeHours = "9 AM - 9 PM";
     if((timeHour == 12 && meridian == "PM") || (timeHour >= 9 && timeHour != 12 && meridian == "AM") || (timeHour < 9 && meridian == "PM")) {
       storeState = "Open";
       bubble = Color(0xffB9FBC8);
       if(timeHour == 8 && meridian == "PM") {
-        storeState = "Open (Closing Soon)";
+        storeState = "Open";
         bubble = Color(0xfffdcd2e);
       }
     }else {
@@ -226,7 +229,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
               transform: Matrix4.translationValues((788/20)*percentScale,34*percentScale,0),
               child: Center(
                 child: new Text(
-                  storeState + ": " + storeTitle,
+                  storeState + ": " + storeTitle + "\n" + storeHours,
                   style: TextStyle(
                     fontFamily: 'ArialRoundedBold',
                     color: Color(0xff373737),
