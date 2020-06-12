@@ -21,7 +21,7 @@ class FurnitureList extends StatefulWidget {
 }
 
 String searchFurniture = '';
-  var futureFurniture;
+var futureFurniture;
 
 
 class _FurnitureListPageState extends State<FurnitureList>{
@@ -90,18 +90,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          Image imageImage = new Image.network(snapshot.data[0][index].image);
-                          //print(snapshot.data[0][index].name+"REQUESTED");
-                          furnitureRequest.add(snapshot.data[0][index].name);
-                          imageImage.image.resolve(ImageConfiguration()).addListener(
-                            ImageStreamListener(
-                              (info, call) {
-                                //print(snapshot.data[0][index].name+'LOADED');
-                                furnitureRequest.remove(snapshot.data[0][index].name);
-                              },
-                            ),
-                          );
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag, snapshot.data[0][index].variation, snapshot.data[0][index].pattern, snapshot.data[0][index].kitCost, imageImage);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag, snapshot.data[0][index].variation, snapshot.data[0][index].pattern, snapshot.data[0][index].kitCost);
                         },
                         childCount: snapshot.data[0].length,
                       ),
@@ -119,18 +108,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          Image imageImage = new Image.network(snapshot.data[1][index].image);
-                          print(snapshot.data[1][index].name+"REQUESTED");
-                          furnitureRequest.add(snapshot.data[1][index].name);
-                          imageImage.image.resolve(ImageConfiguration()).addListener(
-                            ImageStreamListener(
-                              (info, call) {
-                                print(snapshot.data[1][index].name+'LOADED');
-                                furnitureRequest.remove(snapshot.data[1][index].name);
-                              },
-                            ),
-                          );
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag, snapshot.data[1][index].variation, snapshot.data[1][index].pattern, snapshot.data[1][index].kitCost, imageImage);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag, snapshot.data[1][index].variation, snapshot.data[1][index].pattern, snapshot.data[1][index].kitCost);
                         },
                         childCount: snapshot.data[1].length,
                       ),
@@ -148,7 +126,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          //return furnitureContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2,  snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag, snapshot.data[2][index].variation, snapshot.data[2][index].pattern, snapshot.data[2][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2,  snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag, snapshot.data[2][index].variation, snapshot.data[2][index].pattern, snapshot.data[2][index].kitCost);
                         },
                         childCount: snapshot.data[2].length,
                       ),
@@ -166,7 +144,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          //return furnitureContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].image,snapshot.data[3][index].source,snapshot.data[3][index].collected, snapshot.data[3][index].buy, snapshot.data[3][index].milesPrice, snapshot.data[3][index].sell, snapshot.data[3][index].color1, snapshot.data[3][index].color2,  snapshot.data[3][index].hhaConcept1, snapshot.data[3][index].hhaConcept2, snapshot.data[3][index].hhaSeries, snapshot.data[3][index].tag, snapshot.data[3][index].variation, snapshot.data[3][index].pattern, snapshot.data[3][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].image,snapshot.data[3][index].source,snapshot.data[3][index].collected, snapshot.data[3][index].buy, snapshot.data[3][index].milesPrice, snapshot.data[3][index].sell, snapshot.data[3][index].color1, snapshot.data[3][index].color2,  snapshot.data[3][index].hhaConcept1, snapshot.data[3][index].hhaConcept2, snapshot.data[3][index].hhaSeries, snapshot.data[3][index].tag, snapshot.data[3][index].variation, snapshot.data[3][index].pattern, snapshot.data[3][index].kitCost);
                         },
                         childCount: snapshot.data[3].length,
                       ),
@@ -184,7 +162,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          //return furnitureContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].image,snapshot.data[4][index].source,snapshot.data[4][index].collected, snapshot.data[4][index].buy, snapshot.data[4][index].milesPrice, snapshot.data[4][index].sell, snapshot.data[4][index].color1, snapshot.data[4][index].color2,  snapshot.data[4][index].hhaConcept1, snapshot.data[4][index].hhaConcept2, snapshot.data[4][index].hhaSeries, snapshot.data[4][index].tag, snapshot.data[4][index].variation, snapshot.data[4][index].pattern, snapshot.data[4][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].image,snapshot.data[4][index].source,snapshot.data[4][index].collected, snapshot.data[4][index].buy, snapshot.data[4][index].milesPrice, snapshot.data[4][index].sell, snapshot.data[4][index].color1, snapshot.data[4][index].color2,  snapshot.data[4][index].hhaConcept1, snapshot.data[4][index].hhaConcept2, snapshot.data[4][index].hhaSeries, snapshot.data[4][index].tag, snapshot.data[4][index].variation, snapshot.data[4][index].pattern, snapshot.data[4][index].kitCost);
                         },
                         childCount: snapshot.data[4].length,
                       ),
@@ -343,171 +321,165 @@ class _FurnitureListPageState extends State<FurnitureList>{
   }
 }
 
-Widget furnitureContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost, Image imageImage){
+Widget furnitureContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return new Stack(
-        children: <Widget>[
-          //Shadow
-          IgnorePointer(
-            child: Container(
-              width: 300*percentScale,
-              height: 300*percentScale,
-              decoration: new BoxDecoration(
-                color: colorWhite,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(
-                    color: Color(0x0C000000),
-                    offset: Offset(0,3),
-                    blurRadius: 5,
-                    spreadRadius: 0
-                ) ],
-              ),
-            ),
-          ),
-          //Tap region inkwell
-          ClipRRect(
-            borderRadius: BorderRadius.circular(14*percentScale),
-            child: new Container(
-              child: new Material(
-                child: new InkWell(
-                  highlightColor: Color(0xFFcfd8dc),
-                  splashColor: Color(0xFFb3e5fc),
-                  enableFeedback: true,
-                  onLongPress: (){
-                    setState(() {
-                      collected = !collected;
-                      saveBool("furnitureCheckList"+name+variation, false, collected);
-                    });
-                  },
-                  onTap: (){
-                    currentCollectedFurniture = collected;
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    // if(furnitureRequest.length!=0){
-                    //   return null;
-                    // }
-                    print("DONE! Loading...");
-                    Future<void> future = showModalBottomSheet(
-                      //by setting this to true, we can avoid the half screen limit
-                      isScrollControlled:true,
-                      context: context, 
-                      builder: (context){
-                        return Container(
-                          height: 500*percentScale,
-                            child: Container(
-                              child: furniturePopUp(percentScale, colorTextBlack, name, image, source, currentCollectedFurniture, buy, milesPrice, sell,color1,color2,hhaConcept1,hhaConcept2,hhaSeries,tag,variation, pattern, kitCost)
-                          ),
-                        );
-                    });
-                    // print("FUTURE0");
-                    // future.then((void value)=> setState(() {
-                    //   print("FUTURE1");
-                    //   collected= currentCollectedFurniture;
-                    //   Future.wait(getStoredBool("furnitureCheckList"+name+variation, false).then((indexResult){
-                    //       collected = indexResult;
-                    //   }));
-                    // }));
-                  },
-                  child: new Container(
-                    width: 350*percentScale,
-                    height: 350*percentScale,
+      return FutureBuilder(
+        future:getStoredBool("furnitureCheckList"+name+variation+pattern, false),
+        builder: (context,snapshot) {
+          if(snapshot.hasData){
+            return Stack(
+              children: <Widget>[
+                //Shadow
+                IgnorePointer(
+                  child: Container(
+                    width: 300*percentScale,
+                    height: 300*percentScale,
+                    decoration: new BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [BoxShadow(
+                          color: Color(0x0C000000),
+                          offset: Offset(0,3),
+                          blurRadius: 5,
+                          spreadRadius: 0
+                      ) ],
+                    ),
                   ),
                 ),
-                color: colorWhite,
-              ),
-            )
-          ),
-          IgnorePointer(
-            child: Align(
-              alignment: Alignment.topCenter,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      transform: Matrix4.translationValues(0,4*percentScale,0),
-                      child: 
-                      CachedNetworkImage(
-                        imageBuilder: (context, imageProvider) => Container(
-                          width: 70*percentScale,
-                          height: 70*percentScale,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4*percentScale),
-                            image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
-                          ),
-                        ),
-                        imageUrl: image,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                        height:70*percentScale,
-                        width:70*percentScale,
-                        fadeInDuration: Duration(milliseconds:800),
-                      ),
-                    ),
-                    
-                    Container(
-                      height:40*percentScale,
-                      padding: const EdgeInsets.all(6.0),
-                      child: Center(
-                        child: Text(name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorTextBlack,
-                            fontSize: 12*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          )
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-            ),
-          ),
-          
-          Align(
-            alignment: Alignment.topRight,
-            child: AnimatedOpacity(
-              duration: Duration(milliseconds:400),
-              opacity: collected ? 1 : 0,
-              child: Container(
-                transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                height: 25*percentScale,
-                width: 25*percentScale,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorCheckGreen,
-                  boxShadow: [BoxShadow(
-                    color: Color(0x29000000),
-                    offset: Offset(0,3),
-                    blurRadius: 6,
-                    spreadRadius: 0
-                  ) ],
-                ),
-                child: Theme(
-                  data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                  child: FutureBuilder(
-                    future:getStoredBool("furnitureCheckList"+name+variation, false),
-                    builder: (context,snapshot){ 
-                      return Checkbox(
-                        activeColor: Color(0x00000000),
-                        checkColor: Color(0xFF444444),
-                        value: snapshot.data,
-                        onChanged: (bool value) {
+                //Tap region inkwell
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14*percentScale),
+                  child: new Container(
+                    child: new Material(
+                      child: new InkWell(
+                        highlightColor: Color(0xFFcfd8dc),
+                        splashColor: Color(0xFFb3e5fc),
+                        enableFeedback: true,
+                        onLongPress: (){
                           setState(() {
-                            collected = value;
-                            saveBool("furnitureCheckList"+name+variation, false, collected);
-                            //HapticFeedback.mediumImpact();
+                            currentCollectedFurniture = !snapshot.data;
+                            saveBool("furnitureCheckList"+name+variation+pattern, false, !snapshot.data);
                           });
                         },
-                      );
-                    }
+                        onTap: (){
+                          currentCollectedFurniture = snapshot.data;
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                            isScrollControlled:true,
+                            context: context, 
+                            builder: (context){
+                              return Container(
+                                height: 500*percentScale,
+                                  child: Container(
+                                    child: furniturePopUp(percentScale, colorTextBlack, name, image, source, snapshot.data, buy, milesPrice, sell,color1,color2,hhaConcept1,hhaConcept2,hhaSeries,tag,variation, pattern, kitCost)
+                                ),
+                              );
+                          });
+                          future.then((void value)=> setState(() {
+                            saveBool("furnitureCheckList"+name+variation+pattern, false, currentCollectedFurniture);
+                          }));
+                        },
+                        child: new Container(
+                          width: 350*percentScale,
+                          height: 350*percentScale,
+                        ),
+                      ),
+                      color: colorWhite,
+                    ),
+                  )
+                ),
+                IgnorePointer(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            transform: Matrix4.translationValues(0,4*percentScale,0),
+                            child: OptimizedCacheImage(
+                              imageBuilder: (context, imageProvider) => Container(
+                                width: 70*percentScale,
+                                height: 70*percentScale,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4*percentScale),
+                                  image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                                ),
+                              ),
+                              imageUrl: image,
+                              //placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                              height:70*percentScale,
+                              width:70*percentScale,
+                              fadeInDuration: Duration(milliseconds:800),
+                            ),
+                          ),
+                          
+                          Container(
+                            height:40*percentScale,
+                            padding: const EdgeInsets.all(6.0),
+                            child: Center(
+                              child: Text(name,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorTextBlack,
+                                  fontSize: 12*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                )
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                   ),
                 ),
-              )
-            ),
-          ),
-        ]
+                
+                Align(
+                  alignment: Alignment.topRight,
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds:400),
+                    opacity: snapshot.data ? 1 : 0,
+                    child: Container(
+                      transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                      height: 25*percentScale,
+                      width: 25*percentScale,
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colorCheckGreen,
+                        boxShadow: [BoxShadow(
+                          color: Color(0x29000000),
+                          offset: Offset(0,3),
+                          blurRadius: 6,
+                          spreadRadius: 0
+                        ) ],
+                      ),
+                      child: Theme(
+                        data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                        child: new Checkbox(
+                          activeColor: Color(0x00000000),
+                          checkColor: Color(0xFF444444),
+                          value: snapshot.data,
+                          onChanged: (bool value) {
+                            setState(() {
+                              currentCollectedFurniture = value;
+                              saveBool("furnitureCheckList"+name+variation+pattern, false, value);
+                              //HapticFeedback.mediumImpact();
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  ),
+                ),
+              ]
+            );
+          } else {
+            return Container();
+          }
+        }
       );
     }
   );
