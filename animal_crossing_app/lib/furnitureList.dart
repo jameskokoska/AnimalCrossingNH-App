@@ -399,14 +399,14 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                           ),
                         );
                     });
-                    print("FUTURE0");
-                    future.then((void value)=> setState(() {
-                      print("FUTURE1");
-                      Future.wait(getStoredBool("furnitureCheckList"+name+variation, false).then((indexResult){
-                          collected = indexResult;
-                          print("FUTURE2");
-                      }));
-                    }));
+                    // print("FUTURE0");
+                    // future.then((void value)=> setState(() {
+                    //   print("FUTURE1");
+                    //   collected= currentCollectedFurniture;
+                    //   Future.wait(getStoredBool("furnitureCheckList"+name+variation, false).then((indexResult){
+                    //       collected = indexResult;
+                    //   }));
+                    // }));
                   },
                   child: new Container(
                     width: 350*percentScale,
@@ -486,17 +486,22 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                 ),
                 child: Theme(
                   data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                  child: new Checkbox(
-                    activeColor: Color(0x00000000),
-                    checkColor: Color(0xFF444444),
-                    value: collected,
-                    onChanged: (bool value) {
-                      setState(() {
-                        collected = value;
-                        saveBool("furnitureCheckList"+name, false, collected);
-                        //HapticFeedback.mediumImpact();
-                      });
-                    },
+                  child: FutureBuilder(
+                    future:getStoredBool("furnitureCheckList"+name+variation, false),
+                    builder: (context,snapshot){ 
+                      return Checkbox(
+                        activeColor: Color(0x00000000),
+                        checkColor: Color(0xFF444444),
+                        value: snapshot.data,
+                        onChanged: (bool value) {
+                          setState(() {
+                            collected = value;
+                            saveBool("furnitureCheckList"+name+variation, false, collected);
+                            //HapticFeedback.mediumImpact();
+                          });
+                        },
+                      );
+                    }
                   ),
                 ),
               )
