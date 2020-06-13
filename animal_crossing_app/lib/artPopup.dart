@@ -200,7 +200,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                         transform: Matrix4.translationValues(0, 60*percentScale, 0),
                         height: 340*percentScale,
                         width: 360*percentScale,
-                        child: Row(
+                        child: Column(
                           children: [
                             Container(
                               child: new Text(capitalize(name),
@@ -220,6 +220,17 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             SizedBox(
                               height:30*percentScale,
                             ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        transform: Matrix4.translationValues(0, 60*percentScale, 0),
+                        height: 340*percentScale,
+                        width: 360*percentScale,
+                        child: Row(
+                          children: <Widget>[
                             //birthday
                             infoContainer(percentScale, 'birthdayCake.png', ''),
                             //species
@@ -231,7 +242,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
