@@ -136,7 +136,7 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                                           setState(() {
                                             collected = value;
                                             currentCollectedClothing = value;
-                                            saveBool("clothingCheckList"+name+variation+pattern, false, currentCollectedClothing);
+                                            saveBool("clothingCheckList"+name+variation, false, currentCollectedClothing);
                                             HapticFeedback.mediumImpact();
                                           });
                                         },
