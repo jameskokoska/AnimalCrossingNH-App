@@ -11,21 +11,21 @@ bool currentCollectedFurniture = false;
 
 
 Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
-  String buyPriceConverted;
-  String buyPriceConvertedType;
-  if (buy=='NFS'){
-    if (milesPrice != "NA"){
-      buyPriceConverted = milesPrice;
-      buyPriceConvertedType = ' miles';
-    } else if (source == "Crafting") {
-      buyPriceConverted = "None";
-    } else {
-      buyPriceConverted = "None";
-    }
-  } else {
-    buyPriceConverted = buy;
-    buyPriceConvertedType = ' bells';
-  }
+//  String buyPriceConverted;
+//  String buyPriceConvertedType;
+//  if (buy=='NFS'){
+//    if (milesPrice != "NA"){
+//      buyPriceConverted = milesPrice;
+//      buyPriceConvertedType = ' miles';
+//    } else if (source == "Crafting") {
+//      buyPriceConverted = "None";
+//    } else {
+//      buyPriceConverted = "None";
+//    }
+//  } else {
+//    buyPriceConverted = buy;
+//    buyPriceConvertedType = ' bells';
+//  }
   
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
@@ -189,13 +189,13 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(buyPriceConverted!="None"){
-                                  return infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
+                                if(buyPriceConverted(buy, milesPrice, source)!="None"){
+                                  return infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(buyPriceConverted(buy, milesPrice, source)))+buyPriceConvertedType(buy, milesPrice, source));
                                 }
                                 return Container();
                               }(),
                               (){
-                                if(buyPriceConverted!="None"){
+                                if(buyPriceConverted(buy, milesPrice, source)!="None"){
                                   return SizedBox(width: 20*percentScale,);
                                 }
                                 return Container();
