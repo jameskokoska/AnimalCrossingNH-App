@@ -87,7 +87,7 @@ saveBool(String key, bool defaultState, bool toStoreValue) async{
 clearData() async{
   SharedPreferences prefs;
   prefs.clear();
-  print("clear");
+  //print("clear");
 }
 
 //------------------------------------------------
@@ -212,7 +212,7 @@ class _MainPageState extends State<Main> {
       }
     });
     selectedIndex = index;
-    print(currentPageWidget);
+    //print(currentPageWidget);
   }
 
   @override
@@ -273,7 +273,7 @@ class _MainPageState extends State<Main> {
       colorBugAccent = Color(0xFF6D756E);
       colorBugTextDarkGreen = Color(0xFF729E75);
       colorFossilAppBar = Color(0xFF4E463B);
-      colorFossilAccent = Color(0xFFE9DAC5);
+      colorFossilAccent = Color(0xFF726A5F);
       colorArtAccent = Color(0xFFe8f5e9);
       colorArtTextDarkGreen = Color(0xFF1b5e20);
       colorVillagerAppBar = Color(0xFF4B6E70);
