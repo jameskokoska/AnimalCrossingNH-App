@@ -77,7 +77,7 @@ class _VillagerListPageState extends State<VillagerList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return villagerContainer(percentScale, snapshot.data[index].name, snapshot.data[index].image,snapshot.data[index].favorite,snapshot.data[index].species,snapshot.data[index].gender,snapshot.data[index].personality, snapshot.data[index].birthday,snapshot.data[index].catchphrase,snapshot.data[index].style1,snapshot.data[index].style2,snapshot.data[index].color1,snapshot.data[index].color2);
+                          return villagerContainer(percentScale, snapshot.data[index].name, snapshot.data[index].image,snapshot.data[index].species,snapshot.data[index].gender,snapshot.data[index].personality, snapshot.data[index].birthday,snapshot.data[index].catchphrase,snapshot.data[index].style1,snapshot.data[index].style2,snapshot.data[index].color1,snapshot.data[index].color2);
                         },
                         childCount: snapshot.data.length,
                       ),
@@ -208,151 +208,159 @@ class _VillagerListPageState extends State<VillagerList>{
   }
 }
 
-Widget villagerContainer(double percentScale, String name, String imageLink, bool favorite,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
+Widget villagerContainer(double percentScale, String name, String imageLink, String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return Stack(
-        children: <Widget>[
-          //Shadow
-          IgnorePointer(
-            child: Container(
-              width: 300*percentScale,
-              height: 300*percentScale,
-              decoration: new BoxDecoration(
-                color: colorWhite,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(
-                    color: Color(0x0C000000),
-                    offset: Offset(0,3),
-                    blurRadius: 5,
-                    spreadRadius: 0
-                ) ],
-              ),
-            ),
-          ),
-          //Tap region inkwell
-          ClipRRect(
-            borderRadius: BorderRadius.circular(14*percentScale),
-            child: new Container(
-              child: new Material(
-                child: new InkWell(
-                  highlightColor: Color(0xFFcfd8dc),
-                  splashColor: Color(0xFFb3e5fc),
-                  enableFeedback: true,
-                  onLongPress: (){
-                    setState(() {
-                      favorite = !favorite;
-                      saveBool("villagerCheckList"+name, false, favorite);
-                    });
-                  },
-                  onTap: (){
-                    currentFavoriteVillager = favorite;
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    Future<void> future = showModalBottomSheet(
-                      //by setting this to true, we can avoid the half screen limit
-                      isScrollControlled:true,
-                      context: context, 
-                      builder: (context){
-                        return Container(
-                          height: 450*percentScale,
-                            child: Container(
-                              child: villagerPopUp(percentScale,currentFavoriteVillager,name, imageLink, species,  gender,  personality, birthday, catchphrase, style1, style2, color1, color2)
-                          ),
-                        );
-                    });
-                    future.then((void value)=> setState(() {
-                      getStoredBool("villagerCheckList"+name, false).then((indexResult){
-                          favorite = indexResult;
-                      });
-                    }));
-                  },
-                  child: new Container(
-                    width: 350*percentScale,
-                    height: 350*percentScale,
+      return FutureBuilder(
+        future: getStoredBool("villagerCheckList"+name, false),
+        builder: (context,snapshot) {
+          if(snapshot.hasData){
+            return Stack(
+              children: <Widget>[
+                //Shadow
+                IgnorePointer(
+                  child: Container(
+                    width: 300*percentScale,
+                    height: 300*percentScale,
+                    decoration: new BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [BoxShadow(
+                          color: Color(0x0C000000),
+                          offset: Offset(0,3),
+                          blurRadius: 5,
+                          spreadRadius: 0
+                      ) ],
+                    ),
                   ),
                 ),
-                color: colorWhite,
-              ),
-            )
-          ),
-          //villager box
-          IgnorePointer(
-            child: Container(
-              width: 300*percentScale,
-              height: 300*percentScale,
-              child: Stack(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: new Container(
-                      transform: Matrix4.translationValues(0,13*percentScale,0),
-                      child: Column(
-                        children: <Widget>[
-                          CachedNetworkImage(
-                            imageBuilder: (context, imageProvider) => Container(
-                              width: 67*percentScale,
-                              height: 67*percentScale,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4*percentScale),
-                                image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.cover),
-                              ),
+                //Tap region inkwell
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14*percentScale),
+                  child: new Container(
+                    child: new Material(
+                      child: new InkWell(
+                        highlightColor: Color(0xFFcfd8dc),
+                        splashColor: Color(0xFFb3e5fc),
+                        enableFeedback: true,
+                        onLongPress: (){
+                          setState(() {
+                            currentFavoriteVillager = !snapshot.data;
+                            saveBool("villagerCheckList"+name, false, !snapshot.data);
+                          });
+                        },
+                        onTap: (){
+                          currentFavoriteVillager = snapshot.data;
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                            isScrollControlled:true,
+                            context: context, 
+                            builder: (context){
+                              return Container(
+                                height: 450*percentScale,
+                                  child: Container(
+                                    child: villagerPopUp(percentScale,currentFavoriteVillager,name, imageLink, species,  gender,  personality, birthday, catchphrase, style1, style2, color1, color2)
+                                ),
+                              );
+                          });
+                          future.then((void value)=> setState(() {
+                            saveBool("villagerCheckList"+name, false, currentFavoriteVillager);
+                          }));
+                        },
+                        child: new Container(
+                          width: 350*percentScale,
+                          height: 350*percentScale,
+                        ),
+                      ),
+                      color: colorWhite,
+                    ),
+                  )
+                ),
+                //villager box
+                IgnorePointer(
+                  child: Container(
+                    width: 300*percentScale,
+                    height: 300*percentScale,
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: new Container(
+                            transform: Matrix4.translationValues(0,13*percentScale,0),
+                            child: Column(
+                              children: <Widget>[
+                                CachedNetworkImage(
+                                  imageBuilder: (context, imageProvider) => Container(
+                                    width: 67*percentScale,
+                                    height: 67*percentScale,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4*percentScale),
+                                      image: DecorationImage(
+                                        image: imageProvider, fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                  imageUrl: imageLink,
+                                  //placeholder: (context, url) => CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 67*percentScale,height:67*percentScale),
+                                  height:67*percentScale,
+                                  width:67*percentScale,
+                                  fadeInDuration: Duration(milliseconds:800),
+                                ),
+                                SizedBox(
+                                  height: 8*percentScale,
+                                ),
+                                Text(name,
+                                  style: TextStyle(
+                                    fontFamily: 'ArialRoundedBold',
+                                    color: colorTextBlack,
+                                    fontSize: 13*percentScale,
+                                    fontWeight: FontWeight.w400,
+                                    fontStyle: FontStyle.normal,
+                                  )
+                                ),
+                              ],
                             ),
-                            imageUrl: imageLink,
-                            //placeholder: (context, url) => CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 67*percentScale,height:67*percentScale),
-                            height:67*percentScale,
-                            width:67*percentScale,
-                            fadeInDuration: Duration(milliseconds:800),
                           ),
-                          SizedBox(
-                            height: 8*percentScale,
-                          ),
-                          Text(name,
-                            style: TextStyle(
-                              fontFamily: 'ArialRoundedBold',
-                              color: colorTextBlack,
-                              fontSize: 13*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: AnimatedOpacity(
+                            duration: Duration(milliseconds:200),
+                            opacity: snapshot.data ? 1 : 0,
+                            child: Container(
+                              transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                              height: 25*percentScale,
+                              width: 25*percentScale,
+                              decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: colorVillagerAccent,
+                                boxShadow: [BoxShadow(
+                                  color: Color(0x29000000),
+                                  offset: Offset(0,3),
+                                  blurRadius: 6,
+                                  spreadRadius: 0
+                                ) ],
+                              ),
+                              child: Icon(
+                                Icons.favorite,
+                                color: Colors.red[400],
+                                size: 15*percentScale,
+                              ),
                             )
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: AnimatedOpacity(
-                      duration: Duration(milliseconds:200),
-                      opacity: favorite ? 1 : 0,
-                      child: Container(
-                        transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                        height: 25*percentScale,
-                        width: 25*percentScale,
-                        decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: colorVillagerAccent,
-                          boxShadow: [BoxShadow(
-                            color: Color(0x29000000),
-                            offset: Offset(0,3),
-                            blurRadius: 6,
-                            spreadRadius: 0
-                          ) ],
                         ),
-                        child: Icon(
-                          Icons.favorite,
-                          color: Colors.red[400],
-                          size: 15*percentScale,
-                        ),
-                      )
-                    ),
+                      ],
+                    )
                   ),
-                ],
-              )
-            ),
-          ),
-        ],
+                ),
+              ],
+            );
+          }else {
+            return Container();
+          }
+        }
+        
       );
    
     }

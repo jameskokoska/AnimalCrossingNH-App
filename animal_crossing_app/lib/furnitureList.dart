@@ -375,7 +375,7 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                               return Container(
                                 height: 500*percentScale,
                                   child: Container(
-                                    child: furniturePopUp(percentScale, colorTextBlack, name, image, source, snapshot.data, buy, milesPrice, sell,color1,color2,hhaConcept1,hhaConcept2,hhaSeries,tag,variation, pattern, kitCost)
+                                    child: furniturePopUp(percentScale, colorTextBlack, name, image, source, currentCollectedFurniture, buy, milesPrice, sell,color1,color2,hhaConcept1,hhaConcept2,hhaSeries,tag,variation, pattern, kitCost)
                                 ),
                               );
                           });

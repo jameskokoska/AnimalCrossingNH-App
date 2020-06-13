@@ -267,7 +267,7 @@ Widget toolsContainer(double percentScale, int index, String name,String imageLi
                               return Container(
                                 height: 400*percentScale,
                                   child: Container(
-                                    child: toolsPopUp(percentScale, collected, name, imageLink, variation, bodyTile, diy, customize, kitCost, uses, stackSize, buy, sell, color1, color2, size, set, milesPrice, source, version, filename, variantID, internalID, uniqueEntryID)
+                                    child: toolsPopUp(percentScale, currentCollectedTool, name, imageLink, variation, bodyTile, diy, customize, kitCost, uses, stackSize, buy, sell, color1, color2, size, set, milesPrice, source, version, filename, variantID, internalID, uniqueEntryID)
                                 ),
                               );
                           });
