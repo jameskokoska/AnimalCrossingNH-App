@@ -25,6 +25,8 @@ var futureFurniture;
 
 
 class _FurnitureListPageState extends State<FurnitureList>{
+  final debouncer = Debouncer(milliseconds: )
+
   @override
   void initState(){
     super.initState();

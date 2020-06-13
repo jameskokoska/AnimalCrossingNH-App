@@ -1,6 +1,9 @@
+import 'package:animal_crossing_app/clothingPopup.dart';
+
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -20,11 +23,18 @@ class FloorWallsList extends StatefulWidget {
 }
 
 String searchfloorWalls = '';
-
+var futureFloorWalls;
 
 
 
 class _FloorWallsListPageState extends State<FloorWallsList>{
+  @override
+  void initState(){
+    super.initState();
+    futureFloorWalls = Future.wait([getRugsData(searchfloorWalls), getFloorsData(searchfloorWalls),getWallpapersData(searchfloorWalls)]);
+  }
+
+
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -59,7 +69,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: Future.wait([getRugsData(searchfloorWalls), getFloorsData(searchfloorWalls),getWallpapersData(searchfloorWalls)]),
+              future: futureFloorWalls,
               builder: (context,snapshot){
                 Widget rugsListSliver;
                 Widget floorsListSliver;
@@ -266,155 +276,162 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
 Widget floorWallsContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return new Stack(
-        children: <Widget>[
-          //Shadow
-          IgnorePointer(
-            child: Container(
-              width: 300*percentScale,
-              height: 300*percentScale,
-              decoration: new BoxDecoration(
-                color: colorWhite,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(
-                    color: Color(0x0C000000),
-                    offset: Offset(0,3),
-                    blurRadius: 5,
-                    spreadRadius: 0
-                ) ],
-              ),
-            ),
-          ),
-          //Tap region inkwell
-          ClipRRect(
-            borderRadius: BorderRadius.circular(14*percentScale),
-            child: new Container(
-              child: new Material(
-                child: new InkWell(
-                  highlightColor: Color(0xFFcfd8dc),
-                  splashColor: Color(0xFFb3e5fc),
-                  enableFeedback: true,
-                  onLongPress: (){
-                    setState(() {
-                      collected = !collected;
-                      saveBool("floorWallsCheckList"+name, false, collected);
-                    });
-                  },
-                  onTap: (){
-                    currentCollectedFloorWalls = collected;
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    Future<void> future = showModalBottomSheet(
-                      //by setting this to true, we can avoid the half screen limit
-                      isScrollControlled:true,
-                      context: context, 
-                      builder: (context){
-                        return Container(
-                          height: 450*percentScale,
-                            child: Container(
-                              child: floorWallsPopUp(percentScale, colorTextBlack, name, image, source, currentCollectedFloorWalls, buy, milesPrice, sell,color1,color2,hhaConcept1,hhaConcept2,hhaSeries,tag),
-                          ),
-                        );
-                    });
-                    future.then((void value)=> setState(() {
-                      getStoredBool("floorWallsCheckList"+name, false).then((indexResult){
-                          collected = indexResult;
-                      });
-                    }));
-                  },
+      return FutureBuilder(
+        future: getStoredBool("floorWallsCheckList"+name, false),
+        builder: (context,snapshot) {
+          if(snapshot.hasData){
+            return Stack(
+              children: <Widget>[
+                //Shadow
+                IgnorePointer(
+                  child: Container(
+                    width: 300*percentScale,
+                    height: 300*percentScale,
+                    decoration: new BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [BoxShadow(
+                          color: Color(0x0C000000),
+                          offset: Offset(0,3),
+                          blurRadius: 5,
+                          spreadRadius: 0
+                      ) ],
+                    ),
+                  ),
+                ),
+                //Tap region inkwell
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14*percentScale),
                   child: new Container(
-                    width: 350*percentScale,
-                    height: 350*percentScale,
-                  ),
+                    child: new Material(
+                      child: new InkWell(
+                        highlightColor: Color(0xFFcfd8dc),
+                        splashColor: Color(0xFFb3e5fc),
+                        enableFeedback: true,
+                        onLongPress: (){
+                          setState(() {
+                            currentCollectedFloorWalls = !snapshot.data;
+                            saveBool("floorWallsCheckList"+name, false, !snapshot.data);
+                          });
+                        },
+                        onTap: (){
+                          currentCollectedFloorWalls = snapshot.data;
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                            isScrollControlled:true,
+                            context: context, 
+                            builder: (context){
+                              return Container(
+                                height: 450*percentScale,
+                                  child: Container(
+                                    child: floorWallsPopUp(percentScale, colorTextBlack, name, image, source, currentCollectedFloorWalls, buy, milesPrice, sell,color1,color2,hhaConcept1,hhaConcept2,hhaSeries,tag),
+                                ),
+                              );
+                          });
+                          future.then((void value)=> setState(() {
+                            saveBool("floorWallsCheckList"+name, false, currentCollectedFloorWalls);
+                          }));
+                        },
+                        child: new Container(
+                          width: 350*percentScale,
+                          height: 350*percentScale,
+                        ),
+                      ),
+                      color: colorWhite,
+                    ),
+                  )
                 ),
-                color: colorWhite,
-              ),
-            )
-          ),
-          IgnorePointer(
-            child: Align(
-              alignment: Alignment.topCenter,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      transform: Matrix4.translationValues(0,4*percentScale,0),
-                      child: CachedNetworkImage(
-                        imageBuilder: (context, imageProvider) => Container(
-                          width: 70*percentScale,
-                          height: 70*percentScale,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4*percentScale),
-                            image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
+                IgnorePointer(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            transform: Matrix4.translationValues(0,4*percentScale,0),
+                            child: OptimizedCacheImage(
+                              imageBuilder: (context, imageProvider) => Container(
+                                width: 70*percentScale,
+                                height: 70*percentScale,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4*percentScale),
+                                  image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                                ),
+                              ),
+                              imageUrl: image,
+                              //placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                              height:70*percentScale,
+                              width:70*percentScale,
+                              fadeInDuration: Duration(milliseconds:800),
+                            ),
                           ),
-                        ),
-                        imageUrl: image,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                        height:70*percentScale,
-                        width:70*percentScale,
-                        fadeInDuration: Duration(milliseconds:800),
+                          
+                          Container(
+                            height:40*percentScale,
+                            padding: const EdgeInsets.all(6.0),
+                            child: Center(
+                              child: Text(name,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorTextBlack,
+                                  fontSize: 12*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                )
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    
-                    Container(
-                      height:40*percentScale,
-                      padding: const EdgeInsets.all(6.0),
-                      child: Center(
-                        child: Text(name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorTextBlack,
-                            fontSize: 12*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          )
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-            ),
-          ),
-          
-          Align(
-            alignment: Alignment.topRight,
-            child: AnimatedOpacity(
-              duration: Duration(milliseconds:400),
-              opacity: collected ? 1 : 0,
-              child: Container(
-                transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                height: 25*percentScale,
-                width: 25*percentScale,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorCheckGreen,
-                  boxShadow: [BoxShadow(
-                    color: Color(0x29000000),
-                    offset: Offset(0,3),
-                    blurRadius: 6,
-                    spreadRadius: 0
-                  ) ],
-                ),
-                child: Theme(
-                  data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                  child: new Checkbox(
-                    activeColor: Color(0x00000000),
-                    checkColor: Color(0xFF444444),
-                    value: collected,
-                    onChanged: (bool value) {
-                      setState(() {
-                        collected = value;
-                        saveBool("floorWallsCheckList"+name, false, collected);
-                        //HapticFeedback.mediumImpact();
-                      });
-                    },
                   ),
                 ),
-              )
-            ),
-          ),
-        ]
+                
+                Align(
+                  alignment: Alignment.topRight,
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds:400),
+                    opacity: snapshot.data ? 1 : 0,
+                    child: Container(
+                      transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                      height: 25*percentScale,
+                      width: 25*percentScale,
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colorCheckGreen,
+                        boxShadow: [BoxShadow(
+                          color: Color(0x29000000),
+                          offset: Offset(0,3),
+                          blurRadius: 6,
+                          spreadRadius: 0
+                        ) ],
+                      ),
+                      child: Theme(
+                        data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                        child: new Checkbox(
+                          activeColor: Color(0x00000000),
+                          checkColor: Color(0xFF444444),
+                          value: snapshot.data,
+                          onChanged: (bool value) {
+                            setState(() {
+                              currentCollectedFloorWalls = value;
+                              saveBool("floorWallsCheckList"+name, false, value);
+                              //HapticFeedback.mediumImpact();
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  ),
+                ),
+              ]
+            );
+          } else {
+            return Container();
+          }
+        },
       );
     }
   );

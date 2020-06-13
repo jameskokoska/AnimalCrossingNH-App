@@ -10,7 +10,7 @@ final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedClothing = false;
 
 
-Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
+Widget nothing(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(

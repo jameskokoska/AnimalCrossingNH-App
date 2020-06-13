@@ -1,8 +1,11 @@
+import 'package:animal_crossing_app/fishPopup.dart';
+
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/services.dart';
 import 'bugPopup.dart';
 import 'popupFunctions.dart';
@@ -18,9 +21,14 @@ class BugList extends StatefulWidget {
 }
 
 String searchBug = '';
-
+var futureBug;
 
 class _BugListPageState extends State<BugList>{
+  @override
+  void initState(){
+    super.initState();
+    futureBug=getBugData(searchBug);
+  }
 
   @override
   Widget build(BuildContext context){
@@ -56,7 +64,7 @@ class _BugListPageState extends State<BugList>{
             ),
             
             FutureBuilder(
-              future: getBugData(searchBug),
+              future: futureBug,
               builder: (context,snapshot){
                 Widget bugListSliver;
                 if(snapshot.hasData){
@@ -199,205 +207,213 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
   return Center(
     child: new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) { 
-        return Visibility(
-          visible: (){
-            if(!showListOnlyActive)
-              return true;
-            else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchBug=="")
-              return false;
-            else
-              return true;
-          }(),
-          child: Container(
-            child: Column(
-            children: <Widget>[
-              SizedBox(
-                height:4.5*percentScale,
-              ),
-              new Stack(
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(14*percentScale),
-                    child: new Container(
-                      child: new Material(
-                        child: new InkWell(
-                          highlightColor: Color(0xFFcfd8dc),
-                          splashColor: Color(0xFFA0D8A5),
-                          enableFeedback: true,
-                          onLongPress: (){
-                            setState(() {
-                              caught = !caught;
-                              saveBool("bugCheckList"+name, false, caught);
-                            });
-                          },
-                          onTap: (){
-                            currentCaughtBug = caught;
-                            FocusScope.of(context).requestFocus(new FocusNode());
-                            Future<void> future = showModalBottomSheet(
-                              //by setting this to true, we can avoid the half screen limit
-                              isScrollControlled:true,
-                              context: context, 
-                              builder: (context){
-                                return Container(
-                                  height: 400*percentScale,
-                                    child: Container(
-                                      child: bugPopUp(percentScale, currentCaughtBug, name, iconImage, sell, whereHow, weather, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
-                                  ),
-                                );
-                            });
-                            future.then((void value)=> setState(() {
-                              getStoredBool("bugCheckList"+name, false).then((indexResult){
-                                  caught = indexResult;
-                              });
-                            }));
-                          },
-                          child: new Container(
-                            width: 334*percentScale,
-                            height: 75*percentScale,
-                          ),
-                        ),
-                        color: colorWhite,
-                      ),
-                      
+        return FutureBuilder(
+          future:  getStoredBool("bugCheckList"+name, false),
+          builder: (context,snapshot) {
+            if(snapshot.hasData){
+              return Visibility(
+                visible: (){
+                  if(!showListOnlyActive)
+                    return true;
+                  else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchBug=="")
+                    return false;
+                  else
+                    return true;
+                }(),
+                child: Container(
+                  child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height:4.5*percentScale,
                     ),
-                  ),
-                  
-                  IgnorePointer(
-                    child: Stack(
+                    new Stack(
                       children: <Widget>[
-                        new Container(
-                          transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
-                          width: 55*percentScale,
-                          height: 55*percentScale,
-                          decoration: new BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: colorBugAccent,
-                          )
-                        ),
-                        Container(
-                          transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
-                          child: CachedNetworkImage(
-                            imageBuilder: (context, imageProvider) => Container(
-                              width: 45*percentScale,
-                              height: 45*percentScale,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4*percentScale),
-                                image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.cover),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(14*percentScale),
+                          child: new Container(
+                            child: new Material(
+                              child: new InkWell(
+                                highlightColor: Color(0xFFcfd8dc),
+                                splashColor: Color(0xFFA0D8A5),
+                                enableFeedback: true,
+                                onLongPress: (){
+                                  setState(() {
+                                    currentCaughtBug = !snapshot.data;
+                                    saveBool("bugCheckList"+name, false, !snapshot.data);
+                                  });
+                                },
+                                onTap: (){
+                                  currentCaughtBug = snapshot.data;
+                                  FocusScope.of(context).requestFocus(new FocusNode());
+                                  Future<void> future = showModalBottomSheet(
+                                    //by setting this to true, we can avoid the half screen limit
+                                    isScrollControlled:true,
+                                    context: context, 
+                                    builder: (context){
+                                      return Container(
+                                        height: 400*percentScale,
+                                          child: Container(
+                                            child: bugPopUp(percentScale, currentCaughtBug, name, iconImage, sell, whereHow, weather, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
+                                        ),
+                                      );
+                                  });
+                                  future.then((void value)=> setState(() {
+                                    saveBool("bugCheckList"+name, false, currentCaughtBug);
+                                  }));
+                                },
+                                child: new Container(
+                                  width: 334*percentScale,
+                                  height: 75*percentScale,
+                                ),
                               ),
+                              color: colorWhite,
                             ),
-                            imageUrl: iconImage,
-                            //placeholder: (context, url) => CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
-                            height:45*percentScale,
-                            width:45*percentScale,
-                            fadeInDuration: Duration(milliseconds:800),
+                            
                           ),
                         ),
+                        
+                        IgnorePointer(
+                          child: Stack(
+                            children: <Widget>[
+                              new Container(
+                                transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
+                                width: 55*percentScale,
+                                height: 55*percentScale,
+                                decoration: new BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: colorBugAccent,
+                                )
+                              ),
+                              Container(
+                                transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
+                                child: OptimizedCacheImage(
+                                  imageBuilder: (context, imageProvider) => Container(
+                                    width: 45*percentScale,
+                                    height: 45*percentScale,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4*percentScale),
+                                      image: DecorationImage(
+                                        image: imageProvider, fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                  imageUrl: iconImage,
+                                  //placeholder: (context, url) => CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
+                                  height:45*percentScale,
+                                  width:45*percentScale,
+                                  fadeInDuration: Duration(milliseconds:800),
+                                ),
+                              ),
+                              Container(
+                                width: 200*percentScale,
+                                transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
+                                child: new Text((capitalize(name)),
+                                  style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorTextBlack,
+                                  fontSize: 18*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Container(
+                                transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
+                                child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
+                                  style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorBugTextDarkGreen,
+                                  fontSize: 14*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                  )
+                                ),
+                              ),
+                              Container(
+                                width: 200*percentScale,
+                                transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
+                                child: new Text(whereHow,
+                                  style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorBugTextDarkGreen,
+                                  fontSize: 14*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              //Checkmark background
+                              AnimatedPositioned(
+                                duration: Duration(milliseconds: 300),
+                                top: snapshot.data ? 40*percentScale : 0,
+                                bottom: snapshot.data ? 40*percentScale : 0,
+                                child: new Container(
+                                  transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
+                                  width: 40*percentScale,
+                                  height: 40*percentScale,
+                                  decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: colorCheckRed
+                                  )
+                                ),
+                              ),
+                              AnimatedPositioned(
+                                duration: Duration(milliseconds: 200),
+                                top: !snapshot.data ? 40*percentScale : 0,
+                                bottom: !snapshot.data ? 40*percentScale : 0,
+                                child: new Container(
+                                  transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
+                                  width: 40*percentScale,
+                                  height: 40*percentScale,
+                                  decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: colorCheckGreen
+                                  )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        
                         Container(
-                          width: 200*percentScale,
-                          transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
-                          child: new Text((capitalize(name)),
-                            style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorTextBlack,
-                            fontSize: 18*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        Container(
-                          transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
-                          child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
-                            style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorBugTextDarkGreen,
-                            fontSize: 14*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            )
-                          ),
-                        ),
-                        Container(
-                          width: 200*percentScale,
-                          transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
-                          child: new Text(whereHow,
-                            style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorBugTextDarkGreen,
-                            fontSize: 14*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        //Checkmark background
-                        AnimatedPositioned(
-                          duration: Duration(milliseconds: 300),
-                          top: caught ? 40*percentScale : 0,
-                          bottom: caught ? 40*percentScale : 0,
-                          child: new Container(
-                            transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
-                            width: 40*percentScale,
-                            height: 40*percentScale,
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: colorCheckRed
-                            )
-                          ),
-                        ),
-                        AnimatedPositioned(
-                          duration: Duration(milliseconds: 200),
-                          top: !caught ? 40*percentScale : 0,
-                          bottom: !caught ? 40*percentScale : 0,
-                          child: new Container(
-                            transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
-                            width: 40*percentScale,
-                            height: 40*percentScale,
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: colorCheckGreen
+                          transform: Matrix4.translationValues((272)*percentScale,(11)*percentScale,0),
+                          width:55*percentScale,
+                          height:55*percentScale,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(300*percentScale),
+                              child: new Transform.scale(
+                                scale: 1.6*percentScale,
+                                child: Theme(
+                                  data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
+                                  child: new Checkbox(
+                                    activeColor: Color(0x04b2fab4),
+                                    checkColor: Color(0xFFFFFFFF),
+                                    value: snapshot.data,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        currentCaughtBug = value;
+                                        saveBool("bugCheckList"+name, false, value);
+                                        HapticFeedback.mediumImpact();
+                                    });
+                                  },
+                                ),
+                              ),
                             )
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  
-                  Container(
-                    transform: Matrix4.translationValues((272)*percentScale,(11)*percentScale,0),
-                    width:55*percentScale,
-                    height:55*percentScale,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(300*percentScale),
-                        child: new Transform.scale(
-                          scale: 1.6*percentScale,
-                          child: Theme(
-                            data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
-                            child: new Checkbox(
-                              activeColor: Color(0x04b2fab4),
-                              checkColor: Color(0xFFFFFFFF),
-                              value: caught,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  caught = value;
-                                  saveBool("bugCheckList"+name, false, caught);
-                                  HapticFeedback.mediumImpact();
-                              });
-                            },
-                          ),
-                        ),
-                      )
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ],
-        ),
-          ),
+            );
+            } else {
+              return Container();
+            }
+          }
+          
       );
     }),
   );

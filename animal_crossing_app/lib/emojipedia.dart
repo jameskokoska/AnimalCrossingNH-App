@@ -1,6 +1,7 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -18,9 +19,14 @@ class EmojiList extends StatefulWidget {
 }
 
 String searchEmoji = '';
-
+var futureEmoji;
 
 class _EmojiListPageState extends State<EmojiList>{
+  @override
+  void initState(){
+    super.initState();
+    futureEmoji=getEmojiData(searchEmoji);
+  }
 
   @override
   Widget build(BuildContext context){
@@ -56,7 +62,7 @@ class _EmojiListPageState extends State<EmojiList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: getEmojiData(searchEmoji),
+              future: futureEmoji,
               builder: (context,snapshot){
                 Widget emojiListSliver;
                 if(snapshot.hasData){
@@ -223,148 +229,155 @@ class _EmojiListPageState extends State<EmojiList>{
 Widget emojiContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source, bool collected){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return new Stack(
-            children: <Widget>[
-              Container(
-                width: 120*percentScale,
-                height: 162*percentScale,
-                decoration: new BoxDecoration(
-                  color: colorWhite,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [BoxShadow(
-                      color: Color(0x0C000000),
-                      offset: Offset(0,3),
-                      blurRadius: 6,
-                      spreadRadius: 0
-                  ) ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: new Container(
-                  transform: Matrix4.translationValues(0,5*percentScale,0),
-                  child: Column(
-                    children: <Widget>[
-                      CachedNetworkImage(
-                        imageBuilder: (context, imageProvider) => Container(
-                          width: 67*percentScale,
-                          height: 67*percentScale,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4*percentScale),
-                            image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
-                          ),
-                        ),
-                        imageUrl: imageLink,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 67*percentScale,height:67*percentScale),
-                        height:67*percentScale,
-                        width:67*percentScale,
-                        fadeInDuration: Duration(milliseconds:800),
-                      ),
-                      SizedBox(
-                        height: 2*percentScale,
-                      ),
-                      Text(name,
-                        style: TextStyle(
-                          fontFamily: 'ArialRoundedBold',
-                          color: colorTextBlack,
-                          fontSize: 12*percentScale,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                        )
-                      ),
-                      SizedBox(
-                        height: 5*percentScale,
-                      ),
-                      Text(source,
-                        style: TextStyle(
-                          fontFamily: 'ArialRoundedBold',
-                          color: Color(0x60000000),
-                          fontSize: 10*percentScale,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                        )
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Center(
-                child: AnimatedOpacity(
-                  duration: ((){
-                    if(collected == true)
-                      return Duration(milliseconds:1200);
-                    else
-                      return Duration(milliseconds:10);
-                  }()),
-                  opacity: collected ? 0 : 1,
-                  child: Container(
-                    width:120*percentScale,
-                    height:120*percentScale,
-                    transform: Matrix4.translationValues(0,-8*percentScale,0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(300*percentScale),
-                      child: new Transform.scale(
-                        scale: 3*percentScale,
-                        child: Theme(
-                          data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                          child: new Checkbox(
-                            activeColor: Color(0x04FFFFFF),
-                            checkColor: Color(0xFF444444),
-                            value: collected,
-                            onChanged: (bool value) {
-                              setState(() {
-                                collected = value;
-                                saveBool("emojiCheckList"+name, false, collected);
-                                HapticFeedback.mediumImpact();
-                              });
-                            },
-                          ),
-                        ),
-                      )
-                    ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: AnimatedOpacity(
-                  duration: Duration(milliseconds:400),
-                  opacity: collected ? 1 : 0,
-                  child: Container(
-                    transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                    height: 25*percentScale,
-                    width: 25*percentScale,
-                    decoration: new BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: colorCheckGreen,
-                      boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+      return FutureBuilder(
+        future: getStoredBool("emojiCheckList"+name, false),
+        builder: (context,snapshot) {
+          if(snapshot.hasData){
+            return Stack(
+              children: <Widget>[
+                Container(
+                  width: 120*percentScale,
+                  height: 162*percentScale,
+                  decoration: new BoxDecoration(
+                    color: colorWhite,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [BoxShadow(
+                        color: Color(0x0C000000),
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
-                      ) ],
+                    ) ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: new Container(
+                    transform: Matrix4.translationValues(0,5*percentScale,0),
+                    child: Column(
+                      children: <Widget>[
+                        OptimizedCacheImage(
+                          imageBuilder: (context, imageProvider) => Container(
+                            width: 67*percentScale,
+                            height: 67*percentScale,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4*percentScale),
+                              image: DecorationImage(
+                                image: imageProvider, fit: BoxFit.cover),
+                            ),
+                          ),
+                          imageUrl: imageLink,
+                          //placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 67*percentScale,height:67*percentScale),
+                          height:67*percentScale,
+                          width:67*percentScale,
+                          fadeInDuration: Duration(milliseconds:800),
+                        ),
+                        SizedBox(
+                          height: 2*percentScale,
+                        ),
+                        Text(name,
+                          style: TextStyle(
+                            fontFamily: 'ArialRoundedBold',
+                            color: colorTextBlack,
+                            fontSize: 12*percentScale,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          )
+                        ),
+                        SizedBox(
+                          height: 5*percentScale,
+                        ),
+                        Text(source,
+                          style: TextStyle(
+                            fontFamily: 'ArialRoundedBold',
+                            color: Color(0x60000000),
+                            fontSize: 10*percentScale,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          )
+                        ),
+                      ],
                     ),
-                    child: Theme(
-                      data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                      child: new Checkbox(
-                        activeColor: Color(0x00000000),
-                        checkColor: Color(0xFF444444),
-                        value: collected,
-                        onChanged: (bool value) {
-                          setState(() {
-                            collected = value;
-                            saveBool("emojiCheckList"+name, false, collected);
-                            //HapticFeedback.mediumImpact();
-                          });
-                        },
+                  ),
+                ),
+                Center(
+                  child: AnimatedOpacity(
+                    duration: ((){
+                      if(snapshot.data == true)
+                        return Duration(milliseconds:1200);
+                      else
+                        return Duration(milliseconds:10);
+                    }()),
+                    opacity: snapshot.data ? 0 : 1,
+                    child: Container(
+                      width:120*percentScale,
+                      height:120*percentScale,
+                      transform: Matrix4.translationValues(0,-8*percentScale,0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(300*percentScale),
+                        child: new Transform.scale(
+                          scale: 3*percentScale,
+                          child: Theme(
+                            data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                            child: new Checkbox(
+                              activeColor: Color(0x04FFFFFF),
+                              checkColor: Color(0xFF444444),
+                              value: snapshot.data,
+                              onChanged: (bool value) {
+                                setState(() {
+                                  saveBool("emojiCheckList"+name, false, value);
+                                  HapticFeedback.mediumImpact();
+                                });
+                              },
+                            ),
+                          ),
+                        )
                       ),
                     ),
-                  )
+                  ),
                 ),
-              ),
-          ]
+                Align(
+                  alignment: Alignment.topRight,
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds:400),
+                    opacity: snapshot.data ? 1 : 0,
+                    child: Container(
+                      transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                      height: 25*percentScale,
+                      width: 25*percentScale,
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colorCheckGreen,
+                        boxShadow: [BoxShadow(
+                          color: Color(0x29000000),
+                          offset: Offset(0,3),
+                          blurRadius: 6,
+                          spreadRadius: 0
+                        ) ],
+                      ),
+                      child: Theme(
+                        data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                        child: new Checkbox(
+                          activeColor: Color(0x00000000),
+                          checkColor: Color(0xFF444444),
+                          value: snapshot.data,
+                          onChanged: (bool value) {
+                            setState(() {
+                              saveBool("emojiCheckList"+name, false, value);
+                              //HapticFeedback.mediumImpact();
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  ),
+                ),
+              ]
+            );
+          } else {
+            return Container();
+          }
+        }
       );
     }
   );

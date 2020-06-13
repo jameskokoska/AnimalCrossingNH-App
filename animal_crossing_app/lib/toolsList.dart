@@ -1,6 +1,7 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -19,7 +20,7 @@ class ToolsList extends StatefulWidget {
 }
 
 String searchTools = '';
-
+var futureTools;
 
 
 
@@ -30,6 +31,7 @@ class _ToolsListPageState extends State<ToolsList>{
     getStoredBool('showListVariations', true).then((indexResult){
       showListVariations = indexResult;
     });
+    futureTools = getToolsData(searchTools);
   }
 
   
@@ -69,7 +71,7 @@ class _ToolsListPageState extends State<ToolsList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: getToolsData(searchTools),
+              future: futureTools,
               builder: (context,snapshot){
                 Widget toolsListSliver;
                 if(snapshot.hasData){
@@ -217,154 +219,162 @@ class _ToolsListPageState extends State<ToolsList>{
 Widget toolsContainer(double percentScale, int index, bool collected,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return new Stack(
-        children: <Widget>[
-          //Shadow
-          IgnorePointer(
-            child: Container(
-              width: 300*percentScale,
-              height: 300*percentScale,
-              decoration: new BoxDecoration(
-                color: colorWhite,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(
-                    color: Color(0x0C000000),
-                    offset: Offset(0,3),
-                    blurRadius: 5,
-                    spreadRadius: 0
-                ) ],
-              ),
-            ),
-          ),
-          //Tap region inkwell
-          ClipRRect(
-            borderRadius: BorderRadius.circular(14*percentScale),
-            child: new Container(
-              child: new Material(
-                child: new InkWell(
-                  highlightColor: Color(0xFFcfd8dc),
-                  splashColor: Color(0xFFb3e5fc),
-                  enableFeedback: true,
-                  onLongPress: (){
-                    setState(() {
-                      collected = !collected;
-                      saveBool("toolsCheckList"+name+variation, false, collected);
-                    });
-                  },
-                  onTap: (){
-                    currentCollectedTool = collected;
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    Future<void> future = showModalBottomSheet(
-                      //by setting this to true, we can avoid the half screen limit
-                      isScrollControlled:true,
-                      context: context,
-                      builder: (context){
-                        return Container(
-                          height: 400*percentScale,
-                            child: Container(
-                              child: toolsPopUp(percentScale, collected, name, imageLink, variation, bodyTile, diy, customize, kitCost, uses, stackSize, buy, sell, color1, color2, size, set, milesPrice, source, version, filename, variantID, internalID, uniqueEntryID)
-                          ),
-                        );
-                    });
-                    future.then((void value)=> setState(() {
-                      getStoredBool("toolsCheckList"+name+variation, false).then((indexResult){
-                          collected = indexResult;
-                      });
-                    }));
-                  },
+      return FutureBuilder(
+        future: getStoredBool("toolsCheckList"+name+variation, false),
+        builder: (context,snapshot) {
+          if(snapshot.hasData){
+            return Stack(
+              children: <Widget>[
+                //Shadow
+                IgnorePointer(
+                  child: Container(
+                    width: 300*percentScale,
+                    height: 300*percentScale,
+                    decoration: new BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [BoxShadow(
+                          color: Color(0x0C000000),
+                          offset: Offset(0,3),
+                          blurRadius: 5,
+                          spreadRadius: 0
+                      ) ],
+                    ),
+                  ),
+                ),
+                //Tap region inkwell
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14*percentScale),
                   child: new Container(
-                    width: 350*percentScale,
-                    height: 350*percentScale,
-                  ),
-                ),
-                color: colorWhite,
-              ),
-            )
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: AnimatedOpacity(
-                duration: Duration(milliseconds:400),
-                opacity: collected ? 1 : 0,
-                child: Container(
-                  transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                  height: 25*percentScale,
-                  width: 25*percentScale,
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: colorCheckGreen,
-                    boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
-                        offset: Offset(0,3),
-                        blurRadius: 6,
-                        spreadRadius: 0
-                    ) ],
-                  ),
-                  child: Theme(
-                    data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                    child: new Checkbox(
-                      activeColor: Color(0x00000000),
-                      checkColor: Color(0xFF444444),
-                      value: collected,
-                      onChanged: (bool value) {
-                        setState(() {
-                          collected = value;
-                          saveBool("toolsCheckList"+name+variation, false, collected);
-                          //HapticFeedback.mediumImpact();
-                        });
-                      },
+                    child: new Material(
+                      child: new InkWell(
+                        highlightColor: Color(0xFFcfd8dc),
+                        splashColor: Color(0xFFb3e5fc),
+                        enableFeedback: true,
+                        onLongPress: (){
+                          setState(() {
+                            currentCollectedTool = !snapshot.data;
+                            saveBool("toolsCheckList"+name+variation, false, !snapshot.data);
+                          });
+                        },
+                        onTap: (){
+                          currentCollectedTool = snapshot.data;
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                            isScrollControlled:true,
+                            context: context,
+                            builder: (context){
+                              return Container(
+                                height: 400*percentScale,
+                                  child: Container(
+                                    child: toolsPopUp(percentScale, collected, name, imageLink, variation, bodyTile, diy, customize, kitCost, uses, stackSize, buy, sell, color1, color2, size, set, milesPrice, source, version, filename, variantID, internalID, uniqueEntryID)
+                                ),
+                              );
+                          });
+                          future.then((void value)=> setState(() {
+                            saveBool("toolsCheckList"+name+variation, false, currentCollectedTool);
+                          }));
+                        },
+                        child: new Container(
+                          width: 350*percentScale,
+                          height: 350*percentScale,
+                        ),
+                      ),
+                      color: colorWhite,
                     ),
-                  ),
-                )
-            ),
-          ),
-          IgnorePointer(
-            child: Align(
-              alignment: Alignment.topCenter,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      transform: Matrix4.translationValues(0,4*percentScale,0),
-                      child: CachedNetworkImage(
-                        imageBuilder: (context, imageProvider) => Container(
-                          width: 70*percentScale,
-                          height: 70*percentScale,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4*percentScale),
-                            image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
+                  )
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: AnimatedOpacity(
+                      duration: Duration(milliseconds:400),
+                      opacity: snapshot.data ? 1 : 0,
+                      child: Container(
+                        transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                        height: 25*percentScale,
+                        width: 25*percentScale,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: colorCheckGreen,
+                          boxShadow: [BoxShadow(
+                              color: Color(0x29000000),
+                              offset: Offset(0,3),
+                              blurRadius: 6,
+                              spreadRadius: 0
+                          ) ],
+                        ),
+                        child: Theme(
+                          data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                          child: new Checkbox(
+                            activeColor: Color(0x00000000),
+                            checkColor: Color(0xFF444444),
+                            value: snapshot.data,
+                            onChanged: (bool value) {
+                              setState(() {
+                                currentCollectedTool = value;
+                                saveBool("toolsCheckList"+name+variation, false, value);
+                                //HapticFeedback.mediumImpact();
+                              });
+                            },
                           ),
                         ),
-                        imageUrl: imageLink,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                        height:70*percentScale,
-                        width:70*percentScale,
-                        fadeInDuration: Duration(milliseconds:800),
-                      ),
-                    ),
-
-                    Container(
-                      height:40*percentScale,
-                      padding: const EdgeInsets.all(6.0),
-                      child: Center(
-                        child: Text(name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorTextBlack,
-                            fontSize: 12*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          )
-                        ),
-                      ),
-                    ),
-                  ],
+                      )
+                  ),
                 ),
-            ),
-          ),
-        ]
+                IgnorePointer(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            transform: Matrix4.translationValues(0,4*percentScale,0),
+                            child: OptimizedCacheImage(
+                              imageBuilder: (context, imageProvider) => Container(
+                                width: 70*percentScale,
+                                height: 70*percentScale,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4*percentScale),
+                                  image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                                ),
+                              ),
+                              imageUrl: imageLink,
+                              //placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                              height:70*percentScale,
+                              width:70*percentScale,
+                              fadeInDuration: Duration(milliseconds:800),
+                            ),
+                          ),
+
+                          Container(
+                            height:40*percentScale,
+                            padding: const EdgeInsets.all(6.0),
+                            child: Center(
+                              child: Text(name,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorTextBlack,
+                                  fontSize: 12*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                )
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ),
+                ),
+              ]
+            );
+          } else {
+            return Container();
+          }
+        }
+        
       );
     }
   );
