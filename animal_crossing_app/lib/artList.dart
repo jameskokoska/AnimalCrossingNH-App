@@ -2,7 +2,7 @@ import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/services.dart';
 import 'artPopup.dart';
 import 'databases.dart';
@@ -18,8 +18,15 @@ class ArtList extends StatefulWidget {
 }
 
 String searchArt = '';
+var futureArt;
 
 class _ArtListPageState extends State<ArtList>{
+  @override
+  void initState(){
+    super.initState();
+    futureArt = getArtData(searchArt);
+  }
+  
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -54,7 +61,7 @@ class _ArtListPageState extends State<ArtList>{
                 color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xffFFFFFF)),
               ),
               FutureBuilder(
-                  future: getArtData(searchArt),
+                  future: futureArt,
                   builder: (context,snapshot){
                     Widget artListSliver;
                     if(snapshot.hasData){
@@ -70,7 +77,7 @@ class _ArtListPageState extends State<ArtList>{
                           delegate:
                           SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
-                              return artContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name, snapshot.data[index].image, snapshot.data[index].genuine, snapshot.data[index].category, snapshot.data[index].buy, snapshot.data[index].sell, snapshot.data[index].color1,  snapshot.data[index].color2, snapshot.data[index].size, snapshot.data[index].realArtworkTitle, snapshot.data[index].artist, snapshot.data[index].museumDescription, snapshot.data[index].source, snapshot.data[index].version, snapshot.data[index].hhaConcept1, snapshot.data[index].hhaConcept2, snapshot.data[index].hhaSeries, snapshot.data[index].hhaSet, snapshot.data[index].interact, snapshot.data[index].tag, snapshot.data[index].speakerType, snapshot.data[index].lightingType, snapshot.data[index].catalog, snapshot.data[index].filename, snapshot.data[index].internalID, snapshot.data[index].uniqueEntryID);
+                              return artContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].image, snapshot.data[index].genuine, snapshot.data[index].category, snapshot.data[index].buy, snapshot.data[index].sell, snapshot.data[index].color1,  snapshot.data[index].color2, snapshot.data[index].size, snapshot.data[index].realArtworkTitle, snapshot.data[index].artist, snapshot.data[index].museumDescription, snapshot.data[index].source, snapshot.data[index].version, snapshot.data[index].hhaConcept1, snapshot.data[index].hhaConcept2, snapshot.data[index].hhaSeries, snapshot.data[index].hhaSet, snapshot.data[index].interact, snapshot.data[index].tag, snapshot.data[index].speakerType, snapshot.data[index].lightingType, snapshot.data[index].catalog, snapshot.data[index].filename, snapshot.data[index].internalID, snapshot.data[index].uniqueEntryID);
                             },
                             childCount: snapshot.data.length,
                           ),
@@ -200,155 +207,162 @@ class _ArtListPageState extends State<ArtList>{
 }
 
 
-Widget artContainer(double percentScale,int index,bool collected,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID){
+Widget artContainer(double percentScale,int index,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID){
   return new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
-        return new Stack(
-            children: <Widget>[
-              //Shadow
-              IgnorePointer(
-                child: Container(
-                  width: 300*percentScale,
-                  height: 300*percentScale,
-                  decoration: new BoxDecoration(
-                    color: colorWhite,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [BoxShadow(
-                        color: Color(0x0C000000),
-                        offset: Offset(0,3),
-                        blurRadius: 5,
-                        spreadRadius: 0
-                    ) ],
-                  ),
-                ),
-              ),
-              //Tap region inkwell
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(14*percentScale),
-                  child: new Container(
-                    child: new Material(
-                      child: new InkWell(
-                        highlightColor: Color(0xFFcfd8dc),
-                        splashColor: Color(0xFFb3e5fc),
-                        enableFeedback: true,
-                        onLongPress: (){
-                          setState(() {
-                            collected = !collected;
-                            saveBool("artCheckList"+name+genuine, false, collected);
-                          });
-                        },
-                        onTap: (){
-                          currentCollectedArt = collected;
-                          FocusScope.of(context).requestFocus(new FocusNode());
-                          Future<void> future = showModalBottomSheet(
-                            //by setting this to true, we can avoid the half screen limit
-                              isScrollControlled:true,
-                              context: context,
-                              builder: (context){
-                                return Container(
-                                  height: 450*percentScale,
-                                  child: Container(
-                                      child: artPopUp(percentScale, collected, name, image, genuine, category, buy, sell, color1,  color2, size, realArtworkTitle, artist, museumDescription, source, version,  hhaConcept1, hhaConcept2, hhaSeries, hhaSet, interact, tag, speakerType, lightingType, catalog, filename, internalID, uniqueEntryID)
-                                  ),
-                                );
-                              });
-                          future.then((void value)=> setState(() {
-                            getStoredBool("artCheckList"+name+genuine, false).then((indexResult){
-                              collected = indexResult;
-                            });
-                          }));
-                        },
-                        child: new Container(
-                          width: 350*percentScale,
-                          height: 350*percentScale,
-                        ),
-                      ),
-                      color: colorWhite,
-                    ),
-                  )
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: AnimatedOpacity(
-                    duration: Duration(milliseconds:400),
-                    opacity: collected ? 1 : 0,
+        return FutureBuilder(
+          future: getStoredBool("artCheckList"+name+genuine, false),
+          builder: (context,snapshot) {
+            if(snapshot.hasData){
+              return Stack(
+                children: <Widget>[
+                  //Shadow
+                  IgnorePointer(
                     child: Container(
-                      transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                      height: 25*percentScale,
-                      width: 25*percentScale,
+                      width: 300*percentScale,
+                      height: 300*percentScale,
                       decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: colorCheckGreen,
+                        color: colorWhite,
+                        borderRadius: BorderRadius.circular(20),
                         boxShadow: [BoxShadow(
-                            color: Color(0x29000000),
+                            color: Color(0x0C000000),
                             offset: Offset(0,3),
-                            blurRadius: 6,
+                            blurRadius: 5,
                             spreadRadius: 0
                         ) ],
                       ),
-                      child: Theme(
-                        data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                        child: new Checkbox(
-                          activeColor: Color(0x00000000),
-                          checkColor: Color(0xFF444444),
-                          value: collected,
-                          onChanged: (bool value) {
-                            setState(() {
-                              collected = value;
-                              saveBool("artCheckList"+name+genuine, false, collected);
-                              //HapticFeedback.mediumImpact();
-                            });
-                          },
-                        ),
-                      ),
-                    )
-                ),
-              ),
-              IgnorePointer(
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        transform: Matrix4.translationValues(0,4*percentScale,0),
-                        child: CachedNetworkImage(
-                          imageBuilder: (context, imageProvider) => Container(
-                            width: 100*percentScale,
-                            height: 100*percentScale,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4*percentScale),
-                              image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  ),
+                  //Tap region inkwell
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(14*percentScale),
+                      child: new Container(
+                        child: new Material(
+                          child: new InkWell(
+                            highlightColor: Color(0xFFcfd8dc),
+                            splashColor: Color(0xFFb3e5fc),
+                            enableFeedback: true,
+                            onLongPress: (){
+                              setState(() {
+                                currentCollectedArt = !snapshot.data;;
+                                saveBool("artCheckList"+name+genuine, false, !snapshot.data);
+                              });
+                            },
+                            onTap: (){
+                              currentCollectedArt = snapshot.data;
+                              FocusScope.of(context).requestFocus(new FocusNode());
+                              Future<void> future = showModalBottomSheet(
+                                //by setting this to true, we can avoid the half screen limit
+                                  isScrollControlled:true,
+                                  context: context,
+                                  builder: (context){
+                                    return Container(
+                                      height: 450*percentScale,
+                                      child: Container(
+                                          child: artPopUp(percentScale, currentCollectedArt, name, image, genuine, category, buy, sell, color1,  color2, size, realArtworkTitle, artist, museumDescription, source, version,  hhaConcept1, hhaConcept2, hhaSeries, hhaSet, interact, tag, speakerType, lightingType, catalog, filename, internalID, uniqueEntryID)
+                                      ),
+                                    );
+                                  });
+                              future.then((void value)=> setState(() {
+                                saveBool("artCheckList"+name+genuine, false, currentCollectedArt);
+                              }));
+                            },
+                            child: new Container(
+                              width: 350*percentScale,
+                              height: 350*percentScale,
                             ),
                           ),
-                          imageUrl: image,
-                          //placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                          height:100*percentScale,
-                          width:100*percentScale,
-                          fadeInDuration: Duration(milliseconds:800),
+                          color: colorWhite,
                         ),
-                      ),
-                      Container(
-                        height:30*percentScale,
-                        child: Center(
-                          child: Text(name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: colorTextBlack,
-                                fontSize: 12*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              )
-                          ),
-                        ),
-                      ),
-                    ],
+                      )
                   ),
-                ),
-              ),
-            ]
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: AnimatedOpacity(
+                        duration: Duration(milliseconds:400),
+                        opacity: snapshot.data ? 1 : 0,
+                        child: Container(
+                          transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                          height: 25*percentScale,
+                          width: 25*percentScale,
+                          decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: colorCheckGreen,
+                            boxShadow: [BoxShadow(
+                                color: Color(0x29000000),
+                                offset: Offset(0,3),
+                                blurRadius: 6,
+                                spreadRadius: 0
+                            ) ],
+                          ),
+                          child: Theme(
+                            data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                            child: new Checkbox(
+                              activeColor: Color(0x00000000),
+                              checkColor: Color(0xFF444444),
+                              value: snapshot.data,
+                              onChanged: (bool value) {
+                                setState(() {
+                                  currentCollectedArt = value;
+                                  saveBool("artCheckList"+name+genuine, false, value);
+                                  //HapticFeedback.mediumImpact();
+                                });
+                              },
+                            ),
+                          ),
+                        )
+                    ),
+                  ),
+                  IgnorePointer(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            transform: Matrix4.translationValues(0,4*percentScale,0),
+                            child: OptimizedCacheImage(
+                              imageBuilder: (context, imageProvider) => Container(
+                                width: 100*percentScale,
+                                height: 100*percentScale,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4*percentScale),
+                                  image: DecorationImage(
+                                      image: imageProvider, fit: BoxFit.cover),
+                                ),
+                              ),
+                              imageUrl: image,
+                              //placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                              height:100*percentScale,
+                              width:100*percentScale,
+                              fadeInDuration: Duration(milliseconds:800),
+                            ),
+                          ),
+                          Container(
+                            height:30*percentScale,
+                            child: Center(
+                              child: Text(name,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'ArialRoundedBold',
+                                    color: colorTextBlack,
+                                    fontSize: 12*percentScale,
+                                    fontWeight: FontWeight.w400,
+                                    fontStyle: FontStyle.normal,
+                                  )
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]
+            );
+            } else {
+              return Container();
+            }
+          }
         );
       }
   );

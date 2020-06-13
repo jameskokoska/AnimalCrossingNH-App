@@ -1,10 +1,10 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'fishList.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
+import 'package:optimized_cached_image/widgets.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
@@ -47,7 +47,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                     // ---------- Card Tab Image ----------
                     child: new Center(
                       child: new Center(
-                        child: CachedNetworkImage(
+                        child:  OptimizedCacheImage(
                           imageBuilder: (context, imageProvider) => Container(
                             width: 80*percentScale,
                             height: 80*percentScale,

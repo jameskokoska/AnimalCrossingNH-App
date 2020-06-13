@@ -1,16 +1,16 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
+import 'package:optimized_cached_image/widgets.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedClothing = false;
 
 
-Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
+Widget nothing(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -46,7 +46,7 @@ Widget floorWallsPopUp(double percentScale,bool favorite,String name,String imag
                     // ---------- Card Tab Image ----------
                     child: new Center(
                       child: new Center(
-                        child: CachedNetworkImage(
+                        child:  OptimizedCacheImage(
                           imageBuilder: (context, imageProvider) => Container(
                             width: 80*percentScale,
                             height: 80*percentScale,

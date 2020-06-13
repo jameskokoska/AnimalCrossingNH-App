@@ -1,6 +1,7 @@
 import 'package:animal_crossing_app/floorWallList.dart';
 import 'package:animal_crossing_app/museumCollection.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,7 +49,7 @@ var currentDate = DateTime.now();
 getStoredBool(String key, bool defaultState) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = prefs.getBool(key) ?? defaultState;
-  print('read $key $storedBool');
+  //print('read $key $storedBool');
   return storedBool;
 }
 
@@ -285,4 +286,18 @@ String capitalize(String string) {
     return string;
   }
   return string[0].toUpperCase() + string.substring(1);
+}
+
+class Debouncer{
+  int milliseconds;
+  VoidCallback action;
+  Timer timer;
+
+  Debouncer({this.milliseconds});
+  run(VoidCallback action){
+    if (null!= timer) {
+      timer.cancel();
+    }
+    timer = Timer(Duration(milliseconds: milliseconds),action);
+  }
 }

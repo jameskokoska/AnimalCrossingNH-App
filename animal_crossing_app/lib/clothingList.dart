@@ -1,11 +1,10 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dart:async';
-import 'dart:convert';
 import 'clothingPopup.dart';
 import 'databases.dart';
 
@@ -20,12 +19,12 @@ class ClothingList extends StatefulWidget {
 }
 
 String searchClothing = '';
-
+var futureClothing;
 
 
 
 class _ClothingListPageState extends State<ClothingList>{
-  
+  final debouncer = Debouncer(milliseconds: 600);
   // ScrollController scrollController = ScrollController();
 
   @override
@@ -34,6 +33,7 @@ class _ClothingListPageState extends State<ClothingList>{
     getStoredBool('showListVariations', true).then((indexResult){
       showListVariations = indexResult;
     });
+    futureClothing = Future.wait([getHeadwearData(searchClothing), getAccessoriesData(searchClothing),getTopsData(searchClothing),getBottomsData(searchClothing),getSocksData(searchClothing),getShoesData(searchClothing),getUmbrellasData(searchClothing),getBagsData(searchClothing)]);
     // scrollController.addListener(() {
     //   if(scrollController.position.pixels==scrollController.position.maxScrollExtent){
     //     loadMoreElements();
@@ -45,11 +45,6 @@ class _ClothingListPageState extends State<ClothingList>{
   //   print("end");
   // }
   
-
-  
-
-  
-
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -84,7 +79,7 @@ class _ClothingListPageState extends State<ClothingList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: Future.wait([getHeadwearData(searchClothing), getAccessoriesData(searchClothing),getTopsData(searchClothing),getBottomsData(searchClothing),getSocksData(searchClothing),getShoesData(searchClothing),getUmbrellasData(searchClothing),getBagsData(searchClothing)]),
+              future: futureClothing,
               builder: (context,snapshot){
                 Widget headwearListSliver;
                 Widget accessoriesListSliver;
@@ -107,7 +102,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].closetImage,snapshot.data[0][index].source,snapshot.data[0][index].variation,snapshot.data[0][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].closetImage,snapshot.data[0][index].source,snapshot.data[0][index].variation);
                         },
                         childCount: snapshot.data[0].length,
                       ),
@@ -125,7 +120,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].closetImage,snapshot.data[1][index].source,snapshot.data[1][index].variation,snapshot.data[1][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].closetImage,snapshot.data[1][index].source,snapshot.data[1][index].variation);
                         },
                         childCount: snapshot.data[1].length,
                       ),
@@ -143,7 +138,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].closetImage,snapshot.data[2][index].source,snapshot.data[2][index].variation,snapshot.data[2][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].closetImage,snapshot.data[2][index].source,snapshot.data[2][index].variation);
                         },
                         childCount: snapshot.data[2].length,
                       ),
@@ -161,7 +156,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].closetImage,snapshot.data[3][index].source,snapshot.data[3][index].variation,snapshot.data[3][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].closetImage,snapshot.data[3][index].source,snapshot.data[3][index].variation);
                         },
                         childCount: snapshot.data[3].length,
                       ),
@@ -179,7 +174,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].closetImage,snapshot.data[4][index].source,snapshot.data[4][index].variation,snapshot.data[4][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].closetImage,snapshot.data[4][index].source,snapshot.data[4][index].variation);
                         },
                         childCount: snapshot.data[4].length,
                       ),
@@ -197,7 +192,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[5][index].name, snapshot.data[5][index].closetImage,snapshot.data[5][index].source,snapshot.data[5][index].variation,snapshot.data[5][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[5][index].name, snapshot.data[5][index].closetImage,snapshot.data[5][index].source,snapshot.data[5][index].variation);
                         },
                         childCount: snapshot.data[5].length,
                       ),
@@ -215,7 +210,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[6][index].name, snapshot.data[6][index].closetImage,snapshot.data[6][index].source,snapshot.data[6][index].variation,snapshot.data[6][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[6][index].name, snapshot.data[6][index].closetImage,snapshot.data[6][index].source,snapshot.data[6][index].variation);
                         },
                         childCount: snapshot.data[6].length,
                       ),
@@ -233,7 +228,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[7][index].name, snapshot.data[7][index].closetImage,snapshot.data[7][index].source,snapshot.data[7][index].variation,snapshot.data[7][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[7][index].name, snapshot.data[7][index].closetImage,snapshot.data[7][index].source,snapshot.data[7][index].variation);
                         },
                         childCount: snapshot.data[7].length,
                       ),
@@ -357,8 +352,10 @@ class _ClothingListPageState extends State<ClothingList>{
                                               ),
                                             ),
                                             onChanged: (string){
-                                              setState(() {
-                                                searchClothing = string;
+                                              debouncer.run((){
+                                                setState(() {
+                                                  searchClothing = string;
+                                                });
                                               });
                                             },
                                           ),
@@ -446,158 +443,165 @@ class _ClothingListPageState extends State<ClothingList>{
   }
 }
 
-Widget clothingContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source, String variation, bool collected){
+Widget clothingContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source, String variation){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
-      return new Stack(
-        children: <Widget>[
-          //Shadow
-          IgnorePointer(
-            child: Container(
-              width: 300*percentScale,
-              height: 300*percentScale,
-              decoration: new BoxDecoration(
-                color: colorWhite,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(
-                    color: Color(0x0C000000),
-                    offset: Offset(0,3),
-                    blurRadius: 5,
-                    spreadRadius: 0
-                ) ],
-              ),
-            ),
-          ),
-          //Tap region inkwell
-          ClipRRect(
-            borderRadius: BorderRadius.circular(14*percentScale),
-            child: new Container(
-              child: new Material(
-                child: new InkWell(
-                  highlightColor: Color(0xFFcfd8dc),
-                  splashColor: Color(0xFFb3e5fc),
-                  enableFeedback: true,
-                  onLongPress: (){
-                    setState(() {
-                      collected = !collected;
-                      saveBool("clothingCheckList"+name+variation, false, collected);
-                    });
-                  },
-                  onTap: (){
-                    currentCollectedClothing = collected;
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    Future<void> future = showModalBottomSheet(
-                      //by setting this to true, we can avoid the half screen limit
-                      isScrollControlled:true,
-                      context: context, 
-                      builder: (context){
-                        return Container(
-                          height: 450*percentScale,
-                            child: Container(
-                              //child: villagerPopUp(percentScale,currentCollectedClothing,name, imageLink, species,  gender,  personality, birthday, catchphrase, style1, style2, color1, color2)
-                          ),
-                        );
-                    });
-                    future.then((void value)=> setState(() {
-                      getStoredBool("clothingCheckList"+name+variation, false).then((indexResult){
-                          collected = indexResult;
-                      });
-                    }));
-                  },
+      return FutureBuilder(
+        future:  getStoredBool("clothingCheckList"+name+variation, false),
+        builder: (context,snapshot) {
+          if(snapshot.hasData){
+            return Stack(
+              children: <Widget>[
+                //Shadow
+                IgnorePointer(
+                  child: Container(
+                    width: 300*percentScale,
+                    height: 300*percentScale,
+                    decoration: new BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [BoxShadow(
+                          color: Color(0x0C000000),
+                          offset: Offset(0,3),
+                          blurRadius: 5,
+                          spreadRadius: 0
+                      ) ],
+                    ),
+                  ),
+                ),
+                //Tap region inkwell
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14*percentScale),
                   child: new Container(
-                    width: 350*percentScale,
-                    height: 350*percentScale,
-                  ),
+                    child: new Material(
+                      child: new InkWell(
+                        highlightColor: Color(0xFFcfd8dc),
+                        splashColor: Color(0xFFb3e5fc),
+                        enableFeedback: true,
+                        onLongPress: (){
+                          setState(() {
+                            currentCollectedClothing = !snapshot.data;
+                            saveBool("clothingCheckList"+name+variation, false, !snapshot.data);
+                          });
+                        },
+                        onTap: (){
+                          currentCollectedClothing = snapshot.data;
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                            isScrollControlled:true,
+                            context: context, 
+                            builder: (context){
+                              return Container(
+                                height: 450*percentScale,
+                                  child: Container(
+                                    //child: villagerPopUp(percentScale,currentCollectedClothing,name, imageLink, species,  gender,  personality, birthday, catchphrase, style1, style2, color1, color2)
+                                ),
+                              );
+                          });
+                          future.then((void value)=> setState(() {
+                            saveBool("clothingCheckList"+name+variation, false, currentCollectedClothing);
+                          }));
+                        },
+                        child: new Container(
+                          width: 350*percentScale,
+                          height: 350*percentScale,
+                        ),
+                      ),
+                      color: colorWhite,
+                    ),
+                  )
                 ),
-                color: colorWhite,
-              ),
-            )
-          ),
-          IgnorePointer(
-            child: Align(
-              alignment: Alignment.topCenter,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      transform: Matrix4.translationValues(0,4*percentScale,0),
-                      child: CachedNetworkImage(
-                        imageBuilder: (context, imageProvider) => Container(
-                          width: 70*percentScale,
-                          height: 70*percentScale,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4*percentScale),
-                            image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
+                IgnorePointer(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            transform: Matrix4.translationValues(0,4*percentScale,0),
+                            child: OptimizedCacheImage(
+                              imageBuilder: (context, imageProvider) => Container(
+                                width: 70*percentScale,
+                                height: 70*percentScale,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4*percentScale),
+                                  image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                                ),
+                              ),
+                              imageUrl: imageLink,
+                              //placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                              height:70*percentScale,
+                              width:70*percentScale,
+                              fadeInDuration: Duration(milliseconds:800),
+                            ),
                           ),
-                        ),
-                        imageUrl: imageLink,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
-                        height:70*percentScale,
-                        width:70*percentScale,
-                        fadeInDuration: Duration(milliseconds:800),
+                          
+                          Container(
+                            height:40*percentScale,
+                            padding: const EdgeInsets.all(6.0),
+                            child: Center(
+                              child: Text(name,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorTextBlack,
+                                  fontSize: 12*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                )
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    
-                    Container(
-                      height:40*percentScale,
-                      padding: const EdgeInsets.all(6.0),
-                      child: Center(
-                        child: Text(name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'ArialRoundedBold',
-                            color: colorTextBlack,
-                            fontSize: 12*percentScale,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          )
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-            ),
-          ),
-          
-          Align(
-            alignment: Alignment.topRight,
-            child: AnimatedOpacity(
-              duration: Duration(milliseconds:400),
-              opacity: collected ? 1 : 0,
-              child: Container(
-                transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
-                height: 25*percentScale,
-                width: 25*percentScale,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorCheckGreen,
-                  boxShadow: [BoxShadow(
-                    color: Color(0x29000000),
-                    offset: Offset(0,3),
-                    blurRadius: 6,
-                    spreadRadius: 0
-                  ) ],
-                ),
-                child: Theme(
-                  data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
-                  child: new Checkbox(
-                    activeColor: Color(0x00000000),
-                    checkColor: Color(0xFF444444),
-                    value: collected,
-                    onChanged: (bool value) {
-                      setState(() {
-                        collected = value;
-                        saveBool("clothingCheckList"+name, false, collected);
-                        //HapticFeedback.mediumImpact();
-                      });
-                    },
                   ),
                 ),
-              )
-            ),
-          ),
-        ]
+                
+                Align(
+                  alignment: Alignment.topRight,
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds:400),
+                    opacity: snapshot.data ? 1 : 0,
+                    child: Container(
+                      transform: Matrix4.translationValues(6*percentScale,-6*percentScale,0),
+                      height: 25*percentScale,
+                      width: 25*percentScale,
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colorCheckGreen,
+                        boxShadow: [BoxShadow(
+                          color: Color(0x29000000),
+                          offset: Offset(0,3),
+                          blurRadius: 6,
+                          spreadRadius: 0
+                        ) ],
+                      ),
+                      child: Theme(
+                        data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
+                        child: new Checkbox(
+                          activeColor: Color(0x00000000),
+                          checkColor: Color(0xFF444444),
+                          value: snapshot.data,
+                          onChanged: (bool value) {
+                            setState(() {
+                              currentCollectedClothing = value;
+                              saveBool("clothingCheckList"+name+variation, false, value);
+                              //HapticFeedback.mediumImpact();
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  ),
+                ),
+              ]
+            );
+          } else {
+            return Container();
+          }
+        } 
       );
     }
   );

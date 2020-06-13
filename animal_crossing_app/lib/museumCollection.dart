@@ -4,7 +4,6 @@ import 'package:animal_crossing_app/bugList.dart';
 import 'package:animal_crossing_app/floorWallList.dart';
 import 'package:animal_crossing_app/fossilList.dart';
 import 'package:animal_crossing_app/music.dart';
-import 'package:animal_crossing_app/settingList.dart';
 import 'package:animal_crossing_app/villagerList.dart';
 import 'package:animal_crossing_app/toolsList.dart';
 import 'package:animal_crossing_app/clothinglist.dart';
