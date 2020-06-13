@@ -136,7 +136,7 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFE0F2F1)
+                                color: Color(0x347CFFF8)
                               )
                             ),
                           ),
@@ -149,7 +149,7 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                               height: 55*percentScale,
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: colorVillagerAccent,
+                                color: colorVillagerCheck,
                               )
                             ),
                           ),

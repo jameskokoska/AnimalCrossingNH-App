@@ -22,38 +22,41 @@ import 'furnitureList.dart';
 import 'emojipedia.dart';
 
 //----------Global Colours-----------
-Color colorCircleContainerPopUp = Color(0xff90a4ae); //text
-Color colorShadow = Color(0x0C000000);
-Color colorShadowPopUp = Color(0x29000000);
-Color colorLightDarkAccent = Color(0xFFF5F5F5);
-Color colorTextBlack = Color(0xff373737);
-Color colorTextWhite = Color(0xFFFFFFFF);
-Color colorWhite = Color(0xFFFFFFFF);
-Color colorCheckRed = Color(0xFFF8DFE3);
-Color colorCheckGreen = Color(0xFFA0DDA1);
-Color colorFishAppBar = Color(0xFFA2D0F7);
-Color colorFishAccent = Color(0xFFE3F2FD);
-Color colorFishTextDarkBlue = Color(0xff3F51B5);
-Color colorBugAppBar = Color(0xFFa5d6a7);
-Color colorBugAccent = Color(0xFFe8f5e9);
-Color colorBugTextDarkGreen = Color(0xFF1b5e20);
-Color colorFossilAppBar = Color(0xFF947C5D);
-Color colorFossilAccent = Color(0xFFE9DAC5);
-Color colorVillagerAppBar = Color(0xFF66CFD6);
-Color colorVillagerAccent = Color(0xFFB2DFDB);
-Color colorFurnitureAppBar = Color(0xFF41D448);
-Color colorFurnitureAccent = Color(0xFFFFFFFF);
-Color colorClothingAppBar = Color(0xFF3A15C0);
-Color colorClothingAccent = Color(0xFFFFFFFF);//
-Color colorToolsAppBar = Color(0xFFC01515);
-Color colorToolsAccent = Color(0xFFFFFFFF);//
-Color colorFloorWallAppBar = Color(0xFF1565c0);
-Color colorFloorWallAccent = Color(0xFFFFFFFF);
-Color colorEmojipediaAppBar = Color(0xFFFFF176);
+Color colorCircleContainerPopUp; //text
+Color colorSearchbarBG;
+Color colorSearchbarIcon;
+Color colorShadow;
+Color colorShadowPopUp;
+Color colorLightDarkAccent;
+Color colorTextBlack;
+Color colorTextWhite;
+Color colorWhite;
+Color colorCheckRed;
+Color colorCheckGreen;
+Color colorFishAppBar;
+Color colorFishAccent;
+Color colorFishTextDarkBlue;
+Color colorBugAppBar;
+Color colorBugAccent;
+Color colorBugTextDarkGreen;
+Color colorFossilAppBar;
+Color colorFossilAccent;
+Color colorVillagerAppBar;
+Color colorVillagerAccent;
+Color colorVillagerCheck;
+Color colorFurnitureAppBar;
+Color colorFurnitureAccent;
+Color colorClothingAppBar;
+Color colorClothingAccent;
+Color colorToolsAppBar;
+Color colorToolsAccent;
+Color colorFloorWallAppBar;
+Color colorFloorWallAccent;
+Color colorEmojipediaAppBar;
 
-Color colorArtAppBar = Color(0xFF730000);
-Color colorArtAccent = Color(0xFFe8f5e9);
-Color colorArtTextDarkGreen = Color(0xFF1b5e20);
+Color colorArtAppBar;
+Color colorArtAccent;
+Color colorArtTextDarkGreen;
 
 //---------------------------
 //----------Globals----------
@@ -214,8 +217,44 @@ class _MainPageState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    if(darkMode){
+    if(!darkMode){
+      colorCircleContainerPopUp = Color(0xff90a4ae); //text
+      colorSearchbarBG = Color(0x63DFDFDF);
+      colorSearchbarIcon = Color(0x48000000);
+      colorShadow = Color(0x0C000000);
+      colorShadowPopUp = Color(0x29000000);
+      colorLightDarkAccent = Color(0xFFF5F5F5);
+      colorTextBlack = Color(0xff373737);
+      colorTextWhite = Color(0xFFFFFFFF);
+      colorWhite = Color(0xFFFFFFFF);
+      colorCheckRed = Color(0xFFF8DFE3);
+      colorCheckGreen = Color(0xFFA0DDA1);
+      colorFishAppBar = Color(0xFFA2D0F7);
+      colorFishAccent = Color(0xFFE3F2FD);
+      colorFishTextDarkBlue = Color(0xff3F51B5);
+      colorBugAppBar = Color(0xFFa5d6a7);
+      colorBugAccent = Color(0xFFe8f5e9);
+      colorBugTextDarkGreen = Color(0xFF1b5e20);
+      colorFossilAppBar = Color(0xFF947C5D);
+      colorFossilAccent = Color(0xFFE9DAC5);
+      colorVillagerAppBar = Color(0xFF66CFD6);
+      colorVillagerAccent = Color(0xFFEEFDFC);
+      colorVillagerCheck = Color(0xFFD6F5F2);
+      colorFurnitureAppBar = Color(0xFF41D448);
+      colorFurnitureAccent = Color(0xFFe8f5e9);
+      colorClothingAppBar = Color(0xFF3A15C0);
+      colorClothingAccent = Color(0xFFede7f6);
+      colorToolsAppBar = Color(0xFFC01515);
+      colorToolsAccent = Color(0xFFFDF1F2);
+      colorFloorWallAppBar = Color(0xFF1565c0);
+      colorFloorWallAccent = Color(0xFFe3f2fd);
+      colorEmojipediaAppBar = Color(0xFFFFF176);
+      colorArtAppBar = Color(0xFF730000);
+      colorArtAccent = Color(0xFFe8f5e9);
+      colorArtTextDarkGreen = Color(0xFF1b5e20);
+    } else if(darkMode){
+      colorSearchbarBG = Color(0xC4A3A3A3);
+      colorSearchbarIcon = Color(0xADFFFFFF);
       colorTextBlack = Color(0xFFFFFFFF);
       colorTextWhite = Color(0xff373737);
       colorWhite = Color(0xFF2B2B2B);
@@ -235,12 +274,16 @@ class _MainPageState extends State<Main> {
       colorArtAccent = Color(0xFFe8f5e9);
       colorArtTextDarkGreen = Color(0xFF1b5e20);
       colorVillagerAppBar = Color(0xFF4B6E70);
-      colorVillagerAccent = Color(0xFFB2DFDB);
+      colorVillagerAccent = Color(0xFF71807F);
+      colorVillagerCheck = Color(0xFFE2B0B0);
       colorFurnitureAppBar = Color(0xFF255728);
+      colorFurnitureAccent = Color(0xFF626D63);
       colorClothingAppBar = Color(0xFF2B224D);
+      colorClothingAccent = Color(0xFF625D69);
       colorToolsAppBar = Color(0xFF6E3333);
-      colorToolsAccent = Color(0xFFFFFFFF);
+      colorToolsAccent = Color(0xFF5A474A);
       colorFloorWallAppBar = Color(0xFF204064);
+      colorFloorWallAccent = Color(0xFF505E68);
       colorEmojipediaAppBar = Color(0xFF807623);
     }
 

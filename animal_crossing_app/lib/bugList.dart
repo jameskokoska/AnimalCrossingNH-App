@@ -148,14 +148,14 @@ class _BugListPageState extends State<BugList>{
                                           }(),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(8.0),
-                                            color: Color(0x75F0F1F5),
+                                            color: colorSearchbarBG,
                                           ),
                                           prefix: Padding(
                                             padding:
                                                 const EdgeInsets.only(right:13, left:7),
                                             child: Icon(
                                               Icons.search,
-                                              color: Color(0xADFFFFFF),
+                                              color: colorSearchbarIcon,
                                             ),
                                           ),
                                           onChanged: (string){
