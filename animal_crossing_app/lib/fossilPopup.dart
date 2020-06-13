@@ -24,7 +24,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                   height:300*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 new Center(
@@ -55,7 +55,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                       borderRadius: BorderRadius.circular(100*percentScale),
                       color:Color(0xFFF5EDE2),
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: colorShadowPopUp,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
@@ -64,7 +64,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0x5e533f00), Color(0xff90a4ae), source),
+                circleContainer(percentScale, Color(0x5e533f00), colorCircleContainerPopUp, source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
@@ -81,7 +81,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                                 child: Text("Collected",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -125,7 +125,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
+                                    checkColor: colorWhite,
                                     value: currentCollectedFossil,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -159,7 +159,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
-                              color: Color(0xff373737),
+                              color: colorTextBlack,
                               fontSize: 31*percentScale,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,

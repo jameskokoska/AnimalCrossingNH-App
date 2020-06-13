@@ -57,7 +57,7 @@ class _BugListPageState extends State<BugList>{
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
-              color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xFF193D69)),
+              color: colorLightDarkAccent,
             ),
             
             FutureBuilder(

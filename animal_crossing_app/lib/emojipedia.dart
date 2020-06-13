@@ -56,7 +56,7 @@ class _EmojiListPageState extends State<EmojiList>{
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
-              color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
+              color: colorLightDarkAccent,
             ),
             FutureBuilder(
               future: futureEmoji,
@@ -239,7 +239,7 @@ Widget emojiContainer(double percentScale, Color colorTextBlack, String name, St
                     color: colorWhite,
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [BoxShadow(
-                        color: Color(0x0C000000),
+                        color: colorShadow,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0

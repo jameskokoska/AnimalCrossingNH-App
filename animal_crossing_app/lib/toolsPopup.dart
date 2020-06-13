@@ -26,7 +26,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 Container(
@@ -34,7 +34,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                   height:400*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 // ---------- Card Tab ----------
@@ -67,7 +67,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                       borderRadius: BorderRadius.circular(100*percentScale),
                       color:Color(0xFFE0F2F1),
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: colorShadowPopUp,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
@@ -100,7 +100,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                                 child: Text("",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -118,7 +118,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                                 child: Text("Collected",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -162,7 +162,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
+                                    checkColor: colorWhite,
                                     value: currentCollectedTool,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -181,7 +181,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                       )
                   ),
                 ),
-                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), source),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
                 // ---------- Card Centre Content ----------
                 Center(
                   child: Container(
@@ -196,7 +196,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
-                              color: Color(0xff373737),
+                              color: colorTextBlack,
                               fontSize: 31*percentScale,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,

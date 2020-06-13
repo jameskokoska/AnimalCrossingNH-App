@@ -40,7 +40,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                   height:500*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 new Center(
@@ -71,7 +71,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                       borderRadius: BorderRadius.circular(100*percentScale),
                       color:colorBugAccent,
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: colorShadowPopUp,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
@@ -80,7 +80,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), source),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
@@ -97,7 +97,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                                 child: Text("Collected",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -141,7 +141,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
+                                    checkColor: colorWhite,
                                     value: currentCollectedFurniture,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -175,7 +175,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
-                              color: Color(0xff373737),
+                              color: colorTextBlack,
                               fontSize: 31*percentScale,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,

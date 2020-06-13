@@ -291,7 +291,7 @@ Widget floorWallsContainer(double percentScale, Color colorTextBlack, String nam
                       color: colorWhite,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [BoxShadow(
-                          color: Color(0x0C000000),
+                          color: colorShadow,
                           offset: Offset(0,3),
                           blurRadius: 5,
                           spreadRadius: 0
