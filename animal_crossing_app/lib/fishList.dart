@@ -99,7 +99,7 @@ class _FishListPageState extends State<FishList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFFA2D0F7),
+                      backgroundColor: (Color(0xFFFFFFFF)),
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -113,7 +113,7 @@ class _FishListPageState extends State<FishList>{
                               child: Text("Fish",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: colorTextWhite,
+                                  color: (Color(0xFFFFFFFF)),
                                   fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
