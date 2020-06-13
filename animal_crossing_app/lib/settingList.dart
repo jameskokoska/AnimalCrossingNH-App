@@ -56,7 +56,7 @@ class _SettingListPageState extends State<SettingList>{
               slivers: <Widget>[
                 SliverAppBar(
                   expandedHeight: 219*percentScale,
-                  backgroundColor: Color(0xFFB0BEC5),
+                  backgroundColor: colorSettingsAppBar,
                   pinned: true,
                   //snap: true,
                   floating: true,
@@ -67,7 +67,7 @@ class _SettingListPageState extends State<SettingList>{
                       child: Text("Settings",
                         style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
-                          color: colorTextWhite,
+                          color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                           fontSize: 30*percentScale,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,

@@ -23,6 +23,7 @@ import 'emojipedia.dart';
 
 //----------Global Colours-----------
 Color colorCircleContainerPopUp; //text
+Color colorSettingsAppBar;
 Color colorSearchbarBG;
 Color colorSearchbarIcon;
 Color colorShadow;
@@ -229,6 +230,7 @@ class _MainPageState extends State<Main> {
       colorWhite = Color(0xFFFFFFFF);
       colorCheckRed = Color(0xFFF8DFE3);
       colorCheckGreen = Color(0xFFA0DDA1);
+      colorSettingsAppBar = Color(0xFFB0BEC5);
       colorFishAppBar = Color(0xFFA2D0F7);
       colorFishAccent = Color(0xFFE3F2FD);
       colorFishTextDarkBlue = Color(0xff3F51B5);
@@ -263,6 +265,7 @@ class _MainPageState extends State<Main> {
       colorCheckRed = Color(0xFF805D62);
       colorCheckGreen = Color(0xFF557E55);
       colorCircleContainerPopUp = Color(0xFF979797);
+      colorSettingsAppBar = Color(0xFF3D4042);
       colorFishAppBar = Color(0xFF536991);
       colorFishAccent = Color(0xFF434C53);
       colorFishTextDarkBlue = Color(0xFF9AA2D4);
