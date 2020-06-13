@@ -75,7 +75,7 @@ class _EmojiListPageState extends State<EmojiList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return emojiContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].source);
+                          return emojiContainer(percentScale, darkMode, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].source);
                         },
                         childCount: snapshot.data.length,
                       ),
@@ -101,7 +101,7 @@ class _EmojiListPageState extends State<EmojiList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFFFFF176),
+                      backgroundColor: colorEmojipediaAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -223,7 +223,7 @@ class _EmojiListPageState extends State<EmojiList>{
   }
 }
 
-Widget emojiContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source){
+Widget emojiContainer(double percentScale, bool darkMode, Color colorTextBlack, String name, String imageLink, String source){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
@@ -287,7 +287,7 @@ Widget emojiContainer(double percentScale, Color colorTextBlack, String name, St
                         Text(source,
                           style: TextStyle(
                             fontFamily: 'ArialRoundedBold',
-                            color: Color(0x60000000),
+                            color: darkModeColor(darkMode,Color(0x60000000),Color(0x7EFFFFFF)),
                             fontSize: 10*percentScale,
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
@@ -318,7 +318,7 @@ Widget emojiContainer(double percentScale, Color colorTextBlack, String name, St
                             data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
                             child: new Checkbox(
                               activeColor: Color(0x04FFFFFF),
-                              checkColor: Color(0xFF444444),
+                              checkColor: darkModeColor(!darkMode,Color(0xFFFFFFFF),Color(0xFF444444)),
                               value: snapshot.data,
                               onChanged: (bool value) {
                                 setState(() {

@@ -153,7 +153,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFF1565c0),
+                      backgroundColor: colorFloorWallAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -167,7 +167,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                               child: Text("Floor & Wall",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: colorTextWhite,
+                                  color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                                   fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,

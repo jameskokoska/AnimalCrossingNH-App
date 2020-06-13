@@ -58,7 +58,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:colorBugAccent,
+                      color:colorFurnitureAccent,
                       boxShadow: [BoxShadow(
                         color: colorShadowPopUp,
                         offset: Offset(0,3),

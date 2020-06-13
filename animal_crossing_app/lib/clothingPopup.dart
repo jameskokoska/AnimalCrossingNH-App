@@ -65,7 +65,7 @@ Widget nothing(double percentScale,bool favorite,String name,String imageLink,St
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:Color(0xFFE0F2F1),
+                      color:colorClothingAccent,
                       boxShadow: [BoxShadow(
                         color: colorShadowPopUp,
                         offset: Offset(0,3),

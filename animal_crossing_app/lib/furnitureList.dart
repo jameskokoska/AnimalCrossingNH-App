@@ -206,7 +206,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFF41D448),
+                      backgroundColor: colorFurnitureAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -220,7 +220,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                               child: Text("Furniture",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: colorTextWhite,
+                                  color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                                   fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,

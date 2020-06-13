@@ -68,7 +68,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:colorBugAccent,
+                      color:colorFloorWallAccent,
                       boxShadow: [BoxShadow(
                         color: colorShadowPopUp,
                         offset: Offset(0,3),

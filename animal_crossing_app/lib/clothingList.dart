@@ -287,7 +287,7 @@ class _ClothingListPageState extends State<ClothingList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFF3A15C0),
+                      backgroundColor: colorClothingAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -301,7 +301,7 @@ class _ClothingListPageState extends State<ClothingList>{
                               child: Text("Clothing",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: colorTextWhite,
+                                  color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                                   fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,

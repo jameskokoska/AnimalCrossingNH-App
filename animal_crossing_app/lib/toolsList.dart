@@ -112,7 +112,7 @@ class _ToolsListPageState extends State<ToolsList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFFC01515),
+                      backgroundColor: colorToolsAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -126,7 +126,7 @@ class _ToolsListPageState extends State<ToolsList>{
                               child: Text("Tools",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: colorTextWhite,
+                                  color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                                   fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,

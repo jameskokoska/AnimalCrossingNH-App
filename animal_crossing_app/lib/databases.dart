@@ -472,6 +472,7 @@ class EmojiData{
   EmojiData(this.name, this.imageLink, this.source);
 }
 
+
 class FishData{
   final String id;
   final String name;
@@ -518,11 +519,12 @@ class FishData{
   final String uniqueEntryId;
   final String catchphrase;
   final String museum;
+  final bool caught;
 
   FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rainSnow,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum);
+  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
   
 }
 
@@ -570,11 +572,12 @@ class BugData{
   final String uniqueEntryId;
   final String catchphrase;
   final String museum;
+  final bool caught;
 
   BugData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.weather,this.totalCatchesToUnlock,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum);
+  this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
   
 }
 
@@ -1032,16 +1035,20 @@ Future<List<FishData>> getFishData(String search) async{
   String data = await rootBundle.loadString("assets/fish.json");
 
   final jsonData = json.decode(data);
+  bool caught = false;
   List<FishData> fishData = [];
   for(var u in jsonData){
-    FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"]);
-    if(search == ''){
-      fishData.add(fishDatum);
-    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-      fishData.add(fishDatum);
-    } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
-      fishData.add(fishDatum);
-    }
+    getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
+      caught = indexResult;
+      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+      if(search == ''){
+        fishData.add(fishDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        fishData.add(fishDatum);
+      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
+        fishData.add(fishDatum);
+      }
+    });
   }
   return fishData;
 }
@@ -1050,9 +1057,12 @@ Future<List<BugData>> getBugData(String search) async{
   String data = await rootBundle.loadString("assets/bug.json");
 
   final jsonData = json.decode(data);
+  bool caught = false;
   List<BugData> bugData = [];
   for(var u in jsonData){
-      BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"]);
+    getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
+      caught = indexResult;
+      BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
       if(search == ''){
         bugData.add(bugDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
@@ -1060,6 +1070,7 @@ Future<List<BugData>> getBugData(String search) async{
       } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
         bugData.add(bugDatum);
       }
+    });
   }
   return bugData;
 }
@@ -1187,19 +1198,23 @@ class FossilData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
+  final bool collected;
 
   FossilData(this.name, this.image, this.buy,this.sell,this.color1,this.color2,this.size,this.source,
-  this.museum, this.version, this.interact, this.catalog,this.filename, this.internalId, this.uniqueEntryId);
+  this.museum, this.version, this.interact, this.catalog,this.filename, this.internalId, this.uniqueEntryId, this.collected);
 }
 
 Future<List<FossilData>> getFossilData(String search) async{
   String data = await rootBundle.loadString("assets/fossil.json");
 
   final jsonData = json.decode(data);
+  bool collected = false;
   List<FossilData> fossilData = [];
   String previousName="";
   for(var u in jsonData){
-      FossilData fossilDatum = FossilData(u["Name"],u["Image"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Museum"],u["Version"],u["Interact"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    getStoredBool("fossilCheckList"+u["Name"], false).then((indexResult){
+      collected = indexResult;
+      FossilData fossilDatum = FossilData(u["Name"],u["Image"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Museum"],u["Version"],u["Interact"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"], collected);
       if(u["Name"]!=previousName){
         if(search == ''){
           if(u["Name"]!=previousName)
@@ -1209,6 +1224,7 @@ Future<List<FossilData>> getFossilData(String search) async{
         }
       }
       previousName = u["Name"];
+    });
   }
   return fossilData;
 }
