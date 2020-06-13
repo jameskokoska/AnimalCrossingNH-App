@@ -90,7 +90,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag, snapshot.data[0][index].variation, snapshot.data[0][index].pattern, snapshot.data[0][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag, snapshot.data[0][index].variation, snapshot.data[0][index].pattern, snapshot.data[0][index].kitCost);
                         },
                         childCount: snapshot.data[0].length,
                       ),
@@ -108,7 +108,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag, snapshot.data[1][index].variation, snapshot.data[1][index].pattern, snapshot.data[1][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag, snapshot.data[1][index].variation, snapshot.data[1][index].pattern, snapshot.data[1][index].kitCost);
                         },
                         childCount: snapshot.data[1].length,
                       ),
@@ -126,7 +126,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2,  snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag, snapshot.data[2][index].variation, snapshot.data[2][index].pattern, snapshot.data[2][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2,  snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag, snapshot.data[2][index].variation, snapshot.data[2][index].pattern, snapshot.data[2][index].kitCost);
                         },
                         childCount: snapshot.data[2].length,
                       ),
@@ -144,7 +144,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].image,snapshot.data[3][index].source,snapshot.data[3][index].collected, snapshot.data[3][index].buy, snapshot.data[3][index].milesPrice, snapshot.data[3][index].sell, snapshot.data[3][index].color1, snapshot.data[3][index].color2,  snapshot.data[3][index].hhaConcept1, snapshot.data[3][index].hhaConcept2, snapshot.data[3][index].hhaSeries, snapshot.data[3][index].tag, snapshot.data[3][index].variation, snapshot.data[3][index].pattern, snapshot.data[3][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].image,snapshot.data[3][index].source, snapshot.data[3][index].buy, snapshot.data[3][index].milesPrice, snapshot.data[3][index].sell, snapshot.data[3][index].color1, snapshot.data[3][index].color2,  snapshot.data[3][index].hhaConcept1, snapshot.data[3][index].hhaConcept2, snapshot.data[3][index].hhaSeries, snapshot.data[3][index].tag, snapshot.data[3][index].variation, snapshot.data[3][index].pattern, snapshot.data[3][index].kitCost);
                         },
                         childCount: snapshot.data[3].length,
                       ),
@@ -162,7 +162,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].image,snapshot.data[4][index].source,snapshot.data[4][index].collected, snapshot.data[4][index].buy, snapshot.data[4][index].milesPrice, snapshot.data[4][index].sell, snapshot.data[4][index].color1, snapshot.data[4][index].color2,  snapshot.data[4][index].hhaConcept1, snapshot.data[4][index].hhaConcept2, snapshot.data[4][index].hhaSeries, snapshot.data[4][index].tag, snapshot.data[4][index].variation, snapshot.data[4][index].pattern, snapshot.data[4][index].kitCost);
+                          return furnitureContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].image,snapshot.data[4][index].source, snapshot.data[4][index].buy, snapshot.data[4][index].milesPrice, snapshot.data[4][index].sell, snapshot.data[4][index].color1, snapshot.data[4][index].color2,  snapshot.data[4][index].hhaConcept1, snapshot.data[4][index].hhaConcept2, snapshot.data[4][index].hhaSeries, snapshot.data[4][index].tag, snapshot.data[4][index].variation, snapshot.data[4][index].pattern, snapshot.data[4][index].kitCost);
                         },
                         childCount: snapshot.data[4].length,
                       ),
@@ -323,7 +323,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
   }
 }
 
-Widget furnitureContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
+Widget furnitureContainer(double percentScale, Color colorTextBlack, String name, String image, String source, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(

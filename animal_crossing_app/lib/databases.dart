@@ -74,11 +74,10 @@ class MiscellaneousData{
   final String variantId;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
   MiscellaneousData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
   this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
-  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.collected);
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId);
 }
 
 class WallmountedData{
@@ -114,11 +113,10 @@ class WallmountedData{
   final String variantId;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
   WallmountedData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
   this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
-  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.collected);
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId);
 }
 
 class PhotosData{
@@ -154,11 +152,10 @@ class PhotosData{
   final String variantId;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
   PhotosData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
   this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
-  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.collected);
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId);
 }
 
 class PostersData{
@@ -195,11 +192,10 @@ class PostersData{
   String variantId = "NA";
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
   PostersData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
   this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.sourceNotes, this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
-  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.collected);
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId);
 }
 
 
@@ -228,13 +224,12 @@ class HeadwearData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   HeadwearData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.type,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 class AccessoriesData{
@@ -262,13 +257,12 @@ class AccessoriesData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   AccessoriesData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.type,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 class TopsData{
@@ -296,13 +290,12 @@ class TopsData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   TopsData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 
@@ -331,13 +324,12 @@ class BottomsData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   BottomsData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 class SocksData{
@@ -365,13 +357,12 @@ class SocksData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   SocksData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 class ShoesData{
@@ -399,13 +390,12 @@ class ShoesData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   ShoesData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 class UmbrellasData{
@@ -433,13 +423,12 @@ class UmbrellasData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   UmbrellasData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,
   this.version,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 class BagsData{
@@ -467,22 +456,20 @@ class BagsData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   BagsData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
-  this.uniqueEntryId,this.collected);
+  this.uniqueEntryId);
 }
 
 class EmojiData{
   final String name;
   final String imageLink;
   final String source;
-  final bool collected;
 
-  EmojiData(this.name, this.imageLink, this.source,this.collected);
+  EmojiData(this.name, this.imageLink, this.source);
 }
 
 class FishData{
@@ -531,12 +518,11 @@ class FishData{
   final String uniqueEntryId;
   final String catchphrase;
   final String museum;
-  final bool caught;
 
   FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rainSnow,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
+  this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum);
   
 }
 
@@ -584,12 +570,11 @@ class BugData{
   final String uniqueEntryId;
   final String catchphrase;
   final String museum;
-  final bool caught;
 
   BugData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.weather,this.totalCatchesToUnlock,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
+  this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum);
   
 }
 
@@ -615,11 +600,10 @@ class RugsData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   RugsData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
-  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
+  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId);
 }
 
 class FloorsData{
@@ -643,11 +627,10 @@ class FloorsData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   FloorsData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
-  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
+  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId);
 }
 
 class WallpapersData{
@@ -671,11 +654,10 @@ class WallpapersData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
 
   WallpapersData(this.name, this.image,this.diy,this.buy,this.sell,this.color1,this.color2,this.size,this.milesPrice,this.source,
-  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId,this.collected);
+  this.sourceNotes,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.tag,this.catalog,this.filename,this.internalId,this.uniqueEntryId);
 }
 
 
@@ -702,11 +684,10 @@ class ToolsData{
   final String variantID;
   final String internalID;
   final String uniqueEntryID;
-  final bool collected;
 
 
   ToolsData(this.name,this.image,this.variation,this.bodyTitle,this.diy,this.customize,this.kitCost,this.uses,this.stackSize,this.buy,this.sell,
-  this.color1,this.color2,this.size,this.set,this.milesPrice,this.source,this.version,this.filename,this.variantID,this.internalID,this.uniqueEntryID,this.collected);
+  this.color1,this.color2,this.size,this.set,this.milesPrice,this.source,this.version,this.filename,this.variantID,this.internalID,this.uniqueEntryID);
 }
 
 
@@ -724,10 +705,9 @@ class VillagerData{
   final String color2;
   final String filename;
   final String uniqueEntryID;
-  final bool favorite;
 
   VillagerData(this.name,this.image,this.species,this.gender,this.personality,this.birthday,this.catchphrase,this.style1,this.style2,
-  this.color1,this.color2,this.filename,this.uniqueEntryID,this.favorite);
+  this.color1,this.color2,this.filename,this.uniqueEntryID);
 }
 
 class ArtData{
@@ -757,9 +737,8 @@ class ArtData{
   final String filename;
   final String internalID;
   final String uniqueEntryID;
-  final bool collected;
 
-  ArtData(this.name,this.image,this.genuine,this.category,this.buy,this.sell,this.color1,this.color2,this.size,this.realArtworkTitle,this.artist,this.museumDescription,this.source,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.hhaSet,this.interact,this.tag,this.speakerType,this.lightingType,this.catalog,this.filename,this.internalID,this.uniqueEntryID,this.collected);
+  ArtData(this.name,this.image,this.genuine,this.category,this.buy,this.sell,this.color1,this.color2,this.size,this.realArtworkTitle,this.artist,this.museumDescription,this.source,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.hhaSet,this.interact,this.tag,this.speakerType,this.lightingType,this.catalog,this.filename,this.internalID,this.uniqueEntryID);
 
 }
 
@@ -767,7 +746,6 @@ Future<List<HousewaresData>> getHousewaresData(String search) async{
   String data = await rootBundle.loadString("assets/housewares.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<HousewaresData> housewaresData = [];
   String previousName="";
   for(var u in jsonData){
@@ -790,24 +768,21 @@ Future<List<MiscellaneousData>> getMiscellaneousData(String search) async{
   String data = await rootBundle.loadString("assets/miscellaneous.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
+  
   List<MiscellaneousData> miscellaneousData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("furnitureCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-      collected = indexResult;
-      MiscellaneousData miscellaneousDatum = MiscellaneousData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Body Customize"],u["Pattern Customize"],u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Outdoor"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"], collected);
-      if(u["Name"]!=previousName||showListVariations==true){
-        if(search == ''){
-          miscellaneousData.add(miscellaneousDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          miscellaneousData.add(miscellaneousDatum);
-        } else if (u["Tag"].toLowerCase().contains(search.toLowerCase())){
-          miscellaneousData.add(miscellaneousDatum);
-        }
+    MiscellaneousData miscellaneousDatum = MiscellaneousData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Body Customize"],u["Pattern Customize"],u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Outdoor"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        miscellaneousData.add(miscellaneousDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        miscellaneousData.add(miscellaneousDatum);
+      } else if (u["Tag"].toLowerCase().contains(search.toLowerCase())){
+        miscellaneousData.add(miscellaneousDatum);
       }
-      previousName = u["Name"];
-    });
+    }
+    previousName = u["Name"];
   }
   return miscellaneousData;
 }
@@ -816,24 +791,20 @@ Future<List<WallmountedData>> getWallmountedData(String search) async{
   String data = await rootBundle.loadString("assets/wallmounted.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<WallmountedData> wallmountedData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("furnitureCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-      collected = indexResult;
-      WallmountedData wallmountedDatum = WallmountedData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Body Customize"],u["Pattern Customize"],u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Outdoor"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"], collected);
-      if(u["Name"]!=previousName||showListVariations==true){
-        if(search == ''){
-          wallmountedData.add(wallmountedDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          wallmountedData.add(wallmountedDatum);
-        } else if (u["Tag"].toLowerCase().contains(search.toLowerCase())){
-          wallmountedData.add(wallmountedDatum);
-        }
+    WallmountedData wallmountedDatum = WallmountedData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Body Customize"],u["Pattern Customize"],u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Outdoor"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        wallmountedData.add(wallmountedDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        wallmountedData.add(wallmountedDatum);
+      } else if (u["Tag"].toLowerCase().contains(search.toLowerCase())){
+        wallmountedData.add(wallmountedDatum);
       }
-      previousName = u["Name"];
-    });
+    }
+    previousName = u["Name"];
   }
   return wallmountedData;
 }
@@ -842,22 +813,18 @@ Future<List<PhotosData>> getPhotosData(String search) async{
   String data = await rootBundle.loadString("assets/photos.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<PhotosData> photosData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("furnitureCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-      collected = indexResult;
-      PhotosData photosDatum = PhotosData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Customize"],"NA",u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],"NA",u["Source"],u["Version"],"NA","NA","NA","NA","NA","NA","NA","NA","NA",u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"], collected);
-      if(u["Name"]!=previousName||showListVariations==true){
-        if(search == ''){
-          photosData.add(photosDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          photosData.add(photosDatum);
-        } 
-      }
-      previousName = u["Name"];
-    });
+    PhotosData photosDatum = PhotosData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Customize"],"NA",u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],"NA",u["Source"],u["Version"],"NA","NA","NA","NA","NA","NA","NA","NA","NA",u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        photosData.add(photosDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        photosData.add(photosDatum);
+      } 
+    }
+    previousName = u["Name"];
   }
   return photosData;
 }
@@ -866,22 +833,18 @@ Future<List<PostersData>> getPostersData(String search) async{
   String data = await rootBundle.loadString("assets/posters.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<PostersData> postersData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("furnitureCheckList"+u["Name"], false).then((indexResult){
-      collected = indexResult;
-      PostersData postersDatum = PostersData(u["Name"],u["Image"],"NA","NA","NA","NA","NA","NA","NA","NA",u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],"NA",u["Source"],u["Source Notes"],u["Version"],"NA","NA","NA","NA","NA","NA","NA","NA","NA",u["Catalog"],u["Filename"],"NA",u["Internal ID"],u["Unique Entry ID"],collected);
-      if(u["Name"]!=previousName||showListVariations==true){
-        if(search == ''){
-          postersData.add(postersDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          postersData.add(postersDatum);
-        } 
-      }
-      previousName = u["Name"];
-    });
+    PostersData postersDatum = PostersData(u["Name"],u["Image"],"NA","NA","NA","NA","NA","NA","NA","NA",u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],"NA",u["Source"],u["Source Notes"],u["Version"],"NA","NA","NA","NA","NA","NA","NA","NA","NA",u["Catalog"],u["Filename"],"NA",u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        postersData.add(postersDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        postersData.add(postersDatum);
+      } 
+    }
+    previousName = u["Name"];
   }
   return postersData;
 }
@@ -890,24 +853,20 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/headwear.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
     List<HeadwearData> headwearData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        HeadwearData headwearDatum = HeadwearData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName||showListVariations==true){
-          if(search == ''){
-            headwearData.add(headwearDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            headwearData.add(headwearDatum);
-          } else if (u["Style"].toLowerCase().contains(search.toLowerCase())){
-            headwearData.add(headwearDatum);
-          }
+      HeadwearData headwearDatum = HeadwearData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName||showListVariations==true){
+        if(search == ''){
+          headwearData.add(headwearDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          headwearData.add(headwearDatum);
+        } else if (u["Style"].toLowerCase().contains(search.toLowerCase())){
+          headwearData.add(headwearDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return headwearData;
   }
@@ -916,22 +875,18 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/accessories.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
     List<AccessoriesData> accessoriesData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        AccessoriesData accessoriesDatum = AccessoriesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            accessoriesData.add(accessoriesDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            accessoriesData.add(accessoriesDatum);
-          }
+      AccessoriesData accessoriesDatum = AccessoriesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          accessoriesData.add(accessoriesDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          accessoriesData.add(accessoriesDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return accessoriesData;
   }
@@ -940,22 +895,18 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/tops.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
     List<TopsData> topsData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        TopsData topsDatum = TopsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            topsData.add(topsDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            topsData.add(topsDatum);
-          }
+      TopsData topsDatum = TopsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          topsData.add(topsDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          topsData.add(topsDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return topsData;
   }
@@ -964,22 +915,18 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/bottoms.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
     List<BottomsData> bottomsData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        BottomsData bottomsDatum = BottomsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            bottomsData.add(bottomsDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            bottomsData.add(bottomsDatum);
-          }
+      BottomsData bottomsDatum = BottomsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          bottomsData.add(bottomsDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          bottomsData.add(bottomsDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return bottomsData;
   }
@@ -988,22 +935,18 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/socks.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
     List<SocksData> socksData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        SocksData socksDatum = SocksData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            socksData.add(socksDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            socksData.add(socksDatum);
-          }
+      SocksData socksDatum = SocksData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          socksData.add(socksDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          socksData.add(socksDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return socksData;
   }
@@ -1012,22 +955,19 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/shoes.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
+    
     List<ShoesData> shoesData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        ShoesData shoesDatum = ShoesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            shoesData.add(shoesDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            shoesData.add(shoesDatum);
-          }
+      ShoesData shoesDatum = ShoesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          shoesData.add(shoesDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          shoesData.add(shoesDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return shoesData;
   }
@@ -1036,22 +976,18 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/umbrellas.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
     List<UmbrellasData> umbrellasData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+"", false).then((indexResult){
-        collected = indexResult;
-        UmbrellasData umbrellasDatum = UmbrellasData(u["Name"],u["Closet Image"],u["Storage Image"],"",u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            umbrellasData.add(umbrellasDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            umbrellasData.add(umbrellasDatum);
-          }
+      UmbrellasData umbrellasDatum = UmbrellasData(u["Name"],u["Closet Image"],u["Storage Image"],"",u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          umbrellasData.add(umbrellasDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          umbrellasData.add(umbrellasDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return umbrellasData;
   }
@@ -1060,22 +996,18 @@ Future<List<HeadwearData>> getHeadwearData(String search) async{
     String data = await rootBundle.loadString("assets/bags.json");
 
     final jsonData = json.decode(data);
-    bool collected = false;
     List<BagsData> bagsData = [];
     String previousName="";
     for(var u in jsonData){
-      getStoredBool("clothingCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-        collected = indexResult;
-        BagsData bagsDatum = BagsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-        if(u["Name"]!=previousName){
-          if(search == ''){
-            bagsData.add(bagsDatum);
-          } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-            bagsData.add(bagsDatum);
-          }
+      BagsData bagsDatum = BagsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+      if(u["Name"]!=previousName){
+        if(search == ''){
+          bagsData.add(bagsDatum);
+        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+          bagsData.add(bagsDatum);
         }
-        previousName = u["Name"];
-      });
+      }
+      previousName = u["Name"];
     }
     return bagsData;
   }
@@ -1084,18 +1016,14 @@ Future<List<EmojiData>> getEmojiData(String search) async{
   String data = await rootBundle.loadString("assets/emojis.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<EmojiData> emojiData = [];
   for(var u in jsonData){
-    getStoredBool("emojiCheckList"+u["Name"], false).then((indexResult){
-      collected = indexResult;
-      EmojiData villagerDatum = EmojiData(u["Name"],u["Image"],u["Source"],collected);
-      if(search == ''){
-        emojiData.add(villagerDatum);
-      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-        emojiData.add(villagerDatum);
-      }
-    });
+    EmojiData villagerDatum = EmojiData(u["Name"],u["Image"],u["Source"]);
+    if(search == ''){
+      emojiData.add(villagerDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      emojiData.add(villagerDatum);
+    }
   }
   return emojiData;
 }
@@ -1104,20 +1032,16 @@ Future<List<FishData>> getFishData(String search) async{
   String data = await rootBundle.loadString("assets/fish.json");
 
   final jsonData = json.decode(data);
-  bool caught = false;
   List<FishData> fishData = [];
   for(var u in jsonData){
-    getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
-      caught = indexResult;
-      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
-      if(search == ''){
-        fishData.add(fishDatum);
-      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-        fishData.add(fishDatum);
-      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
-        fishData.add(fishDatum);
-      }
-    });
+    FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"]);
+    if(search == ''){
+      fishData.add(fishDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      fishData.add(fishDatum);
+    } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
+      fishData.add(fishDatum);
+    }
   }
   return fishData;
 }
@@ -1126,12 +1050,9 @@ Future<List<BugData>> getBugData(String search) async{
   String data = await rootBundle.loadString("assets/bug.json");
 
   final jsonData = json.decode(data);
-  bool caught = false;
   List<BugData> bugData = [];
   for(var u in jsonData){
-    getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
-      caught = indexResult;
-      BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+      BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"]);
       if(search == ''){
         bugData.add(bugDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
@@ -1139,7 +1060,6 @@ Future<List<BugData>> getBugData(String search) async{
       } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
         bugData.add(bugDatum);
       }
-    });
   }
   return bugData;
 }
@@ -1148,18 +1068,14 @@ Future<List<RugsData>> getRugsData(String search) async{
   String data = await rootBundle.loadString("assets/rugs.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<RugsData> rugsData = [];
   for(var u in jsonData){
-    getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
-      collected = indexResult;
-      RugsData rugsDatum = RugsData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-      if(search == ''){
-        rugsData.add(rugsDatum);
-      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-        rugsData.add(rugsDatum);
-      }
-    });
+    RugsData rugsDatum = RugsData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(search == ''){
+      rugsData.add(rugsDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      rugsData.add(rugsDatum);
+    }
   }
   return rugsData;
 }
@@ -1168,18 +1084,14 @@ Future<List<FloorsData>> getFloorsData(String search) async{
   String data = await rootBundle.loadString("assets/flooring.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<FloorsData> floorsData = [];
   for(var u in jsonData){
-    getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
-      collected = indexResult;
-      FloorsData floorsDatum = FloorsData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-      if(search == ''){
-        floorsData.add(floorsDatum);
-      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-        floorsData.add(floorsDatum);
-      }
-    });
+    FloorsData floorsDatum = FloorsData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(search == ''){
+      floorsData.add(floorsDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      floorsData.add(floorsDatum);
+    }
   }
   return floorsData;
 }
@@ -1188,18 +1100,14 @@ Future<List<WallpapersData>> getWallpapersData(String search) async{
   String data = await rootBundle.loadString("assets/wallpaper.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<WallpapersData> wallpapersData = [];
   for(var u in jsonData){
-    getStoredBool("floorWallsCheckList"+u["Name"], false).then((indexResult){
-      collected = indexResult;
-      WallpapersData wallpapersDatum = WallpapersData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-      if(search == ''){
-        wallpapersData.add(wallpapersDatum);
-      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-        wallpapersData.add(wallpapersDatum);
-      }
-    });
+    WallpapersData wallpapersDatum = WallpapersData(u["Name"],u["Image"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["Tag"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(search == ''){
+      wallpapersData.add(wallpapersDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      wallpapersData.add(wallpapersDatum);
+    }
   }
   return wallpapersData;
 }
@@ -1208,23 +1116,19 @@ Future<List<ToolsData>> getToolsData(String search) async{
   String data = await rootBundle.loadString("assets/tools.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
+  
   List<ToolsData> toolsData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("toolsCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-      collected = indexResult;
-      ToolsData toolsDatum = ToolsData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["DIY"],u["Customize"],u["Kit Cost"],u["Uses"],u["Stack Size"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Set"],u["Miles Price"],u["Source"],u["Version"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"],collected);
-      if(u["Name"]!=previousName||showListVariations==true){
-        if(search == ''){
-          toolsData.add(toolsDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          toolsData.add(toolsDatum);
-        }
+    ToolsData toolsDatum = ToolsData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["DIY"],u["Customize"],u["Kit Cost"],u["Uses"],u["Stack Size"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Set"],u["Miles Price"],u["Source"],u["Version"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        toolsData.add(toolsDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        toolsData.add(toolsDatum);
       }
-      previousName = u["Name"];
-    });
-    
+    }
+    previousName = u["Name"];    
   }
   return toolsData;
 }
@@ -1236,15 +1140,12 @@ Future<List<VillagerData>> getVillagerData(String search) async{
   bool favorite = false;
   List<VillagerData> villagerData = [];
   for(var u in jsonData){
-    getStoredBool("villagerCheckList"+u["Name"], false).then((indexResult){
-      favorite = indexResult;
-      VillagerData villagerDatum = VillagerData(u["Name"],u["Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"],favorite);
-      if(search == ''){
-        villagerData.add(villagerDatum);
-      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-        villagerData.add(villagerDatum);
-      }
-    });
+    VillagerData villagerDatum = VillagerData(u["Name"],u["Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"]);
+    if(search == ''){
+      villagerData.add(villagerDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      villagerData.add(villagerDatum);
+    }
   }
   return villagerData;
 }
@@ -1253,23 +1154,19 @@ Future<List<ArtData>> getArtData(String search) async{
   String data = await rootBundle.loadString("assets/art.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<ArtData> artData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("artCheckList"+u["Name"]+u["Genuine"], false).then((indexResult){
-      collected = indexResult;
-      ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],collected);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          if(u["Name"]!=previousName)
-            artData.add(artDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+    ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        if(u["Name"]!=previousName)
           artData.add(artDatum);
-        }
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        artData.add(artDatum);
       }
-      previousName = u["Name"];
-    });
+    }
+    previousName = u["Name"];
   }
   return artData;
 }
@@ -1290,23 +1187,19 @@ class FossilData{
   final String filename;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
   FossilData(this.name, this.image, this.buy,this.sell,this.color1,this.color2,this.size,this.source,
-  this.museum, this.version, this.interact, this.catalog,this.filename, this.internalId, this.uniqueEntryId, this.collected);
+  this.museum, this.version, this.interact, this.catalog,this.filename, this.internalId, this.uniqueEntryId);
 }
 
 Future<List<FossilData>> getFossilData(String search) async{
   String data = await rootBundle.loadString("assets/fossil.json");
 
   final jsonData = json.decode(data);
-  bool collected = false;
   List<FossilData> fossilData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("fossilCheckList"+u["Name"], false).then((indexResult){
-      collected = indexResult;
-      FossilData fossilDatum = FossilData(u["Name"],u["Image"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Museum"],u["Version"],u["Interact"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"], collected);
+      FossilData fossilDatum = FossilData(u["Name"],u["Image"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Museum"],u["Version"],u["Interact"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
       if(u["Name"]!=previousName){
         if(search == ''){
           if(u["Name"]!=previousName)
@@ -1316,7 +1209,6 @@ Future<List<FossilData>> getFossilData(String search) async{
         }
       }
       previousName = u["Name"];
-    });
   }
   return fossilData;
 }

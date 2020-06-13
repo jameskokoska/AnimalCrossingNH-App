@@ -102,7 +102,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].closetImage,snapshot.data[0][index].source,snapshot.data[0][index].variation,snapshot.data[0][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].closetImage,snapshot.data[0][index].source,snapshot.data[0][index].variation);
                         },
                         childCount: snapshot.data[0].length,
                       ),
@@ -120,7 +120,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].closetImage,snapshot.data[1][index].source,snapshot.data[1][index].variation,snapshot.data[1][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].closetImage,snapshot.data[1][index].source,snapshot.data[1][index].variation);
                         },
                         childCount: snapshot.data[1].length,
                       ),
@@ -138,7 +138,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].closetImage,snapshot.data[2][index].source,snapshot.data[2][index].variation,snapshot.data[2][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].closetImage,snapshot.data[2][index].source,snapshot.data[2][index].variation);
                         },
                         childCount: snapshot.data[2].length,
                       ),
@@ -156,7 +156,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].closetImage,snapshot.data[3][index].source,snapshot.data[3][index].variation,snapshot.data[3][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[3][index].name, snapshot.data[3][index].closetImage,snapshot.data[3][index].source,snapshot.data[3][index].variation);
                         },
                         childCount: snapshot.data[3].length,
                       ),
@@ -174,7 +174,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].closetImage,snapshot.data[4][index].source,snapshot.data[4][index].variation,snapshot.data[4][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[4][index].name, snapshot.data[4][index].closetImage,snapshot.data[4][index].source,snapshot.data[4][index].variation);
                         },
                         childCount: snapshot.data[4].length,
                       ),
@@ -192,7 +192,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[5][index].name, snapshot.data[5][index].closetImage,snapshot.data[5][index].source,snapshot.data[5][index].variation,snapshot.data[5][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[5][index].name, snapshot.data[5][index].closetImage,snapshot.data[5][index].source,snapshot.data[5][index].variation);
                         },
                         childCount: snapshot.data[5].length,
                       ),
@@ -210,7 +210,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[6][index].name, snapshot.data[6][index].closetImage,snapshot.data[6][index].source,snapshot.data[6][index].variation,snapshot.data[6][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[6][index].name, snapshot.data[6][index].closetImage,snapshot.data[6][index].source,snapshot.data[6][index].variation);
                         },
                         childCount: snapshot.data[6].length,
                       ),
@@ -228,7 +228,7 @@ class _ClothingListPageState extends State<ClothingList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[7][index].name, snapshot.data[7][index].closetImage,snapshot.data[7][index].source,snapshot.data[7][index].variation,snapshot.data[7][index].collected);
+                          return clothingContainer(percentScale, colorTextBlack, snapshot.data[7][index].name, snapshot.data[7][index].closetImage,snapshot.data[7][index].source,snapshot.data[7][index].variation);
                         },
                         childCount: snapshot.data[7].length,
                       ),
@@ -443,7 +443,7 @@ class _ClothingListPageState extends State<ClothingList>{
   }
 }
 
-Widget clothingContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source, String variation, bool collected){
+Widget clothingContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source, String variation){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
