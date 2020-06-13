@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
-import 'databases.dart';
 
 
 class Home extends StatefulWidget {
@@ -148,6 +147,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   String timeMin;
   int timeHour;
   int timeMinute;
+  
   if(timeStr[1] == ":") {
     timeHr = timeStr.substring(0,1);
     timeMin = timeStr.substring(2,);

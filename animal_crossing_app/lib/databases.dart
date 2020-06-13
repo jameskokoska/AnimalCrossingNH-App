@@ -35,11 +35,10 @@ class HousewaresData{
   final String variantId;
   final String internalId;
   final String uniqueEntryId;
-  final bool collected;
 
   HousewaresData(this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
   this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
-  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId,this.collected);
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId);
 }
 
 class MiscellaneousData{
@@ -772,9 +771,7 @@ Future<List<HousewaresData>> getHousewaresData(String search) async{
   List<HousewaresData> housewaresData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("furnitureCheckList"+u["Name"]+u["Variation"], false).then((indexResult){
-      collected = indexResult;
-      HousewaresData housewaresDatum = HousewaresData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Body Customize"],u["Pattern Customize"],u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Outdoor"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"], collected);
+      HousewaresData housewaresDatum = HousewaresData(u["Name"],u["Image"],u["Variation"],u["Body Title"],u["Pattern"],u["Pattern Title"],u["DIY"],u["Body Customize"],u["Pattern Customize"],u["Kit Cost"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Outdoor"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Variant ID"],u["Internal ID"],u["Unique Entry ID"]);
       if(u["Name"]!=previousName||showListVariations==true){
         if(search == ''){
           housewaresData.add(housewaresDatum);
@@ -785,7 +782,6 @@ Future<List<HousewaresData>> getHousewaresData(String search) async{
         }
       }
       previousName = u["Name"];
-    });
   } 
   return housewaresData;
 }
