@@ -56,15 +56,15 @@ class _FossilsListPageState extends State<FossilList>{
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
-              color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xFF193D69)),
+              color: colorLightDarkAccent,
             ),
             
             FutureBuilder(
               future: futureFossil,
               builder: (context,snapshot){
-                Widget FossilListSliver;
+                Widget fossilListSliver;
                 if(snapshot.hasData){
-                  FossilListSliver = SliverPadding(
+                  fossilListSliver = SliverPadding(
                     padding: EdgeInsets.only(top:0),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
@@ -76,7 +76,7 @@ class _FossilsListPageState extends State<FossilList>{
                     ),
                   );
                 } else {
-                  FossilListSliver = SliverToBoxAdapter(
+                  fossilListSliver = SliverToBoxAdapter(
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -180,7 +180,7 @@ class _FossilsListPageState extends State<FossilList>{
                       
                     ),
                     //Add the sliverlist parsed in future function above
-                    FossilListSliver,
+                    fossilListSliver,
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(

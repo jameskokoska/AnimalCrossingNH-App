@@ -58,7 +58,7 @@ class _ArtListPageState extends State<ArtList>{
             children: <Widget>[
               Container(
                 height: MediaQuery.of(context).size.height,
-                color: darkModeColor(darkMode, colorLightDarkAccent, Color(0xffFFFFFF)),
+                color: colorLightDarkAccent,
               ),
               FutureBuilder(
                   future: futureArt,
@@ -225,7 +225,7 @@ Widget artContainer(double percentScale,int index,String name,String image,Strin
                         color: colorWhite,
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [BoxShadow(
-                            color: Color(0x0C000000),
+                            color: colorShadow,
                             offset: Offset(0,3),
                             blurRadius: 5,
                             spreadRadius: 0

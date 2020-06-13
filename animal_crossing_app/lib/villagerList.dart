@@ -58,7 +58,7 @@ class _VillagerListPageState extends State<VillagerList>{
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
-              color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
+              color: colorLightDarkAccent,
             ),
             FutureBuilder(
               future: futureVillager,
@@ -226,7 +226,7 @@ Widget villagerContainer(double percentScale, String name, String imageLink, Str
                       color: colorWhite,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [BoxShadow(
-                          color: Color(0x0C000000),
+                          color: colorShadow,
                           offset: Offset(0,3),
                           blurRadius: 5,
                           spreadRadius: 0

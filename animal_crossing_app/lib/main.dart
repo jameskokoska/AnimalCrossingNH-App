@@ -22,6 +22,9 @@ import 'furnitureList.dart';
 import 'emojipedia.dart';
 
 //----------Global Colours-----------
+Color colorCircleContainerPopUp = Color(0xff90a4ae);
+Color colorShadow = Color(0x0C000000);
+Color colorShadowPopUp = Color(0x29000000);
 Color colorLightDarkAccent = Color(0xFFF5F5F5);
 Color colorTextBlack = Color(0xff373737);
 Color colorTextWhite = Color(0xFFFFFFFF);
@@ -194,6 +197,16 @@ class _MainPageState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    if(darkMode){
+      colorTextBlack = Color(0xFFFFFFFF);
+      colorTextWhite = Color(0xff373737);
+      colorWhite = Color(0xFF2B2B2B);
+      colorLightDarkAccent = Color(0xFF1A1A1A);
+      colorShadow = Color(0xFF313131);
+      colorCheckRed = Color(0xFF805D62);
+      colorCheckGreen = Color(0xFF557E55);
+    }
 
     double deviceWidth = MediaQuery.of(context).size.width;
     double designedWidth = 360;

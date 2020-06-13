@@ -26,7 +26,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                         height:340*percentScale,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(30*percentScale),
-                          color: Color(0xFFFFFFFF),
+                          color: colorWhite,
                         )
                     ),
                     Container(
@@ -34,7 +34,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                         height:440*percentScale,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(30*percentScale),
-                          color: Color(0xFFFFFFFF),
+                          color: colorWhite,
                         )
                     ),
                     // ---------- Card Tab ----------
@@ -67,7 +67,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             borderRadius: BorderRadius.circular(100*percentScale),
                             color:Color(0xFFE0F2F1),
                             boxShadow: [BoxShadow(
-                                color: Color(0x29000000),
+                                color: colorShadowPopUp,
                                 offset: Offset(0,3),
                                 blurRadius: 6,
                                 spreadRadius: 0
@@ -100,7 +100,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                     child: Text("",
                                         style: TextStyle(
                                           fontFamily: 'ArialRoundedBold',
-                                          color: Color(0xff90a4ae),
+                                          color: colorCircleContainerPopUp,
                                           fontSize: 11*percentScale,
                                           fontWeight: FontWeight.w400,
                                           fontStyle: FontStyle.normal,
@@ -118,7 +118,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                     child: Text("Collected",
                                         style: TextStyle(
                                           fontFamily: 'ArialRoundedBold',
-                                          color: Color(0xff90a4ae),
+                                          color: colorCircleContainerPopUp,
                                           fontSize: 11*percentScale,
                                           fontWeight: FontWeight.w400,
                                           fontStyle: FontStyle.normal,
@@ -175,7 +175,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                       data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                       child: new Checkbox(
                                         activeColor: Color(0x0499F9A9),
-                                        checkColor: Color(0xFFFFFFFF),
+                                        checkColor: colorWhite,
                                         value: currentCollectedArt,
                                         onChanged: (bool value) {
                                           setState(() {
@@ -206,7 +206,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                               child: new Text(capitalize(name),
                                   style: TextStyle(
                                     fontFamily: 'ArialRoundedBold',
-                                    color: Color(0xff373737),
+                                    color: colorTextBlack,
                                     fontSize: 31*percentScale,
                                     fontWeight: FontWeight.w400,
                                     fontStyle: FontStyle.normal,

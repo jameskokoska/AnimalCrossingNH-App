@@ -27,7 +27,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 Container(
@@ -35,7 +35,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 // ---------- Card Tab ----------
@@ -68,7 +68,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                       borderRadius: BorderRadius.circular(100*percentScale),
                       color:colorFishAccent,
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: colorShadowPopUp,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
@@ -78,7 +78,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), whereHow),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, whereHow),
                 
                 // ---------- Card Caught ----------
                 new Container(
@@ -98,7 +98,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 child: Text("Not found",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -116,7 +116,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 child: Text("Caught!",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -160,7 +160,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
+                                    checkColor: colorWhite,
                                     value: currentCaughtFish,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -205,7 +205,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                             child: new Text(capitalize(name),
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff373737),
+                                color: colorTextBlack,
                                 fontSize: 31*percentScale,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,

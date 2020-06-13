@@ -25,7 +25,7 @@ var futureFloorWalls;
 
 
 class _FloorWallsListPageState extends State<FloorWallsList>{
-  final debouncer = Debouncer(milliseconds: 600);
+  final debouncerFloorWalls = Debouncer(milliseconds: 300);
 
   @override
   void initState(){
@@ -64,7 +64,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
-              color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
+              color: colorLightDarkAccent,
             ),
             FutureBuilder(
               future: futureFloorWalls,
@@ -219,7 +219,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                                             ),
                                             onChanged: (string){
                                               setState(() {
-                                                debouncer.run((){
+                                                debouncerFloorWalls.run((){
                                                   searchfloorWalls = string;
                                                 });
                                               });
@@ -291,7 +291,7 @@ Widget floorWallsContainer(double percentScale, Color colorTextBlack, String nam
                       color: colorWhite,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [BoxShadow(
-                          color: Color(0x0C000000),
+                          color: colorShadow,
                           offset: Offset(0,3),
                           blurRadius: 5,
                           spreadRadius: 0

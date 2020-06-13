@@ -26,7 +26,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 Container(
@@ -34,7 +34,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 // ---------- Card Tab ----------
@@ -67,7 +67,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                       borderRadius: BorderRadius.circular(100*percentScale),
                       color:colorBugAccent,
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: colorShadowPopUp,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
@@ -77,7 +77,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), whereHow),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, whereHow),
                 // ---------- Card Caught ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
@@ -96,7 +96,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                 child: Text("Not found",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -114,7 +114,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                 child: Text("Caught!",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -158,7 +158,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
+                                    checkColor: colorWhite,
                                     value: currentCaughtBug,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -204,7 +204,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
-                                color: Color(0xff373737),
+                                color: colorTextBlack,
                                 fontSize: 31*percentScale,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,

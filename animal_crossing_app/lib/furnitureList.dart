@@ -24,7 +24,7 @@ var futureFurniture;
 
 
 class _FurnitureListPageState extends State<FurnitureList>{
-  final debouncer = Debouncer(milliseconds: 600);
+  final debouncerFurniture = Debouncer(milliseconds: 300);
 
   @override
   void initState(){
@@ -67,7 +67,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
-              color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
+              color: colorLightDarkAccent,
             ),
             FutureBuilder(
               future: futureFurniture,
@@ -271,7 +271,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                                               ),
                                             ),
                                             onChanged: (string){
-                                              debouncer.run((){
+                                              debouncerFurniture.run((){
                                                 setState(() {
                                                   searchFurniture = string;
                                                   futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);
@@ -341,7 +341,7 @@ Widget furnitureContainer(double percentScale, Color colorTextBlack, String name
                       color: colorWhite,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [BoxShadow(
-                          color: Color(0x0C000000),
+                          color: colorShadow,
                           offset: Offset(0,3),
                           blurRadius: 5,
                           spreadRadius: 0

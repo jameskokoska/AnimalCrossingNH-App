@@ -11,21 +11,10 @@ bool currentCollectedFurniture = false;
 
 
 Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
-//  String buyPriceConverted;
-//  String buyPriceConvertedType;
-//  if (buy=='NFS'){
-//    if (milesPrice != "NA"){
-//      buyPriceConverted = milesPrice;
-//      buyPriceConvertedType = ' miles';
-//    } else if (source == "Crafting") {
-//      buyPriceConverted = "None";
-//    } else {
-//      buyPriceConverted = "None";
-//    }
-//  } else {
-//    buyPriceConverted = buy;
-//    buyPriceConvertedType = ' bells';
-//  }
+
+String currencyAmount = buyPriceConverted(buy, milesPrice, source);
+String currencyType = buyPriceConvertedType(buy, milesPrice, source);
+String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
   
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
@@ -40,7 +29,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                   height:500*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 new Center(
@@ -71,7 +60,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                       borderRadius: BorderRadius.circular(100*percentScale),
                       color:colorBugAccent,
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: colorShadowPopUp,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
@@ -80,7 +69,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), source),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
@@ -97,7 +86,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                                 child: Text("Collected",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -141,7 +130,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
+                                    checkColor: colorWhite,
                                     value: currentCollectedFurniture,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -175,7 +164,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
-                              color: Color(0xff373737),
+                              color: colorTextBlack,
                               fontSize: 31*percentScale,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
@@ -189,13 +178,15 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(buyPriceConverted(buy, milesPrice, source)!="None"){
-                                  return infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(buyPriceConverted(buy, milesPrice, source)))+buyPriceConvertedType(buy, milesPrice, source));
+                                if(milesPrice!="NA"){
+                                  return infoContainer(percentScale, currencyIcon, bellsPrice.format(int.parse(currencyAmount))+currencyType);
+                                } else if(currencyType!="None") {
+                                  return infoContainer(percentScale, currencyIcon, bellsPrice.format(int.parse(currencyAmount))+currencyType);
                                 }
                                 return Container();
                               }(),
                               (){
-                                if(buyPriceConverted(buy, milesPrice, source)!="None"){
+                                if(currencyType!="None"){
                                   return SizedBox(width: 20*percentScale,);
                                 }
                                 return Container();
@@ -245,8 +236,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                                   return infoContainer(percentScale, 'tag.png', kitCost);
                                 }
                                 return Container();
-                              }(),                                    
-                              
+                              }(),
                             ],
                           ),
                         ),

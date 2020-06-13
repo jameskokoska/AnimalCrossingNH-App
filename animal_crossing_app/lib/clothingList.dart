@@ -24,7 +24,7 @@ var futureClothing;
 
 
 class _ClothingListPageState extends State<ClothingList>{
-  final debouncer = Debouncer(milliseconds: 600);
+  final debouncerClothing = Debouncer(milliseconds: 300);
   // ScrollController scrollController = ScrollController();
 
   @override
@@ -76,7 +76,7 @@ class _ClothingListPageState extends State<ClothingList>{
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
-              color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
+              color: colorLightDarkAccent,
             ),
             FutureBuilder(
               future: futureClothing,
@@ -352,7 +352,7 @@ class _ClothingListPageState extends State<ClothingList>{
                                               ),
                                             ),
                                             onChanged: (string){
-                                              debouncer.run((){
+                                              debouncerClothing.run((){
                                                 setState(() {
                                                   searchClothing = string;
                                                 });
@@ -461,7 +461,7 @@ Widget clothingContainer(double percentScale, Color colorTextBlack, String name,
                       color: colorWhite,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [BoxShadow(
-                          color: Color(0x0C000000),
+                          color: colorShadow,
                           offset: Offset(0,3),
                           blurRadius: 5,
                           spreadRadius: 0

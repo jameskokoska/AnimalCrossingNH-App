@@ -38,7 +38,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                   height:450*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
-                      color: Color(0xFFFFFFFF),
+                      color: colorWhite,
                   )
                 ),
                 
@@ -70,7 +70,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                       borderRadius: BorderRadius.circular(100*percentScale),
                       color:colorBugAccent,
                       boxShadow: [BoxShadow(
-                        color: Color(0x29000000),
+                        color: colorShadowPopUp,
                         offset: Offset(0,3),
                         blurRadius: 6,
                         spreadRadius: 0
@@ -79,7 +79,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0xffB9F4FB), Color(0xff90a4ae), source),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
@@ -96,7 +96,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                                 child: Text("Collected",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff90a4ae),
+                                      color: colorCircleContainerPopUp,
                                       fontSize: 11*percentScale,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
@@ -140,7 +140,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                                   data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
-                                    checkColor: Color(0xFFFFFFFF),
+                                    checkColor: colorWhite,
                                     value: currentCollectedFloorWalls,
                                     onChanged: (bool value) {
                                       setState(() {
@@ -174,7 +174,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
-                              color: Color(0xff373737),
+                              color: colorTextBlack,
                               fontSize: 31*percentScale,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
@@ -188,7 +188,9 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(buyPriceConverted!="None"){
+                                if(milesPrice!="NA"){
+                                  return infoContainer(percentScale, 'miles.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
+                                } else if(buyPriceConverted!="None") {
                                   return infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
                                 }
                                 return Container();

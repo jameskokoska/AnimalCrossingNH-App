@@ -79,7 +79,7 @@ Widget infoContainer(double percentScale, String imageIcon, String displayString
           child: new Text(displayString,
             style: TextStyle(
               fontFamily: 'ArialRoundedBold',
-              color: Color(0xff3a3a3a),
+              color: colorTextBlack,
               fontSize: 19*percentScale,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
@@ -113,7 +113,7 @@ Widget infoContainerDoubleLined(double percentScale, String imageIcon, String di
             child: new Text(displayString,
               style: TextStyle(
                 fontFamily: 'ArialRoundedBold',
-                color: Color(0xff3a3a3a),
+                color: colorTextBlack,
                 fontSize: 19*percentScale,
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
@@ -171,7 +171,7 @@ Widget infoContainerHHA(double percentScale, String imageIcon, String displayStr
                 }(),
                 style: TextStyle(
                   fontFamily: 'ArialRoundedBold',
-                  color: Color(0xff3a3a3a),
+                  color: colorTextBlack,
                   fontSize: 19*percentScale,
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
@@ -197,7 +197,7 @@ Widget infoContainerHHA(double percentScale, String imageIcon, String displayStr
                     }(),
                     style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff3a3a3a),
+                      color: colorTextBlack,
                       fontSize: 13*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -218,7 +218,7 @@ Widget infoContainerHHA(double percentScale, String imageIcon, String displayStr
                     }(),
                     style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff3a3a3a),
+                      color: colorTextBlack,
                       fontSize: 13*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -236,7 +236,7 @@ Widget infoContainerHHA(double percentScale, String imageIcon, String displayStr
                   child: new Text(displayString1,
                     style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff3a3a3a),
+                      color: colorTextBlack,
                       fontSize: 10*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -247,7 +247,7 @@ Widget infoContainerHHA(double percentScale, String imageIcon, String displayStr
                   child: new Text(displayString2,
                     style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff3a3a3a),
+                      color: colorTextBlack,
                       fontSize: 10*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -258,7 +258,7 @@ Widget infoContainerHHA(double percentScale, String imageIcon, String displayStr
                   child: new Text(displayString3,
                     style: TextStyle(
                       fontFamily: 'ArialRoundedBold',
-                      color: Color(0xff3a3a3a),
+                      color: colorTextBlack,
                       fontSize: 10*percentScale,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
