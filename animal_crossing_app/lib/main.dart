@@ -255,6 +255,7 @@ class _MainPageState extends State<Main> {
       colorArtAccent = Color(0xFFe8f5e9);
       colorArtTextDarkGreen = Color(0xFF1b5e20);
     } else if(darkMode){
+      colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
       colorSearchbarIcon = Color(0xADFFFFFF);
       colorTextBlack = Color(0xFFFFFFFF);
