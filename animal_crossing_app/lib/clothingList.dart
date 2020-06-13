@@ -24,7 +24,7 @@ var futureClothing;
 
 
 class _ClothingListPageState extends State<ClothingList>{
-  final debouncer = Debouncer(milliseconds: 600);
+  final debouncerClothing = Debouncer(milliseconds: 300);
   // ScrollController scrollController = ScrollController();
 
   @override
@@ -352,7 +352,7 @@ class _ClothingListPageState extends State<ClothingList>{
                                               ),
                                             ),
                                             onChanged: (string){
-                                              debouncer.run((){
+                                              debouncerClothing.run((){
                                                 setState(() {
                                                   searchClothing = string;
                                                 });

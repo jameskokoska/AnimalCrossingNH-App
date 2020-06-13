@@ -24,7 +24,7 @@ var futureFurniture;
 
 
 class _FurnitureListPageState extends State<FurnitureList>{
-  final debouncer = Debouncer(milliseconds: 600);
+  final debouncerFurniture = Debouncer(milliseconds: 300);
 
   @override
   void initState(){
@@ -271,7 +271,7 @@ class _FurnitureListPageState extends State<FurnitureList>{
                                               ),
                                             ),
                                             onChanged: (string){
-                                              debouncer.run((){
+                                              debouncerFurniture.run((){
                                                 setState(() {
                                                   searchFurniture = string;
                                                   futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);

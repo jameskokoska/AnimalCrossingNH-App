@@ -195,6 +195,13 @@ class _MainPageState extends State<Main> {
   Widget build(BuildContext context) {
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
+    if(darkMode){
+      colorTextBlack = Color(0xFFFFFFFF);
+      colorTextWhite = Color(0xff373737);
+      colorWhite = Color(0xFF2B2B2B);
+      colorLightDarkAccent = Color(0xFF1A1A1A);
+    }
+
     double deviceWidth = MediaQuery.of(context).size.width;
     double designedWidth = 360;
 

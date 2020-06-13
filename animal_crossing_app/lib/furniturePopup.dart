@@ -189,7 +189,9 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(buyPriceConverted!="None"){
+                                if(milesPrice!="NA"){
+                                  return infoContainer(percentScale, 'miles.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
+                                } else if(buyPriceConverted!="None") {
                                   return infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
                                 }
                                 return Container();
