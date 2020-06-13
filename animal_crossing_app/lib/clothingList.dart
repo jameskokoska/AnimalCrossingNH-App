@@ -26,7 +26,7 @@ var futureClothing;
 
 
 class _ClothingListPageState extends State<ClothingList>{
-  
+  final debouncer = Debouncer(milliseconds: 600);
   // ScrollController scrollController = ScrollController();
 
   @override
@@ -47,11 +47,6 @@ class _ClothingListPageState extends State<ClothingList>{
   //   print("end");
   // }
   
-
-  
-
-  
-
   @override
   Widget build(BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -359,8 +354,10 @@ class _ClothingListPageState extends State<ClothingList>{
                                               ),
                                             ),
                                             onChanged: (string){
-                                              setState(() {
-                                                searchClothing = string;
+                                              debouncer.run((){
+                                                setState(() {
+                                                  searchClothing = string;
+                                                });
                                               });
                                             },
                                           ),

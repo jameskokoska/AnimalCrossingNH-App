@@ -25,7 +25,7 @@ var futureFurniture;
 
 
 class _FurnitureListPageState extends State<FurnitureList>{
-  final debouncer = Debouncer(milliseconds: )
+  final debouncer = Debouncer(milliseconds: 600);
 
   @override
   void initState(){
@@ -35,7 +35,6 @@ class _FurnitureListPageState extends State<FurnitureList>{
     });
     futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);
   }
-  
   
   @override
   Widget build(BuildContext context){
@@ -273,9 +272,11 @@ class _FurnitureListPageState extends State<FurnitureList>{
                                               ),
                                             ),
                                             onChanged: (string){
-                                              setState(() {
-                                                searchFurniture = string;
-                                                futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);
+                                              debouncer.run((){
+                                                setState(() {
+                                                  searchFurniture = string;
+                                                  futureFurniture = Future.wait([getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)]);
+                                                });
                                               });
                                             },
                                           ),

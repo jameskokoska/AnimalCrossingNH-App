@@ -28,12 +28,13 @@ var futureFloorWalls;
 
 
 class _FloorWallsListPageState extends State<FloorWallsList>{
+  final debouncer = Debouncer(milliseconds: 600);
+
   @override
   void initState(){
     super.initState();
     futureFloorWalls = Future.wait([getRugsData(searchfloorWalls), getFloorsData(searchfloorWalls),getWallpapersData(searchfloorWalls)]);
   }
-
 
   @override
   Widget build(BuildContext context){
@@ -221,7 +222,9 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                                             ),
                                             onChanged: (string){
                                               setState(() {
-                                                searchfloorWalls = string;
+                                                debouncer.run((){
+                                                  searchfloorWalls = string;
+                                                });
                                               });
                                             },
                                           ),
