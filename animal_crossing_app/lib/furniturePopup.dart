@@ -1,12 +1,10 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:optimized_cached_image/widgets.dart';
 
 
-final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedFurniture = false;
 
 
@@ -205,7 +203,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                                 }
                                 return Container();
                               }(),
-                              infoContainer(percentScale, 'coin.png', sell+" bells"),
+                              infoContainer(percentScale, 'coin.png', priceFormat.format(int.parse(sell))+" bells"),
                             ],
                           ),
                         ),

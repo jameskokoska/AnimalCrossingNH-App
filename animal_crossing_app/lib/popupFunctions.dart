@@ -1,5 +1,8 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final priceFormat = new NumberFormat("#,##0");
 
 String determineTime(String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
   if(northernHemisphere){
@@ -453,7 +456,7 @@ String buyPriceConverted(String buy, String milesPrice, String source){
       return "None";
     }
   } else {
-    return buy;
+    return priceFormat.format(int.parse(buy));
   }
   return "";
 }
@@ -477,7 +480,7 @@ String buyPriceConvertedIcon(String buy, String milesPrice, String source){
   } else {
       return "bellBag.png";
   }
-  return "";
+  return "leaf.png";
 }
 
 Widget paintingContainerLayout(String dimensions, String imageLinkReal, String imageLinkFake){
