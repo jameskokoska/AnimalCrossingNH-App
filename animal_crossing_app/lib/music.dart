@@ -99,7 +99,7 @@ class _MusicListPageState extends State<MusicList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return songContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].collected);
+                          return songContainer(percentScale, darkMode, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].collected);
                         },
                         childCount: snapshot.data.length,
                       ),
@@ -293,7 +293,7 @@ class _MusicListPageState extends State<MusicList>{
   }
 }
 
-Widget songContainer(double percentScale, Color colorTextBlack, String name, String imageLink, bool collected){
+Widget songContainer(double percentScale, bool darkMode, Color colorTextBlack, String name, String imageLink, bool collected){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return new Container(
@@ -389,7 +389,7 @@ Widget songContainer(double percentScale, Color colorTextBlack, String name, Str
                           data: ThemeData(unselectedWidgetColor: Color(0x00000000)),
                           child: new Checkbox(
                             activeColor: Color(0x04FFFFFF),
-                            checkColor: Color(0xFF444444),
+                            checkColor: darkModeColor(!darkMode,Color(0xFFFFFFFF),Color(0xFF444444)),
                             value: collected,
                             onChanged: (bool value) {
                               setState(() {

@@ -103,7 +103,7 @@ class _ArtListPageState extends State<ArtList>{
                       slivers: <Widget>[
                         SliverAppBar(
                           expandedHeight: 219*percentScale,
-                          backgroundColor: Color(0xFF730000),
+                          backgroundColor: colorArtAppBar,
                           pinned: true,
                           //snap: true,
                           floating: true,
@@ -117,7 +117,7 @@ class _ArtListPageState extends State<ArtList>{
                                   child: Text("Artwork",
                                       style: TextStyle(
                                         fontFamily: 'ArialRoundedBold',
-                                        color: colorTextWhite,
+                                        color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                                         fontSize: 30*percentScale,
                                         fontWeight: FontWeight.w400,
                                         fontStyle: FontStyle.normal,

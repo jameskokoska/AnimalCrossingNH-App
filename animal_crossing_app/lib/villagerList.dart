@@ -103,7 +103,7 @@ class _VillagerListPageState extends State<VillagerList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFF66CFD6),
+                      backgroundColor: colorVillagerAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -117,7 +117,7 @@ class _VillagerListPageState extends State<VillagerList>{
                               child: Text("Villagers",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: colorTextBlack,
+                                  color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                                   fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,

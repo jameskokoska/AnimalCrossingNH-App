@@ -17,14 +17,9 @@ class FossilList extends StatefulWidget {
 }
 
 String searchFossil = '';
-var futureFossil;
+
 
 class _FossilsListPageState extends State<FossilList>{
-  @override
-  void initState(){
-    super.initState();
-    futureFossil=getFossilData(searchFossil);
-  }
 
   @override
   Widget build(BuildContext context){
@@ -60,23 +55,23 @@ class _FossilsListPageState extends State<FossilList>{
             ),
             
             FutureBuilder(
-              future: futureFossil,
+              future: getFossilData(searchFossil),
               builder: (context,snapshot){
-                Widget fossilListSliver;
+                Widget FossilListSliver;
                 if(snapshot.hasData){
-                  fossilListSliver = SliverPadding(
+                  FossilListSliver = SliverPadding(
                     padding: EdgeInsets.only(top:0),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return fossilContainer(percentScale, index, snapshot.data[index].name,snapshot.data[index].image,snapshot.data[index].sell,snapshot.data[index].source);
+                          return fossilContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name,snapshot.data[index].image,snapshot.data[index].sell,snapshot.data[index].source);
                         }, 
                         childCount: snapshot.data.length,
                       ),
                     ),
                   );
                 } else {
-                  fossilListSliver = SliverToBoxAdapter(
+                  FossilListSliver = SliverToBoxAdapter(
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -98,7 +93,7 @@ class _FossilsListPageState extends State<FossilList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: Color(0xFF947C5D),
+                      backgroundColor: colorFossilAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -112,7 +107,7 @@ class _FossilsListPageState extends State<FossilList>{
                               child: Text("Fossils",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
-                                  color: colorTextWhite,
+                                  color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                                   fontSize: 30*percentScale,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
@@ -180,7 +175,7 @@ class _FossilsListPageState extends State<FossilList>{
                       
                     ),
                     //Add the sliverlist parsed in future function above
-                    fossilListSliver,
+                    FossilListSliver,
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(
@@ -198,187 +193,179 @@ class _FossilsListPageState extends State<FossilList>{
   }
 }
 
-Widget fossilContainer(double percentScale, int index,String name,String image,String sell,String source){
+Widget fossilContainer(double percentScale, int index, bool collected,String name,String image,String sell,String source){
   return Center(
     child: new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) { 
-        return FutureBuilder(
-          future: getStoredBool("fossilCheckList"+name, false),
-          builder: (context,snapshot) {
-            if(snapshot.hasData){
-              return Column(
-                children: <Widget>[
-                  SizedBox(
-                    height:4.5*percentScale,
-                  ),
-                  new Stack(
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(14*percentScale),
-                        child: new Container(
-                          child: new Material(
-                            child: new InkWell(
-                              highlightColor: Color(0xFFcfd8dc),
-                              splashColor: Color(0xFFb3e5fc),
-                              enableFeedback: true,
-                              onLongPress: (){
-                                setState(() {
-                                  currentCollectedFossil = !snapshot.data;
-                                  saveBool("fossilCheckList"+name, false, !snapshot.data);
-                                });
-                              },
-                              onTap: (){
-                                currentCollectedFossil = snapshot.data;
-                                FocusScope.of(context).requestFocus(new FocusNode());
-                                Future<void> future = showModalBottomSheet(
-                                  //by setting this to true, we can avoid the half screen limit
-                                  isScrollControlled:true,
-                                  context: context, 
-                                  builder: (context){
-                                    return Container(
-                                      height: 340*percentScale,
-                                        child: Container(
-                                          child: fossilPopUp(percentScale, currentCollectedFossil, name, image, sell, source),
-                                      ),
-                                    );
-                                });
-                                future.then((void value)=> setState(() {
-                                  saveBool("fossilCheckList"+name, false, currentCollectedFossil);
-                                }));
-                              },
-                              child: new Container(
-                                width: 334*percentScale,
-                                height: 75*percentScale,
-                              ),
-                            ),
-                            color: colorWhite,
-                          ),
-                          
-                        ),
-                      ),
-                      // 
-                      // new Container(
-                      //     width: 334*percentScale,
-                      //     height: 71*percentScale,
-                      //     decoration: new BoxDecoration(
-                      //       color: Color(0xffb9f4fb),
-                      //       borderRadius: BorderRadius.circular(8)
-                      //     )
-                      //   ),
-                      //
-                      //
-                      IgnorePointer(
-                        child: Stack(
-                          children: <Widget>[
-                            new Container(
-                              transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
-                              width: 55*percentScale,
-                              height: 55*percentScale,
-                              decoration: new BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: (Color(0xFFE9DAC5)),
-                              )
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
-                              child: OptimizedCacheImage(
-                                imageBuilder: (context, imageProvider) => Container(
-                                  width: 45*percentScale,
-                                  height: 45*percentScale,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4*percentScale),
-                                    image: DecorationImage(
-                                      image: imageProvider, fit: BoxFit.cover),
-                                  ),
+        return Column(
+          children: <Widget>[
+            SizedBox(
+              height:4.5*percentScale,
+            ),
+            new Stack(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14*percentScale),
+                  child: new Container(
+                    child: new Material(
+                      child: new InkWell(
+                        highlightColor: Color(0xFFcfd8dc),
+                        splashColor: Color(0xFFb3e5fc),
+                        enableFeedback: true,
+                        onLongPress: (){
+                          setState(() {
+                            collected = !collected;
+                            saveBool("fossilCheckList"+name, false, collected);
+                          });
+                        },
+                        onTap: (){
+                          currentCollectedFossil = collected;
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          Future<void> future = showModalBottomSheet(
+                            //by setting this to true, we can avoid the half screen limit
+                            isScrollControlled:true,
+                            context: context, 
+                            builder: (context){
+                              return Container(
+                                height: 340*percentScale,
+                                  child: Container(
+                                    child: fossilPopUp(percentScale, currentCollectedFossil, name, image, sell, source),
                                 ),
-                                imageUrl: image,
-                                //placeholder: (context, url) => CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
-                                height:45*percentScale,
-                                width:45*percentScale,
-                                fadeInDuration: Duration(milliseconds:800),
-                              ),
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues((80)*percentScale,(27)*percentScale,0),
-                              child: new Text((capitalize(name)),
-                                style: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: colorTextBlack,
-                                fontSize: 18*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                                )
-                              ),
-                            ),
-                            //Checkmark background
-                            AnimatedPositioned(
-                              duration: Duration(milliseconds: 300),
-                              top: snapshot.data ? 40*percentScale : 0,
-                              bottom: snapshot.data ? 40*percentScale : 0,
-                              child: new Container(
-                                transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
-                                width: 40*percentScale,
-                                height: 40*percentScale,
-                                decoration: new BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: colorCheckRed
-                                )
-                              ),
-                            ),
-                            AnimatedPositioned(
-                              duration: Duration(milliseconds: 200),
-                              top: !snapshot.data ? 40*percentScale : 0,
-                              bottom: !snapshot.data ? 40*percentScale : 0,
-                              child: new Container(
-                                transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
-                                width: 40*percentScale,
-                                height: 40*percentScale,
-                                decoration: new BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: colorCheckGreen
-                                )
-                              ),
-                            ),
-                          ],
+                              );
+                          });
+                          future.then((void value)=> setState(() {
+                            getStoredBool("fossilCheckList"+name, false).then((indexResult){
+                                collected = indexResult;
+                            });
+                          }));
+                        },
+                        child: new Container(
+                          width: 334*percentScale,
+                          height: 75*percentScale,
                         ),
                       ),
-                      
+                      color: colorWhite,
+                    ),
+                    
+                  ),
+                ),
+                // 
+                // new Container(
+                //     width: 334*percentScale,
+                //     height: 71*percentScale,
+                //     decoration: new BoxDecoration(
+                //       color: Color(0xffb9f4fb),
+                //       borderRadius: BorderRadius.circular(8)
+                //     )
+                //   ),
+                //
+                //
+                IgnorePointer(
+                  child: Stack(
+                    children: <Widget>[
+                      new Container(
+                        transform: Matrix4.translationValues(12*percentScale,10*percentScale,0),
+                        width: 55*percentScale,
+                        height: 55*percentScale,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: colorFossilAccent,
+                        )
+                      ),
                       Container(
-                        transform: Matrix4.translationValues((272)*percentScale,(11)*percentScale,0),
-                        width:55*percentScale,
-                        height:55*percentScale,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(300*percentScale),
-                            child: new Transform.scale(
-                              scale: 1.6*percentScale,
-                              child: Theme(
-                                data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
-                                child: new Checkbox(
-                                  activeColor: Color(0x04b2fab4),
-                                  checkColor: Color(0xFFFFFFFF),
-                                  value: snapshot.data,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      currentCollectedFossil = value;
-                                      saveBool("fossilCheckList"+name, false, value);
-                                      HapticFeedback.mediumImpact();
-                                  });
-                                },
-                              ),
+                        transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
+                        child: OptimizedCacheImage(
+                          imageBuilder: (context, imageProvider) => Container(
+                            width: 45*percentScale,
+                            height: 45*percentScale,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4*percentScale),
+                              image: DecorationImage(
+                                image: imageProvider, fit: BoxFit.cover),
                             ),
+                          ),
+                          imageUrl: image,
+                          //placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
+                          height:45*percentScale,
+                          width:45*percentScale,
+                          fadeInDuration: Duration(milliseconds:800),
+                        ),
+                      ),
+                      Container(
+                        transform: Matrix4.translationValues((80)*percentScale,(27)*percentScale,0),
+                        child: new Text((capitalize(name)),
+                          style: TextStyle(
+                          fontFamily: 'ArialRoundedBold',
+                          color: colorTextBlack,
+                          fontSize: 18*percentScale,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          )
+                        ),
+                      ),
+                      //Checkmark background
+                      AnimatedPositioned(
+                        duration: Duration(milliseconds: 300),
+                        top: collected ? 40*percentScale : 0,
+                        bottom: collected ? 40*percentScale : 0,
+                        child: new Container(
+                          transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
+                          width: 40*percentScale,
+                          height: 40*percentScale,
+                          decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: colorCheckRed
+                          )
+                        ),
+                      ),
+                      AnimatedPositioned(
+                        duration: Duration(milliseconds: 200),
+                        top: !collected ? 40*percentScale : 0,
+                        bottom: !collected ? 40*percentScale : 0,
+                        child: new Container(
+                          transform: Matrix4.translationValues((279)*percentScale,(10)*percentScale,0),
+                          width: 40*percentScale,
+                          height: 40*percentScale,
+                          decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: colorCheckGreen
                           )
                         ),
                       ),
                     ],
                   ),
-                ],
-              );
-            } else {
-              return Container();
-            }
-          }
-          
+                ),
+                
+                Container(
+                  transform: Matrix4.translationValues((272)*percentScale,(11)*percentScale,0),
+                  width:55*percentScale,
+                  height:55*percentScale,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(300*percentScale),
+                      child: new Transform.scale(
+                        scale: 1.6*percentScale,
+                        child: Theme(
+                          data: ThemeData(unselectedWidgetColor: Color(0x00F9E4E4)),
+                          child: new Checkbox(
+                            activeColor: Color(0x04b2fab4),
+                            checkColor: Color(0xFFFFFFFF),
+                            value: collected,
+                            onChanged: (bool value) {
+                              setState(() {
+                                collected = value;
+                                saveBool("fossilCheckList"+name, false, collected);
+                                HapticFeedback.mediumImpact();
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  ),
+                ),
+              ],
+            ),
+          ],
         );
     }),
   );

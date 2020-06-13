@@ -68,7 +68,6 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                           )
                       ),
                     ),
-
                     circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
                     new Container(
                       transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),

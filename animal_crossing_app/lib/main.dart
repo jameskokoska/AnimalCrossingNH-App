@@ -31,13 +31,30 @@ Color colorTextWhite = Color(0xFFFFFFFF);
 Color colorWhite = Color(0xFFFFFFFF);
 Color colorCheckRed = Color(0xFFF8DFE3);
 Color colorCheckGreen = Color(0xFFA0DDA1);
+Color colorFishAppBar = Color(0xFFA2D0F7);
 Color colorFishAccent = Color(0xFFE3F2FD);
 Color colorFishTextDarkBlue = Color(0xff3F51B5);
+Color colorBugAppBar = Color(0xFFa5d6a7);
 Color colorBugAccent = Color(0xFFe8f5e9);
 Color colorBugTextDarkGreen = Color(0xFF1b5e20);
+Color colorFossilAppBar = Color(0xFF947C5D);
+Color colorFossilAccent = Color(0xFFE9DAC5);
+Color colorVillagerAppBar = Color(0xFF66CFD6);
+Color colorVillagerAccent = Color(0xFFB2DFDB);
+Color colorFurnitureAppBar = Color(0xFF41D448);
+Color colorFurnitureAccent = Color(0xFFFFFFFF);
+Color colorClothingAppBar = Color(0xFF3A15C0);
+Color colorClothingAccent = Color(0xFFFFFFFF);//
+Color colorToolsAppBar = Color(0xFFC01515);
+Color colorToolsAccent = Color(0xFFFFFFFF);//
+Color colorFloorWallAppBar = Color(0xFF1565c0);
+Color colorFloorWallAccent = Color(0xFFFFFFFF);
+Color colorEmojipediaAppBar = Color(0xFFFFF176);
+
+Color colorArtAppBar = Color(0xFF730000);
 Color colorArtAccent = Color(0xFFe8f5e9);
 Color colorArtTextDarkGreen = Color(0xFF1b5e20);
-Color colorVillagerAccent = Color(0xFFB2DFDB);
+
 //---------------------------
 //----------Globals----------
 bool northernHemisphere = true;
@@ -207,10 +224,24 @@ class _MainPageState extends State<Main> {
       colorCheckRed = Color(0xFF805D62);
       colorCheckGreen = Color(0xFF557E55);
       colorCircleContainerPopUp = Color(0xFF979797);
+      colorFishAppBar = Color(0xFF536991);
       colorFishAccent = Color(0xFF434C53);
-      colorFishTextDarkBlue = Color(0xFF959CC2);
+      colorFishTextDarkBlue = Color(0xFF9AA2D4);
+      colorBugAppBar = Color(0xFF295029);
       colorBugAccent = Color(0xFF6D756E);
-      colorBugTextDarkGreen = Color(0xFF7EB482);
+      colorBugTextDarkGreen = Color(0xFF729E75);
+      colorFossilAppBar = Color(0xFF4E463B);
+      colorFossilAccent = Color(0xFFE9DAC5);
+      colorArtAccent = Color(0xFFe8f5e9);
+      colorArtTextDarkGreen = Color(0xFF1b5e20);
+      colorVillagerAppBar = Color(0xFF4B6E70);
+      colorVillagerAccent = Color(0xFFB2DFDB);
+      colorFurnitureAppBar = Color(0xFF255728);
+      colorClothingAppBar = Color(0xFF2B224D);
+      colorToolsAppBar = Color(0xFF6E3333);
+      colorToolsAccent = Color(0xFFFFFFFF);
+      colorFloorWallAppBar = Color(0xFF204064);
+      colorEmojipediaAppBar = Color(0xFF807623);
     }
 
     double deviceWidth = MediaQuery.of(context).size.width;

@@ -53,7 +53,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:Color(0xFFF5EDE2),
+                      color:colorFossilAccent,
                       boxShadow: [BoxShadow(
                         color: colorShadowPopUp,
                         offset: Offset(0,3),

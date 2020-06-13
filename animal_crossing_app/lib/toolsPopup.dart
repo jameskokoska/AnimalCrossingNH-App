@@ -65,7 +65,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:Color(0xFFE0F2F1),
+                      color:colorToolsAccent,
                       boxShadow: [BoxShadow(
                         color: colorShadowPopUp,
                         offset: Offset(0,3),
