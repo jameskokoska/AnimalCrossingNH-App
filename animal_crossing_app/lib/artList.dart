@@ -239,8 +239,8 @@ Widget artContainer(double percentScale,int index,String name,String image,Strin
                       child: new Container(
                         child: new Material(
                           child: new InkWell(
-                            highlightColor: Color(0xFFcfd8dc),
-                            splashColor: Color(0xFFb3e5fc),
+                            highlightColor: colorArtAccent,
+                            splashColor: colorArtAccent,
                             enableFeedback: true,
                             onLongPress: (){
                               setState(() {

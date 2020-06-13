@@ -240,8 +240,8 @@ Widget villagerContainer(double percentScale, String name, String imageLink, Str
                   child: new Container(
                     child: new Material(
                       child: new InkWell(
-                        highlightColor: Color(0xFFcfd8dc),
-                        splashColor: Color(0xFFb3e5fc),
+                        highlightColor: colorVillagerAccent,
+                        splashColor: colorVillagerAccent,
                         enableFeedback: true,
                         onLongPress: (){
                           setState(() {

@@ -305,8 +305,8 @@ Widget floorWallsContainer(double percentScale, Color colorTextBlack, String nam
                   child: new Container(
                     child: new Material(
                       child: new InkWell(
-                        highlightColor: Color(0xFFcfd8dc),
-                        splashColor: Color(0xFFb3e5fc),
+                        highlightColor: colorFloorWallAccent,
+                        splashColor: colorFloorWallAccent,
                         enableFeedback: true,
                         onLongPress: (){
                           setState(() {

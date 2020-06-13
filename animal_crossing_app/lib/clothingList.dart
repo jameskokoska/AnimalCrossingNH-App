@@ -475,8 +475,8 @@ Widget clothingContainer(double percentScale, Color colorTextBlack, String name,
                   child: new Container(
                     child: new Material(
                       child: new InkWell(
-                        highlightColor: Color(0xFFcfd8dc),
-                        splashColor: Color(0xFFb3e5fc),
+                        highlightColor: colorClothingAccent,
+                        splashColor: colorClothingAccent,
                         enableFeedback: true,
                         onLongPress: (){
                           setState(() {
