@@ -260,14 +260,14 @@ class _FurnitureListPageState extends State<FurnitureList>{
                                             }(),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(8.0),
-                                              color: Color(0x75D4D4D4),
+                                              color: colorSearchbarBG,
                                             ),
                                             prefix: Padding(
                                               padding:
                                                   const EdgeInsets.only(right:13, left:7),
                                               child: Icon(
                                                 Icons.search,
-                                                color: Color(0xAD6B6B6B),
+                                                color:colorSearchbarIcon,
                                               ),
                                             ),
                                             onChanged: (string){
