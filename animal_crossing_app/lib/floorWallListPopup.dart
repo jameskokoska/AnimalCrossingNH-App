@@ -1,9 +1,9 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
+import 'package:optimized_cached_image/widgets.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
@@ -49,7 +49,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                     height: 113*percentScale,
                     child: new Center(
                       child: new Center(
-                        child: CachedNetworkImage(
+                        child:  OptimizedCacheImage(
                           imageBuilder: (context, imageProvider) => Container(
                             width: 80*percentScale,
                             height: 80*percentScale,
