@@ -33,7 +33,7 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
                 width: 334*percentScale,
                 height: 71*percentScale,
                 decoration: new BoxDecoration(
-                  color: darkModeColor(darkMode, colorWhite, Color(0xffDEFEFF)),
+                  color: colorWhite,
                   borderRadius: BorderRadius.circular(8)
                 )
               )
@@ -147,7 +147,7 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   String timeMin;
   int timeHour;
   int timeMinute;
-  
+
   if(timeStr[1] == ":") {
     timeHr = timeStr.substring(0,1);
     timeMin = timeStr.substring(2,);

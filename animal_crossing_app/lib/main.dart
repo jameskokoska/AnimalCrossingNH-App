@@ -22,7 +22,7 @@ import 'furnitureList.dart';
 import 'emojipedia.dart';
 
 //----------Global Colours-----------
-Color colorCircleContainerPopUp = Color(0xff90a4ae);
+Color colorCircleContainerPopUp = Color(0xff90a4ae); //text
 Color colorShadow = Color(0x0C000000);
 Color colorShadowPopUp = Color(0x29000000);
 Color colorLightDarkAccent = Color(0xFFF5F5F5);
@@ -206,6 +206,11 @@ class _MainPageState extends State<Main> {
       colorShadow = Color(0xFF313131);
       colorCheckRed = Color(0xFF805D62);
       colorCheckGreen = Color(0xFF557E55);
+      colorCircleContainerPopUp = Color(0xFF979797);
+      colorFishAccent = Color(0xFF434C53);
+      colorFishTextDarkBlue = Color(0xFF959CC2);
+      colorBugAccent = Color(0xFF6D756E);
+      colorBugTextDarkGreen = Color(0xFF7EB482);
     }
 
     double deviceWidth = MediaQuery.of(context).size.width;
