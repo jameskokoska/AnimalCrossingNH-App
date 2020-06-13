@@ -69,7 +69,7 @@ class _FossilsListPageState extends State<FossilList>{
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return fossilContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name,snapshot.data[index].image,snapshot.data[index].sell,snapshot.data[index].source);
+                          return fossilContainer(percentScale, index, snapshot.data[index].name,snapshot.data[index].image,snapshot.data[index].sell,snapshot.data[index].source);
                         }, 
                         childCount: snapshot.data.length,
                       ),
@@ -198,7 +198,7 @@ class _FossilsListPageState extends State<FossilList>{
   }
 }
 
-Widget fossilContainer(double percentScale, int index, bool collected,String name,String image,String sell,String source){
+Widget fossilContainer(double percentScale, int index,String name,String image,String sell,String source){
   return Center(
     child: new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) { 

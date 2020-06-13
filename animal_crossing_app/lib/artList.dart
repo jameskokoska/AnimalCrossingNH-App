@@ -77,7 +77,7 @@ class _ArtListPageState extends State<ArtList>{
                           delegate:
                           SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
-                              return artContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name, snapshot.data[index].image, snapshot.data[index].genuine, snapshot.data[index].category, snapshot.data[index].buy, snapshot.data[index].sell, snapshot.data[index].color1,  snapshot.data[index].color2, snapshot.data[index].size, snapshot.data[index].realArtworkTitle, snapshot.data[index].artist, snapshot.data[index].museumDescription, snapshot.data[index].source, snapshot.data[index].version, snapshot.data[index].hhaConcept1, snapshot.data[index].hhaConcept2, snapshot.data[index].hhaSeries, snapshot.data[index].hhaSet, snapshot.data[index].interact, snapshot.data[index].tag, snapshot.data[index].speakerType, snapshot.data[index].lightingType, snapshot.data[index].catalog, snapshot.data[index].filename, snapshot.data[index].internalID, snapshot.data[index].uniqueEntryID);
+                              return artContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].image, snapshot.data[index].genuine, snapshot.data[index].category, snapshot.data[index].buy, snapshot.data[index].sell, snapshot.data[index].color1,  snapshot.data[index].color2, snapshot.data[index].size, snapshot.data[index].realArtworkTitle, snapshot.data[index].artist, snapshot.data[index].museumDescription, snapshot.data[index].source, snapshot.data[index].version, snapshot.data[index].hhaConcept1, snapshot.data[index].hhaConcept2, snapshot.data[index].hhaSeries, snapshot.data[index].hhaSet, snapshot.data[index].interact, snapshot.data[index].tag, snapshot.data[index].speakerType, snapshot.data[index].lightingType, snapshot.data[index].catalog, snapshot.data[index].filename, snapshot.data[index].internalID, snapshot.data[index].uniqueEntryID);
                             },
                             childCount: snapshot.data.length,
                           ),
@@ -207,7 +207,7 @@ class _ArtListPageState extends State<ArtList>{
 }
 
 
-Widget artContainer(double percentScale,int index,bool collected,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID){
+Widget artContainer(double percentScale,int index,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID){
   return new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
         return FutureBuilder(

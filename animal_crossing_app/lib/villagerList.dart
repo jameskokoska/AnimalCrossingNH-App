@@ -18,9 +18,14 @@ class VillagerList extends StatefulWidget {
 }
 
 String searchVillager = '';
-
+var futureVillager;
 
 class _VillagerListPageState extends State<VillagerList>{
+  @override
+  void initState(){
+    super.initState();
+    futureVillager = getVillagerData(searchVillager);
+  }
 
   @override
   Widget build(BuildContext context){
@@ -56,7 +61,7 @@ class _VillagerListPageState extends State<VillagerList>{
               color: darkModeColor(darkMode, colorLightDarkAccent, Color( 0xffFFFFFF)),
             ),
             FutureBuilder(
-              future: getVillagerData(searchVillager),
+              future: futureVillager,
               builder: (context,snapshot){
                 Widget villagerListSliver;
                 if(snapshot.hasData){

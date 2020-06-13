@@ -86,7 +86,7 @@ class _ToolsListPageState extends State<ToolsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return toolsContainer(percentScale, index, snapshot.data[index].collected, snapshot.data[index].name, snapshot.data[index].image,snapshot.data[index].variation,snapshot.data[index].bodyTitle,snapshot.data[index].diy,snapshot.data[index].customize,snapshot.data[index].kitCost,snapshot.data[index].uses,snapshot.data[index].stackSize,snapshot.data[index].buy,snapshot.data[index].sell,snapshot.data[index].color1,snapshot.data[index].color2,snapshot.data[index].size,snapshot.data[index].set,snapshot.data[index].milesPrice,snapshot.data[index].source,snapshot.data[index].version,snapshot.data[index].filename,snapshot.data[index].variantID,snapshot.data[index].internalID,snapshot.data[index].uniqueEntryID);
+                          return toolsContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].image,snapshot.data[index].variation,snapshot.data[index].bodyTitle,snapshot.data[index].diy,snapshot.data[index].customize,snapshot.data[index].kitCost,snapshot.data[index].uses,snapshot.data[index].stackSize,snapshot.data[index].buy,snapshot.data[index].sell,snapshot.data[index].color1,snapshot.data[index].color2,snapshot.data[index].size,snapshot.data[index].set,snapshot.data[index].milesPrice,snapshot.data[index].source,snapshot.data[index].version,snapshot.data[index].filename,snapshot.data[index].variantID,snapshot.data[index].internalID,snapshot.data[index].uniqueEntryID);
                         },
                         childCount: snapshot.data.length,
                       ),
@@ -215,7 +215,7 @@ class _ToolsListPageState extends State<ToolsList>{
   }
 }
 
-Widget toolsContainer(double percentScale, int index, bool collected,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
+Widget toolsContainer(double percentScale, int index, String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(

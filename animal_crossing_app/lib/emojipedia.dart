@@ -75,7 +75,7 @@ class _EmojiListPageState extends State<EmojiList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return emojiContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].source,snapshot.data[index].collected);
+                          return emojiContainer(percentScale, colorTextBlack, snapshot.data[index].name, snapshot.data[index].imageLink,snapshot.data[index].source);
                         },
                         childCount: snapshot.data.length,
                       ),
@@ -223,7 +223,7 @@ class _EmojiListPageState extends State<EmojiList>{
   }
 }
 
-Widget emojiContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source, bool collected){
+Widget emojiContainer(double percentScale, Color colorTextBlack, String name, String imageLink, String source){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(

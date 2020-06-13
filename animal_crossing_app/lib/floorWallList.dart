@@ -85,7 +85,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source,snapshot.data[0][index].collected, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag);
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[0][index].name, snapshot.data[0][index].image,snapshot.data[0][index].source, snapshot.data[0][index].buy, snapshot.data[0][index].milesPrice, snapshot.data[0][index].sell, snapshot.data[0][index].color1, snapshot.data[0][index].color2,  snapshot.data[0][index].hhaConcept1, snapshot.data[0][index].hhaConcept2, snapshot.data[0][index].hhaSeries, snapshot.data[0][index].tag);
                         },
                         childCount: snapshot.data[0].length,
                       ),
@@ -103,7 +103,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source,snapshot.data[1][index].collected, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag);                        },
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[1][index].name, snapshot.data[1][index].image,snapshot.data[1][index].source, snapshot.data[1][index].buy, snapshot.data[1][index].milesPrice, snapshot.data[1][index].sell, snapshot.data[1][index].color1, snapshot.data[1][index].color2,  snapshot.data[1][index].hhaConcept1, snapshot.data[1][index].hhaConcept2, snapshot.data[1][index].hhaSeries, snapshot.data[1][index].tag);                        },
                         childCount: snapshot.data[1].length,
                       ),
                     ),
@@ -120,7 +120,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
                       delegate: 
                       SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source,snapshot.data[2][index].collected, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2, snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag);                        },
+                          return floorWallsContainer(percentScale, colorTextBlack, snapshot.data[2][index].name, snapshot.data[2][index].image,snapshot.data[2][index].source, snapshot.data[2][index].buy, snapshot.data[2][index].milesPrice, snapshot.data[2][index].sell, snapshot.data[2][index].color1, snapshot.data[2][index].color2, snapshot.data[2][index].hhaConcept1, snapshot.data[2][index].hhaConcept2, snapshot.data[2][index].hhaSeries, snapshot.data[2][index].tag);                        },
                         childCount: snapshot.data[2].length,
                       ),
                     ),
@@ -273,7 +273,7 @@ class _FloorWallsListPageState extends State<FloorWallsList>{
   }
 }
 
-Widget floorWallsContainer(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag){
+Widget floorWallsContainer(double percentScale, Color colorTextBlack, String name, String image, String source, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
