@@ -11,7 +11,21 @@ bool currentCollectedFurniture = false;
 
 
 Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
-
+//  String buyPriceConverted;
+//  String buyPriceConvertedType;
+//  if (buy=='NFS'){
+//    if (milesPrice != "NA"){
+//      buyPriceConverted = milesPrice;
+//      buyPriceConvertedType = ' miles';
+//    } else if (source == "Crafting") {
+//      buyPriceConverted = "None";
+//    } else {
+//      buyPriceConverted = "None";
+//    }
+//  } else {
+//    buyPriceConverted = buy;
+//    buyPriceConvertedType = ' bells';
+//  }
 String currencyAmount = buyPriceConverted(buy, milesPrice, source);
 String currencyType = buyPriceConvertedType(buy, milesPrice, source);
 String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
@@ -58,7 +72,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:colorFurnitureAccent,
+                      color:colorBugAccent,
                       boxShadow: [BoxShadow(
                         color: colorShadowPopUp,
                         offset: Offset(0,3),
@@ -179,9 +193,9 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                             children: <Widget>[
                               (){
                                 if(milesPrice!="NA"){
-                                  return infoContainer(percentScale, currencyIcon, bellsPrice.format(int.parse(currencyAmount))+currencyType);
+                                  return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
                                 } else if(currencyType!="None") {
-                                  return infoContainer(percentScale, currencyIcon, bellsPrice.format(int.parse(currencyAmount))+currencyType);
+                                  return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
                                 }
                                 return Container();
                               }(),
@@ -190,8 +204,8 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                                   return SizedBox(width: 20*percentScale,);
                                 }
                                 return Container();
-                              }(),                                    
-                              infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells"),
+                              }(),
+                              infoContainer(percentScale, 'coin.png', sell+" bells"),
                             ],
                           ),
                         ),
@@ -237,6 +251,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                                 }
                                 return Container();
                               }(),
+
                             ],
                           ),
                         ),

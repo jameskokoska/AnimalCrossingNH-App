@@ -68,6 +68,7 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                           )
                       ),
                     ),
+
                     circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
                     new Container(
                       transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
@@ -178,9 +179,9 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                                 children: <Widget>[
                                       (){
                                     if(milesPrice!="NA"){
-                                      return infoContainer(percentScale, currencyIcon, bellsPrice.format(int.parse(currencyAmount))+currencyType);
+                                      return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
                                     } else if(currencyType!="None") {
-                                      return infoContainer(percentScale, currencyIcon, bellsPrice.format(int.parse(currencyAmount))+currencyType);
+                                      return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
                                     }
                                     return Container();
                                   }(),
@@ -190,7 +191,7 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                                     }
                                     return Container();
                                   }(),
-                                  infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells"),
+                                  infoContainer(percentScale, 'coin.png', sell+" bells"),
                                 ],
                               ),
                             ),
