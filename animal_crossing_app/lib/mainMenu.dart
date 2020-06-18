@@ -784,7 +784,7 @@ class _HomePageState extends State<Home>{
                                   //Fossil Progress bar
                                   new GestureDetector(
                                     onTap: (){
-                                      print("fossil progress bar tapped");
+                                      //print("fossil progress bar tapped");
                                     },
                                     child: new Stack(
                                       //Progress BG
@@ -843,7 +843,7 @@ class _HomePageState extends State<Home>{
                                   //Bugs Progress bar
                                   new GestureDetector(
                                     onTap: (){
-                                      print("bugs progress bar tapped");
+                                      //print("bugs progress bar tapped");
                                     },
                                     child: new Stack(
                                     //Progress BG
@@ -903,7 +903,7 @@ class _HomePageState extends State<Home>{
                                   //Fish Progress Bar
                                   new GestureDetector(
                                     onTap: (){
-                                      print("fish progress bar tapped");
+                                      //print("fish progress bar tapped");
                                     },
                                     child: new Stack(
                                       //Progress BG
@@ -962,7 +962,7 @@ class _HomePageState extends State<Home>{
                                   //Music progress bar
                                   new GestureDetector(
                                     onTap: (){
-                                      print("music progress bar tapped");
+                                      //print("music progress bar tapped");
                                     },
                                     child: new Stack(
                                       //Progress BG
