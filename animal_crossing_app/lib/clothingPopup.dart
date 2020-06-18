@@ -10,7 +10,7 @@ final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedClothing = false;
 
 
-Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
+Widget clothingPopup(double percentScale, Color colorTextBlack, String name, String image, String buy, String sell, String color1, String color2, String milesPrice, String source, String variation, bool collected){
 
   String currencyAmount = buyPriceConverted(buy, milesPrice, source);
   String currencyType = buyPriceConvertedType(buy, milesPrice, source);
@@ -26,7 +26,7 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                   children: [
                     Container(
                         transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                        height:500*percentScale,
+                        height:450*percentScale,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(30*percentScale),
                           color: colorWhite,
@@ -34,7 +34,7 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                     ),
                     new Center(
                       child: new Container(
-                          transform: Matrix4.translationValues(0, -90*percentScale, 0),
+                          transform: Matrix4.translationValues(0, -80*percentScale, 0),
                           width: 113*percentScale,
                           height: 113*percentScale,
                           child: new Center(
@@ -202,8 +202,6 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                                 return infoContainer(percentScale, 'colorPalette.png', color1);
                               }
                             }(),
-                            infoContainerHHA(percentScale, 'house.png', capitalize(hhaSeries), capitalize(hhaConcept1), capitalize(hhaConcept2)),
-                            infoContainer(percentScale, 'tag.png', tag),
                             IntrinsicWidth(
                               child: Row(
                                 children: <Widget>[
@@ -214,27 +212,6 @@ Widget clothingPopUp(double percentScale, Color colorTextBlack, String name, Str
                                     return Container();
                                   }(),
                                       (){
-                                    if(pattern!="NA"){
-                                      return SizedBox(width: 20*percentScale,);
-                                    }
-                                    return Container();
-                                  }(),
-                                      (){
-                                    if(pattern!="NA"){
-                                      return infoContainer(percentScale, 'pattern.png', pattern);
-                                    }
-                                    return Container();
-                                  }(),
-                                      (){
-                                    if(kitCost!="NA"){
-                                      return SizedBox(width: 20*percentScale,);
-                                    }
-                                    return Container();
-                                  }(),
-                                      (){
-                                    if(kitCost!="NA"){
-                                      return infoContainer(percentScale, 'tag.png', kitCost);
-                                    }
                                     return Container();
                                   }(),
                                 ],
