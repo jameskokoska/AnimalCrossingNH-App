@@ -85,7 +85,6 @@ class _MuseumPageState extends State<MuseumPage>{
                   FossilList(),
                   GridList(
                     title: "Furniture",
-                    futureFunctions: [getHousewaresData(searchGrid),getMiscellaneousData(searchGrid),getWallmountedData(searchGrid),getPhotosData(searchGrid),getPostersData(searchGrid)],
                     sliverList: <Widget>[housewaresListSliver, miscellaneousListSliver, wallmountedListSliver, photosListSliver, postersListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorFurnitureAppBar,
@@ -96,7 +95,6 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Clothing",
-                    futureFunctions: [getHeadwearData(searchGrid), getAccessoriesData(searchGrid),getTopsData(searchGrid),getBottomsData(searchGrid),getSocksData(searchGrid),getShoesData(searchGrid),getUmbrellasData(searchGrid),getBagsData(searchGrid)],
                     sliverList: <Widget>[headwearListSliver,accessoriesListSliver,topsListSliver,bottomsListSliver,socksListSliver,shoesListSliver,umbrellasListSliver,bagsListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorClothingAppBar,
@@ -107,7 +105,6 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Tools",
-                    futureFunctions: [getToolsData(searchGrid)],
                     sliverList: <Widget>[toolsListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorToolsAppBar,
@@ -118,7 +115,6 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Floor & Wall",
-                    futureFunctions: [getRugsData(searchGrid), getFloorsData(searchGrid),getWallpapersData(searchGrid)],
                     sliverList: <Widget>[rugsListSliver,floorsListSliver,wallpapersListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorFloorWallAppBar,
@@ -129,7 +125,6 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Villagers",
-                    futureFunctions: [getVillagerData(searchGrid)],
                     sliverList: <Widget>[villagerListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorVillagerAppBar,

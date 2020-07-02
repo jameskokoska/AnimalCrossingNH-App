@@ -1,5 +1,3 @@
-
-
 import 'package:animal_crossing_app/floorWallListPopup.dart';
 import 'package:animal_crossing_app/villagerPopup.dart';
 
@@ -61,12 +59,21 @@ Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotConta
   }
 }
 
-List<Future> getFutureFunctions(String title, String search){
+List<Future<List>> getFutureFunctions(String title, String searchGrid){
   switch(title){
-    case "Furniture" : return [getHousewaresData(search),getMiscellaneousData(search),getWallmountedData(search),getPhotosData(search),getPostersData(search)];
+    case "Furniture" : return [getHousewaresData(searchGrid),getMiscellaneousData(searchGrid),getWallmountedData(searchGrid),getPhotosData(searchGrid),getPostersData(searchGrid)];
     break;
 
-    case "Clothing" : return [getHeadwearData(searchGrid), getAccessoriesData(search),getTopsData(search),getBottomsData(searchGrid),getSocksData(search),getShoesData(search),getUmbrellasData(search),getBagsData(search)];
+    case "Clothing" : return [getHeadwearData(searchGrid), getAccessoriesData(searchGrid),getTopsData(searchGrid),getBottomsData(searchGrid),getSocksData(searchGrid),getShoesData(searchGrid),getUmbrellasData(searchGrid),getBagsData(searchGrid)];
+    break;
+
+    case "Tools" : return [getToolsData(searchGrid)];
+    break;
+
+    case "Floor & Wall" : return [getRugsData(searchGrid), getFloorsData(searchGrid),getWallpapersData(searchGrid)];
+    break;
+
+    case "Villagers" : return [getVillagerData(searchGrid)];
     break;
 
     default: return([]);
@@ -111,7 +118,6 @@ class GridList extends StatefulWidget {
   );
 }
 
-
 class _GridListPageState extends State<GridList>{
   _GridListPageState({
     this.title, 
@@ -135,16 +141,17 @@ class _GridListPageState extends State<GridList>{
   final int popupHeight;
 
   final debouncerGrid = Debouncer(milliseconds: 300);
-  String search = '';
-
+  
   var futureGrid;
+  String searchGrid = '';
+  
   @override
   void initState(){
     super.initState();
     getStoredBool('showListVariations', true).then((indexResult){
       showListVariations = indexResult;
     });
-    futureGrid = Future.wait([getHousewaresData(search),getMiscellaneousData(search),getWallmountedData(search),getPhotosData(search),getPostersData(search)]);
+    futureGrid = Future.wait(getFutureFunctions(title, searchGrid));
   }
   
   @override
@@ -197,7 +204,7 @@ class _GridListPageState extends State<GridList>{
                           (BuildContext context, int index) {
                             return gridContainer(percentScale, popupHeight, colorTextBlack, accentColor, checkmarkColor, title, checkmark, snapshot.data[i][index]);
                           },
-                          childCount: snapshot.data[0].length,
+                          childCount: snapshot.data[i].length,
                         ),
                       ),
                     );
@@ -301,7 +308,7 @@ class _GridListPageState extends State<GridList>{
                                                 //debouncerGrid.run((){
                                                   setState(() {
                                                     searchGrid = string;
-                                                    futureGrid = Future.wait([getHousewaresData(search),getMiscellaneousData(search),getWallmountedData(search),getPhotosData(search),getPostersData(search)]);
+                                                    futureGrid = Future.wait(getFutureFunctions(title, searchGrid));
                                                   });
                                                 //});
                                               },

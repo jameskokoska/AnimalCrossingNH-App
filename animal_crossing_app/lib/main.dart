@@ -16,8 +16,6 @@ import 'settingList.dart';
 import 'artList.dart';
 import 'gridList.dart';
 
-//Global Search
-String searchGrid = '';
 
 //----------Global Colours-----------
 Color colorCircleContainerPopUp; //text
