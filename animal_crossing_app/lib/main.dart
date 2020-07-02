@@ -247,6 +247,7 @@ class _MainPageState extends State<Main> {
       colorWhite = Color(0xFF2B2B2B);
       colorLightDarkAccent = Color(0xFF1A1A1A);
       colorShadow = Color(0xFF313131);
+      colorShadowPopUp = Color(0x29000000);
       colorCheckRed = Color(0xFF805D62);
       colorCheckGreen = Color(0xFF557E55);
       colorCircleContainerPopUp = Color(0xFF979797);
