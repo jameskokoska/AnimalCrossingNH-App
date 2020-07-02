@@ -305,12 +305,12 @@ class _GridListPageState extends State<GridList>{
                                                 ),
                                               ),
                                               onChanged: (string){
-                                                //debouncerGrid.run((){
+                                                debouncerGrid.run((){
                                                   setState(() {
                                                     searchGrid = string;
                                                     futureGrid = Future.wait(getFutureFunctions(title, searchGrid));
                                                   });
-                                                //});
+                                                });
                                               },
                                             ),
                                           ),
