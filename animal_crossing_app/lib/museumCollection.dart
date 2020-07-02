@@ -3,7 +3,6 @@ import 'package:animal_crossing_app/fishList.dart';
 import 'package:animal_crossing_app/bugList.dart';
 import 'package:animal_crossing_app/fossilList.dart';
 import 'package:animal_crossing_app/music.dart';
-import 'package:animal_crossing_app/villagerList.dart';
 import 'gridList.dart';
 import 'databases.dart';
 import 'main.dart';
