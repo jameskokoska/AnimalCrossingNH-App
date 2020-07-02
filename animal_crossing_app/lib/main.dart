@@ -154,6 +154,7 @@ class _MainPageState extends State<Main> {
     musiclist = MusicList();
     settingList = SettingList();
     museumPage = MuseumPage();
+    artList = ArtList();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
