@@ -23,14 +23,12 @@ class MuseumPage extends StatefulWidget {
 
 
 class _MuseumPageState extends State<MuseumPage>{
-  String searchFurniture = '';
   Widget housewaresListSliver;
   Widget miscellaneousListSliver;
   Widget wallmountedListSliver;
   Widget photosListSliver;
   Widget postersListSliver;
 
-  String searchClothing = '';
   Widget headwearListSliver;
   Widget accessoriesListSliver;
   Widget topsListSliver;
@@ -40,15 +38,13 @@ class _MuseumPageState extends State<MuseumPage>{
   Widget umbrellasListSliver;
   Widget bagsListSliver;
 
-  String searchTools = '';
   Widget toolsListSliver;
 
-  String searchFloorWalls = '';
   Widget rugsListSliver;
   Widget floorsListSliver;
   Widget wallpapersListSliver;
 
-
+  Widget villagerListSliver;
 
   Widget build(BuildContext context){
 
@@ -84,13 +80,12 @@ class _MuseumPageState extends State<MuseumPage>{
                 children: <Widget>[
                   BugList(),
                   EmojiList(),
-                  VillagerList(),
                   MusicList(),
                   FishList(),
                   FossilList(),
                   GridList(
                     title: "Furniture",
-                    futureFunctions: [getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)],
+                    futureFunctions: [getHousewaresData(searchGrid),getMiscellaneousData(searchGrid),getWallmountedData(searchGrid),getPhotosData(searchGrid),getPostersData(searchGrid)],
                     sliverList: <Widget>[housewaresListSliver, miscellaneousListSliver, wallmountedListSliver, photosListSliver, postersListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorFurnitureAppBar,
@@ -101,7 +96,7 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Clothing",
-                    futureFunctions: [getHeadwearData(searchClothing), getAccessoriesData(searchClothing),getTopsData(searchClothing),getBottomsData(searchClothing),getSocksData(searchClothing),getShoesData(searchClothing),getUmbrellasData(searchClothing),getBagsData(searchClothing)],
+                    futureFunctions: [getHeadwearData(searchGrid), getAccessoriesData(searchGrid),getTopsData(searchGrid),getBottomsData(searchGrid),getSocksData(searchGrid),getShoesData(searchGrid),getUmbrellasData(searchGrid),getBagsData(searchGrid)],
                     sliverList: <Widget>[headwearListSliver,accessoriesListSliver,topsListSliver,bottomsListSliver,socksListSliver,shoesListSliver,umbrellasListSliver,bagsListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorClothingAppBar,
@@ -112,7 +107,7 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Tools",
-                    futureFunctions: [getToolsData(searchTools)],
+                    futureFunctions: [getToolsData(searchGrid)],
                     sliverList: <Widget>[toolsListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorToolsAppBar,
@@ -123,13 +118,24 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Floor & Wall",
-                    futureFunctions: [getRugsData(searchFloorWalls), getFloorsData(searchFloorWalls),getWallpapersData(searchFloorWalls)],
+                    futureFunctions: [getRugsData(searchGrid), getFloorsData(searchGrid),getWallpapersData(searchGrid)],
                     sliverList: <Widget>[rugsListSliver,floorsListSliver,wallpapersListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorFloorWallAppBar,
                     accentColor: colorFloorWallAccent,
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
+                    popupHeight: 450,
+                  ),
+                  GridList(
+                    title: "Villagers",
+                    futureFunctions: [getVillagerData(searchGrid)],
+                    sliverList: <Widget>[villagerListSliver],
+                    titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+                    mainColor: colorVillagerAppBar,
+                    accentColor: colorVillagerAccent,
+                    checkmark: false,
+                    checkmarkColor: colorVillagerCheck,
                     popupHeight: 450,
                   ),
                 ],

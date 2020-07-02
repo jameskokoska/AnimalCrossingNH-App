@@ -746,6 +746,7 @@ class ArtData{
 }
 
 Future<List<HousewaresData>> getHousewaresData(String search) async{
+  print("houseware read");
   String data = await rootBundle.loadString("assets/housewares.json");
 
   final jsonData = json.decode(data);

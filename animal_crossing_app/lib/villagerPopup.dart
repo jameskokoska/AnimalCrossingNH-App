@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:optimized_cached_image/widgets.dart';
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentFavoriteVillager = false;
 
 
-Widget villagerPopUp(double percentScale,bool favorite,String name,String imageLink,String species, String gender, String personality, String birthday, String catchphrase, String style1, String style2, String color1, String color2){
+Widget villagerPopUp(double percentScale, Color colorTextBlack, snapshotData){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -56,7 +56,7 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: imageLink,
+                          imageUrl: snapshotData.image,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -93,7 +93,7 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                         children: <Widget>[
                           AnimatedOpacity(
                             duration: Duration(milliseconds:300),
-                            opacity: favorite ? 0 : 1,
+                            opacity: popupCollectedGrid ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -111,7 +111,7 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                           ),
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !favorite ? 0 : 1,
+                            opacity: !popupCollectedGrid ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -129,8 +129,8 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: favorite ? 55*percentScale : 0,     //check needs changing to be based on current state
-                            bottom: favorite ? 55*percentScale : 0,
+                            top: popupCollectedGrid ? 55*percentScale : 0,     //check needs changing to be based on current state
+                            bottom: popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -142,8 +142,8 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !favorite ? 55*percentScale : 0,      //check needs changing to be based on current state
-                            bottom: !favorite ? 55*percentScale : 0,
+                            top: !popupCollectedGrid ? 55*percentScale : 0,      //check needs changing to be based on current state
+                            bottom: !popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -158,8 +158,8 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                             child: Center(
                               child: AnimatedContainer(
                                 duration: Duration(milliseconds: 200),
-                                width: favorite ? 30*percentScale : 0,
-                                height: favorite ? 30*percentScale : 0,
+                                width: popupCollectedGrid ? 30*percentScale : 0,
+                                height: popupCollectedGrid ? 30*percentScale : 0,
                                 child: Image.asset(
                                     'assets/heart.png',
                                 ),
@@ -176,12 +176,11 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: Color(0x00FFFFFF),
-                                    value: currentFavoriteVillager,
+                                    value: popupCollectedGrid,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        favorite = value;
-                                        currentFavoriteVillager = value;
-                                        saveBool("villagerCheckList"+name, false, favorite);
+                                        popupCollectedGrid = value;
+                                        saveBool(getKey(snapshotData, "Villagers"), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -204,7 +203,7 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                     child: Column(
                       children: [
                         Container(
-                          child: new Text(capitalize(name),
+                          child: new Text(capitalize(snapshotData.name),
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
                               color: colorTextBlack,
@@ -217,31 +216,31 @@ Widget villagerPopUp(double percentScale,bool favorite,String name,String imageL
                         SizedBox(
                           height:10*percentScale,
                         ),
-                        quoteContainer(percentScale, colorTextBlack, getGenderString(gender) + " - “"+catchphrase+"”"),
+                        quoteContainer(percentScale, colorTextBlack, getGenderString(snapshotData.gender) + " - “"+snapshotData.catchphrase+"”"),
                         SizedBox(
                           height:30*percentScale,
                         ),
 
                         //birthday
-                        infoContainer(percentScale, 'birthdayCake.png', birthday),
+                        infoContainer(percentScale, 'birthdayCake.png', snapshotData.birthday),
                         //species
-                        infoContainer(percentScale, 'cat.png',species),
+                        infoContainer(percentScale, 'cat.png',snapshotData.species),
                         //personaility
-                        infoContainer(percentScale, 'personailityEmoji.png', personality),
+                        infoContainer(percentScale, 'personailityEmoji.png', snapshotData.personality),
                         //style
                         Container(
                           child: (){
                             String style;
-                            if (style1 == style2){
-                              style = style1;
+                            if (snapshotData.style1 == snapshotData.style2){
+                              style = snapshotData.style1;
                             } else {
-                              style = style1 + ", " + style2;
+                              style = snapshotData.style1 + ", " + snapshotData.style2;
                             }
                             return infoContainer(percentScale, 'styleEmoji.png', style);
                           }()
                         ),
                         //colours
-                        infoContainer(percentScale, 'colorPalette.png',color1 + ", " + color2),
+                        infoContainer(percentScale, 'colorPalette.png',snapshotData.color1 + ", " +snapshotData. color2),
                       ],
                     ),
                   ),

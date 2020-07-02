@@ -1,8 +1,10 @@
 
 
 import 'package:animal_crossing_app/floorWallListPopup.dart';
+import 'package:animal_crossing_app/villagerPopup.dart';
 
 import 'main.dart';
+import 'databases.dart';
 import 'package:flutter/material.dart';
 import 'package:optimized_cached_image/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,6 +32,9 @@ String getKey(var snapshotContainerData, String title){
     case "Floor & Wall" : return ("floorWallsCheckList"+snapshotContainerData.name);
     break;
 
+    case "Villagers" : return ("villagerCheckList"+snapshotContainerData.name);
+    break;
+
     default: return("");
     break;
   }
@@ -48,8 +53,23 @@ Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotConta
 
     case "Floor & Wall" : return floorWallsPopUp(percentScale, colorTextBlack, snapshotContainerData);
     break;
+
+    case "Villagers" : return villagerPopUp(percentScale, colorTextBlack,  snapshotContainerData);
     
     default: return(Container());
+    break;
+  }
+}
+
+List<Future> getFutureFunctions(String title, String search){
+  switch(title){
+    case "Furniture" : return [getHousewaresData(search),getMiscellaneousData(search),getWallmountedData(search),getPhotosData(search),getPostersData(search)];
+    break;
+
+    case "Clothing" : return [getHeadwearData(searchGrid), getAccessoriesData(search),getTopsData(search),getBottomsData(searchGrid),getSocksData(search),getShoesData(search),getUmbrellasData(search),getBagsData(search)];
+    break;
+
+    default: return([]);
     break;
   }
 }
@@ -114,8 +134,8 @@ class _GridListPageState extends State<GridList>{
   final Color checkmarkColor;
   final int popupHeight;
 
-  var search;
   final debouncerGrid = Debouncer(milliseconds: 300);
+  String search = '';
 
   var futureGrid;
   @override
@@ -124,7 +144,7 @@ class _GridListPageState extends State<GridList>{
     getStoredBool('showListVariations', true).then((indexResult){
       showListVariations = indexResult;
     });
-    futureGrid = Future.wait(futureFunctions);
+    futureGrid = Future.wait([getHousewaresData(search),getMiscellaneousData(search),getWallmountedData(search),getPhotosData(search),getPostersData(search)]);
   }
   
   @override
@@ -255,14 +275,14 @@ class _GridListPageState extends State<GridList>{
                                             width: 300*percentScale,
                                             child: CupertinoTextField(
                                               onTap: (){
-                                                search='';
+                                                searchGrid='';
                                               },
                                               maxLength: 15,
                                               placeholder: (){
-                                                if (search==''){
+                                                if (searchGrid==''){
                                                     return 'Search';
                                                   } else {
-                                                    return search;
+                                                    return searchGrid;
                                                   }
                                               }(),
                                               decoration: BoxDecoration(
@@ -278,12 +298,12 @@ class _GridListPageState extends State<GridList>{
                                                 ),
                                               ),
                                               onChanged: (string){
-                                                debouncerGrid.run((){
+                                                //debouncerGrid.run((){
                                                   setState(() {
-                                                    search = string;
-                                                    futureGrid = Future.wait(futureFunctions);
+                                                    searchGrid = string;
+                                                    futureGrid = Future.wait([getHousewaresData(search),getMiscellaneousData(search),getWallmountedData(search),getPhotosData(search),getPostersData(search)]);
                                                   });
-                                                });
+                                                //});
                                               },
                                             ),
                                           ),
