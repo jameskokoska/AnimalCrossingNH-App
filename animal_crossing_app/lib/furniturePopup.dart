@@ -1,3 +1,5 @@
+import 'package:animal_crossing_app/gridList.dart';
+
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,10 +7,10 @@ import 'popupFunctions.dart';
 import 'package:optimized_cached_image/widgets.dart';
 
 
-bool currentCollectedFurniture = false;
 
 
-Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag, String variation, String pattern, String kitCost){
+Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotData){
+  
 //  String buyPriceConverted;
 //  String buyPriceConvertedType;
 //  if (buy=='NFS'){
@@ -24,9 +26,9 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, String name, St
 //    buyPriceConverted = buy;
 //    buyPriceConvertedType = ' bells';
 //  }
-String currencyAmount = buyPriceConverted(buy, milesPrice, source);
-String currencyType = buyPriceConvertedType(buy, milesPrice, source);
-String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
+  String currencyAmount = buyPriceConverted(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
+  String currencyType = buyPriceConvertedType(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
+  String currencyIcon = buyPriceConvertedIcon(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
   
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
@@ -61,7 +63,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: image,
+                          imageUrl: snapshotData.image,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -81,7 +83,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
@@ -91,7 +93,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                         children: <Widget>[
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !collected ? 0 : 1,
+                            opacity: !popupCollectedGrid ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -109,8 +111,8 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: collected ? 55*percentScale : 0, 
-                            bottom: collected ? 55*percentScale : 0,
+                            top: popupCollectedGrid ? 55*percentScale : 0, 
+                            bottom: popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -122,8 +124,8 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !collected ? 55*percentScale : 0,
-                            bottom: !collected ? 55*percentScale : 0,
+                            top: !popupCollectedGrid ? 55*percentScale : 0,
+                            bottom: !popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -143,12 +145,11 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: colorWhite,
-                                    value: currentCollectedFurniture,
+                                    value: popupCollectedGrid,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        collected = value;
-                                        currentCollectedFurniture = value;
-                                        saveBool("furnitureCheckList"+name+variation+pattern, false, currentCollectedFurniture);
+                                        popupCollectedGrid = value;
+                                        saveBool(getKey(snapshotData, "Furniture"), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -172,7 +173,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                         ),
                         Container(
                           width: 250*percentScale,
-                          child: new Text(capitalize(name),
+                          child: new Text(capitalize(snapshotData.name),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
@@ -190,7 +191,7 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(milesPrice!="NA"){
+                                if(snapshotData.milesPrice!="NA"){
                                   return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
                                 } else if(currencyType!="None") {
                                   return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
@@ -203,49 +204,49 @@ String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
                                 }
                                 return Container();
                               }(),
-                              infoContainer(percentScale, 'coin.png', priceFormat.format(int.parse(sell))+" bells"),
+                              infoContainer(percentScale, 'coin.png', priceFormat.format(int.parse(snapshotData.sell))+" bells"),
                             ],
                           ),
                         ),
                         (){
-                          if(color2 != color1){
-                            return infoContainer(percentScale, 'colorPalette.png', color1 + ", " + color2);
+                          if(snapshotData.color2 != snapshotData.color1){
+                            return infoContainer(percentScale, 'colorPalette.png', snapshotData.color1 + ", " + snapshotData.color2);
                           } else {
-                            return infoContainer(percentScale, 'colorPalette.png', color1);
+                            return infoContainer(percentScale, 'colorPalette.png', snapshotData.color1);
                           }
                         }(),
-                        infoContainerHHA(percentScale, 'house.png', capitalize(hhaSeries), capitalize(hhaConcept1), capitalize(hhaConcept2)),
-                        infoContainer(percentScale, 'tag.png', tag),
+                        infoContainerHHA(percentScale, 'house.png', capitalize(snapshotData.hhaSeries), capitalize(snapshotData.hhaConcept1), capitalize(snapshotData.hhaConcept2)),
+                        infoContainer(percentScale, 'tag.png', snapshotData.tag),
                         IntrinsicWidth(
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(variation!="NA"){
-                                  return infoContainer(percentScale, 'droplet.png', variation);
+                                if(snapshotData.variation!="NA"){
+                                  return infoContainer(percentScale, 'droplet.png', snapshotData.variation);
                                 }
                                 return Container();
                               }(),
                               (){
-                                if(pattern!="NA"){
+                                if(snapshotData.pattern!="NA"){
                                   return SizedBox(width: 20*percentScale,);
                                 }
                                 return Container();
                               }(),
                               (){
-                                if(pattern!="NA"){
-                                  return infoContainer(percentScale, 'pattern.png', pattern);
+                                if(snapshotData.pattern!="NA"){
+                                  return infoContainer(percentScale, 'pattern.png', snapshotData.pattern);
                                 }
                                 return Container();
                               }(),
                               (){
-                                if(kitCost!="NA"){
+                                if(snapshotData.kitCost!="NA"){
                                   return SizedBox(width: 20*percentScale,);
                                 }
                                 return Container();
                               }(),  
                               (){
-                                if(kitCost!="NA"){
-                                  return infoContainer(percentScale, 'tag.png', kitCost);
+                                if(snapshotData.kitCost!="NA"){
+                                  return infoContainer(percentScale, 'tag.png', snapshotData.kitCost);
                                 }
                                 return Container();
                               }(),

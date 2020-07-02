@@ -4,24 +4,23 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:optimized_cached_image/widgets.dart';
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentCollectedFloorWalls = false;
 
-
-Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, String image, String source, bool collected, String buy, String milesPrice, String sell, String color1, String color2, String hhaConcept1, String hhaConcept2, String hhaSeries, String tag){
+Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotData){
   String buyPriceConverted;
   String buyPriceConvertedType;
-  if (buy=='NFS'){
-    if (milesPrice != "NA"){
-      buyPriceConverted = milesPrice;
+  if (snapshotData.buy=='NFS'){
+    if (snapshotData.milesPrice != "NA"){
+      buyPriceConverted = snapshotData.milesPrice;
       buyPriceConvertedType = ' miles';
-    } else if (source == "Crafting") {
+    } else if (snapshotData.source == "Crafting") {
       buyPriceConverted = "None";
     }
   } else {
-    buyPriceConverted = buy;
+    buyPriceConverted = snapshotData.buy;
     buyPriceConvertedType = ' bells';
   }
   
@@ -59,7 +58,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: image,
+                          imageUrl: snapshotData.image,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -79,7 +78,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
@@ -89,7 +88,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                         children: <Widget>[
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !collected ? 0 : 1,
+                            opacity: !popupCollectedGrid ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -107,8 +106,8 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: collected ? 55*percentScale : 0, 
-                            bottom: collected ? 55*percentScale : 0,
+                            top: popupCollectedGrid ? 55*percentScale : 0, 
+                            bottom: popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -120,8 +119,8 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !collected ? 55*percentScale : 0,
-                            bottom: !collected ? 55*percentScale : 0,
+                            top: !popupCollectedGrid ? 55*percentScale : 0,
+                            bottom: !popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -141,12 +140,11 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: colorWhite,
-                                    value: currentCollectedFloorWalls,
+                                    value: popupCollectedGrid,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        collected = value;
-                                        currentCollectedFloorWalls = value;
-                                        saveBool("floorWallsCheckList"+name, false, collected);
+                                        popupCollectedGrid = value;
+                                        saveBool(getKey(snapshotData, "Floor & Wall"), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -170,7 +168,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                         ),
                         Container(
                           width: 250*percentScale,
-                          child: new Text(capitalize(name),
+                          child: new Text(capitalize(snapshotData.name),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
@@ -188,7 +186,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(milesPrice!="NA"){
+                                if(snapshotData.milesPrice!="NA"){
                                   return infoContainer(percentScale, 'miles.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
                                 } else if(buyPriceConverted!="None") {
                                   return infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
@@ -201,19 +199,19 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, String name, S
                                 }
                                 return Container();
                               }(),                                    
-                              infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells"),
+                              infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(snapshotData.sell))+" bells"),
                             ],
                           ),
                         ),
                         (){
-                          if(color2 != color1){
-                            return infoContainer(percentScale, 'colorPalette.png', color1 + ", " + color2);
+                          if(snapshotData.color2 != snapshotData.color1){
+                            return infoContainer(percentScale, 'colorPalette.png', snapshotData.color1 + ", " + snapshotData.color2);
                           } else {
-                            return infoContainer(percentScale, 'colorPalette.png', color1);
+                            return infoContainer(percentScale, 'colorPalette.png', snapshotData.color1);
                           }
                         }(),
-                        infoContainerHHA(percentScale, 'house.png', capitalize(hhaSeries), capitalize(hhaConcept1), capitalize(hhaConcept2)),
-                        infoContainer(percentScale, 'tag.png', tag),
+                        infoContainerHHA(percentScale, 'house.png', capitalize(snapshotData.hhaSeries), capitalize(snapshotData.hhaConcept1), capitalize(snapshotData.hhaConcept2)),
+                        infoContainer(percentScale, 'tag.png', snapshotData.tag),
                       ],
                     ),
                   ),

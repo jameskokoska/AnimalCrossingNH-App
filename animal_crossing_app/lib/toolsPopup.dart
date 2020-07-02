@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:optimized_cached_image/widgets.dart';
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentCollectedTool = false;
 
 
-Widget toolsPopUp(double percentScale,bool collected,String name,String imageLink,String variation, String bodyTile, String diy, String customize, String kitCost, String uses, String stackSize, String buy, String sell, String color1, String color2, String size, String set, String milesPrice, String source, String version, String filename, String variantID, String internalID, String uniqueEntryID){
+Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -56,7 +56,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: imageLink,
+                          imageUrl: snapshotData.image,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -93,7 +93,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                         children: <Widget>[
                           AnimatedOpacity(
                             duration: Duration(milliseconds:300),
-                            opacity: collected ? 0 : 1,
+                            opacity: popupCollectedGrid ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -111,7 +111,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                           ),
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !collected ? 0 : 1,
+                            opacity: !popupCollectedGrid ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -129,8 +129,8 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: collected ? 55*percentScale : 0,     //check needs changing to be based on current state
-                            bottom: collected ? 55*percentScale : 0,
+                            top: popupCollectedGrid ? 55*percentScale : 0,     //check needs changing to be based on current state
+                            bottom: popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                                 width: 55*percentScale,
                                 height: 55*percentScale,
@@ -142,8 +142,8 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !collected ? 55*percentScale : 0,      //check needs changing to be based on current state
-                            bottom: !collected ? 55*percentScale : 0,
+                            top: !popupCollectedGrid ? 55*percentScale : 0,      //check needs changing to be based on current state
+                            bottom: !popupCollectedGrid ? 55*percentScale : 0,
                             child: new Container(
                                 width: 55*percentScale,
                                 height: 55*percentScale,
@@ -163,12 +163,11 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: colorWhite,
-                                    value: currentCollectedTool,
+                                    value: popupCollectedGrid,
                                     onChanged: (bool value) {
                                       setState(() {
-                                        collected = value;
-                                        currentCollectedTool = value;
-                                        saveBool("toolsCheckList"+name+variation, false, collected);
+                                        popupCollectedGrid = value;
+                                        saveBool(getKey(snapshotData,"Tools"), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -181,7 +180,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                       )
                   ),
                 ),
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
                 // ---------- Card Centre Content ----------
                 Center(
                   child: Container(
@@ -192,7 +191,7 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                       children: [
                         Container(
                           width: 250*percentScale,
-                          child: new Text(capitalize(name),
+                          child: new Text(capitalize(snapshotData.name),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
@@ -206,17 +205,17 @@ Widget toolsPopUp(double percentScale,bool collected,String name,String imageLin
                         SizedBox(
                           height:10*percentScale,
                         ),
-                        quoteContainer(percentScale, colorTextBlack, uses + " Uses"),
+                        quoteContainer(percentScale, colorTextBlack, snapshotData.uses + " Uses"),
                         SizedBox(
                           height:10*percentScale,
                         ),
 
                         //birthday
-                        infoContainer(percentScale, 'bellBag.png', buy),
+                        infoContainer(percentScale, 'bellBag.png', snapshotData.buy),
                         //species
-                        infoContainer(percentScale, 'coin.png',sell),
+                        infoContainer(percentScale, 'coin.png',snapshotData.sell),
                         //personaility
-                        infoContainer(percentScale, 'magnifyingGlass.png', source),
+                        infoContainer(percentScale, 'magnifyingGlass.png', snapshotData.source),
                       ],
                     ),
                   ),

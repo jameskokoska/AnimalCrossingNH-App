@@ -4,17 +4,18 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:optimized_cached_image/widgets.dart';
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedClothing = false;
 
 
-Widget clothingPopup(double percentScale, Color colorTextBlack, String name, String image, String buy, String sell, String color1, String color2, String milesPrice, String source, String variation, bool collected){
+Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData){
 
-  String currencyAmount = buyPriceConverted(buy, milesPrice, source);
-  String currencyType = buyPriceConvertedType(buy, milesPrice, source);
-  String currencyIcon = buyPriceConvertedIcon(buy, milesPrice, source);
+  String currencyAmount = buyPriceConverted(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
+  String currencyType = buyPriceConvertedType(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
+  String currencyIcon = buyPriceConvertedIcon(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
 
   return new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
@@ -49,7 +50,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                                         image: imageProvider, fit: BoxFit.cover),
                                   ),
                                 ),
-                                imageUrl: image,
+                                imageUrl: snapshotData.image,
                                 //placeholder: (context, url) => CircularProgressIndicator(),
                                 errorWidget: (context, url, error) => new Icon(Icons.error),
                                 fadeInDuration: Duration(milliseconds:800),
@@ -69,7 +70,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                       ),
                     ),
 
-                    circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, source),
+                    circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
                     new Container(
                       transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                       child: Container(
@@ -79,7 +80,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                             children: <Widget>[
                               AnimatedOpacity(
                                 duration: Duration(milliseconds:200),
-                                opacity: !collected ? 0 : 1,
+                                opacity: !popupCollectedGrid ? 0 : 1,
                                 child: Center(
                                   child: Container(
                                     transform: Matrix4.translationValues(0,(37)*percentScale,0),
@@ -97,8 +98,8 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                               ),
                               AnimatedPositioned(
                                 duration: Duration(milliseconds: 300),
-                                top: collected ? 55*percentScale : 0,
-                                bottom: collected ? 55*percentScale : 0,
+                                top: popupCollectedGrid ? 55*percentScale : 0,
+                                bottom: popupCollectedGrid ? 55*percentScale : 0,
                                 child: new Container(
                                     width: 55*percentScale,
                                     height: 55*percentScale,
@@ -110,8 +111,8 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                               ),
                               AnimatedPositioned(
                                 duration: Duration(milliseconds: 200),
-                                top: !collected ? 55*percentScale : 0,
-                                bottom: !collected ? 55*percentScale : 0,
+                                top: !popupCollectedGrid ? 55*percentScale : 0,
+                                bottom: !popupCollectedGrid ? 55*percentScale : 0,
                                 child: new Container(
                                     width: 55*percentScale,
                                     height: 55*percentScale,
@@ -131,12 +132,11 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                                       child: new Checkbox(
                                         activeColor: Color(0x0499F9A9),
                                         checkColor: colorWhite,
-                                        value: currentCollectedClothing,
+                                        value: popupCollectedGrid,
                                         onChanged: (bool value) {
                                           setState(() {
-                                            collected = value;
-                                            currentCollectedClothing = value;
-                                            saveBool("clothingCheckList"+name+variation, false, currentCollectedClothing);
+                                            popupCollectedGrid = value;
+                                            saveBool(getKey(snapshotData, "Clothing"), false, popupCollectedGrid);
                                             HapticFeedback.mediumImpact();
                                           });
                                         },
@@ -160,7 +160,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                             ),
                             Container(
                               width: 250*percentScale,
-                              child: new Text(capitalize(name),
+                              child: new Text(capitalize(snapshotData.name),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: 'ArialRoundedBold',
@@ -178,7 +178,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                               child: Row(
                                 children: <Widget>[
                                       (){
-                                    if(milesPrice!="NA"){
+                                    if(snapshotData.milesPrice!="NA"){
                                       return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
                                     } else if(currencyType!="None") {
                                       return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
@@ -191,23 +191,23 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, String name, Str
                                     }
                                     return Container();
                                   }(),
-                                  infoContainer(percentScale, 'coin.png', sell+" bells"),
+                                  infoContainer(percentScale, 'coin.png', snapshotData.sell+" bells"),
                                 ],
                               ),
                             ),
                                 (){
-                              if(color2 != color1){
-                                return infoContainer(percentScale, 'colorPalette.png', color1 + ", " + color2);
+                              if(snapshotData.color2 != snapshotData.color1){
+                                return infoContainer(percentScale, 'colorPalette.png', snapshotData.color1 + ", " + snapshotData.color2);
                               } else {
-                                return infoContainer(percentScale, 'colorPalette.png', color1);
+                                return infoContainer(percentScale, 'colorPalette.png', snapshotData.color1);
                               }
                             }(),
                             IntrinsicWidth(
                               child: Row(
                                 children: <Widget>[
                                       (){
-                                    if(variation!="NA"){
-                                      return infoContainer(percentScale, 'droplet.png', variation);
+                                    if(snapshotData.variation!="NA"){
+                                      return infoContainer(percentScale, 'droplet.png', snapshotData.variation);
                                     }
                                     return Container();
                                   }(),

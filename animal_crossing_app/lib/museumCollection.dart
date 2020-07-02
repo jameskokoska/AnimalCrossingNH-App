@@ -1,13 +1,12 @@
 import 'package:animal_crossing_app/emojipedia.dart';
 import 'package:animal_crossing_app/fishList.dart';
 import 'package:animal_crossing_app/bugList.dart';
-import 'package:animal_crossing_app/floorWallList.dart';
 import 'package:animal_crossing_app/fossilList.dart';
 import 'package:animal_crossing_app/music.dart';
 import 'package:animal_crossing_app/villagerList.dart';
-import 'package:animal_crossing_app/toolsList.dart';
-import 'package:animal_crossing_app/clothinglist.dart';
-import 'package:animal_crossing_app/furniturelist.dart';
+import 'gridList.dart';
+import 'databases.dart';
+import 'main.dart';
 
 import 'package:flutter/material.dart';
 
@@ -24,6 +23,32 @@ class MuseumPage extends StatefulWidget {
 
 
 class _MuseumPageState extends State<MuseumPage>{
+  String searchFurniture = '';
+  Widget housewaresListSliver;
+  Widget miscellaneousListSliver;
+  Widget wallmountedListSliver;
+  Widget photosListSliver;
+  Widget postersListSliver;
+
+  String searchClothing = '';
+  Widget headwearListSliver;
+  Widget accessoriesListSliver;
+  Widget topsListSliver;
+  Widget bottomsListSliver;
+  Widget socksListSliver;
+  Widget shoesListSliver;
+  Widget umbrellasListSliver;
+  Widget bagsListSliver;
+
+  String searchTools = '';
+  Widget toolsListSliver;
+
+  String searchFloorWalls = '';
+  Widget rugsListSliver;
+  Widget floorsListSliver;
+  Widget wallpapersListSliver;
+
+
 
   Widget build(BuildContext context){
 
@@ -57,16 +82,56 @@ class _MuseumPageState extends State<MuseumPage>{
               
               TabBarView(
                 children: <Widget>[
-                  FurnitureList(),
-                  ClothingList(),
-                  ToolsList(),
-                  FloorWallsList(),
                   BugList(),
                   EmojiList(),
                   VillagerList(),
                   MusicList(),
                   FishList(),
                   FossilList(),
+                  GridList(
+                    title: "Furniture",
+                    futureFunctions: [getHousewaresData(searchFurniture),getMiscellaneousData(searchFurniture),getWallmountedData(searchFurniture),getPhotosData(searchFurniture),getPostersData(searchFurniture)],
+                    sliverList: <Widget>[housewaresListSliver, miscellaneousListSliver, wallmountedListSliver, photosListSliver, postersListSliver],
+                    titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+                    mainColor: colorFurnitureAppBar,
+                    accentColor: colorFurnitureAccent,
+                    checkmark: true,
+                    checkmarkColor: colorCheckGreen,
+                    popupHeight: 500,
+                  ),
+                  GridList(
+                    title: "Clothing",
+                    futureFunctions: [getHeadwearData(searchClothing), getAccessoriesData(searchClothing),getTopsData(searchClothing),getBottomsData(searchClothing),getSocksData(searchClothing),getShoesData(searchClothing),getUmbrellasData(searchClothing),getBagsData(searchClothing)],
+                    sliverList: <Widget>[headwearListSliver,accessoriesListSliver,topsListSliver,bottomsListSliver,socksListSliver,shoesListSliver,umbrellasListSliver,bagsListSliver],
+                    titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+                    mainColor: colorClothingAppBar,
+                    accentColor: colorClothingAccent,
+                    checkmark: true,
+                    checkmarkColor: colorCheckGreen,
+                    popupHeight: 450,
+                  ),
+                  GridList(
+                    title: "Tools",
+                    futureFunctions: [getToolsData(searchTools)],
+                    sliverList: <Widget>[toolsListSliver],
+                    titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+                    mainColor: colorToolsAppBar,
+                    accentColor: colorToolsAccent,
+                    checkmark: true,
+                    checkmarkColor: colorCheckGreen,
+                    popupHeight: 400,
+                  ),
+                  GridList(
+                    title: "Floor & Wall",
+                    futureFunctions: [getRugsData(searchFloorWalls), getFloorsData(searchFloorWalls),getWallpapersData(searchFloorWalls)],
+                    sliverList: <Widget>[rugsListSliver,floorsListSliver,wallpapersListSliver],
+                    titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+                    mainColor: colorFloorWallAppBar,
+                    accentColor: colorFloorWallAccent,
+                    checkmark: true,
+                    checkmarkColor: colorCheckGreen,
+                    popupHeight: 450,
+                  ),
                 ],
               ),
               TabBar(
@@ -80,7 +145,7 @@ class _MuseumPageState extends State<MuseumPage>{
                   Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),
-                  Tab(text:'')
+                  Tab(text:''),
                 ],
               ),
             ]

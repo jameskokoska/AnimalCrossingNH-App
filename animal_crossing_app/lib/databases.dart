@@ -201,7 +201,7 @@ class PostersData{
 
 class HeadwearData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -226,7 +226,7 @@ class HeadwearData{
   final String uniqueEntryId;
 
 
-  HeadwearData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  HeadwearData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.type,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);
@@ -234,7 +234,7 @@ class HeadwearData{
 
 class AccessoriesData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -259,7 +259,7 @@ class AccessoriesData{
   final String uniqueEntryId;
 
 
-  AccessoriesData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  AccessoriesData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.type,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);
@@ -267,7 +267,7 @@ class AccessoriesData{
 
 class TopsData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -292,7 +292,7 @@ class TopsData{
   final String uniqueEntryId;
 
 
-  TopsData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  TopsData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);
@@ -301,7 +301,7 @@ class TopsData{
 
 class BottomsData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -326,7 +326,7 @@ class BottomsData{
   final String uniqueEntryId;
 
 
-  BottomsData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  BottomsData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);
@@ -334,7 +334,7 @@ class BottomsData{
 
 class SocksData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -359,7 +359,7 @@ class SocksData{
   final String uniqueEntryId;
 
 
-  SocksData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  SocksData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);
@@ -367,7 +367,7 @@ class SocksData{
 
 class ShoesData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -392,7 +392,7 @@ class ShoesData{
   final String uniqueEntryId;
 
 
-  ShoesData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  ShoesData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);
@@ -400,7 +400,7 @@ class ShoesData{
 
 class UmbrellasData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -425,7 +425,7 @@ class UmbrellasData{
   final String uniqueEntryId;
 
 
-  UmbrellasData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  UmbrellasData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,
   this.version,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);
@@ -433,7 +433,7 @@ class UmbrellasData{
 
 class BagsData{
   final String name;
-  final String closetImage;
+  final String image;
   final String storageImage;
   final String variation;
   final String diy;
@@ -458,7 +458,7 @@ class BagsData{
   final String uniqueEntryId;
 
 
-  BagsData(this.name, this.closetImage,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  BagsData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
   this.color1,this.color2,this.size,this.milesPrice,this.source,this.seasonalAvailability,
   this.version,this.style,this.labelThemes,this.villagerEquippable,this.catalog,this.filename,this.internalId,
   this.uniqueEntryId);

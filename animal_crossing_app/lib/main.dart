@@ -1,4 +1,4 @@
-import 'package:animal_crossing_app/floorWallList.dart';
+import 'package:animal_crossing_app/gridList.dart';
 import 'package:animal_crossing_app/museumCollection.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -12,14 +12,9 @@ import 'fishList.dart';
 import 'bugList.dart';
 import 'music.dart';
 import 'museumCollection.dart';
-import 'villagerList.dart';
 import 'settingList.dart';
 import 'artList.dart';
-import 'floorWallList.dart';
-import 'toolsList.dart';
-import 'clothingList.dart';
-import 'furnitureList.dart';
-import 'emojipedia.dart';
+import 'gridList.dart';
 
 //----------Global Colours-----------
 Color colorCircleContainerPopUp; //text
@@ -73,14 +68,14 @@ var currentDate = DateTime.now();
 getStoredBool(String key, bool defaultState) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = prefs.getBool(key) ?? defaultState;
-  //print('read $key $storedBool');
+  print('read $key $storedBool');
   return storedBool;
 }
 
 saveBool(String key, bool defaultState, bool toStoreValue) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = toStoreValue ?? defaultState;
-  //print('Stored $key $storedBool');
+  print('Stored $key $storedBool');
   await prefs.setBool(key, storedBool);
 }
 
@@ -145,13 +140,7 @@ class _MainPageState extends State<Main> {
   MusicList musiclist;
   SettingList settingList;
   MuseumPage museumPage;
-  VillagerList villagerList;
   ArtList artList;
-  EmojiList emojiList; 
-  FloorWallsList floorWallsList;
-  ToolsList toolsList;
-  ClothingList clothingList;
-  FurnitureList furnitureList;
   Widget currentPageWidget;
 
   
@@ -164,13 +153,6 @@ class _MainPageState extends State<Main> {
     musiclist = MusicList();
     settingList = SettingList();
     museumPage = MuseumPage();
-    villagerList = VillagerList();
-    artList = ArtList();
-    emojiList = EmojiList();
-    floorWallsList = FloorWallsList();
-    toolsList = ToolsList();
-    clothingList = ClothingList();
-    furnitureList = FurnitureList();
 
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
