@@ -15,6 +15,7 @@ import 'museumCollection.dart';
 import 'settingList.dart';
 import 'artList.dart';
 import 'gridList.dart';
+import 'creditsList.dart';
 
 
 //----------Global Colours-----------
@@ -50,6 +51,7 @@ Color colorToolsAccent;
 Color colorFloorWallAppBar;
 Color colorFloorWallAccent;
 Color colorEmojipediaAppBar;
+Color colorCreditsAppBar;
 
 Color colorArtAppBar;
 Color colorArtAccent;
@@ -142,6 +144,7 @@ class _MainPageState extends State<Main> {
   SettingList settingList;
   MuseumPage museumPage;
   ArtList artList;
+  CreditsList creditsList;
   Widget currentPageWidget;
 
   
@@ -238,6 +241,7 @@ class _MainPageState extends State<Main> {
       colorArtAppBar = Color(0xFF730000);
       colorArtAccent = Color(0xFFe8f5e9);
       colorArtTextDarkGreen = Color(0xFF1b5e20);
+      colorCreditsAppBar = Color(0xFFFFF176);
     } else if(darkMode){
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
@@ -274,6 +278,7 @@ class _MainPageState extends State<Main> {
       colorFloorWallAppBar = Color(0xFF204064);
       colorFloorWallAccent = Color(0xFF505E68);
       colorEmojipediaAppBar = Color(0xFF807623);
+      colorCreditsAppBar = Color(0xFF807623);
     }
 
     double deviceWidth = MediaQuery.of(context).size.width;
