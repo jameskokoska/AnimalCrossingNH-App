@@ -26,10 +26,11 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
 //    buyPriceConverted = buy;
 //    buyPriceConvertedType = ' bells';
 //  }
+
   String currencyAmount = buyPriceConverted(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
   String currencyType = buyPriceConvertedType(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
   String currencyIcon = buyPriceConvertedIcon(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
-  
+
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -191,10 +192,14 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                           child: Row(
                             children: <Widget>[
                               (){
-                                if(snapshotData.milesPrice!="NA"){
-                                  return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
-                                } else if(currencyType!="None") {
-                                  return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
+                                if (snapshotData.milesPrice != null) {
+                                  if (snapshotData.milesPrice != "NA") {
+                                    return infoContainer(percentScale, currencyIcon, currencyAmount + currencyType);
+                                  } else if (currencyType != "None") {
+                                    return infoContainer(percentScale, currencyIcon, currencyAmount + currencyType);
+                                  }
+                                } else {
+                                  return infoContainer(percentScale, "leaf.png", "None" + "");
                                 }
                                 return Container();
                               }(),
