@@ -1148,7 +1148,6 @@ Future<List<VillagerData>> getVillagerData(String search) async{
   String data = await rootBundle.loadString("assets/villagers.json");
 
   final jsonData = json.decode(data);
-  bool favorite = false;
   List<VillagerData> villagerData = [];
   for(var u in jsonData){
     VillagerData villagerDatum = VillagerData(u["Name"],u["Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"]);
@@ -1958,6 +1957,26 @@ Future<RecipeData> getRecipeData(String search) async{
     RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Sources"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
     if (u["Name"].toLowerCase().contains(search.toLowerCase())){
       return recipeDatum;
+    }
+  }
+  return null;
+}
+
+class OtherData{
+  final String name;
+  final String image;
+
+  OtherData(this.name, this.image);
+}
+
+Future<OtherData> getOtherData(String search) async{
+  String data = await rootBundle.loadString("assets/other.json");
+
+  final jsonData = json.decode(data);
+  for(var u in jsonData){
+    OtherData otherDatum = OtherData(u["Name"],u["Image"]);
+    if (u["Name"]!=null&&search!=null&&u["Name"].toLowerCase().contains(search.toLowerCase())){
+      return otherDatum;
     }
   }
   return null;

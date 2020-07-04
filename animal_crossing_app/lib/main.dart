@@ -1,4 +1,3 @@
-import 'package:animal_crossing_app/gridList.dart';
 import 'package:animal_crossing_app/museumCollection.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -14,7 +13,6 @@ import 'music.dart';
 import 'museumCollection.dart';
 import 'settingList.dart';
 import 'artList.dart';
-import 'gridList.dart';
 import 'creditsList.dart';
 
 

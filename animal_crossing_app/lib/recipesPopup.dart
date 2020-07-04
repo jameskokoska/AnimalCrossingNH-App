@@ -11,11 +11,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 
 Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData){
-  
-  String currencyAmount = buyPriceConverted(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
-  String currencyType = buyPriceConvertedType(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
-  String currencyIcon = buyPriceConvertedIcon(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
-  
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
@@ -177,18 +172,97 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                               SizedBox(
                                 height:20*percentScale,
                               ),
-                              IntrinsicWidth(
-                                child: Row(
-                                  children: <Widget>[
-                                    (){
-                                        return infoContainer(percentScale, 'coin.png', snapshot.data.number1);
-                                    }(),
-                                    (){
-                                      return infoContainer(percentScale, 'coin.png', snapshot.data.material1);
-                                    }(),
-                                  ],
-                                ),
+                              FutureBuilder(
+                                future: getOtherData(snapshot.data.material1),
+                                builder: (context,snapshotOther){
+                                  if(snapshotOther.hasData){
+                                    return infoContainer(percentScale, snapshotOther.data.image, snapshot.data.number1 + " " + snapshot.data.material1, true);
+                                  } else {
+                                    return infoContainer(percentScale, 'leaf.png', snapshot.data.number1 + " " + snapshot.data.material1);
+                                  }
+                                }
                               ),
+                              (){
+                                if(snapshot.data.number2 != null)
+                                  return FutureBuilder(
+                                    future: getOtherData(snapshot.data.material2),
+                                    builder: (context,snapshotOther){
+                                      if(snapshotOther.hasData){
+                                        return infoContainer(percentScale, snapshotOther.data.image, snapshot.data.number2 + " " + snapshot.data.material2, true);
+                                      } else {
+                                        return infoContainer(percentScale, 'leaf.png', snapshot.data.number2 + " " + snapshot.data.material2);
+                                      }
+                                    }
+                                  );
+                                else
+                                  return Container();
+                              }(),
+                              (){
+                                if(snapshot.data.number3 != null)
+                                  return FutureBuilder(
+                                    future: getOtherData(snapshot.data.material3),
+                                    builder: (context,snapshotOther){
+                                      if(snapshotOther.hasData){
+                                        return infoContainer(percentScale, snapshotOther.data.image, snapshot.data.number3 + " " + snapshot.data.material3, true);
+                                      } else {
+                                        return infoContainer(percentScale, 'leaf.png', snapshot.data.number3 + " " + snapshot.data.material3);
+                                      }
+                                    }
+                                  );
+                                else
+                                  return Container();
+                              }(),
+                              (){
+                                if(snapshot.data.number4 != null)
+                                  return FutureBuilder(
+                                    future: getOtherData(snapshot.data.material4),
+                                    builder: (context,snapshotOther){
+                                      if(snapshotOther.hasData){
+                                        return infoContainer(percentScale, snapshotOther.data.image, snapshot.data.number4 + " " + snapshot.data.material4, true);
+                                      } else {
+                                        return infoContainer(percentScale, 'leaf.png', snapshot.data.number4 + " " + snapshot.data.material4);
+                                      }
+                                    }
+                                  );
+                                else
+                                  return Container();
+                              }(),
+                              (){
+                                if(snapshot.data.number5 != null)
+                                  return FutureBuilder(
+                                    future: getOtherData(snapshot.data.material5),
+                                    builder: (context,snapshotOther){
+                                      if(snapshotOther.hasData){
+                                        return infoContainer(percentScale, snapshotOther.data.image, snapshot.data.number5 + " " + snapshot.data.material5, true);
+                                      } else {
+                                        return infoContainer(percentScale, 'leaf.png', snapshot.data.number5 + " " + snapshot.data.material5);
+                                      }
+                                    }
+                                  );
+                                else
+                                  return Container();
+                              }(),
+                              (){
+                                if(snapshot.data.number6 != null)
+                                  return FutureBuilder(
+                                    future: getOtherData(snapshot.data.material6),
+                                    builder: (context,snapshotOther){
+                                      if(snapshotOther.hasData){
+                                        return infoContainer(percentScale, snapshotOther.data.image, snapshot.data.number6 + " " + snapshot.data.material6, true);
+                                      } else {
+                                        return infoContainer(percentScale, 'leaf.png', snapshot.data.number6 + " " + snapshot.data.material6);
+                                      }
+                                    }
+                                  );
+                                else
+                                  return Container();
+                              }(),
+                              (){
+                                if(snapshot.data.sources!=null)
+                                  return infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', snapshot.data.sources);
+                                else
+                                  return Container();
+                              }()
                             ],
                           ),
                         ),
@@ -207,3 +281,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
   );
 } 
 
+Future<String> determineMaterialImage(String materialName) async{
+  var getOther = await getOtherData(materialName);
+  return getOther.name;
+}

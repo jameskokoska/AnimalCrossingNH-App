@@ -1,6 +1,8 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 final priceFormat = new NumberFormat("#,##0");
 
@@ -60,7 +62,7 @@ String determineTime(String nhJan,String nhFeb,String nhMar,String nhApr,String 
   }
 }
 
-Widget infoContainer(double percentScale, String imageIcon, String displayString){
+Widget infoContainer(double percentScale, String imageIcon, String displayString, [bool imageLink = false]){
   if(displayString=="NA")
     return Container();
   return Container(
@@ -69,11 +71,30 @@ Widget infoContainer(double percentScale, String imageIcon, String displayString
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          child: new Image.asset(
-            'assets/'+imageIcon,
-            height: 25*percentScale,
-            width: 25*percentScale,
-          ),
+          child: (){
+            if(imageLink==false){
+              return new Image.asset(
+                'assets/'+imageIcon,
+                height: 25*percentScale,
+                width: 25*percentScale,
+              );
+            }else{
+              return CachedNetworkImage(
+                errorWidget: (context, url, error) => new Icon(Icons.error),
+                fadeInDuration: Duration(milliseconds:800),
+                imageUrl: imageIcon,
+                imageBuilder: (context, imageProvider) => Container(
+                  width: 38*percentScale,
+                  height: 38*percentScale,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4*percentScale),
+                    image: DecorationImage(
+                      image: imageProvider, fit: BoxFit.cover),
+                  ),
+                )
+              );
+            }
+          }()
         ),
         SizedBox(
           width: 5*percentScale,

@@ -19,8 +19,6 @@ bool popupCollectedGrid;
 
 String getKey(var snapshotContainerData, String title){
   switch(title){
-    case "Craftable" : 
-
     case "Furniture" : return("furnitureCheckList"+snapshotContainerData.name+snapshotContainerData.variation+snapshotContainerData.pattern);
     break;
 

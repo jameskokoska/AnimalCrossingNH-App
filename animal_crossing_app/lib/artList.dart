@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'artPopup.dart';
 import 'databases.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+//import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ArtList extends StatefulWidget {
   ArtList({Key key, this.title}) : super(key: key);
@@ -244,7 +244,7 @@ Widget artContainer(double percentScale,int index,String name,String image,Strin
                             enableFeedback: true,
                             onLongPress: (){
                               setState(() {
-                                currentCollectedArt = !snapshot.data;;
+                                currentCollectedArt = !snapshot.data;
                                 saveBool("artCheckList"+name+genuine, false, !snapshot.data);
                               });
                             },
