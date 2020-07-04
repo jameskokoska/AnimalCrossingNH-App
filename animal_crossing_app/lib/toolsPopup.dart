@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
-import 'package:optimized_cached_image/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
 
 
-Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData){
+Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData, bool recipe){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -46,7 +46,7 @@ Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData){
                     // ---------- Card Tab Image ----------
                     child: new Center(
                       child: new Center(
-                        child:  OptimizedCacheImage(
+                        child:  CachedNetworkImage(
                           imageBuilder: (context, imageProvider) => Container(
                             width: 80*percentScale,
                             height: 80*percentScale,
@@ -167,7 +167,7 @@ Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData){
                                     onChanged: (bool value) {
                                       setState(() {
                                         popupCollectedGrid = value;
-                                        saveBool(getKey(snapshotData,"Tools"), false, popupCollectedGrid);
+                                        saveBool(getKey(snapshotData,"Tools", recipe), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -191,7 +191,12 @@ Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData){
                       children: [
                         Container(
                           width: 250*percentScale,
-                          child: new Text(capitalize(snapshotData.name),
+                          child: new Text((){
+                              if(recipe==false)
+                                return capitalize(snapshotData.name);
+                              else
+                                return capitalize(snapshotData.name + " recipe");
+                            }(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',

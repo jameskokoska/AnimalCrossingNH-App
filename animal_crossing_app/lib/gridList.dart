@@ -4,7 +4,7 @@ import 'package:animal_crossing_app/villagerPopup.dart';
 import 'main.dart';
 import 'databases.dart';
 import 'package:flutter/material.dart';
-import 'package:optimized_cached_image/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dart:async';
@@ -16,43 +16,63 @@ import 'floorWallListPopup.dart';
 
 bool popupCollectedGrid;
 
-String getKey(var snapshotContainerData, String title){
+String getKey(var snapshotContainerData, String title, [recipe=false]){
   switch(title){
-    case "Furniture" : return("furnitureCheckList"+snapshotContainerData.name+snapshotContainerData.variation+snapshotContainerData.pattern);
+    case "Furniture" : 
+      if(recipe==false)
+        return("furnitureCheckList"+snapshotContainerData.name+snapshotContainerData.variation+snapshotContainerData.pattern);
+      else
+        return getKey(snapshotContainerData, "Recipes");
     break;
 
-    case "Clothing" : return("clothingCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
+    case "Clothing" : 
+      if(recipe==false)
+        return("clothingCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
+      else
+        return getKey(snapshotContainerData, "Recipes");
     break;
 
-    case "Tools" : return("toolsCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
+    case "Tools" : 
+      if(recipe==false)
+        return("toolsCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
+      else
+        return getKey(snapshotContainerData, "Recipes");
     break;
 
-    case "Floor & Wall" : return ("floorWallsCheckList"+snapshotContainerData.name);
+    case "Floor & Wall" : 
+      if(recipe==false)
+        return ("floorWallsCheckList"+snapshotContainerData.name);
+      else
+        return getKey(snapshotContainerData, "Recipes");
     break;
 
     case "Villagers" : return ("villagerCheckList"+snapshotContainerData.name);
     break;
+
+    case "Recipes" : return("recipesCheckList"+snapshotContainerData.name);
 
     default: return("");
     break;
   }
 }
 
-Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotContainerData){
+Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotContainerData,[bool recipe=false]){
   switch(title){
-    case "Furniture" : return furniturePopUp(percentScale, colorTextBlack,snapshotContainerData);
+    case "Furniture" : return furniturePopUp(percentScale, colorTextBlack,snapshotContainerData, recipe);
     break;
 
-    case "Clothing" : return clothingPopup(percentScale, colorTextBlack, snapshotContainerData);
+    case "Clothing" : return clothingPopup(percentScale, colorTextBlack, snapshotContainerData, recipe);
     break;
 
-    case "Tools" : return toolsPopUp(percentScale, colorTextBlack, snapshotContainerData);
+    case "Tools" : return toolsPopUp(percentScale, colorTextBlack, snapshotContainerData, recipe);
     break;
 
-    case "Floor & Wall" : return floorWallsPopUp(percentScale, colorTextBlack, snapshotContainerData);
+    case "Floor & Wall" : return floorWallsPopUp(percentScale, colorTextBlack, snapshotContainerData, recipe);
     break;
 
     case "Villagers" : return villagerPopUp(percentScale, colorTextBlack,  snapshotContainerData);
+
+    case "Recipes" : return(getPopupFunction(getCraftableGroup(snapshotContainerData.craftableGroup), percentScale, colorTextBlack, snapshotContainerData, true));
     
     default: return(Container());
     break;
@@ -76,7 +96,32 @@ List<Future<List>> getFutureFunctions(String title, String searchGrid){
     case "Villagers" : return [getVillagerData(searchGrid)];
     break;
 
+    case "Recipes" : return [getCraftableData(searchGrid)];
+    break;
+
     default: return([]);
+    break;
+  }
+}
+
+String getCraftableGroup(String craftableGroup){
+  switch(craftableGroup){
+    case "Furniture" : return "Furniture";
+    break;
+
+    case "Clothing" : return "Clothing";
+    break;
+
+    case "Tools" : return "Tools";
+    break;
+
+    case "Floor & Wall" : return "Floor & Wall";
+    break;
+
+    case "Villagers" : return "Villagers";
+    break;
+
+    default: return("");
     break;
   }
 }
@@ -421,7 +466,7 @@ Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack,
                         children: <Widget>[
                           Container(
                             transform: Matrix4.translationValues(0,4*percentScale,0),
-                            child: OptimizedCacheImage(
+                            child: CachedNetworkImage(
                               imageBuilder: (context, imageProvider) => Container(
                                 width: 70*percentScale,
                                 height: 70*percentScale,

@@ -2,7 +2,7 @@ import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:optimized_cached_image/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'artPopup.dart';
 import 'databases.dart';
@@ -320,7 +320,7 @@ Widget artContainer(double percentScale,int index,String name,String image,Strin
                         children: <Widget>[
                           Container(
                             transform: Matrix4.translationValues(0,4*percentScale,0),
-                            child: OptimizedCacheImage(
+                            child: CachedNetworkImage(
                               imageBuilder: (context, imageProvider) => Container(
                                 width: 100*percentScale,
                                 height: 100*percentScale,

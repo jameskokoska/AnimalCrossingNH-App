@@ -746,7 +746,6 @@ class ArtData{
 }
 
 Future<List<HousewaresData>> getHousewaresData(String search) async{
-  print("houseware read");
   String data = await rootBundle.loadString("assets/housewares.json");
 
   final jsonData = json.decode(data);
@@ -854,167 +853,167 @@ Future<List<PostersData>> getPostersData(String search) async{
 }
 
 Future<List<HeadwearData>> getHeadwearData(String search) async{
-    String data = await rootBundle.loadString("assets/headwear.json");
+  String data = await rootBundle.loadString("assets/headwear.json");
 
-    final jsonData = json.decode(data);
-    List<HeadwearData> headwearData = [];
-    String previousName="";
-    for(var u in jsonData){
-      HeadwearData headwearDatum = HeadwearData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName||showListVariations==true){
-        if(search == ''){
-          headwearData.add(headwearDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          headwearData.add(headwearDatum);
-        } else if (u["Style"].toLowerCase().contains(search.toLowerCase())){
-          headwearData.add(headwearDatum);
-        }
+  final jsonData = json.decode(data);
+  List<HeadwearData> headwearData = [];
+  String previousName="";
+  for(var u in jsonData){
+    HeadwearData headwearDatum = HeadwearData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        headwearData.add(headwearDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        headwearData.add(headwearDatum);
+      } else if (u["Style"].toLowerCase().contains(search.toLowerCase())){
+        headwearData.add(headwearDatum);
       }
-      previousName = u["Name"];
     }
-    return headwearData;
+    previousName = u["Name"];
   }
+  return headwearData;
+}
 
-  Future<List<AccessoriesData>> getAccessoriesData(String search) async{
-    String data = await rootBundle.loadString("assets/accessories.json");
+Future<List<AccessoriesData>> getAccessoriesData(String search) async{
+  String data = await rootBundle.loadString("assets/accessories.json");
 
-    final jsonData = json.decode(data);
-    List<AccessoriesData> accessoriesData = [];
-    String previousName="";
-    for(var u in jsonData){
-      AccessoriesData accessoriesDatum = AccessoriesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          accessoriesData.add(accessoriesDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          accessoriesData.add(accessoriesDatum);
-        }
+  final jsonData = json.decode(data);
+  List<AccessoriesData> accessoriesData = [];
+  String previousName="";
+  for(var u in jsonData){
+    AccessoriesData accessoriesDatum = AccessoriesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        accessoriesData.add(accessoriesDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        accessoriesData.add(accessoriesDatum);
       }
-      previousName = u["Name"];
     }
-    return accessoriesData;
+    previousName = u["Name"];
   }
+  return accessoriesData;
+}
 
-  Future<List<TopsData>> getTopsData(String search) async{
-    String data = await rootBundle.loadString("assets/tops.json");
+Future<List<TopsData>> getTopsData(String search) async{
+  String data = await rootBundle.loadString("assets/tops.json");
 
-    final jsonData = json.decode(data);
-    List<TopsData> topsData = [];
-    String previousName="";
-    for(var u in jsonData){
-      TopsData topsDatum = TopsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          topsData.add(topsDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          topsData.add(topsDatum);
-        }
+  final jsonData = json.decode(data);
+  List<TopsData> topsData = [];
+  String previousName="";
+  for(var u in jsonData){
+    TopsData topsDatum = TopsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        topsData.add(topsDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        topsData.add(topsDatum);
       }
-      previousName = u["Name"];
     }
-    return topsData;
+    previousName = u["Name"];
   }
+  return topsData;
+}
 
-  Future<List<BottomsData>> getBottomsData(String search) async{
-    String data = await rootBundle.loadString("assets/bottoms.json");
+Future<List<BottomsData>> getBottomsData(String search) async{
+  String data = await rootBundle.loadString("assets/bottoms.json");
 
-    final jsonData = json.decode(data);
-    List<BottomsData> bottomsData = [];
-    String previousName="";
-    for(var u in jsonData){
-      BottomsData bottomsDatum = BottomsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          bottomsData.add(bottomsDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          bottomsData.add(bottomsDatum);
-        }
+  final jsonData = json.decode(data);
+  List<BottomsData> bottomsData = [];
+  String previousName="";
+  for(var u in jsonData){
+    BottomsData bottomsDatum = BottomsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        bottomsData.add(bottomsDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        bottomsData.add(bottomsDatum);
       }
-      previousName = u["Name"];
     }
-    return bottomsData;
+    previousName = u["Name"];
   }
+  return bottomsData;
+}
 
-  Future<List<SocksData>> getSocksData(String search) async{
-    String data = await rootBundle.loadString("assets/socks.json");
+Future<List<SocksData>> getSocksData(String search) async{
+  String data = await rootBundle.loadString("assets/socks.json");
 
-    final jsonData = json.decode(data);
-    List<SocksData> socksData = [];
-    String previousName="";
-    for(var u in jsonData){
-      SocksData socksDatum = SocksData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          socksData.add(socksDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          socksData.add(socksDatum);
-        }
+  final jsonData = json.decode(data);
+  List<SocksData> socksData = [];
+  String previousName="";
+  for(var u in jsonData){
+    SocksData socksDatum = SocksData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        socksData.add(socksDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        socksData.add(socksDatum);
       }
-      previousName = u["Name"];
     }
-    return socksData;
+    previousName = u["Name"];
   }
+  return socksData;
+}
 
-  Future<List<ShoesData>> getShoesData(String search) async{
-    String data = await rootBundle.loadString("assets/shoes.json");
+Future<List<ShoesData>> getShoesData(String search) async{
+  String data = await rootBundle.loadString("assets/shoes.json");
 
-    final jsonData = json.decode(data);
-    
-    List<ShoesData> shoesData = [];
-    String previousName="";
-    for(var u in jsonData){
-      ShoesData shoesDatum = ShoesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          shoesData.add(shoesDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          shoesData.add(shoesDatum);
-        }
+  final jsonData = json.decode(data);
+  
+  List<ShoesData> shoesData = [];
+  String previousName="";
+  for(var u in jsonData){
+    ShoesData shoesDatum = ShoesData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        shoesData.add(shoesDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        shoesData.add(shoesDatum);
       }
-      previousName = u["Name"];
     }
-    return shoesData;
+    previousName = u["Name"];
   }
+  return shoesData;
+}
 
-  Future<List<UmbrellasData>> getUmbrellasData(String search) async{
-    String data = await rootBundle.loadString("assets/umbrellas.json");
+Future<List<UmbrellasData>> getUmbrellasData(String search) async{
+  String data = await rootBundle.loadString("assets/umbrellas.json");
 
-    final jsonData = json.decode(data);
-    List<UmbrellasData> umbrellasData = [];
-    String previousName="";
-    for(var u in jsonData){
-      UmbrellasData umbrellasDatum = UmbrellasData(u["Name"],u["Closet Image"],u["Storage Image"],"",u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          umbrellasData.add(umbrellasDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          umbrellasData.add(umbrellasDatum);
-        }
+  final jsonData = json.decode(data);
+  List<UmbrellasData> umbrellasData = [];
+  String previousName="";
+  for(var u in jsonData){
+    UmbrellasData umbrellasDatum = UmbrellasData(u["Name"],u["Closet Image"],u["Storage Image"],"",u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Version"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        umbrellasData.add(umbrellasDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        umbrellasData.add(umbrellasDatum);
       }
-      previousName = u["Name"];
     }
-    return umbrellasData;
+    previousName = u["Name"];
   }
+  return umbrellasData;
+}
 
-  Future<List<BagsData>> getBagsData(String search) async{
-    String data = await rootBundle.loadString("assets/bags.json");
+Future<List<BagsData>> getBagsData(String search) async{
+  String data = await rootBundle.loadString("assets/bags.json");
 
-    final jsonData = json.decode(data);
-    List<BagsData> bagsData = [];
-    String previousName="";
-    for(var u in jsonData){
-      BagsData bagsDatum = BagsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
-      if(u["Name"]!=previousName){
-        if(search == ''){
-          bagsData.add(bagsDatum);
-        } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
-          bagsData.add(bagsDatum);
-        }
+  final jsonData = json.decode(data);
+  List<BagsData> bagsData = [];
+  String previousName="";
+  for(var u in jsonData){
+    BagsData bagsDatum = BagsData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],u["Seasonal Availability"],u["Version"],u["Style"],u["Label Themes"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == ''){
+        bagsData.add(bagsDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        bagsData.add(bagsDatum);
       }
-      previousName = u["Name"];
     }
-    return bagsData;
+    previousName = u["Name"];
   }
+  return bagsData;
+}
   
 Future<List<EmojiData>> getEmojiData(String search) async{
   String data = await rootBundle.loadString("assets/emojis.json");
@@ -1229,3 +1228,702 @@ Future<List<FossilData>> getFossilData(String search) async{
   }
   return fossilData;
 }
+
+class CraftableData{
+  final String craftableGroup;
+  final String name;
+  final String image;
+  final String variation;
+  final String bodyTitle;
+  final String pattern;
+  final String patternTitle;
+  final String diy;
+  final String bodyCustomize;
+  final String patternCustomize;
+  final String kitCost;
+  final String buy;
+  final String sell;
+  final String color1;
+  final String color2;
+  final String size;
+  final String milesPrice;
+  final String source;
+  final String version;
+  final String hhaConcept1;
+  final String hhaConcept2;
+  final String hhaSeries;
+  final String hhaSet;
+  final String interact;
+  final String tag;
+  final String outdoor;
+  final String speakerType;
+  final String lightingType;
+  final String catalog;
+  final String filename;
+  final String variantId;
+  final String internalId;
+  final String uniqueEntryId;
+  final String storageImage;//
+  final String sourceNotes;//
+  final String seasonalAvailability;//
+  final String mannequinPiece;//
+  final String style;//
+  final String labelThemes;//
+  final String type;//
+  final String villagerEquippable;//
+  final String customize;//tools
+  final String uses;//tools
+  final String stackSize;//tools
+  final String set;//tools
+
+  CraftableData({this.craftableGroup, this.name, this.image, this.variation, this.bodyTitle, this.pattern, this.patternTitle,this.diy,this.bodyCustomize,this.patternCustomize, this.kitCost, this.buy,
+  this.sell, this.color1,this.color2,this.size,this.milesPrice, this.source,this.version, this.hhaConcept1, this.hhaConcept2, this. hhaSeries, this.hhaSet, this.interact, this.tag, this.outdoor,
+  this.speakerType, this.lightingType, this.catalog, this.filename, this.variantId, this.internalId, this.uniqueEntryId, this.storageImage, this.sourceNotes, this.seasonalAvailability, this.mannequinPiece, 
+  this.style, this.labelThemes, this.type, this.villagerEquippable,this.customize,this.uses,this.stackSize,this.set});
+}
+
+Future<List<CraftableData>> getCraftableData(String search) async{
+  String dataHousewares = await rootBundle.loadString("assets/housewares.json");
+  final jsonDataHousewares = json.decode(dataHousewares);
+
+  String dataMiscellaneous = await rootBundle.loadString("assets/miscellaneous.json");
+  final jsonDataMiscellaneous = json.decode(dataMiscellaneous);
+
+  String dataWallmounted = await rootBundle.loadString("assets/wallmounted.json");
+  final jsonDataWallmounted = json.decode(dataWallmounted);
+
+  String dataHeadwear = await rootBundle.loadString("assets/headwear.json");
+  final jsonDataHeadwear = json.decode(dataHeadwear);
+
+  String dataAccessories = await rootBundle.loadString("assets/accessories.json");
+  final jsonDataAccessories = json.decode(dataAccessories);
+
+  String dataTops = await rootBundle.loadString("assets/tops.json");
+  final jsonDataTops = json.decode(dataTops);
+
+  String dataBottoms = await rootBundle.loadString("assets/bottoms.json");
+  final jsonDataBottoms = json.decode(dataBottoms);
+
+  String dataSocks = await rootBundle.loadString("assets/socks.json");
+  final jsonDataSocks = json.decode(dataSocks);
+
+  String dataShoes = await rootBundle.loadString("assets/shoes.json");
+  final jsonDataShoes = json.decode(dataShoes);
+
+  String dataUmbrellas = await rootBundle.loadString("assets/umbrellas.json");
+  final jsonDataUmbrellas = json.decode(dataUmbrellas);
+
+  String dataBags = await rootBundle.loadString("assets/bags.json");
+  final jsonDataBags = json.decode(dataBags);
+
+  String dataRugs = await rootBundle.loadString("assets/rugs.json");
+  final jsonDataRugs = json.decode(dataRugs);
+
+  String dataFloors = await rootBundle.loadString("assets/flooring.json");
+  final jsonDataFloors = json.decode(dataFloors);
+
+  String dataWallpapers = await rootBundle.loadString("assets/wallpaper.json");
+  final jsonDataWallpapers = json.decode(dataWallpapers);
+
+  String dataTools = await rootBundle.loadString("assets/tools.json");
+  final jsonDataTools = json.decode(dataTools);
+
+
+  List<CraftableData> craftableData = [];
+
+  String previousName="";
+  for(var u in jsonDataHousewares){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Furniture",
+      name: u["Name"],
+      image:u["Image"],
+      variation:u["Variation"],
+      bodyTitle:u["Body Title"],
+      pattern:u["Pattern"],
+      patternTitle: u["Pattern Title"],
+      diy: u["DIY"],
+      bodyCustomize: u["Body Customize"],
+      patternCustomize: u["Pattern Customize"],
+      kitCost: u["Kit Cost"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1: u["Color 1"],
+      color2: u["Color 2"],
+      size: u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      version: u["Version"],
+      hhaConcept1: u["HHA Concept 1"],
+      hhaConcept2: u["HHA Concept 2"],
+      hhaSeries: u["HHA Series"],
+      hhaSet: u["HHA Set"],
+      interact: u["Interact"],
+      tag: u["Tag"],
+      outdoor: u["Outdoor"],
+      speakerType: u["Speaker Type"],
+      lightingType: u["Lighting Type"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      variantId: u["Variant ID"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataMiscellaneous){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Furniture",
+      name: u["Name"],
+      image:u["Image"],
+      variation:u["Variation"],
+      bodyTitle:u["Body Title"],
+      pattern:u["Pattern"],
+      patternTitle: u["Pattern Title"],
+      diy: u["DIY"],
+      bodyCustomize: u["Body Customize"],
+      patternCustomize: u["Pattern Customize"],
+      kitCost: u["Kit Cost"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1: u["Color 1"],
+      color2: u["Color 2"],
+      size: u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      version: u["Version"],
+      hhaConcept1: u["HHA Concept 1"],
+      hhaConcept2: u["HHA Concept 2"],
+      hhaSeries: u["HHA Series"],
+      hhaSet: u["HHA Set"],
+      interact: u["Interact"],
+      tag: u["Tag"],
+      outdoor: u["Outdoor"],
+      speakerType: u["Speaker Type"],
+      lightingType: u["Lighting Type"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      variantId: u["Variant ID"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]);
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataWallmounted){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Furniture",
+      name: u["Name"],
+      image:u["Image"],
+      variation:u["Variation"],
+      bodyTitle:u["Body Title"],
+      pattern:u["Pattern"],
+      patternTitle: u["Pattern Title"],
+      diy: u["DIY"],
+      bodyCustomize: u["Body Customize"],
+      patternCustomize: u["Pattern Customize"],
+      kitCost: u["Kit Cost"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1: u["Color 1"],
+      color2: u["Color 2"],
+      size: u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      version: u["Version"],
+      hhaConcept1: u["HHA Concept 1"],
+      hhaConcept2: u["HHA Concept 2"],
+      hhaSeries: u["HHA Series"],
+      hhaSet: u["HHA Set"],
+      interact: u["Interact"],
+      tag: u["Tag"],
+      outdoor: u["Outdoor"],
+      speakerType: u["Speaker Type"],
+      lightingType: u["Lighting Type"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      variantId: u["Variant ID"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataHeadwear){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      sourceNotes: u["Source Notes"],
+      seasonalAvailability: u["Seasonal Availability"],
+      mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      style: u["Style"],
+      labelThemes: u["Label Themes"],
+      type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataAccessories){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      sourceNotes: u["Source Notes"],
+      seasonalAvailability: u["Seasonal Availability"],
+      mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      style: u["Style"],
+      labelThemes: u["Label Themes"],
+      type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataTops){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      //sourceNotes: u["Source Notes"],
+      seasonalAvailability: u["Seasonal Availability"],
+      mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      style: u["Style"],
+      labelThemes: u["Label Themes"],
+      //type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataBottoms){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      //sourceNotes: u["Source Notes"],
+      seasonalAvailability: u["Seasonal Availability"],
+      mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      style: u["Style"],
+      labelThemes: u["Label Themes"],
+      //type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataSocks){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      //sourceNotes: u["Source Notes"],
+      seasonalAvailability: u["Seasonal Availability"],
+      mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      style: u["Style"],
+      labelThemes: u["Label Themes"],
+      //type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataShoes){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      sourceNotes: u["Source Notes"],
+      seasonalAvailability: u["Seasonal Availability"],
+      mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      style: u["Style"],
+      labelThemes: u["Label Themes"],
+      //type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataUmbrellas){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      //sourceNotes: u["Source Notes"],
+      //seasonalAvailability: u["Seasonal Availability"],
+      //mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      //style: u["Style"],
+      //labelThemes: u["Label Themes"],
+      //type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataBags){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Clothing",
+      name:u["Name"],
+      image:u["Closet Image"],
+      storageImage: u["Storage Image"],
+      variation: u["Variation"],
+      diy: u["DIY"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice: u["Miles Price"],
+      source: u["Source"],
+      //sourceNotes: u["Source Notes"],
+      seasonalAvailability: u["Seasonal Availability"],
+      //mannequinPiece: u["Mannequin Piece"],
+      version: u["Version"],
+      style: u["Style"],
+      labelThemes: u["Label Themes"],
+      //type: u["Type"],
+      villagerEquippable: u["Villager Equippable"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataRugs){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Floor & Wall",
+      name:u["Name"],
+      image:u["Image"],
+      diy:u["DIY"],
+      buy:u["Buy"],
+      sell:u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice:u["Miles Price"],
+      source:u["Source"],
+      sourceNotes:u["Source Notes"],
+      version:u["Version"],
+      hhaConcept1: u["HHA Concept 1"],
+      hhaConcept2: u["HHA Concept 2"],
+      hhaSeries: u["HHA Series"],
+      tag: u["Tag"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataFloors){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Floor & Wall",
+      name:u["Name"],
+      image:u["Image"],
+      diy:u["DIY"],
+      buy:u["Buy"],
+      sell:u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice:u["Miles Price"],
+      source:u["Source"],
+      sourceNotes:u["Source Notes"],
+      version:u["Version"],
+      hhaConcept1: u["HHA Concept 1"],
+      hhaConcept2: u["HHA Concept 2"],
+      hhaSeries: u["HHA Series"],
+      tag: u["Tag"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataWallpapers){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Floor & Wall",
+      name:u["Name"],
+      image:u["Image"],
+      diy:u["DIY"],
+      buy:u["Buy"],
+      sell:u["Sell"],
+      color1:u["Color 1"],
+      color2:u["Color 2"],
+      size:u["Size"],
+      milesPrice:u["Miles Price"],
+      source:u["Source"],
+      sourceNotes:u["Source Notes"],
+      version:u["Version"],
+      hhaConcept1: u["HHA Concept 1"],
+      hhaConcept2: u["HHA Concept 2"],
+      hhaSeries: u["HHA Series"],
+      tag: u["Tag"],
+      catalog: u["Catalog"],
+      filename: u["Filename"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  previousName="";
+  for(var u in jsonDataTools){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Tools",
+      name:u["Name"],
+      image: u["Image"],
+      variation:u["Variation"],
+      bodyTitle:u["Body Title"],
+      diy:u["DIY"],
+      customize:u["Customize"],
+      kitCost:u["Kit Cost"],
+      uses:u["Uses"],
+      stackSize: u["Stack Size"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      color1: u["Color 1"],
+      color2: u["Color 2"],
+      size:u["Size"],
+      set:u["Set"],
+      milesPrice: u["Miles Price"],
+      source:u["Source"],
+      version:u["Version"],
+      filename: u["Filename"],
+      variantId: u["Variant ID"],
+      internalId: u["Internal ID"],
+      uniqueEntryId: u["Unique Entry ID"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
+  return craftableData;
+}
+

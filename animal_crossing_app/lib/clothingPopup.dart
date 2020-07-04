@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
-import 'package:optimized_cached_image/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'gridList.dart';
 
 
@@ -11,7 +11,7 @@ final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedClothing = false;
 
 
-Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData){
+Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData, bool recipe){
 
   String currencyAmount = buyPriceConverted(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
   String currencyType = buyPriceConvertedType(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
@@ -40,7 +40,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                           height: 113*percentScale,
                           child: new Center(
                             child: new Center(
-                              child:  OptimizedCacheImage(
+                              child:  CachedNetworkImage(
                                 imageBuilder: (context, imageProvider) => Container(
                                   width: 80*percentScale,
                                   height: 80*percentScale,
@@ -136,7 +136,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                                         onChanged: (bool value) {
                                           setState(() {
                                             popupCollectedGrid = value;
-                                            saveBool(getKey(snapshotData, "Clothing"), false, popupCollectedGrid);
+                                            saveBool(getKey(snapshotData, "Clothing", recipe), false, popupCollectedGrid);
                                             HapticFeedback.mediumImpact();
                                           });
                                         },
@@ -160,15 +160,20 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                             ),
                             Container(
                               width: 250*percentScale,
-                              child: new Text(capitalize(snapshotData.name),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: colorTextBlack,
-                                    fontSize: 31*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                  )
+                              child: new Text((){
+                                  if(recipe==false)
+                                    return capitalize(snapshotData.name);
+                                  else
+                                    return capitalize(snapshotData.name + " recipe");
+                                }(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: colorTextBlack,
+                                  fontSize: 31*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                )
                               ),
                             ),
                             SizedBox(

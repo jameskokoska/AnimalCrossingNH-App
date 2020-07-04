@@ -4,12 +4,12 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'popupFunctions.dart';
-import 'package:optimized_cached_image/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 
 
 
-Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotData){
+Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotData, bool recipe){
   
 //  String buyPriceConverted;
 //  String buyPriceConvertedType;
@@ -53,7 +53,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                     height: 113*percentScale,
                     child: new Center(
                       child: new Center(
-                        child:  OptimizedCacheImage(
+                        child:  CachedNetworkImage(
                           imageBuilder: (context, imageProvider) => Container(
                             width: 80*percentScale,
                             height: 80*percentScale,
@@ -149,7 +149,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                                     onChanged: (bool value) {
                                       setState(() {
                                         popupCollectedGrid = value;
-                                        saveBool(getKey(snapshotData, "Furniture"), false, popupCollectedGrid);
+                                        saveBool(getKey(snapshotData, "Furniture", recipe), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -173,7 +173,12 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                         ),
                         Container(
                           width: 250*percentScale,
-                          child: new Text(capitalize(snapshotData.name),
+                          child: new Text((){
+                              if(recipe==false)
+                                return capitalize(snapshotData.name);
+                              else
+                                return capitalize(snapshotData.name + " recipe");
+                            }(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',
@@ -246,7 +251,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                               }(),  
                               (){
                                 if(snapshotData.kitCost!="NA"){
-                                  return infoContainer(percentScale, 'tag.png', snapshotData.kitCost);
+                                  return infoContainer(percentScale, 'diyKit.png', snapshotData.kitCost);
                                 }
                                 return Container();
                               }(),
