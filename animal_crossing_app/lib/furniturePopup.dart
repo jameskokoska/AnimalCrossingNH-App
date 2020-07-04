@@ -9,7 +9,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 
 
-Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotData, bool recipe){
+Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotData){
   
 //  String buyPriceConverted;
 //  String buyPriceConvertedType;
@@ -150,7 +150,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                                     onChanged: (bool value) {
                                       setState(() {
                                         popupCollectedGrid = value;
-                                        saveBool(getKey(snapshotData, "Furniture", recipe), false, popupCollectedGrid);
+                                        saveBool(getKey(snapshotData, "Furniture"), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -174,12 +174,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                         ),
                         Container(
                           width: 250*percentScale,
-                          child: new Text((){
-                              if(recipe==false)
-                                return capitalize(snapshotData.name);
-                              else
-                                return capitalize(snapshotData.name + " recipe");
-                            }(),
+                          child: new Text(capitalize(snapshotData.name),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',

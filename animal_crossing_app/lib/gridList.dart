@@ -13,37 +13,24 @@ import 'furniturePopup.dart';
 import 'clothingPopup.dart';
 import 'toolsPopup.dart';
 import 'floorWallListPopup.dart';
+import 'recipesPopup.dart';
 
 bool popupCollectedGrid;
 
-String getKey(var snapshotContainerData, String title, [recipe=false]){
+String getKey(var snapshotContainerData, String title){
   switch(title){
-    case "Furniture" : 
-      if(recipe==false)
-        return("furnitureCheckList"+snapshotContainerData.name+snapshotContainerData.variation+snapshotContainerData.pattern);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Craftable" : 
+
+    case "Furniture" : return("furnitureCheckList"+snapshotContainerData.name+snapshotContainerData.variation+snapshotContainerData.pattern);
     break;
 
-    case "Clothing" : 
-      if(recipe==false)
-        return("clothingCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Clothing" : return("clothingCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
     break;
 
-    case "Tools" : 
-      if(recipe==false)
-        return("toolsCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Tools" : return("toolsCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
     break;
 
-    case "Floor & Wall" : 
-      if(recipe==false)
-        return ("floorWallsCheckList"+snapshotContainerData.name);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Floor & Wall" : return ("floorWallsCheckList"+snapshotContainerData.name);
     break;
 
     case "Villagers" : return ("villagerCheckList"+snapshotContainerData.name);
@@ -56,23 +43,23 @@ String getKey(var snapshotContainerData, String title, [recipe=false]){
   }
 }
 
-Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotContainerData,[bool recipe=false]){
+Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotContainerData){
   switch(title){
-    case "Furniture" : return furniturePopUp(percentScale, colorTextBlack,snapshotContainerData, recipe);
+    case "Furniture" : return furniturePopUp(percentScale, colorTextBlack,snapshotContainerData);
     break;
 
-    case "Clothing" : return clothingPopup(percentScale, colorTextBlack, snapshotContainerData, recipe);
+    case "Clothing" : return clothingPopup(percentScale, colorTextBlack, snapshotContainerData);
     break;
 
-    case "Tools" : return toolsPopUp(percentScale, colorTextBlack, snapshotContainerData, recipe);
+    case "Tools" : return toolsPopUp(percentScale, colorTextBlack, snapshotContainerData);
     break;
 
-    case "Floor & Wall" : return floorWallsPopUp(percentScale, colorTextBlack, snapshotContainerData, recipe);
+    case "Floor & Wall" : return floorWallsPopUp(percentScale, colorTextBlack, snapshotContainerData);
     break;
 
-    case "Villagers" : return villagerPopUp(percentScale, colorTextBlack,  snapshotContainerData);
+    case "Villagers" : return villagerPopUp(percentScale, colorTextBlack, snapshotContainerData);
 
-    case "Recipes" : return(getPopupFunction(getCraftableGroup(snapshotContainerData.craftableGroup), percentScale, colorTextBlack, snapshotContainerData, true));
+    case "Recipes" : return recipesPopUp(percentScale, colorTextBlack, snapshotContainerData);
     
     default: return(Container());
     break;
@@ -104,8 +91,8 @@ List<Future<List>> getFutureFunctions(String title, String searchGrid){
   }
 }
 
-String getCraftableGroup(String craftableGroup){
-  switch(craftableGroup){
+String getCraftableGroup(String craftableTitle){
+  switch(craftableTitle){
     case "Furniture" : return "Furniture";
     break;
 

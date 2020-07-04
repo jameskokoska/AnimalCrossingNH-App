@@ -10,7 +10,7 @@ import 'gridList.dart';
 final bellsPrice = new NumberFormat("#,##0");
 
 
-Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData, bool recipe){
+Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -167,7 +167,7 @@ Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData, boo
                                     onChanged: (bool value) {
                                       setState(() {
                                         popupCollectedGrid = value;
-                                        saveBool(getKey(snapshotData,"Tools", recipe), false, popupCollectedGrid);
+                                        saveBool(getKey(snapshotData,"Tools"), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -191,12 +191,7 @@ Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData, boo
                       children: [
                         Container(
                           width: 250*percentScale,
-                          child: new Text((){
-                              if(recipe==false)
-                                return capitalize(snapshotData.name);
-                              else
-                                return capitalize(snapshotData.name + " recipe");
-                            }(),
+                          child: new Text(capitalize(snapshotData.name),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',

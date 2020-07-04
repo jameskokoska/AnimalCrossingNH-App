@@ -1927,3 +1927,38 @@ Future<List<CraftableData>> getCraftableData(String search) async{
   return craftableData;
 }
 
+class RecipeData{
+  final String name;
+  final String number1;
+  final String material1;
+  final String number2;
+  final String material2;
+  final String number3;
+  final String material3;
+  final String number4;
+  final String material4;
+  final String number5;
+  final String material5;
+  final String number6;
+  final String material6;
+  final String sources;
+  final String sourceNotes;
+  final String category;
+  final String uniqueEntryId;
+
+  RecipeData(this.name, this.number1, this.material1,this.number2,this.material2,this.number3,this.material3,
+  this.number4,this.material4,this.number5,this.material5,this.number6,this.material6,this.sources,this.sourceNotes,this.category,this.uniqueEntryId);
+}
+
+Future<RecipeData> getRecipeData(String search) async{
+  String data = await rootBundle.loadString("assets/recipes.json");
+
+  final jsonData = json.decode(data);
+  for(var u in jsonData){
+    RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Sources"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
+    if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      return recipeDatum;
+    }
+  }
+  return null;
+}

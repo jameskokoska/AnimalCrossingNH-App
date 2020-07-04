@@ -11,7 +11,7 @@ final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedClothing = false;
 
 
-Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData, bool recipe){
+Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData){
 
   String currencyAmount = buyPriceConverted(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
   String currencyType = buyPriceConvertedType(snapshotData.buy, snapshotData.milesPrice, snapshotData.source);
@@ -136,7 +136,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                                         onChanged: (bool value) {
                                           setState(() {
                                             popupCollectedGrid = value;
-                                            saveBool(getKey(snapshotData, "Clothing", recipe), false, popupCollectedGrid);
+                                            saveBool(getKey(snapshotData, "Clothing"), false, popupCollectedGrid);
                                             HapticFeedback.mediumImpact();
                                           });
                                         },
@@ -160,12 +160,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                             ),
                             Container(
                               width: 250*percentScale,
-                              child: new Text((){
-                                  if(recipe==false)
-                                    return capitalize(snapshotData.name);
-                                  else
-                                    return capitalize(snapshotData.name + " recipe");
-                                }(),
+                              child: new Text(capitalize(snapshotData.name),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
