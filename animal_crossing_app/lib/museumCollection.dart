@@ -46,6 +46,8 @@ class _MuseumPageState extends State<MuseumPage>{
 
   Widget villagerListSliver;
 
+  Widget craftablesListSliver;
+
   Widget build(BuildContext context){
 
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -70,7 +72,7 @@ class _MuseumPageState extends State<MuseumPage>{
 
     return MaterialApp(
       home: DefaultTabController(
-        length: 11,
+        length: 12,
         child: Scaffold(
           
           body: Stack(
@@ -78,6 +80,16 @@ class _MuseumPageState extends State<MuseumPage>{
               
               TabBarView(
                 children: <Widget>[
+                  GridList(
+                    title: "Recipes",
+                    sliverList: <Widget>[craftablesListSliver],
+                    titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+                    mainColor: colorToolsAppBar,
+                    accentColor: colorToolsAccent,
+                    checkmark: true,
+                    checkmarkColor: colorCheckGreen,
+                    popupHeight: 500,
+                  ),
                   BugList(),
                   EmojiList(),
                   MusicList(),
@@ -138,6 +150,7 @@ class _MuseumPageState extends State<MuseumPage>{
               ),
               TabBar(
                 tabs: <Widget>[
+                  Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),

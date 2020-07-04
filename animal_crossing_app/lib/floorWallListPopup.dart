@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
-import 'package:optimized_cached_image/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
 
-Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotData){
+Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotData, bool recipe){
   String buyPriceConverted;
   String buyPriceConvertedType;
   if (snapshotData.buy=='NFS'){
@@ -48,7 +48,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotDa
                     height: 113*percentScale,
                     child: new Center(
                       child: new Center(
-                        child:  OptimizedCacheImage(
+                        child:  CachedNetworkImage(
                           imageBuilder: (context, imageProvider) => Container(
                             width: 80*percentScale,
                             height: 80*percentScale,
@@ -144,7 +144,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotDa
                                     onChanged: (bool value) {
                                       setState(() {
                                         popupCollectedGrid = value;
-                                        saveBool(getKey(snapshotData, "Floor & Wall"), false, popupCollectedGrid);
+                                        saveBool(getKey(snapshotData, "Floor & Wall", recipe), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -168,7 +168,13 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotDa
                         ),
                         Container(
                           width: 250*percentScale,
-                          child: new Text(capitalize(snapshotData.name),
+                          child: new Text(
+                            (){
+                              if(recipe==false)
+                                return capitalize(snapshotData.name);
+                              else
+                                return capitalize(snapshotData.name + " recipe");
+                            }(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',

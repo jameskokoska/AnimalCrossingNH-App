@@ -2,7 +2,7 @@ import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:optimized_cached_image/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'bugPopup.dart';
 import 'popupFunctions.dart';
@@ -276,7 +276,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                         ),
                         Container(
                           transform: Matrix4.translationValues((12+5)*percentScale,(10+5)*percentScale,0),
-                          child: OptimizedCacheImage(
+                          child: CachedNetworkImage(
                             imageBuilder: (context, imageProvider) => Container(
                               width: 45*percentScale,
                               height: 45*percentScale,
