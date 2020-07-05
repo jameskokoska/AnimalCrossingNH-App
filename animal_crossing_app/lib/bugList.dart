@@ -256,7 +256,7 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                             height: 75*percentScale,
                           ),
                         ),
-                        color: colorWhite,
+                        color: determineBackgroundColor(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
                       ),
                       
                     ),

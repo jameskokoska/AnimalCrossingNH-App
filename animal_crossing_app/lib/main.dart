@@ -50,6 +50,7 @@ Color colorFloorWallAppBar;
 Color colorFloorWallAccent;
 Color colorEmojipediaAppBar;
 Color colorCreditsAppBar;
+Color colorWarningBackground;
 
 Color colorArtAppBar;
 Color colorArtAccent;
@@ -62,6 +63,7 @@ bool showCatchPhraseNow = false;    //always show the catchphrase
 bool showListOnlyActive = true;     //only list fish you can catch
 bool showListVariations = true;     //Show variations of furniture, clothing etc all colours in item lists
 bool skipSplash = false;
+bool lastCaughtWarning = false;
 
 var currentDate = DateTime.now();
 
@@ -174,6 +176,9 @@ class _MainPageState extends State<Main> {
     getStoredBool('skipSplash', false).then((indexResult){
       skipSplash = indexResult;
     });
+    getStoredBool('lastCaughtWarning', false).then((indexResult){
+      lastCaughtWarning = indexResult;
+    });
     
     currentPageWidget = homepage;
     
@@ -240,6 +245,7 @@ class _MainPageState extends State<Main> {
       colorArtAccent = Color(0xFFe8f5e9);
       colorArtTextDarkGreen = Color(0xFF1b5e20);
       colorCreditsAppBar = Color(0xFFFFF176);
+      colorWarningBackground = Color(0xFFffccbc);
     } else if(darkMode){
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
@@ -277,6 +283,7 @@ class _MainPageState extends State<Main> {
       colorFloorWallAccent = Color(0xFF505E68);
       colorEmojipediaAppBar = Color(0xFF807623);
       colorCreditsAppBar = Color(0xFF807623);
+      colorWarningBackground = Color(0xFF4d2a2c);
     }
 
     double deviceWidth = MediaQuery.of(context).size.width;
