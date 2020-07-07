@@ -1981,3 +1981,30 @@ Future<OtherData> getOtherData(String search) async{
   }
   return null;
 }
+
+class EventData{
+  final String name;
+  final String month;
+  final String dayStart;
+  final String dayEnd;
+  final String specialDay;
+  final String specialOccurence;
+  final String hemisphere;
+  final String time;
+  final String image;
+
+  EventData(this.name, this.month, this.dayStart,this.dayEnd,this.specialDay,this.specialOccurence, this.hemisphere,this.time, this.image);
+}
+
+
+Future<List<EventData>> getEventsData() async{
+  String data = await rootBundle.loadString("assets/events.json");
+
+  final jsonData = json.decode(data);
+  List<EventData> eventData = [];
+  for(var u in jsonData){
+    EventData eventDatum = EventData(u["Name"],u["Month"],u["Day Start"],u["Day End"],u["Special Day"],u["Special Occurrence"],u["Hemisphere"],u["Time"],u["Image"]);
+    eventData.add(eventDatum);
+  }
+  return eventData;
+}

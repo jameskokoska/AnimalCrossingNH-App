@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'databases.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 
 class Home extends StatefulWidget {
@@ -15,7 +18,7 @@ class Home extends StatefulWidget {
 }
 
 
-Widget eventContainer(bool darkMode, double percentScale, String enable, String name, String time, String dayNum, String dayStr, String imagePath){
+Widget eventContainer(bool darkMode, double percentScale, String enable, String name, String time, String dayNum, String dayStr, String imagePath, [String onlineImage=""]){
   bool enableBool;
   if(enable=="true"){
     enableBool = true;
@@ -40,11 +43,33 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
             ),
             new Container(
               transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-              child: new Image.asset(
-                'assets/'+imagePath,
-                height:41*percentScale,
-                width:41*percentScale,
-              )
+              child: (){
+                if(onlineImage != "NA"){
+                  return CachedNetworkImage(
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: 70*percentScale,
+                      height: 70*percentScale,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4*percentScale),
+                        image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                      ),
+                    ),
+                    imageUrl: imagePath,
+                    //placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                    height:70*percentScale,
+                    width:70*percentScale,
+                    fadeInDuration: Duration(milliseconds:800),
+                  );
+                } else {
+                  return new Image.asset(
+                    'assets/'+imagePath,
+                    height:41*percentScale,
+                    width:41*percentScale,
+                  );
+                }
+              }()
             ),
             new Container(
               transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
@@ -269,117 +294,6 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   );
 }
 
-//Widget activeCreature() {
-  //if()
-//}
-
-class FishData{
-  final String id;
-  final String name;
-  final String iconImage;
-  final String critterpediaImage;
-  final String furnitureImage;
-  final String sell;
-  final String whereHow;
-  final String shadow;
-  final String totalCatchesToUnlock;
-  final String rainSnow;
-  final String nhJan;
-  final String nhFeb;
-  final String nhMar;
-  final String nhApr;
-  final String nhMay;
-  final String nhJun;
-  final String nhJul;
-  final String nhAug;
-  final String nhSep;
-  final String nhOct;
-  final String nhNov;
-  final String nhDec;
-  final String shJan;
-  final String shFeb;
-  final String shMar;
-  final String shApr;
-  final String shMay;
-  final String shJun;
-  final String shJul;
-  final String shAug;
-  final String shSep;
-  final String shOct;
-  final String shNov;
-  final String shDec;
-  final String color1;
-  final String color2;
-  final String size;
-  final String lightingType;
-  final String iconFilename;
-  final String critterpediaFilename;
-  final String furnitureFilename;
-  final String internalId;
-  final String uniqueEntryId;
-  final String catchphrase;
-  final String museum;
-  final bool caught;
-
-  FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rainSnow,
-      this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
-      this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-      this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
-
-}
-
-
-class BugData{
-  final String id;
-  final String name;
-  final String iconImage;
-  final String critterpediaImage;
-  final String furnitureImage;
-  final String sell;
-  final String whereHow;
-  final String weather;
-  final String totalCatchesToUnlock;
-  final String nhJan;
-  final String nhFeb;
-  final String nhMar;
-  final String nhApr;
-  final String nhMay;
-  final String nhJun;
-  final String nhJul;
-  final String nhAug;
-  final String nhSep;
-  final String nhOct;
-  final String nhNov;
-  final String nhDec;
-  final String shJan;
-  final String shFeb;
-  final String shMar;
-  final String shApr;
-  final String shMay;
-  final String shJun;
-  final String shJul;
-  final String shAug;
-  final String shSep;
-  final String shOct;
-  final String shNov;
-  final String shDec;
-  final String color1;
-  final String color2;
-  final String iconFilename;
-  final String critterpediaFilename;
-  final String furnitureFilename;
-  final String internalId;
-  final String uniqueEntryId;
-  final String catchphrase;
-  final String museum;
-  final bool caught;
-
-  BugData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.weather,this.totalCatchesToUnlock,
-      this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
-      this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-      this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
-
-}
 
 class _HomePageState extends State<Home>{
   bool morning = false;
@@ -388,13 +302,15 @@ class _HomePageState extends State<Home>{
   String date;
   String weekday;
 
+  var futureEvents;
   
   @override
   void initState() {
     //seconds = _formatDateTime(DateTime.now());
-    Timer.periodic(Duration(seconds: 1), (Timer t) => getTime());
+    Timer.periodic(Duration(seconds: 60), (Timer t) => getTime());
     super.initState();
     getTime();
+    futureEvents = getEventsData();
   }
 
   void getTime() {
@@ -436,11 +352,8 @@ class _HomePageState extends State<Home>{
     double fishPercent = 5/100;
     double musicPercent = 20/100;
 
-    int numEvents = 6;
-    int numDays = 3;
+
     
-    List<String> todayFirstBirthday = ["First Birthday", "Sat", "24", "All Days"];
-    List<String> todaySecondBirthday = [];
 
 
     return Scaffold(
@@ -980,148 +893,159 @@ class _HomePageState extends State<Home>{
                         ),
 
                         //Events Section 
-                        new Container(
-                          //Background
-                          width: deviceWidth,
-                          height: (35*percentScale+70*percentScale) + numEvents*(7+71)*percentScale + numDays*(25+7+16)*percentScale,
-                          decoration: new BoxDecoration(
-                          color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff202020)),
-                          borderRadius: BorderRadius.circular(30*percentScale),
-                          boxShadow: [BoxShadow(
-                            color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FFE96B)),
-                            offset: Offset(0,3),
-                            blurRadius: 10,
-                            spreadRadius: 0
-                            ) ],
-                          ),
-                          child:Stack(
-                            children: <Widget>[                          
-                              //Text bubble
-                              new Container(
-                                transform: Matrix4.translationValues(21*percentScale,-18*percentScale,0),
-                                width: 80*percentScale,
-                                height: 35*percentScale,
-                                decoration: new BoxDecoration(
-                                  color: darkModeColor(darkMode,Color(0xffffe86b),Color(0xff2D2D2D)),
+                        FutureBuilder(
+                          future: futureEvents,
+                          builder: (context,snapshot){
+                            if(snapshot.hasData){
+                              List<List<String>> todayEvents = getEventsDay("", "", snapshot);
+                                int numEvents = todayEvents.length;
+                                int numDays = todayEvents.length+0+0;
+                                
+                                return new Container(
+                                  //Background
+                                  width: deviceWidth,
+                                  height: (35*percentScale+115*percentScale) + numEvents*(7+24)*percentScale + numDays*(25+7+15)*percentScale,
+                                  decoration: new BoxDecoration(
+                                  color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff202020)),
                                   borderRadius: BorderRadius.circular(30*percentScale),
                                   boxShadow: [BoxShadow(
-                                      color: darkModeColor(darkMode,Color(0x1A000000),Color(0x40FFE86B)),
-                                      offset: Offset(0,3),
-                                      blurRadius: 6,
-                                      spreadRadius: 0
-                                  ) ],
-                                ),
-                                child: Center(
-                                  child: Text("Events",
-                                    style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: darkModeColor(darkMode,Color(0xff000000),Color(0xffFFE86B)),
-                                    fontSize: 16*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                    )
+                                    color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FFE96B)),
+                                    offset: Offset(0,3),
+                                    blurRadius: 10,
+                                    spreadRadius: 0
+                                    ) ],
                                   ),
-                                ),
-                              ),
-                              
-                              new Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  //Today Events
-                                  new Container(
-                                    transform: Matrix4.translationValues(-140*percentScale,35*percentScale,0),
-                                    child: new Text(
-                                      "Today",
-                                      style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: colorTextBlack,
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                      )
-                                    )
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(0,45*percentScale,0),
-                                    child: new Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        //First Event
-                                        eventContainer(darkMode, percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
-                                        //Second event
-                                        eventContainer(darkMode, percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
-                                      ], 
-                                    ),
-                                  ),
+                                  child:Stack(
+                                    children: <Widget>[                          
+                                      //Text bubble
+                                      new Container(
+                                        transform: Matrix4.translationValues(21*percentScale,-18*percentScale,0),
+                                        width: 80*percentScale,
+                                        height: 35*percentScale,
+                                        decoration: new BoxDecoration(
+                                          color: darkModeColor(darkMode,Color(0xffffe86b),Color(0xff2D2D2D)),
+                                          borderRadius: BorderRadius.circular(30*percentScale),
+                                          boxShadow: [BoxShadow(
+                                              color: darkModeColor(darkMode,Color(0x1A000000),Color(0x40FFE86B)),
+                                              offset: Offset(0,3),
+                                              blurRadius: 6,
+                                              spreadRadius: 0
+                                          ) ],
+                                        ),
+                                        child: Center(
+                                          child: Text("Events",
+                                            style: TextStyle(
+                                            fontFamily: 'ArialRoundedBold',
+                                            color: darkModeColor(darkMode,Color(0xff000000),Color(0xffFFE86B)),
+                                            fontSize: 16*percentScale,
+                                            fontWeight: FontWeight.w400,
+                                            fontStyle: FontStyle.normal,
+                                            )
+                                          ),
+                                        ),
+                                      ),
+                                      
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          //Today Events
+                                          new Container(
+                                            transform: Matrix4.translationValues(-140*percentScale,35*percentScale,0),
+                                            child: new Text(
+                                              "Today",
+                                              style: TextStyle(
+                                              fontFamily: 'ArialRoundedBold',
+                                              color: colorTextBlack,
+                                              fontSize: 16*percentScale,
+                                              fontWeight: FontWeight.w400,
+                                              fontStyle: FontStyle.normal,
+                                              )
+                                            )
+                                          ),
+                                          new Container(
+                                            transform: Matrix4.translationValues(0,45*percentScale,0),
+                                            child: new Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: List.generate(todayEvents.length, (index){
+                                                print(todayEvents);
+                                                  return eventContainer(darkMode, percentScale, "true",todayEvents[index][0], todayEvents[index][1], todayEvents[index][2], todayEvents[index][3], todayEvents[index][4], todayEvents[index][5]);
+                                                // return eventContainer(darkMode, percentScale, "true","todayEvents[index][0]", "todayEvents[index][1]", "todayEvents[index][2]", "", "");
+                                              }),
+                                            ),
+                                          ),
 
-                                  //Tomorrow's events
-                                  new SizedBox(
-                                    height: 25*percentScale,
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(-122*percentScale,35*percentScale,0),
-                                    child: new Text(
-                                      "Tomorrow",
-                                      style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: colorTextBlack,
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                      )
-                                    )
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(0,45*percentScale,0),
-                                    child: new Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        //First Event
-                                        eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
-                                        //Second Event
-                                        eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
+                                          //Tomorrow's events
+                                          new SizedBox(
+                                            height: 25*percentScale,
+                                          ),
+                                          new Container(
+                                            transform: Matrix4.translationValues(-122*percentScale,35*percentScale,0),
+                                            child: new Text(
+                                              "Tomorrow",
+                                              style: TextStyle(
+                                              fontFamily: 'ArialRoundedBold',
+                                              color: colorTextBlack,
+                                              fontSize: 16*percentScale,
+                                              fontWeight: FontWeight.w400,
+                                              fontStyle: FontStyle.normal,
+                                              )
+                                            )
+                                          ),
+                                          new Container(
+                                            transform: Matrix4.translationValues(0,45*percentScale,0),
+                                            child: new Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: <Widget>[
+                                                //First Event
+                                                eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
+                                                //Second Event
+                                                eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
 
-                                      ], 
-                                    ),
-                                  ),
+                                              ], 
+                                            ),
+                                          ),
 
-                                  //This Week
-                                  new SizedBox(
-                                    height: 25*percentScale,
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(-120*percentScale,35*percentScale,0),
-                                    child: new Text(
-                                      "This Week",
-                                      style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: colorTextBlack,
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
+                                          //This Week
+                                          new SizedBox(
+                                            height: 25*percentScale,
+                                          ),
+                                          new Container(
+                                            transform: Matrix4.translationValues(-120*percentScale,35*percentScale,0),
+                                            child: new Text(
+                                              "This Week",
+                                              style: TextStyle(
+                                              fontFamily: 'ArialRoundedBold',
+                                              color: colorTextBlack,
+                                              fontSize: 16*percentScale,
+                                              fontWeight: FontWeight.w400,
+                                              fontStyle: FontStyle.normal,
+                                              )
+                                            )
+                                          ),
+                                          new Container(
+                                            transform: Matrix4.translationValues(0,45*percentScale,0),
+                                            child: new Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: <Widget>[
+                                                //First Event
+                                                eventContainer( darkMode, percentScale, "true","Bug Off", "10 AM - 6 PM", "21", "Sat.", "bones.png"),
+                                                //Second Event
+                                                eventContainer(darkMode, percentScale, "true","K.K. Slider", "6 PM - 12 AM", "23", "Sat.", "bones.png"),
+                                              ], 
+                                            ),
+                                          ),
+                                        ], 
                                       )
-                                    )
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(0,45*percentScale,0),
-                                    child: new Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        //First Event
-                                        eventContainer( darkMode, percentScale, "true","Bug Off", "10 AM - 6 PM", "21", "Sat.", "bones.png"),
-                                        //Second Event
-                                        eventContainer(darkMode, percentScale, "true","K.K. Slider", "6 PM - 12 AM", "23", "Sat.", "bones.png"),
-                                        
-                                      ], 
-                                    ),
-                                  ),
-                                ], 
-                              )
-                            ]
-                          ),
+                                    ]
+                                  )
+                                );
+                              } else {
+                                return Container();
+                              }
+                            }
                         ),
 
                         //Active Creatures Section
@@ -1274,4 +1198,16 @@ class _HomePageState extends State<Home>{
         ),
     );
   }
+}
+
+List<List<String>> getEventsDay(String currentDay, String endDay, var snapshot){
+  var totalEvents = List.generate(snapshot.data.length, (i) => List.generate(6, (j) => ""));
+  for(int i = 0; i < snapshot.data.length; i++){
+    totalEvents[i][0] = snapshot.data[i].name;
+    totalEvents[i][1] = snapshot.data[i].time;
+    totalEvents[i][2] = snapshot.data[i].dayStart;
+    totalEvents[i][3] = snapshot.data[i].month;
+    totalEvents[i][4] = snapshot.data[i].image;
+  }
+  return totalEvents;
 }
