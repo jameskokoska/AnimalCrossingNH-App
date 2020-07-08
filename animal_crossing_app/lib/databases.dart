@@ -1031,7 +1031,7 @@ Future<List<EmojiData>> getEmojiData(String search) async{
   return emojiData;
 }
 
-Future<List<FishData>> getFishData(String search) async{
+Future<List<FishData>> getFishData(String search, [bool active=false]) async{
   String data = await rootBundle.loadString("assets/fish.json");
 
   final jsonData = json.decode(data);
@@ -1041,6 +1041,9 @@ Future<List<FishData>> getFishData(String search) async{
     getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+      //if(active == true &&) {
+      //  fishData.add(fishDatum);
+      //} 
       if(search == ''){
         fishData.add(fishDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){

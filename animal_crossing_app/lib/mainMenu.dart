@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'databases.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'fishList.dart';
 
 
 
@@ -1132,7 +1133,6 @@ class _HomePageState extends State<Home>{
                             children: <Widget>[
                               new Container(
                                 width: deviceWidth,
-                                height: 648*percentScale,
                                 decoration: new BoxDecoration(
                                   color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF0D0D0D)),
                                   borderRadius: BorderRadius.circular(30*percentScale),
@@ -1142,7 +1142,48 @@ class _HomePageState extends State<Home>{
                                     blurRadius: 10,
                                     spreadRadius: 0
                                   ) ],
-                                )
+                                ),
+                                child: FutureBuilder(
+                                  future: getFishData(searchFish),
+                                  builder: (context,snapshot){
+                                    Widget fishListSliver;
+                                    if(snapshot.hasData){
+                                      return Column(
+                                        children: List.generate(snapshot.data.length, (index){
+                                          return fishContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
+                                        })
+                                      );
+                                      fishListSliver = SliverPadding(
+                                        padding: EdgeInsets.only(top:0),
+                                        sliver: SliverList(
+                                          delegate: SliverChildBuilderDelegate(
+                                            (BuildContext context, int index) {
+                                              return fishContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
+                                            }, 
+                                            childCount: snapshot.data.length,
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return Container();
+                                    }
+
+                                    return SingleChildScrollView(
+                                      child: Column(
+                                        children: <Widget>[
+                                          fishListSliver,
+                                          SliverFillRemaining(
+                                            hasScrollBody: false,
+                                            child:Container(
+                                              height:100,
+                                            )
+                                          ),
+                                        ],
+                                      ),
+                                      
+                                    );
+                                  }
+                                ),
                               ),
                               //Text bubble
                               new Container(
