@@ -1,6 +1,7 @@
 import 'main.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'popupFunctions.dart';
 
 class HousewaresData{
   final String name;
@@ -1041,10 +1042,11 @@ Future<List<FishData>> getFishData(String search, [bool active=false]) async{
     getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
-      //if(active == true &&) {
-      //  fishData.add(fishDatum);
-      //} 
-      if(search == ''){
+      if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
+        fishData.add(fishDatum);
+      } else if (active == true){
+        
+      }else if(search == ''){
         fishData.add(fishDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
         fishData.add(fishDatum);
@@ -1054,6 +1056,10 @@ Future<List<FishData>> getFishData(String search, [bool active=false]) async{
     });
   }
   return fishData;
+}
+
+bool determineActiveNow(String time){
+  return false;
 }
 
 Future<List<BugData>> getBugData(String search) async{
@@ -2010,4 +2016,79 @@ Future<List<EventData>> getEventsData() async{
     eventData.add(eventDatum);
   }
   return eventData;
+}
+class SeaData{
+  final String id;
+  final String name;
+  final String iconImage;
+  final String critterpediaImage;
+  final String furnitureImage;
+  final String sell;
+  final String shadow;
+  final String movementSpeed;
+  final String totalCatchesToUnlock;
+  final String nhJan;
+  final String nhFeb;
+  final String nhMar;
+  final String nhApr;
+  final String nhMay;
+  final String nhJun;
+  final String nhJul;
+  final String nhAug;
+  final String nhSep;
+  final String nhOct;
+  final String nhNov;
+  final String nhDec;
+  final String shJan;
+  final String shFeb;
+  final String shMar;
+  final String shApr;
+  final String shMay;
+  final String shJun;
+  final String shJul;
+  final String shAug;
+  final String shSep;
+  final String shOct;
+  final String shNov;
+  final String shDec;
+  final String size;
+  final String surface;
+  final String hhaBasePoints;
+  final String color1;
+  final String color2;
+  final String lightingType;
+  final String iconFilename;
+  final String critterpediaFilename;
+  final String furnitureFilename;
+  final String internalId;
+  final String uniqueEntryId;
+  final bool caught;
+
+  SeaData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.shadow,this.movementSpeed, this.totalCatchesToUnlock,
+  this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
+  this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
+  this.size, this.surface, this.hhaBasePoints, this.color1,this.color2,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.caught);
+  
+}
+
+Future<List<SeaData>> getSeaData(String search) async{
+  String data = await rootBundle.loadString("assets/seaCreatures.json");
+
+  final jsonData = json.decode(data);
+  bool caught = false;
+  List<SeaData> seaData = [];
+  for(var u in jsonData){
+    getStoredBool("seaCheckList"+u["Name"], false).then((indexResult){
+      caught = indexResult;
+      SeaData seaDatum = SeaData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Shadow"],u["Movement Speed"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Size"],u["Surface"],u["HHA Base Points"],u["Color 1"],u["Color 2"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],caught);
+      if(search == ''){
+        seaData.add(seaDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        seaData.add(seaDatum);
+      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
+        seaData.add(seaDatum);
+      }
+    });
+  }
+  return seaData;
 }

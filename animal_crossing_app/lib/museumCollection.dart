@@ -2,6 +2,7 @@ import 'package:animal_crossing_app/creditsList.dart';
 import 'package:animal_crossing_app/emojipedia.dart';
 import 'package:animal_crossing_app/fishList.dart';
 import 'package:animal_crossing_app/bugList.dart';
+import 'package:animal_crossing_app/seaList.dart';
 import 'package:animal_crossing_app/fossilList.dart';
 import 'package:animal_crossing_app/music.dart';
 import 'gridList.dart';
@@ -71,7 +72,7 @@ class _MuseumPageState extends State<MuseumPage>{
 
     return MaterialApp(
       home: DefaultTabController(
-        length: 12,
+        length: 13,
         child: Scaffold(
           
           body: Stack(
@@ -89,6 +90,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 500,
                   ),
+                  SeaList(),
                   BugList(),
                   EmojiList(),
                   MusicList(),
@@ -149,6 +151,7 @@ class _MuseumPageState extends State<MuseumPage>{
               ),
               TabBar(
                 tabs: <Widget>[
+                  Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),
                   Tab(text:''),

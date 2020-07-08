@@ -51,6 +51,8 @@ Color colorFloorWallAccent;
 Color colorEmojipediaAppBar;
 Color colorCreditsAppBar;
 Color colorWarningBackground;
+Color colorSeaAppBar;
+Color colorSeaAccent;
 
 Color colorArtAppBar;
 Color colorArtAccent;
@@ -68,6 +70,7 @@ bool lastCaughtWarning = false;
 int totalCollectedFossils = 0;
 int totalCollectedBugs = 0;
 int totalCollectedFish = 0;
+int totalCollectedSea = 0;
 int totalCollectedMusic = 0;
 
 
@@ -78,6 +81,7 @@ resetGlobals(){
   totalCollectedFossils = 0;
   totalCollectedBugs = 0;
   totalCollectedFish = 0;
+  totalCollectedSea = 0;
   totalCollectedMusic = 0;
 }
 
@@ -217,6 +221,9 @@ class _MainPageState extends State<Main> {
     getStoredInt('totalCollectedFish', 0).then((indexResult){
       totalCollectedFish = indexResult;
     });
+     getStoredInt('totalCollectedSea', 0).then((indexResult){
+      totalCollectedSea = indexResult;
+    });
     getStoredInt('totalCollectedMusic', 0).then((indexResult){
       totalCollectedMusic = indexResult;
     });
@@ -287,6 +294,8 @@ class _MainPageState extends State<Main> {
       colorArtTextDarkGreen = Color(0xFF1b5e20);
       colorCreditsAppBar = Color(0xFFFFF176);
       colorWarningBackground = Color(0xFFffccbc);
+      colorSeaAppBar = Color(0xFFA2D0F7);
+      colorSeaAccent = Color(0xFFE3F2FD);
     } else if(darkMode){
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
@@ -325,6 +334,8 @@ class _MainPageState extends State<Main> {
       colorEmojipediaAppBar = Color(0xFF807623);
       colorCreditsAppBar = Color(0xFF807623);
       colorWarningBackground = Color(0xFF4d2a2c);
+      colorSeaAppBar = Color(0xFF536991);
+      colorSeaAccent = Color(0xFF434C53);
     }
 
     double deviceWidth = MediaQuery.of(context).size.width;

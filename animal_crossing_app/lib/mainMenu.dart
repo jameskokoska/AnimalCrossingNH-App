@@ -357,15 +357,13 @@ class _HomePageState extends State<Home>{
     int totalFossils = 73;
     int totalBugs = 80;
     int totalFish = 80;
+    int totalSea = 40;
     int totalMusic = 96;
     double fossilsPercent = totalCollectedFossils/totalFossils;
     double bugsPercent = totalCollectedBugs/totalBugs;
     double fishPercent = totalCollectedFish/totalFish;
+    double seaPercent = totalCollectedSea/totalSea;
     double musicPercent = totalCollectedMusic/totalMusic;
-
-
-    
-
 
     return Scaffold(
         body: Stack(
@@ -617,7 +615,7 @@ class _HomePageState extends State<Home>{
                             //Background
                             new Container(
                               width: deviceWidth,
-                              height: 344*percentScale,
+                              height: 376*percentScale,
                               decoration: new BoxDecoration(
                                 color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff0D0D0D)),
                                 borderRadius: BorderRadius.circular(30*percentScale),
@@ -660,7 +658,7 @@ class _HomePageState extends State<Home>{
                             Center(
                               child: Column(
                                 children: <Widget>[
-                                  SizedBox(height: 59*percentScale),
+                                  SizedBox(height: 50*percentScale),
                                   //Fossil Progress bar
                                   new GestureDetector(
                                     onTap: (){
@@ -828,6 +826,65 @@ class _HomePageState extends State<Home>{
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color:colorTextBlack,
+                                                fontSize: 16*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                              )
+                                            )
+                                          )
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 19*percentScale),
+                                  //Sea Progress bar
+                                  new GestureDetector(
+                                    onTap: (){
+                                      //print("bugs progress bar tapped");
+                                    },
+                                    child: new Stack(
+                                    //Progress BG
+                                      children: <Widget>[
+                                        new Center(
+                                          child: new Stack(
+                                            children: <Widget>[
+                                              new Container(
+                                                width: 334*percentScale,
+                                                height: 29*percentScale,
+                                                decoration: new BoxDecoration(
+                                                  color: darkModeColor(darkMode,colorWhite,Color(0xff494365)),
+                                                  borderRadius: BorderRadius.circular(10*percentScale),
+                                                )
+                                              ),
+                                              //Progress bar actual progress
+                                              new Container(
+                                                width: seaPercent*334*percentScale,
+                                                height: 29*percentScale,
+                                                decoration: new BoxDecoration(
+                                                  color: darkModeColor(darkMode,Color( 0xFF99BFE2),Color(0xFF5D81A3)),
+                                                  borderRadius: BorderRadius.circular(10*percentScale),
+                                                )
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        //Bug icon
+                                        new Container(
+                                          transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
+                                          child: new Image.asset(
+                                            'assets/bugs.png',
+                                            height:22*percentScale,
+                                            width:22*percentScale,
+                                          )
+                                        ),
+                                        //Progress text
+                                        new Container(
+                                          transform: Matrix4.translationValues(0,5*percentScale,0),
+                                          child: new Center(
+                                            child: new Text(totalCollectedSea.toString() + " / " + totalSea.toString(),
+                                              style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: colorTextBlack,
                                                 fontSize: 16*percentScale,
                                                 fontWeight: FontWeight.w400,
                                                 fontStyle: FontStyle.normal,
@@ -1144,44 +1201,17 @@ class _HomePageState extends State<Home>{
                                   ) ],
                                 ),
                                 child: FutureBuilder(
-                                  future: getFishData(searchFish),
+                                  future: getFishData(searchFish, true),
                                   builder: (context,snapshot){
-                                    Widget fishListSliver;
                                     if(snapshot.hasData){
                                       return Column(
                                         children: List.generate(snapshot.data.length, (index){
                                           return fishContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
                                         })
                                       );
-                                      fishListSliver = SliverPadding(
-                                        padding: EdgeInsets.only(top:0),
-                                        sliver: SliverList(
-                                          delegate: SliverChildBuilderDelegate(
-                                            (BuildContext context, int index) {
-                                              return fishContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
-                                            }, 
-                                            childCount: snapshot.data.length,
-                                          ),
-                                        ),
-                                      );
                                     } else {
                                       return Container();
                                     }
-
-                                    return SingleChildScrollView(
-                                      child: Column(
-                                        children: <Widget>[
-                                          fishListSliver,
-                                          SliverFillRemaining(
-                                            hasScrollBody: false,
-                                            child:Container(
-                                              height:100,
-                                            )
-                                          ),
-                                        ],
-                                      ),
-                                      
-                                    );
                                   }
                                 ),
                               ),
