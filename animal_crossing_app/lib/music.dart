@@ -395,6 +395,10 @@ Widget songContainer(double percentScale, bool darkMode, Color colorTextBlack, S
                               setState(() {
                                 collected = value;
                                 saveBool("songCheckList"+name, false, collected);
+                                if (collected)
+                                  saveInt("totalCollectedMusic", 0, totalCollectedMusic++);
+                                else
+                                  saveInt("totalCollectedMusic", 0, totalCollectedMusic--);
                                 HapticFeedback.mediumImpact();
                               });
                             },
@@ -434,6 +438,10 @@ Widget songContainer(double percentScale, bool darkMode, Color colorTextBlack, S
                           setState(() {
                             collected = value;
                             saveBool("songCheckList"+name, false, collected);
+                            if (collected)
+                              saveInt("totalCollectedMusic", 0, totalCollectedMusic++);
+                            else
+                              saveInt("totalCollectedMusic", 0, totalCollectedMusic--);
                             //HapticFeedback.mediumImpact();
                           });
                         },

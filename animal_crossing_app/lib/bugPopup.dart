@@ -165,6 +165,10 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                         caught = value;
                                         currentCaughtBug = value;
                                         saveBool("bugCheckList"+name, false, caught);
+                                        if (caught)
+                                          saveInt("totalCollectedBugs", 0, totalCollectedBugs++);
+                                        else
+                                          saveInt("totalCollectedBugs", 0, totalCollectedBugs--);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },

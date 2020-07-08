@@ -227,6 +227,10 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                           setState(() {
                             caught = !caught;
                             saveBool("fishCheckList"+name, false, caught);
+                            if (caught)
+                              saveInt("totalCollectedFish", 0, totalCollectedFish++);
+                            else
+                              saveInt("totalCollectedFish", 0, totalCollectedFish--);
                           });
                         },
                         onTap: (){
@@ -398,6 +402,10 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                               setState(() {
                                 caught = value;
                                 saveBool("fishCheckList"+name, false, caught);
+                                if (caught)
+                                  saveInt("totalCollectedBugs", 0, totalCollectedFish++);
+                                else
+                                  saveInt("totalCollectedBugs", 0, totalCollectedFish--);
                                 HapticFeedback.mediumImpact();
                             });
                           },

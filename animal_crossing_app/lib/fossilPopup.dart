@@ -132,6 +132,10 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                                         collected = value;
                                         currentCollectedFossil = value;
                                         saveBool("fossilCheckList"+name, false, collected);
+                                        if (collected)
+                                          saveInt("totalCollectedFossils", 0, totalCollectedFossils++);
+                                        else
+                                          saveInt("totalCollectedFossils", 0, totalCollectedFossils--);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },

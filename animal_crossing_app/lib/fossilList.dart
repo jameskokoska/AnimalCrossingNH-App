@@ -216,6 +216,10 @@ Widget fossilContainer(double percentScale, int index, bool collected,String nam
                           setState(() {
                             collected = !collected;
                             saveBool("fossilCheckList"+name, false, collected);
+                            if (collected)
+                              saveInt("totalCollectedFossils", 0, totalCollectedFossils++);
+                            else
+                              saveInt("totalCollectedFossils", 0, totalCollectedFossils--);
                           });
                         },
                         onTap: (){
@@ -355,6 +359,10 @@ Widget fossilContainer(double percentScale, int index, bool collected,String nam
                               setState(() {
                                 collected = value;
                                 saveBool("fossilCheckList"+name, false, collected);
+                                if (collected)
+                                  saveInt("totalCollectedFossils", 0, totalCollectedFossils++);
+                                else
+                                  saveInt("totalCollectedFossils", 0, totalCollectedFossils--);
                                 HapticFeedback.mediumImpact();
                             });
                           },

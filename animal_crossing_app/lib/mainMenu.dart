@@ -353,11 +353,14 @@ class _HomePageState extends State<Home>{
     }
 
     
-
-    double fossilsPercent = 10/50;
-    double bugsPercent = 50/76;
-    double fishPercent = 5/100;
-    double musicPercent = 20/100;
+    int totalFossils = 73;
+    int totalBugs = 80;
+    int totalFish = 80;
+    int totalMusic = 96;
+    double fossilsPercent = totalCollectedFossils/totalFossils;
+    double bugsPercent = totalCollectedBugs/totalBugs;
+    double fishPercent = totalCollectedFish/totalFish;
+    double musicPercent = totalCollectedMusic/totalMusic;
 
 
     
@@ -701,7 +704,7 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("10 / 50",
+                                            child: new Text(totalCollectedFossils.toString() + " / " + totalFossils.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color: colorTextBlack,
@@ -760,7 +763,7 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("50 / 76",
+                                            child: new Text(totalCollectedBugs.toString() + " / " + totalBugs.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color: colorTextBlack,
@@ -820,7 +823,7 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("5 / 100",
+                                            child: new Text(totalCollectedFish.toString() + " / " + totalFish.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color:colorTextBlack,
@@ -879,7 +882,7 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("15 / 50",
+                                            child: new Text(totalCollectedMusic.toString() + " / " + totalMusic.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color:colorTextBlack,
@@ -925,7 +928,7 @@ class _HomePageState extends State<Home>{
                               List<EventData> weekEvents = tomorrow2Events+tomorrow3Events+tomorrow4Events+tomorrow5Events+tomorrow6Events+tomorrow7Events;
 
                               int numEvents = todayEvents.length+tomorrowEvents.length+weekEvents.length;
-                              print(numEvents);
+                              //print(numEvents);
                               int numDays = 1;
                               if(todayEvents.length>0){
                                 numDays++;

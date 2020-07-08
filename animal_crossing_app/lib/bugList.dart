@@ -228,6 +228,10 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                             setState(() {
                               caught = !caught;
                               saveBool("bugCheckList"+name, false, caught);
+                              if (caught)
+                                saveInt("totalCollectedBugs", 0, totalCollectedBugs++);
+                              else
+                                saveInt("totalCollectedBugs", 0, totalCollectedBugs--);
                             });
                           },
                           onTap: (){
@@ -385,6 +389,10 @@ Widget bugContainer(double percentScale, int index, bool caught,String name,Stri
                                 setState(() {
                                   caught = value;
                                   saveBool("bugCheckList"+name, false, caught);
+                                  if (caught)
+                                    saveInt("totalCollectedBugs", 0, totalCollectedBugs++);
+                                  else
+                                    saveInt("totalCollectedBugs", 0, totalCollectedBugs--);
                                   HapticFeedback.mediumImpact();
                               });
                             },

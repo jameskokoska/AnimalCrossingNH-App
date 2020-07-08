@@ -65,7 +65,21 @@ bool showListVariations = true;     //Show variations of furniture, clothing etc
 bool skipSplash = false;
 bool lastCaughtWarning = false;
 
+int totalCollectedFossils = 0;
+int totalCollectedBugs = 0;
+int totalCollectedFish = 0;
+int totalCollectedMusic = 0;
+
+
 var currentDate = DateTime.now();
+
+
+resetGlobals(){
+  totalCollectedFossils = 0;
+  totalCollectedBugs = 0;
+  totalCollectedFish = 0;
+  totalCollectedMusic = 0;
+}
 
 //----------Database Functions---------------
 getStoredBool(String key, bool defaultState) async{
@@ -75,11 +89,25 @@ getStoredBool(String key, bool defaultState) async{
   return storedBool;
 }
 
+getStoredInt(String key, int defaultState) async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  int storedInt = prefs.getInt(key) ?? defaultState;
+  //print('read $key $storedBool');
+  return storedInt;
+}
+
 saveBool(String key, bool defaultState, bool toStoreValue) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool storedBool = toStoreValue ?? defaultState;
   //print('Stored $key $storedBool');
   await prefs.setBool(key, storedBool);
+}
+
+saveInt(String key, int defaultState, int toStoreValue) async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  int storedInt = toStoreValue ?? defaultState;
+  //print('Stored $key $storedBool');
+  await prefs.setInt(key, storedInt);
 }
 
 clearData() async{
@@ -178,6 +206,19 @@ class _MainPageState extends State<Main> {
     });
     getStoredBool('lastCaughtWarning', false).then((indexResult){
       lastCaughtWarning = indexResult;
+    });
+
+    getStoredInt('totalCollectedFossils', 0).then((indexResult){
+      totalCollectedFossils = indexResult;
+    });
+    getStoredInt('totalCollectedBugs', 0).then((indexResult){
+      totalCollectedBugs = indexResult;
+    });
+    getStoredInt('totalCollectedFish', 0).then((indexResult){
+      totalCollectedFish = indexResult;
+    });
+    getStoredInt('totalCollectedMusic', 0).then((indexResult){
+      totalCollectedMusic = indexResult;
     });
     
     currentPageWidget = homepage;

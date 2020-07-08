@@ -167,6 +167,10 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                         caught = value;
                                         currentCaughtFish = value;
                                         saveBool("fishCheckList"+name, false, caught);
+                                        if (caught)
+                                          saveInt("totalCollectedFish", 0, totalCollectedFish++);
+                                        else
+                                          saveInt("totalCollectedFish", 0, totalCollectedFish--);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },

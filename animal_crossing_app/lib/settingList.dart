@@ -146,6 +146,7 @@ class _SettingListPageState extends State<SettingList>{
                                   onPressed: (){
                                     HapticFeedback.mediumImpact();
                                     resetData();
+                                    resetGlobals();
                                     Navigator.of(context).pop();
                                   },
                                 ),
