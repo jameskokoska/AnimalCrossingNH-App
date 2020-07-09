@@ -595,3 +595,30 @@ Widget paintingContainerLayout(String dimensions, String imageLinkReal, String i
     );
   }
 }
+
+//Takes a string in the format "10 AM - 9 PM" for example
+int determineActiveTimeStart(String time){
+  return int.parse(time.substring(0,2));
+}
+
+int determineActiveTimeEnd(String time){
+  return int.parse(time.substring(time.length-5,time.length-3))+12;
+}
+
+double timeToAngle(int hour){
+  double angle = hour * 15.0;
+  print(hour);
+  print(angle);
+  return angle;
+}
+
+int activeDuration(int startTime, int endTime){
+  int duration;
+  if (startTime < endTime){
+    duration = endTime - startTime;
+  }
+  else if (startTime > endTime){
+    duration = 24 - startTime + endTime;
+  }
+  return duration;
+}

@@ -270,12 +270,12 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                                 // ---------- Availability Indicator Bar ----------
                                 Center(
                                   child: new RotationTransition(
-                                    turns: new AlwaysStoppedAnimation(0 / 360),
+                                    turns: new AlwaysStoppedAnimation((timeToAngle(determineActiveTimeStart(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec))) + 180) / 360),
                                     child: new CircularPercentIndicator(
                                       radius: 160.0,
                                       lineWidth: 15.0,
                                       circularStrokeCap: CircularStrokeCap.butt,
-                                      percent: 0 / 360,
+                                      percent: timeToAngle(activeDuration(determineActiveTimeStart(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)), determineActiveTimeEnd(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)))) / 360,
                                       progressColor: Colors.green,
                                     ),
                                   ),
@@ -291,7 +291,7 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                                 // ---------- Time Indicator Dot ----------
                                 Center(
                                   child: Transform.rotate(
-                                    angle: (0 + 7) * math.pi / 180,
+                                    angle: (timeToAngle(DateTime.now().hour) + 172.5) * math.pi / 180,
                                     child: new Transform (
                                       child: Container(
                                         child: new Image.asset(
