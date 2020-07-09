@@ -1,6 +1,7 @@
 import 'main.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'popupFunctions.dart';
 
 class HousewaresData{
   final String name;
@@ -1031,7 +1032,7 @@ Future<List<EmojiData>> getEmojiData(String search) async{
   return emojiData;
 }
 
-Future<List<FishData>> getFishData(String search) async{
+Future<List<FishData>> getFishData(String search, [bool active=false]) async{
   String data = await rootBundle.loadString("assets/fish.json");
 
   final jsonData = json.decode(data);
@@ -1041,7 +1042,11 @@ Future<List<FishData>> getFishData(String search) async{
     getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
-      if(search == ''){
+      if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
+        fishData.add(fishDatum);
+      } else if (active == true){
+        
+      }else if(search == ''){
         fishData.add(fishDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
         fishData.add(fishDatum);
@@ -1053,7 +1058,9 @@ Future<List<FishData>> getFishData(String search) async{
   return fishData;
 }
 
-Future<List<BugData>> getBugData(String search) async{
+
+
+Future<List<BugData>> getBugData(String search, [bool active = false]) async{
   String data = await rootBundle.loadString("assets/bug.json");
 
   final jsonData = json.decode(data);
@@ -1063,7 +1070,11 @@ Future<List<BugData>> getBugData(String search) async{
     getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
-      if(search == ''){
+       if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
+        bugData.add(bugDatum);
+      } else if (active == true){
+        
+      } else if(search == ''){
         bugData.add(bugDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
         bugData.add(bugDatum);
@@ -1148,7 +1159,6 @@ Future<List<VillagerData>> getVillagerData(String search) async{
   String data = await rootBundle.loadString("assets/villagers.json");
 
   final jsonData = json.decode(data);
-  bool favorite = false;
   List<VillagerData> villagerData = [];
   for(var u in jsonData){
     VillagerData villagerDatum = VillagerData(u["Name"],u["Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"]);
@@ -1927,3 +1937,173 @@ Future<List<CraftableData>> getCraftableData(String search) async{
   return craftableData;
 }
 
+class RecipeData{
+  final String name;
+  final String number1;
+  final String material1;
+  final String number2;
+  final String material2;
+  final String number3;
+  final String material3;
+  final String number4;
+  final String material4;
+  final String number5;
+  final String material5;
+  final String number6;
+  final String material6;
+  final String sources;
+  final String sourceNotes;
+  final String category;
+  final String uniqueEntryId;
+
+  RecipeData(this.name, this.number1, this.material1,this.number2,this.material2,this.number3,this.material3,
+  this.number4,this.material4,this.number5,this.material5,this.number6,this.material6,this.sources,this.sourceNotes,this.category,this.uniqueEntryId);
+}
+
+Future<RecipeData> getRecipeData(String search) async{
+  String data = await rootBundle.loadString("assets/recipes.json");
+
+  final jsonData = json.decode(data);
+  for(var u in jsonData){
+    RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Sources"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
+    if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      return recipeDatum;
+    }
+  }
+  return null;
+}
+
+class OtherData{
+  final String name;
+  final String image;
+
+  OtherData(this.name, this.image);
+}
+
+Future<OtherData> getOtherData(String search) async{
+  String data = await rootBundle.loadString("assets/other.json");
+
+  final jsonData = json.decode(data);
+  for(var u in jsonData){
+    OtherData otherDatum = OtherData(u["Name"],u["Image"]);
+    if (u["Name"]!=null&&search!=null&&u["Name"].toLowerCase().contains(search.toLowerCase())){
+      return otherDatum;
+    }
+  }
+  return null;
+}
+
+class EventData{
+  final String name;
+  final String month;
+  final String dayStart;
+  final String dayEnd;
+  final String specialDay;
+  final String specialOccurence;
+  final String hemisphere;
+  final String time;
+  final String image;
+
+  EventData(this.name, this.month, this.dayStart,this.dayEnd,this.specialDay,this.specialOccurence, this.hemisphere,this.time, this.image);
+}
+
+
+Future<List<EventData>> getEventsData() async{
+  String data = await rootBundle.loadString("assets/events.json");
+
+  final jsonData = json.decode(data);
+  List<EventData> eventData = [];
+  for(var u in jsonData){
+    EventData eventDatum = EventData(u["Name"],u["Month"],u["Day Start"],u["Day End"],u["Special Day"],u["Special Occurrence"],u["Hemisphere"],u["Time"],u["Image"]);
+    eventData.add(eventDatum);
+  }
+  return eventData;
+}
+class SeaData{
+  final String id;
+  final String name;
+  final String iconImage;
+  final String critterpediaImage;
+  final String furnitureImage;
+  final String sell;
+  final String shadow;
+  final String movementSpeed;
+  final String totalCatchesToUnlock;
+  final String nhJan;
+  final String nhFeb;
+  final String nhMar;
+  final String nhApr;
+  final String nhMay;
+  final String nhJun;
+  final String nhJul;
+  final String nhAug;
+  final String nhSep;
+  final String nhOct;
+  final String nhNov;
+  final String nhDec;
+  final String shJan;
+  final String shFeb;
+  final String shMar;
+  final String shApr;
+  final String shMay;
+  final String shJun;
+  final String shJul;
+  final String shAug;
+  final String shSep;
+  final String shOct;
+  final String shNov;
+  final String shDec;
+  final String size;
+  final String surface;
+  final String hhaBasePoints;
+  final String color1;
+  final String color2;
+  final String lightingType;
+  final String iconFilename;
+  final String critterpediaFilename;
+  final String furnitureFilename;
+  final String internalId;
+  final String uniqueEntryId;
+  final bool caught;
+
+  SeaData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.shadow,this.movementSpeed, this.totalCatchesToUnlock,
+  this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
+  this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
+  this.size, this.surface, this.hhaBasePoints, this.color1,this.color2,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.caught);
+  
+}
+
+Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
+  String data = await rootBundle.loadString("assets/seaCreatures.json");
+
+  final jsonData = json.decode(data);
+  bool caught = false;
+  List<SeaData> seaData = [];
+  for(var u in jsonData){
+    getStoredBool("seaCheckList"+u["Name"], false).then((indexResult){
+      caught = indexResult;
+      SeaData seaDatum = SeaData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Shadow"],u["Movement Speed"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Size"],u["Surface"],u["HHA Base Points"],u["Color 1"],u["Color 2"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],caught);
+      if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
+        seaData.add(seaDatum);
+      } else if (active == true){
+        
+      } else if(search == ''){
+        seaData.add(seaDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        seaData.add(seaDatum);
+      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
+        seaData.add(seaDatum);
+      }
+    });
+  }
+  return seaData;
+}
+
+
+bool determineActiveNow(String time){
+  final now = DateTime.now();
+  if(now.hour<=int.parse(time.substring(time.length-5,time.length-3))+12 || now.hour>=int.parse(time.substring(0,2)))
+    return true;
+  else  
+    return false;
+}

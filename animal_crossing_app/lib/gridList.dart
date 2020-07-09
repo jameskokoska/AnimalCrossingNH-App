@@ -1,4 +1,7 @@
+import 'package:animal_crossing_app/fishPopup.dart';
 import 'package:animal_crossing_app/floorWallListPopup.dart';
+import 'package:animal_crossing_app/seaPopup.dart';
+import 'package:animal_crossing_app/bugPopup.dart';
 import 'package:animal_crossing_app/villagerPopup.dart';
 
 import 'main.dart';
@@ -13,66 +16,78 @@ import 'furniturePopup.dart';
 import 'clothingPopup.dart';
 import 'toolsPopup.dart';
 import 'floorWallListPopup.dart';
+import 'recipesPopup.dart';
 
 bool popupCollectedGrid;
 
-String getKey(var snapshotContainerData, String title, [recipe=false]){
+String getKey(var snapshotContainerData, String title){
   switch(title){
-    case "Furniture" : 
-      if(recipe==false)
-        return("furnitureCheckList"+snapshotContainerData.name+snapshotContainerData.variation+snapshotContainerData.pattern);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Furniture" : return("furnitureCheckList"+snapshotContainerData.name+snapshotContainerData.variation+snapshotContainerData.pattern);
     break;
 
-    case "Clothing" : 
-      if(recipe==false)
-        return("clothingCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Clothing" : return("clothingCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
     break;
 
-    case "Tools" : 
-      if(recipe==false)
-        return("toolsCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Tools" : return("toolsCheckList"+snapshotContainerData.name+snapshotContainerData.variation);
     break;
 
-    case "Floor & Wall" : 
-      if(recipe==false)
-        return ("floorWallsCheckList"+snapshotContainerData.name);
-      else
-        return getKey(snapshotContainerData, "Recipes");
+    case "Floor & Wall" : return ("floorWallsCheckList"+snapshotContainerData.name);
     break;
 
     case "Villagers" : return ("villagerCheckList"+snapshotContainerData.name);
     break;
 
     case "Recipes" : return("recipesCheckList"+snapshotContainerData.name);
+    break;
+
+    case "Fish" : return("fishCheckList"+snapshotContainerData.name);
+    break;
+
+    case "Sea Creatures" : return("seaCheckList"+snapshotContainerData.name);
+    break;
+
+    case "Bugs" : return("bugCheckList"+snapshotContainerData.name);
+    break;
 
     default: return("");
     break;
   }
 }
 
-Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotContainerData,[bool recipe=false]){
+Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotContainerData){
   switch(title){
-    case "Furniture" : return furniturePopUp(percentScale, colorTextBlack,snapshotContainerData, recipe);
+    case "Furniture" : return furniturePopUp(percentScale, colorTextBlack,snapshotContainerData);
     break;
 
-    case "Clothing" : return clothingPopup(percentScale, colorTextBlack, snapshotContainerData, recipe);
+    case "Clothing" : return clothingPopup(percentScale, colorTextBlack, snapshotContainerData);
     break;
 
-    case "Tools" : return toolsPopUp(percentScale, colorTextBlack, snapshotContainerData, recipe);
+    case "Tools" : return toolsPopUp(percentScale, colorTextBlack, snapshotContainerData);
     break;
 
-    case "Floor & Wall" : return floorWallsPopUp(percentScale, colorTextBlack, snapshotContainerData, recipe);
+    case "Floor & Wall" : return floorWallsPopUp(percentScale, colorTextBlack, snapshotContainerData);
     break;
 
-    case "Villagers" : return villagerPopUp(percentScale, colorTextBlack,  snapshotContainerData);
+    case "Villagers" : return villagerPopUp(percentScale, colorTextBlack, snapshotContainerData);
+    break;
 
-    case "Recipes" : return(getPopupFunction(getCraftableGroup(snapshotContainerData.craftableGroup), percentScale, colorTextBlack, snapshotContainerData, true));
+    case "Recipes" : return recipesPopUp(percentScale, colorTextBlack, snapshotContainerData);
+    break;
+
+    case "Fish" : 
+      currentCaughtFish = popupCollectedGrid;
+      return fishPopUp(percentScale, popupCollectedGrid, snapshotContainerData, true);
+    break;
+
+    case "Sea Creatures" : 
+      currentCaughtSea = popupCollectedGrid;
+      return seaPopUp(percentScale, popupCollectedGrid, snapshotContainerData, true);
+    break;
+
+    case "Bugs" : 
+      currentCaughtBug = popupCollectedGrid;
+      return bugPopUp(percentScale, popupCollectedGrid, snapshotContainerData, true);
+    break;
     
     default: return(Container());
     break;
@@ -104,8 +119,8 @@ List<Future<List>> getFutureFunctions(String title, String searchGrid){
   }
 }
 
-String getCraftableGroup(String craftableGroup){
-  switch(craftableGroup){
+String getCraftableGroup(String craftableTitle){
+  switch(craftableTitle){
     case "Furniture" : return "Furniture";
     break;
 
@@ -391,7 +406,7 @@ class _GridListPageState extends State<GridList>{
 }
 
 
-Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack, Color accentColor, Color checkmarkColor, String title, bool checkmark, var snapshotContainerData){
+Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack, Color accentColor, Color checkmarkColor, String title, bool checkmark, var snapshotContainerData, [bool creature=false]){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
@@ -476,7 +491,13 @@ Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack,
                                     image: imageProvider, fit: BoxFit.cover),
                                 ),
                               ),
-                              imageUrl: snapshotContainerData.image,
+                              imageUrl: (){
+                                if(creature){
+                                  return snapshotContainerData.iconImage;
+                                } else {
+                                  return snapshotContainerData.image;
+                                }
+                              }(),
                               //placeholder: (context, url) => CircularProgressIndicator(),
                               errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
                               height:70*percentScale,

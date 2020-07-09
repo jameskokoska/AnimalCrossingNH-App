@@ -4,34 +4,47 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
-bool currentCollectedFossil = false;
+bool currentCaughtSea = false;
 
 
-Widget fossilPopUp(double percentScale, bool collected, String name, String image, String sell, String source){
+Widget seaPopUp(double percentScale,bool caught, var snapshot, [bool gridView=false]){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
         resizeToAvoidBottomPadding: false,
         body: Column(
           children: [
+            // ---------- Card Stack ----------
             Stack(
               children: [
+                // ---------- Cheaty Background and curved card ----------
                 Container(
                   transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                  height:300*percentScale,
+                  height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: colorWhite,
                   )
                 ),
+                Container(
+                  transform: Matrix4.translationValues(0, 20*percentScale, 0),
+                  height:340*percentScale,
+                  decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(30*percentScale),
+                      color: colorWhite,
+                  )
+                ),
+                // ---------- Card Tab ----------
                 new Center(
                   child: new Container(
                     transform: Matrix4.translationValues(0, -90*percentScale, 0),
                     width: 113*percentScale,
                     height: 113*percentScale,
+                    // ---------- Card Tab Image ----------
                     child: new Center(
                       child: new Center(
                         child:  CachedNetworkImage(
@@ -44,7 +57,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: image,
+                          imageUrl: snapshot.iconImage,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -53,7 +66,7 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                     ),
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100*percentScale),
-                      color:colorFossilAccent,
+                      color:colorSeaAccent,
                       boxShadow: [BoxShadow(
                         color: colorShadowPopUp,
                         offset: Offset(0,3),
@@ -64,21 +77,42 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0x5e533f00), colorCircleContainerPopUp, source),
+                // ---------- Card Location ----------
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, "Ocean"),
+                // ---------- Card Caught ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
+                  // ---------- Card Body Caught Image ----------
                   child: Container(
                     width: 55*percentScale,
                     height: 55*percentScale,
                       child: Stack(
                         children: <Widget>[
                           AnimatedOpacity(
-                            duration: Duration(milliseconds:200),
-                            opacity: !collected ? 0 : 1,
+                            duration: Duration(milliseconds:300),
+                            opacity: caught ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                child: Text("Collected",
+                                child: Text("Not found",
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: colorCircleContainerPopUp,
+                                      fontSize: 11*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
+                                ),
+                              ),
+                            ),
+                          ),
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds:200),
+                            opacity: !caught ? 0 : 1,
+                            child: Center(
+                              child: Container(
+                                transform: Matrix4.translationValues(0,(37)*percentScale,0),
+                                child: Text("Caught!",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: colorCircleContainerPopUp,
@@ -92,8 +126,8 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            top: collected ? 55*percentScale : 0, 
-                            bottom: collected ? 55*percentScale : 0,
+                            top: caught ? 55*percentScale : 0,     //check needs changing to be based on current state
+                            bottom: caught ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -105,8 +139,8 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 200),
-                            top: !collected ? 55*percentScale : 0,
-                            bottom: !collected ? 55*percentScale : 0,
+                            top: !caught ? 55*percentScale : 0,      //check needs changing to be based on current state
+                            bottom: !caught ? 55*percentScale : 0,
                             child: new Container(
                               width: 55*percentScale,
                               height: 55*percentScale,
@@ -126,16 +160,23 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: colorWhite,
-                                    value: currentCollectedFossil,
+                                    value: (){
+                                      if(gridView)
+                                        return popupCollectedGrid;
+                                      else
+                                        return currentCaughtSea;
+                                    }(),
                                     onChanged: (bool value) {
                                       setState(() {
-                                        collected = value;
-                                        currentCollectedFossil = value;
-                                        saveBool("fossilCheckList"+name, false, collected);
-                                        if (collected)
-                                          saveInt("totalCollectedFossils", 0, totalCollectedFossils++);
+                                        caught = value;
+                                        currentCaughtSea = value;
+                                        if(gridView)
+                                          popupCollectedGrid = !popupCollectedGrid;
+                                        saveBool("seaCheckList"+snapshot.name, false, caught);
+                                        if (caught)
+                                          saveInt("totalCollectedSea", 0, totalCollectedSea++);
                                         else
-                                          saveInt("totalCollectedFossils", 0, totalCollectedFossils--);
+                                          saveInt("totalCollectedSea", 0, totalCollectedSea--);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -148,36 +189,50 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
                       )
                   ),
                 ),
-                Center(
-                  child: Container(
-                    transform: Matrix4.translationValues(0, 50*percentScale, 0),
-                    height: 340*percentScale,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height:20*percentScale,
-                        ),
-                        Container(
-                          width: 250*percentScale,
-                          child: new Text(capitalize(name),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'ArialRoundedBold',
-                              color: colorTextBlack,
-                              fontSize: 31*percentScale,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                            )
+                // ---------- Card Centre Content ----------
+                
+                  Center(
+                    child: Container(
+                      transform: Matrix4.translationValues(0, 50*percentScale, 0),
+                      height: 340*percentScale,
+                      width: 360*percentScale,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height:10*percentScale,
                           ),
-                        ),
-                        SizedBox(
-                          height:20*percentScale,
-                        ),
-                        infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells")
-                      ],
+                          // ---------- Card Centre Quote ----------
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds:200),
+                            opacity: caught||showCatchPhraseNow ? 1 : 0,
+                            //child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+"”"),
+                          ),
+                          SizedBox(
+                            height:10*percentScale,
+                          ),
+                          // ---------- Card Centre Name ----------
+                          Container(
+                            child: new Text(capitalize(snapshot.name),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'ArialRoundedBold',
+                                color: colorTextBlack,
+                                fontSize: 31*percentScale,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                              )
+                            ),
+                          ),
+                          SizedBox(
+                            height:20*percentScale,
+                          ),
+                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
+                          infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', snapshot.shadow),
+                          infoContainerDoubleLined(percentScale, 'speed.png', snapshot.movementSpeed),
+                        ],
+                      ),
                     ),
-                  ),
-                )
+                  )
               ],
             ),
           ],
@@ -186,4 +241,3 @@ Widget fossilPopUp(double percentScale, bool collected, String name, String imag
     }
   );
 } 
-

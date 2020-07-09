@@ -89,6 +89,7 @@ class _SettingListPageState extends State<SettingList>{
                       settingContainer(percentScale, 'Always show catchphrase', 'showCatchPhraseNow', showCatchPhraseNow, 'speechBubble'),
                       settingContainer(percentScale, 'List only active creatures', 'showListOnlyActive', showListOnlyActive, 'alarmClock'),
                       settingContainer(percentScale, 'Show variations in lists', 'showListVariations', showListVariations, 'dice'),
+                      settingContainer(percentScale, 'Creatures leaving warning', 'lastCaughtWarning', lastCaughtWarning, 'alarmClock'),
                     ],),
                   ),
                 ),
@@ -145,6 +146,7 @@ class _SettingListPageState extends State<SettingList>{
                                   onPressed: (){
                                     HapticFeedback.mediumImpact();
                                     resetData();
+                                    resetGlobals();
                                     Navigator.of(context).pop();
                                   },
                                 ),
@@ -240,10 +242,13 @@ Widget settingContainer(double percentScale, String settingTitle, String setting
                           showListOnlyActive= state;
                           currentValue = state;
                         }else if(settingKey == 'showListVariations') {
-                          skipSplash = state;
+                          showListVariations = state;
                           currentValue = state;
                         }else if(settingKey == 'skipSplash') {
                           skipSplash = state;
+                          currentValue = state;
+                        }else if(settingKey == 'lastCaughtWarning') {
+                          lastCaughtWarning = state;
                           currentValue = state;
                         }
                         HapticFeedback.mediumImpact();

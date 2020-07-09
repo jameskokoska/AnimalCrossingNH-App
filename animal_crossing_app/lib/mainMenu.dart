@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'databases.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'gridList.dart';
+
 
 
 class Home extends StatefulWidget {
@@ -16,6 +20,10 @@ class Home extends StatefulWidget {
 
 
 Widget eventContainer(bool darkMode, double percentScale, String enable, String name, String time, String dayNum, String dayStr, String imagePath){
+  bool onlineImage = false;
+  if(imagePath.contains("http")){
+    onlineImage = true;
+  }
   bool enableBool;
   if(enable=="true"){
     enableBool = true;
@@ -40,11 +48,36 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
             ),
             new Container(
               transform: Matrix4.translationValues(28*percentScale,15*percentScale,0),
-              child: new Image.asset(
-                'assets/'+imagePath,
-                height:41*percentScale,
-                width:41*percentScale,
-              )
+              child: (){
+                if(onlineImage == true){
+                  return Transform.scale(
+                    scale:1.3,
+                    child: CachedNetworkImage(
+                      imageBuilder: (context, imageProvider) => Container(
+                        width: 41*percentScale,
+                        height: 41*percentScale,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4*percentScale),
+                          image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover),
+                        ),
+                      ),
+                      imageUrl: imagePath,
+                      //placeholder: (context, url) => CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
+                      height:41*percentScale,
+                      width:41*percentScale,
+                      fadeInDuration: Duration(milliseconds:800),
+                    ),
+                  );
+                } else {
+                  return new Image.asset(
+                    'assets/'+imagePath,
+                    height:41*percentScale,
+                    width:41*percentScale,
+                  );
+                }
+              }()
             ),
             new Container(
               transform: Matrix4.translationValues(293*percentScale,15*percentScale,0),
@@ -269,117 +302,6 @@ Widget storeContainer(String enable, double percentScale, bool darkMode, String 
   );
 }
 
-//Widget activeCreature() {
-  //if()
-//}
-
-class FishData{
-  final String id;
-  final String name;
-  final String iconImage;
-  final String critterpediaImage;
-  final String furnitureImage;
-  final String sell;
-  final String whereHow;
-  final String shadow;
-  final String totalCatchesToUnlock;
-  final String rainSnow;
-  final String nhJan;
-  final String nhFeb;
-  final String nhMar;
-  final String nhApr;
-  final String nhMay;
-  final String nhJun;
-  final String nhJul;
-  final String nhAug;
-  final String nhSep;
-  final String nhOct;
-  final String nhNov;
-  final String nhDec;
-  final String shJan;
-  final String shFeb;
-  final String shMar;
-  final String shApr;
-  final String shMay;
-  final String shJun;
-  final String shJul;
-  final String shAug;
-  final String shSep;
-  final String shOct;
-  final String shNov;
-  final String shDec;
-  final String color1;
-  final String color2;
-  final String size;
-  final String lightingType;
-  final String iconFilename;
-  final String critterpediaFilename;
-  final String furnitureFilename;
-  final String internalId;
-  final String uniqueEntryId;
-  final String catchphrase;
-  final String museum;
-  final bool caught;
-
-  FishData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.shadow,this.totalCatchesToUnlock,this.rainSnow,
-      this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
-      this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-      this.color1,this.color2,this.size,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
-
-}
-
-
-class BugData{
-  final String id;
-  final String name;
-  final String iconImage;
-  final String critterpediaImage;
-  final String furnitureImage;
-  final String sell;
-  final String whereHow;
-  final String weather;
-  final String totalCatchesToUnlock;
-  final String nhJan;
-  final String nhFeb;
-  final String nhMar;
-  final String nhApr;
-  final String nhMay;
-  final String nhJun;
-  final String nhJul;
-  final String nhAug;
-  final String nhSep;
-  final String nhOct;
-  final String nhNov;
-  final String nhDec;
-  final String shJan;
-  final String shFeb;
-  final String shMar;
-  final String shApr;
-  final String shMay;
-  final String shJun;
-  final String shJul;
-  final String shAug;
-  final String shSep;
-  final String shOct;
-  final String shNov;
-  final String shDec;
-  final String color1;
-  final String color2;
-  final String iconFilename;
-  final String critterpediaFilename;
-  final String furnitureFilename;
-  final String internalId;
-  final String uniqueEntryId;
-  final String catchphrase;
-  final String museum;
-  final bool caught;
-
-  BugData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.whereHow,this.weather,this.totalCatchesToUnlock,
-      this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
-      this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-      this.color1,this.color2,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.catchphrase, this.museum, this.caught);
-
-}
 
 class _HomePageState extends State<Home>{
   bool morning = false;
@@ -388,13 +310,37 @@ class _HomePageState extends State<Home>{
   String date;
   String weekday;
 
+  var futureEvents;
+
   
   @override
   void initState() {
     //seconds = _formatDateTime(DateTime.now());
-    Timer.periodic(Duration(seconds: 1), (Timer t) => getTime());
+    Timer.periodic(Duration(seconds: 60), (Timer t) => getTime());
     super.initState();
     getTime();
+    futureEvents = getEventsData();
+
+    getStoredInt('totalCollectedFossils', 0).then((indexResult){
+      totalCollectedFossils = indexResult;
+      setState(() {});
+    });
+    getStoredInt('totalCollectedBugs', 0).then((indexResult){
+      totalCollectedBugs = indexResult;
+      setState(() {});
+    });
+    getStoredInt('totalCollectedFish', 0).then((indexResult){
+      totalCollectedFish = indexResult;
+      setState(() {});
+    });
+     getStoredInt('totalCollectedSea', 0).then((indexResult){
+      totalCollectedSea = indexResult;
+      setState(() {});
+    });
+    getStoredInt('totalCollectedMusic', 0).then((indexResult){
+      totalCollectedMusic = indexResult;
+      setState(() {});
+    });
   }
 
   void getTime() {
@@ -410,6 +356,7 @@ class _HomePageState extends State<Home>{
 
   @override 
   Widget build(BuildContext context){
+
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -430,18 +377,16 @@ class _HomePageState extends State<Home>{
     }
 
     
-
-    double fossilsPercent = 10/50;
-    double bugsPercent = 50/76;
-    double fishPercent = 5/100;
-    double musicPercent = 20/100;
-
-    int numEvents = 6;
-    int numDays = 3;
-    
-    List<String> todayFirstBirthday = ["First Birthday", "Sat", "24", "All Days"];
-    List<String> todaySecondBirthday = [];
-
+    int totalFossils = 73;
+    int totalBugs = 80;
+    int totalFish = 80;
+    int totalSea = 40;
+    int totalMusic = 96;
+    double fossilsPercent = totalCollectedFossils/totalFossils;
+    double bugsPercent = totalCollectedBugs/totalBugs;
+    double fishPercent = totalCollectedFish/totalFish;
+    double seaPercent = totalCollectedSea/totalSea;
+    double musicPercent = totalCollectedMusic/totalMusic;
 
     return Scaffold(
         body: Stack(
@@ -656,34 +601,34 @@ class _HomePageState extends State<Home>{
                                 color: darkModeColor(darkMode,Color(0xffb8e299),Color(0xff4D6839)),
                               )
                             ),
-                            new Center(
-                              child: new Container(
-                                width: 230*percentScale,
-                                height: 30*percentScale,
-                                child: Center(
-                                  child: Text(
-                                    "Nate's Birthday",
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Color(0xff4e4e4e),
-                                      fontSize: 15*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    )
-                                  )
-                                ),
-                                decoration: new BoxDecoration(
-                                  color: Color(0xa6ffffff),
-                                  borderRadius: BorderRadius.circular(30*percentScale),
-                                  boxShadow: [BoxShadow(
-                                    color: Color(0x29000000),
-                                    offset: Offset(0,3),
-                                    blurRadius: 6,
-                                    spreadRadius: 0
-                                  ) ],
-                                )
-                              ),
-                            ),
+                            // new Center(
+                            //   child: new Container(
+                            //     width: 230*percentScale,
+                            //     height: 30*percentScale,
+                            //     child: Center(
+                            //       child: Text(
+                            //         "Nate's Birthday",
+                            //         style: TextStyle(
+                            //           fontFamily: 'ArialRoundedBold',
+                            //           color: Color(0xff4e4e4e),
+                            //           fontSize: 15*percentScale,
+                            //           fontWeight: FontWeight.w400,
+                            //           fontStyle: FontStyle.normal,
+                            //         )
+                            //       )
+                            //     ),
+                            //     decoration: new BoxDecoration(
+                            //       color: Color(0xa6ffffff),
+                            //       borderRadius: BorderRadius.circular(30*percentScale),
+                            //       boxShadow: [BoxShadow(
+                            //         color: Color(0x29000000),
+                            //         offset: Offset(0,3),
+                            //         blurRadius: 6,
+                            //         spreadRadius: 0
+                            //       ) ],
+                            //     )
+                            //   ),
+                            // ),
                           ], 
                         ),
 
@@ -693,7 +638,7 @@ class _HomePageState extends State<Home>{
                             //Background
                             new Container(
                               width: deviceWidth,
-                              height: 344*percentScale,
+                              height: 376*percentScale,
                               decoration: new BoxDecoration(
                                 color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff0D0D0D)),
                                 borderRadius: BorderRadius.circular(30*percentScale),
@@ -736,7 +681,7 @@ class _HomePageState extends State<Home>{
                             Center(
                               child: Column(
                                 children: <Widget>[
-                                  SizedBox(height: 59*percentScale),
+                                  SizedBox(height: 50*percentScale),
                                   //Fossil Progress bar
                                   new GestureDetector(
                                     onTap: (){
@@ -781,7 +726,7 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("10 / 50",
+                                            child: new Text(totalCollectedFossils.toString() + " / " + totalFossils.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color: colorTextBlack,
@@ -840,7 +785,7 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("50 / 76",
+                                            child: new Text(totalCollectedBugs.toString() + " / " + totalBugs.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color: colorTextBlack,
@@ -900,10 +845,69 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("5 / 100",
+                                            child: new Text(totalCollectedFish.toString() + " / " + totalFish.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color:colorTextBlack,
+                                                fontSize: 16*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                              )
+                                            )
+                                          )
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 19*percentScale),
+                                  //Sea Progress bar
+                                  new GestureDetector(
+                                    onTap: (){
+                                      //print("bugs progress bar tapped");
+                                    },
+                                    child: new Stack(
+                                    //Progress BG
+                                      children: <Widget>[
+                                        new Center(
+                                          child: new Stack(
+                                            children: <Widget>[
+                                              new Container(
+                                                width: 334*percentScale,
+                                                height: 29*percentScale,
+                                                decoration: new BoxDecoration(
+                                                  color: darkModeColor(darkMode,colorWhite,Color(0xff494365)),
+                                                  borderRadius: BorderRadius.circular(10*percentScale),
+                                                )
+                                              ),
+                                              //Progress bar actual progress
+                                              new Container(
+                                                width: seaPercent*334*percentScale,
+                                                height: 29*percentScale,
+                                                decoration: new BoxDecoration(
+                                                  color: darkModeColor(darkMode,Color( 0xFF99BFE2),Color(0xFF5D81A3)),
+                                                  borderRadius: BorderRadius.circular(10*percentScale),
+                                                )
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        //Bug icon
+                                        new Container(
+                                          transform: Matrix4.translationValues(21*percentScale,3.5*percentScale,0),
+                                          child: new Image.asset(
+                                            'assets/bugs.png',
+                                            height:22*percentScale,
+                                            width:22*percentScale,
+                                          )
+                                        ),
+                                        //Progress text
+                                        new Container(
+                                          transform: Matrix4.translationValues(0,5*percentScale,0),
+                                          child: new Center(
+                                            child: new Text(totalCollectedSea.toString() + " / " + totalSea.toString(),
+                                              style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: colorTextBlack,
                                                 fontSize: 16*percentScale,
                                                 fontWeight: FontWeight.w400,
                                                 fontStyle: FontStyle.normal,
@@ -959,7 +963,7 @@ class _HomePageState extends State<Home>{
                                         new Container(
                                           transform: Matrix4.translationValues(0,5*percentScale,0),
                                           child: new Center(
-                                            child: new Text("15 / 50",
+                                            child: new Text(totalCollectedMusic.toString() + " / " + totalMusic.toString(),
                                               style: TextStyle(
                                                 fontFamily: 'ArialRoundedBold',
                                                 color:colorTextBlack,
@@ -980,148 +984,226 @@ class _HomePageState extends State<Home>{
                         ),
 
                         //Events Section 
-                        new Container(
-                          //Background
-                          width: deviceWidth,
-                          height: (35*percentScale+70*percentScale) + numEvents*(7+71)*percentScale + numDays*(25+7+16)*percentScale,
-                          decoration: new BoxDecoration(
-                          color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff202020)),
-                          borderRadius: BorderRadius.circular(30*percentScale),
-                          boxShadow: [BoxShadow(
-                            color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FFE96B)),
-                            offset: Offset(0,3),
-                            blurRadius: 10,
-                            spreadRadius: 0
-                            ) ],
-                          ),
-                          child:Stack(
-                            children: <Widget>[                          
-                              //Text bubble
-                              new Container(
-                                transform: Matrix4.translationValues(21*percentScale,-18*percentScale,0),
-                                width: 80*percentScale,
-                                height: 35*percentScale,
+                        FutureBuilder(
+                          future: futureEvents,
+                          builder: (context,snapshot){
+                            if(snapshot.hasData){
+                              final now = DateTime.now();
+                              final today = DateTime(now.year, now.month, now.day);
+                              final tomorrow = DateTime(now.year, now.month, now.day+1);
+                              final tomorrow2 = DateTime(now.year, now.month, now.day+2);
+                              final tomorrow3 = DateTime(now.year, now.month, now.day+3);
+                              final tomorrow4 = DateTime(now.year, now.month, now.day+4);
+                              final tomorrow5 = DateTime(now.year, now.month, now.day+5);
+                              final tomorrow6 = DateTime(now.year, now.month, now.day+6);
+                              final tomorrow7 = DateTime(now.year, now.month, now.day+7);
+                              List<EventData> todayEvents = getEventsDay(today.month.toString(), today.day.toString(), today.year.toString(), today.weekday.toString(), snapshot);
+                              List<EventData> tomorrowEvents = getEventsDay(tomorrow.month.toString(), tomorrow.day.toString(), tomorrow.year.toString(), tomorrow.weekday.toString(),snapshot);
+                              List<EventData> tomorrow2Events = getEventsDay(tomorrow2.month.toString(), tomorrow2.day.toString(), tomorrow2.year.toString(), tomorrow2.weekday.toString(),snapshot);
+                              List<EventData> tomorrow3Events = getEventsDay(tomorrow3.month.toString(), tomorrow3.day.toString(), tomorrow3.year.toString(), tomorrow3.weekday.toString(),snapshot);
+                              List<EventData> tomorrow4Events = getEventsDay(tomorrow4.month.toString(), tomorrow4.day.toString(), tomorrow4.year.toString(), tomorrow4.weekday.toString(),snapshot);
+                              List<EventData> tomorrow5Events = getEventsDay(tomorrow5.month.toString(), tomorrow5.day.toString(), tomorrow5.year.toString(), tomorrow5.weekday.toString(),snapshot);
+                              List<EventData> tomorrow6Events = getEventsDay(tomorrow6.month.toString(), tomorrow6.day.toString(), tomorrow6.year.toString(), tomorrow6.weekday.toString(),snapshot);
+                              List<EventData> tomorrow7Events = getEventsDay(tomorrow7.month.toString(), tomorrow7.day.toString(), tomorrow7.year.toString(), tomorrow7.weekday.toString(),snapshot);
+                              
+                              List<EventData> weekEvents = tomorrow2Events+tomorrow3Events+tomorrow4Events+tomorrow5Events+tomorrow6Events+tomorrow7Events;
+
+                              int numEvents = todayEvents.length+tomorrowEvents.length+weekEvents.length;
+                              //print(numEvents);
+                              int numDays = 1;
+                              if(todayEvents.length>0){
+                                numDays++;
+                              }
+                              if(tomorrowEvents.length>0){
+                                numDays++;
+                              }
+                              if(weekEvents.length>0){
+                                numDays++;
+                              }
+                              
+                              return new Container(
+                                //Background
+                                width: deviceWidth,
+                                height: (35*percentScale+70*percentScale) + numEvents*(7+68)*percentScale + numDays*(25+7+16)*percentScale,
                                 decoration: new BoxDecoration(
-                                  color: darkModeColor(darkMode,Color(0xffffe86b),Color(0xff2D2D2D)),
-                                  borderRadius: BorderRadius.circular(30*percentScale),
-                                  boxShadow: [BoxShadow(
-                                      color: darkModeColor(darkMode,Color(0x1A000000),Color(0x40FFE86B)),
-                                      offset: Offset(0,3),
-                                      blurRadius: 6,
-                                      spreadRadius: 0
+                                color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff202020)),
+                                borderRadius: BorderRadius.circular(30*percentScale),
+                                boxShadow: [BoxShadow(
+                                  color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FFE96B)),
+                                  offset: Offset(0,3),
+                                  blurRadius: 10,
+                                  spreadRadius: 0
                                   ) ],
                                 ),
-                                child: Center(
-                                  child: Text("Events",
-                                    style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: darkModeColor(darkMode,Color(0xff000000),Color(0xffFFE86B)),
-                                    fontSize: 16*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                    )
-                                  ),
-                                ),
-                              ),
-                              
-                              new Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  //Today Events
-                                  new Container(
-                                    transform: Matrix4.translationValues(-140*percentScale,35*percentScale,0),
-                                    child: new Text(
-                                      "Today",
-                                      style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: colorTextBlack,
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                      )
-                                    )
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(0,45*percentScale,0),
-                                    child: new Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        //First Event
-                                        eventContainer(darkMode, percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
-                                        //Second event
-                                        eventContainer(darkMode, percentScale, "true","test", "all day", "25", "Sat.", "bones.png"),
-                                      ], 
+                                child:Stack(
+                                  children: <Widget>[                          
+                                    //Text bubble
+                                    new Container(
+                                      transform: Matrix4.translationValues(21*percentScale,-18*percentScale,0),
+                                      width: 80*percentScale,
+                                      height: 35*percentScale,
+                                      decoration: new BoxDecoration(
+                                        color: darkModeColor(darkMode,Color(0xffffe86b),Color(0xff2D2D2D)),
+                                        borderRadius: BorderRadius.circular(30*percentScale),
+                                        boxShadow: [BoxShadow(
+                                            color: darkModeColor(darkMode,Color(0x1A000000),Color(0x40FFE86B)),
+                                            offset: Offset(0,3),
+                                            blurRadius: 6,
+                                            spreadRadius: 0
+                                        ) ],
+                                      ),
+                                      child: Center(
+                                        child: Text("Events",
+                                          style: TextStyle(
+                                          fontFamily: 'ArialRoundedBold',
+                                          color: darkModeColor(darkMode,Color(0xff000000),Color(0xffFFE86B)),
+                                          fontSize: 16*percentScale,
+                                          fontWeight: FontWeight.w400,
+                                          fontStyle: FontStyle.normal,
+                                          )
+                                        ),
+                                      ),
                                     ),
-                                  ),
-
-                                  //Tomorrow's events
-                                  new SizedBox(
-                                    height: 25*percentScale,
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(-122*percentScale,35*percentScale,0),
-                                    child: new Text(
-                                      "Tomorrow",
-                                      style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: colorTextBlack,
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                      )
-                                    )
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(0,45*percentScale,0),
-                                    child: new Column(
+                                    
+                                    Column(
                                       crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
-                                        //First Event
-                                        eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
-                                        //Second Event
-                                        eventContainer(darkMode, percentScale, "true","test2", "all day", "25", "Sat.", "bones.png"),
-
+                                        //Today Events
+                                        (){
+                                          if(todayEvents.length>0){
+                                            return new Container(
+                                              transform: Matrix4.translationValues(-140*percentScale,35*percentScale,0),
+                                              child: new Text(
+                                                "Today",
+                                                style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: colorTextBlack,
+                                                fontSize: 16*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                                )
+                                              )
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
+                                        (){
+                                          if(todayEvents.length>0){
+                                            return new Container(
+                                              transform: Matrix4.translationValues(0,45*percentScale,0),
+                                              child: new Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: List.generate(todayEvents.length, (index){
+                                                  //print(todayEvents);
+                                                    return eventContainer(darkMode, percentScale, "true",todayEvents[index].name, todayEvents[index].time, todayEvents[index].dayStart, todayEvents[index].month, todayEvents[index].image);
+                                                }),
+                                              ),
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
+                                        //Tomorrow's events
+                                        (){
+                                          if(tomorrowEvents.length>0&&todayEvents.length>0){
+                                            return new SizedBox(
+                                              height: 25*percentScale,
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
+                                        (){
+                                          if(tomorrowEvents.length>0){
+                                            return new Container(
+                                              transform: Matrix4.translationValues(-122*percentScale,35*percentScale,0),
+                                              child: new Text(
+                                                "Tomorrow",
+                                                style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: colorTextBlack,
+                                                fontSize: 16*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                                )
+                                              )
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
+                                        (){
+                                          if(tomorrowEvents.length>0){
+                                            return new Container(
+                                              transform: Matrix4.translationValues(0,45*percentScale,0),
+                                              child: new Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: List.generate(tomorrowEvents.length, (index){
+                                                  return eventContainer(darkMode, percentScale, "true",tomorrowEvents[index].name, tomorrowEvents[index].time, tomorrowEvents[index].dayStart, tomorrowEvents[index].month, tomorrowEvents[index].image);
+                                                }),
+                                              ),
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
+                                        //This Week
+                                        (){
+                                          if(weekEvents.length>0&&tomorrowEvents.length>0||weekEvents.length>0&&todayEvents.length>0){
+                                            return new SizedBox(
+                                              height: 25*percentScale,
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
+                                        (){
+                                          if(weekEvents.length>0){
+                                            return new Container(
+                                              transform: Matrix4.translationValues(-120*percentScale,35*percentScale,0),
+                                              child: new Text(
+                                                "This Week",
+                                                style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: colorTextBlack,
+                                                fontSize: 16*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                                )
+                                              )
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
+                                        (){
+                                          if(weekEvents.length>0){
+                                            return new Container(
+                                              transform: Matrix4.translationValues(0,45*percentScale,0),
+                                              child: new Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children:List.generate(weekEvents.length, (index){
+                                                  return eventContainer(darkMode, percentScale, "true",weekEvents[index].name, weekEvents[index].time, weekEvents[index].dayStart, weekEvents[index].month, weekEvents[index].image);
+                                                }),
+                                              ),
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }(),
                                       ], 
-                                    ),
-                                  ),
-
-                                  //This Week
-                                  new SizedBox(
-                                    height: 25*percentScale,
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(-120*percentScale,35*percentScale,0),
-                                    child: new Text(
-                                      "This Week",
-                                      style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: colorTextBlack,
-                                      fontSize: 16*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                      )
                                     )
-                                  ),
-                                  new Container(
-                                    transform: Matrix4.translationValues(0,45*percentScale,0),
-                                    child: new Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        //First Event
-                                        eventContainer( darkMode, percentScale, "true","Bug Off", "10 AM - 6 PM", "21", "Sat.", "bones.png"),
-                                        //Second Event
-                                        eventContainer(darkMode, percentScale, "true","K.K. Slider", "6 PM - 12 AM", "23", "Sat.", "bones.png"),
-                                        
-                                      ], 
-                                    ),
-                                  ),
-                                ], 
-                              )
-                            ]
-                          ),
+                                  ]
+                                )
+                              );
+                            } else {
+                              return Container();
+                            }
+                          }
                         ),
 
                         //Active Creatures Section
@@ -1131,7 +1213,6 @@ class _HomePageState extends State<Home>{
                             children: <Widget>[
                               new Container(
                                 width: deviceWidth,
-                                height: 648*percentScale,
                                 decoration: new BoxDecoration(
                                   color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF0D0D0D)),
                                   borderRadius: BorderRadius.circular(30*percentScale),
@@ -1141,7 +1222,35 @@ class _HomePageState extends State<Home>{
                                     blurRadius: 10,
                                     spreadRadius: 0
                                   ) ],
-                                )
+                                ),
+                                child: FutureBuilder(
+                                  future: Future.wait([getBugData("", true),getFishData("", true),getSeaData("", true)]),
+                                  builder: (context,snapshot){
+                                    if(snapshot.hasData){
+                                      return GridView.count(
+                                        primary: false,
+                                        padding: const EdgeInsets.all(20),
+                                        crossAxisCount: 3,
+                                        mainAxisSpacing: 13,
+                                        crossAxisSpacing: 17,
+                                        childAspectRatio: 0.85,
+                                        shrinkWrap: true,
+                                        children: List.generate(snapshot.data[0].length+snapshot.data[1].length+snapshot.data[2].length, (index){
+                                          if(index < snapshot.data[0].length)
+                                            return gridContainer(percentScale, 400, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
+                                          else if (index < snapshot.data[0].length + snapshot.data[1].length)
+                                             return gridContainer(percentScale, 400, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
+                                          else if (index < snapshot.data[0].length + snapshot.data[1].length + snapshot.data[2].length)
+                                            return gridContainer(percentScale, 400, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
+                                          else 
+                                            return Container();
+                                        }),
+                                      );
+                                    } else {
+                                      return Container();
+                                    }
+                                  }
+                                ),
                               ),
                               //Text bubble
                               new Container(
@@ -1273,5 +1382,164 @@ class _HomePageState extends State<Home>{
           ],
         ),
     );
+  }
+}
+
+List<EventData> getEventsDay(String currentMonth, String currentDay, String currentYear, String dayOfWeek, var snapshot){
+  List<EventData> totalEvents = [];
+  DateTime eventDay;
+  EventData eventDatum;
+  if(dayOfWeek=="7"){
+    eventDatum = EventData("Daisy Mae",getMonthName(currentMonth),currentDay,"NA","NA","NA","NA","5 AM - 12 PM","turnip.png");
+    totalEvents.add(eventDatum);
+  } else if (dayOfWeek=="6"){
+    eventDatum = EventData("K.K. Slider",getMonthName(currentMonth),currentDay,"NA","NA","NA","NA","8 PM - 12 AM","music.png");
+    totalEvents.add(eventDatum);
+  }
+
+  for(int i = 0; i < snapshot.data.length; i++){
+    int compareMonth = int.parse(getMonthNumber(snapshot.data[i].month));
+    if(northernHemisphere && snapshot.data[i].hemisphere=="Southern"){
+      continue;
+    } else if (!northernHemisphere && snapshot.data[i].hemisphere=="Northern"){
+      continue;
+    } else if(snapshot.data[i].dayStart=="NA"){
+      eventDay = getSpecialOccurenceDate(currentYear, i, snapshot);
+      if(eventDay.day.toString()==currentDay && currentMonth==compareMonth.toString()){
+        print(currentDay);
+        print(eventDay.day.toString());
+        eventDatum = EventData(snapshot.data[i].name,snapshot.data[i].month,snapshot.data[i].dayStart,snapshot.data[i].dayEnd,snapshot.data[i].specialDay,snapshot.data[i].specialOccurence,snapshot.data[i].hemisphere,snapshot.data[i].time,snapshot.data[i].image);
+        totalEvents.add(eventDatum);
+      }
+    } else if(currentDay==snapshot.data[i].dayStart && currentMonth==compareMonth.toString()){
+      eventDatum = EventData(snapshot.data[i].name,snapshot.data[i].month,snapshot.data[i].dayStart,snapshot.data[i].dayEnd,snapshot.data[i].specialDay,snapshot.data[i].specialOccurence,snapshot.data[i].hemisphere,snapshot.data[i].time,snapshot.data[i].image);
+      totalEvents.add(eventDatum);
+    }
+  }
+  return totalEvents;
+}
+
+DateTime getSpecialOccurenceDate(String currentYear, int i, var snapshot){
+  //print(snapshot.data[i].name);
+  DateTime eventDate;
+  var occurence = 0;
+  for(int day = 0; day < getDaysNumberMonth(snapshot.data[i].month); day++){
+    //print(day);
+    if(day<10){
+      eventDate = DateTime.parse(currentYear+"-"+getMonthNumber(snapshot.data[i].month)+"-0"+day.toString()+" "+"00:00:00");
+    } else {
+      eventDate = DateTime.parse(currentYear+"-"+getMonthNumber(snapshot.data[i].month)+"-"+day.toString()+" "+"00:00:00");
+    }
+    
+    if(eventDate.weekday==getDayOfWeekObject(snapshot.data[i].specialDay)){
+      occurence++;
+    }
+    var specialOccurence = int.parse(snapshot.data[i].specialOccurence);
+    if(occurence==specialOccurence){
+      //print(specialOccurence);
+      //print(occurence);
+      //print(eventDate);
+      return eventDate;
+    }
+  }
+  return eventDate;
+}
+
+int getDaysNumberMonth(String currentMonth){
+  if(currentMonth=="Jan")
+    return 31;
+  else if(currentMonth=="Feb")
+    return 28;
+  else if(currentMonth=="Mar")
+    return 31;
+  else if(currentMonth=="Apr")
+    return 30;
+  else if(currentMonth=="May")
+    return 31;
+  else if(currentMonth=="June")
+    return 30;
+  else if(currentMonth=="July")
+    return 31;
+  else if(currentMonth=="Aug")
+    return 31;
+  else if(currentMonth=="Sept")
+    return 30;
+  else if(currentMonth=="Oct")
+    return 31;
+  else if(currentMonth=="Nov")
+    return 30;
+  else
+    return 31;
+}
+
+String getMonthNumber(String currentMonth){
+  if(currentMonth=="Jan")
+    return "01";
+  else if(currentMonth=="Feb")
+    return "02";
+  else if(currentMonth=="Mar")
+    return "03";
+  else if(currentMonth=="Apr")
+    return "04";
+  else if(currentMonth=="May")
+    return "05";
+  else if(currentMonth=="June")
+    return "06";
+  else if(currentMonth=="July")
+    return "07";
+  else if(currentMonth=="Aug")
+    return "08";
+  else if(currentMonth=="Sept")
+    return "09";
+  else if(currentMonth=="Oct")
+    return "10";
+  else if(currentMonth=="Nov")
+    return "11";
+  else
+    return "12";
+}
+
+String getMonthName(String currentMonth){
+  if(currentMonth=="1")
+    return "Jan";
+  else if(currentMonth=="2")
+    return "Feb";
+  else if(currentMonth=="3")
+    return "Mar";
+  else if(currentMonth=="4")
+    return "Apr";
+  else if(currentMonth=="5")
+    return "May";
+  else if(currentMonth=="6")
+    return "June";
+  else if(currentMonth=="7")
+    return "July";
+  else if(currentMonth=="8")
+    return "Aug";
+  else if(currentMonth=="9")
+    return "Sept";
+  else if(currentMonth=="10")
+    return "Oct";
+  else if(currentMonth=="11")
+    return "Nov";
+  else
+    return "Dec";
+}
+
+int getDayOfWeekObject(String dayOfWeek){
+  if(dayOfWeek=="Monday"){
+    return DateTime.monday;
+  } else if(dayOfWeek=="Tuesday"){
+    return DateTime.tuesday;
+  }else if(dayOfWeek=="Wednesday"){
+    return DateTime.wednesday;
+  }else if(dayOfWeek=="Thursday"){
+    return DateTime.thursday;
+  }else if(dayOfWeek=="Friday"){
+    return DateTime.friday;
+  }else if(dayOfWeek=="Saturday"){
+    return DateTime.saturday;
+  }else if(dayOfWeek=="Sunday"){
+    return DateTime.sunday;
   }
 }

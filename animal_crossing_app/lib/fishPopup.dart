@@ -7,13 +7,14 @@ import 'popupFunctions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'dart:math' as math;
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
 bool currentCaughtFish = false;
 
 
-Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView = false]){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -59,7 +60,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: iconImage,
+                          imageUrl: snapshot.iconImage,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -80,7 +81,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, whereHow),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshot.whereHow),
                 
                 // ---------- Card Caught ----------
                 new Container(
@@ -163,12 +164,23 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: colorWhite,
-                                    value: currentCaughtFish,
+                                    value: (){
+                                      if(gridView)
+                                        return popupCollectedGrid;
+                                      else
+                                        return currentCaughtFish;
+                                    }(),
                                     onChanged: (bool value) {
                                       setState(() {
                                         caught = value;
                                         currentCaughtFish = value;
-                                        saveBool("fishCheckList"+name, false, caught);
+                                        if(gridView)
+                                          popupCollectedGrid = !popupCollectedGrid;
+                                        saveBool("fishCheckList"+snapshot.name, false, caught);
+                                        if (caught)
+                                          saveInt("totalCollectedFish", 0, totalCollectedFish++);
+                                        else
+                                          saveInt("totalCollectedFish", 0, totalCollectedFish--);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -197,14 +209,14 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
                             opacity: caught||showCatchPhraseNow ? 1 : 0,
-                            child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+catchphrase+"”"),
+                            child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+snapshot.catchphrase+"”"),
                           ),
                           SizedBox(
                             height:10*percentScale,
                           ),
                           // ---------- Card Centre Name ----------
                           Container(
-                            child: new Text(capitalize(name),
+                            child: new Text(capitalize(snapshot.name),
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
                                 color: colorTextBlack,
@@ -235,7 +247,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                                   width: 90*percentScale,
                                   height: 55*percentScale,
                                   child: new Image.asset(
-                                    'assets/shadowNormal'+determineShadowImage(shadow, whereHow)+'.png',
+                                    'assets/shadowNormal'+determineShadowImage(snapshot.shadow, snapshot.whereHow)+'.png',
                                     height: 70*percentScale,
                                     width: 100*percentScale,
                                   ),
@@ -246,9 +258,9 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           SizedBox(
                             height:8*percentScale,
                           ),
-                          infoContainer(percentScale, 'magnifyingGlass.png', capitalize(shadow)),
+                          infoContainer(percentScale, 'magnifyingGlass.png', capitalize(snapshot.shadow)),
                           //Shadow size
-                          infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells"),
+                          infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
                           // ---------- Clock ----------
                           Container(
                             height: 180*percentScale,

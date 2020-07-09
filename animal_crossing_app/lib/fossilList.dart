@@ -57,9 +57,9 @@ class _FossilsListPageState extends State<FossilList>{
             FutureBuilder(
               future: getFossilData(searchFossil),
               builder: (context,snapshot){
-                Widget FossilListSliver;
+                Widget fossilListSliver;
                 if(snapshot.hasData){
-                  FossilListSliver = SliverPadding(
+                  fossilListSliver = SliverPadding(
                     padding: EdgeInsets.only(top:0),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
@@ -71,7 +71,7 @@ class _FossilsListPageState extends State<FossilList>{
                     ),
                   );
                 } else {
-                  FossilListSliver = SliverToBoxAdapter(
+                  fossilListSliver = SliverToBoxAdapter(
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -175,7 +175,7 @@ class _FossilsListPageState extends State<FossilList>{
                       
                     ),
                     //Add the sliverlist parsed in future function above
-                    FossilListSliver,
+                    fossilListSliver,
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(
@@ -216,6 +216,10 @@ Widget fossilContainer(double percentScale, int index, bool collected,String nam
                           setState(() {
                             collected = !collected;
                             saveBool("fossilCheckList"+name, false, collected);
+                            if (collected)
+                              saveInt("totalCollectedFossils", 0, totalCollectedFossils++);
+                            else
+                              saveInt("totalCollectedFossils", 0, totalCollectedFossils--);
                           });
                         },
                         onTap: (){
@@ -355,6 +359,10 @@ Widget fossilContainer(double percentScale, int index, bool collected,String nam
                               setState(() {
                                 collected = value;
                                 saveBool("fossilCheckList"+name, false, collected);
+                                if (collected)
+                                  saveInt("totalCollectedFossils", 0, totalCollectedFossils++);
+                                else
+                                  saveInt("totalCollectedFossils", 0, totalCollectedFossils--);
                                 HapticFeedback.mediumImpact();
                             });
                           },

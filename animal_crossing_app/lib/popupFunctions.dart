@@ -1,6 +1,8 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 final priceFormat = new NumberFormat("#,##0");
 
@@ -60,7 +62,71 @@ String determineTime(String nhJan,String nhFeb,String nhMar,String nhApr,String 
   }
 }
 
-Widget infoContainer(double percentScale, String imageIcon, String displayString){
+String determineLastCaughtWarning(String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
+  if(northernHemisphere){
+    if(currentDate.month==12){
+      return nhJan;
+    }else if (currentDate.month==1){
+      return nhFeb;
+    }else if (currentDate.month==2){
+      return nhMar;
+    }else if (currentDate.month==3){
+      return nhApr;
+    }else if (currentDate.month==4){
+      return nhMay;
+    }else if (currentDate.month==5){
+      return nhJun;
+    }else if (currentDate.month==6){
+      return nhJul;
+    }else if (currentDate.month==7){
+      return nhAug;
+    }else if (currentDate.month==8){
+      return nhSep;
+    }else if (currentDate.month==9){
+      return nhOct;
+    }else if (currentDate.month==10){
+      return nhNov;
+    }else if (currentDate.month==11){
+      return nhDec;
+    }
+  }else{
+    if(currentDate.month==12){
+      return shJan;
+    }else if (currentDate.month==1){
+      return shFeb;
+    }else if (currentDate.month==2){
+      return shMar;
+    }else if (currentDate.month==3){
+      return shApr;
+    }else if (currentDate.month==4){
+      return shMay;
+    }else if (currentDate.month==5){
+      return shJun;
+    }else if (currentDate.month==6){
+      return shJul;
+    }else if (currentDate.month==7){
+      return shAug;
+    }else if (currentDate.month==8){
+      return shSep;
+    }else if (currentDate.month==9){
+      return shOct;
+    }else if (currentDate.month==10){
+      return shNov;
+    }else if (currentDate.month==11){
+      return shDec;
+    }
+  } 
+  return "";
+}
+
+Color determineBackgroundColor(String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
+  if (lastCaughtWarning==true&&determineLastCaughtWarning(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA')
+    return colorWarningBackground;
+  else 
+    return colorWhite;
+}
+
+Widget infoContainer(double percentScale, String imageIcon, String displayString, [bool imageLink = false]){
   if(displayString=="NA")
     return Container();
   return Container(
@@ -69,11 +135,30 @@ Widget infoContainer(double percentScale, String imageIcon, String displayString
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          child: new Image.asset(
-            'assets/'+imageIcon,
-            height: 25*percentScale,
-            width: 25*percentScale,
-          ),
+          child: (){
+            if(imageLink==false){
+              return new Image.asset(
+                'assets/'+imageIcon,
+                height: 25*percentScale,
+                width: 25*percentScale,
+              );
+            }else{
+              return CachedNetworkImage(
+                errorWidget: (context, url, error) => new Icon(Icons.error),
+                fadeInDuration: Duration(milliseconds:800),
+                imageUrl: imageIcon,
+                imageBuilder: (context, imageProvider) => Container(
+                  width: 38*percentScale,
+                  height: 38*percentScale,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4*percentScale),
+                    image: DecorationImage(
+                      image: imageProvider, fit: BoxFit.cover),
+                  ),
+                )
+              );
+            }
+          }()
         ),
         SizedBox(
           width: 5*percentScale,

@@ -4,13 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
 bool currentCaughtBug = false;
 
 
-Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String whereHow,String weather,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget bugPopUp(double percentScale,bool caught, var snapshot, [bool gridView = false]){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -56,7 +57,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: iconImage,
+                          imageUrl: snapshot.iconImage,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -77,7 +78,7 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, whereHow),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshot.whereHow),
                 // ---------- Card Caught ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
@@ -159,12 +160,23 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: colorWhite,
-                                    value: currentCaughtBug,
+                                    value: (){
+                                      if(gridView)
+                                        return popupCollectedGrid;
+                                      else
+                                        return currentCaughtBug;
+                                    }(),
                                     onChanged: (bool value) {
                                       setState(() {
                                         caught = value;
                                         currentCaughtBug = value;
-                                        saveBool("bugCheckList"+name, false, caught);
+                                        if(gridView)
+                                          popupCollectedGrid = !popupCollectedGrid;
+                                        saveBool("bugCheckList"+snapshot.name, false, caught);
+                                        if (caught)
+                                          saveInt("totalCollectedBugs", 0, totalCollectedBugs++);
+                                        else
+                                          saveInt("totalCollectedBugs", 0, totalCollectedBugs--);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -193,14 +205,14 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
                             opacity: caught||showCatchPhraseNow ? 1 : 0,
-                            child: quoteContainer(percentScale, colorBugTextDarkGreen, "“"+catchphrase+"”"),
+                            child: quoteContainer(percentScale, colorBugTextDarkGreen, "“"+snapshot.catchphrase+"”"),
                           ),
                           SizedBox(
                             height:10*percentScale,
                           ),
                           // ---------- Card Centre Name ----------
                           Container(
-                            child: new Text(capitalize(name),
+                            child: new Text(capitalize(snapshot.name),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
@@ -214,8 +226,8 @@ Widget bugPopUp(double percentScale,bool caught,String name,String iconImage,Str
                           SizedBox(
                             height:20*percentScale,
                           ),
-                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(sell))+" bells"),
-                          infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', whereHow),
+                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
+                          infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', snapshot.whereHow),
                         ],
                       ),
                     ),

@@ -4,23 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'bugPopup.dart';
+import 'seaPopup.dart';
 import 'popupFunctions.dart';
 import 'databases.dart';
 
-class BugList extends StatefulWidget {
-  BugList({Key key, this.title}) : super(key: key);
+class SeaList extends StatefulWidget {
+  SeaList({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _BugListPageState createState() => _BugListPageState();
+  _SeaListPageState createState() => _SeaListPageState();
 }
 
-String searchBug = '';
+String searchSea = '';
 
 
-class _BugListPageState extends State<BugList>{
+class _SeaListPageState extends State<SeaList>{
 
   @override
   Widget build(BuildContext context){
@@ -56,23 +56,23 @@ class _BugListPageState extends State<BugList>{
             ),
             
             FutureBuilder(
-              future: getBugData(searchBug),
+              future: getSeaData(searchSea),
               builder: (context,snapshot){
-                Widget bugListSliver;
+                Widget seaListSliver;
                 if(snapshot.hasData){
-                  bugListSliver = SliverPadding(
+                  seaListSliver = SliverPadding(
                     padding: EdgeInsets.only(top:0),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return bugContainer(percentScale, snapshot.data[index].caught, snapshot.data[index]);
+                          return seaContainer(percentScale, snapshot.data[index].caught, snapshot.data[index]);
                         }, 
                         childCount: snapshot.data.length,
                       ),
                     ),
                   );
                 } else {
-                  bugListSliver = SliverToBoxAdapter(
+                  seaListSliver = SliverToBoxAdapter(
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -94,7 +94,7 @@ class _BugListPageState extends State<BugList>{
                   slivers: <Widget>[
                     SliverAppBar(
                       expandedHeight: 219*percentScale,
-                      backgroundColor: colorBugAppBar,
+                      backgroundColor: colorSeaAppBar,
                       pinned: true,
                       //snap: true,
                       floating: true,
@@ -105,7 +105,7 @@ class _BugListPageState extends State<BugList>{
                           return FlexibleSpaceBar(
                             title: Container(
                               transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
-                              child: Text("Bugs",
+                              child: Text("Sea Creatures",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',
                                   color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
@@ -118,7 +118,7 @@ class _BugListPageState extends State<BugList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/bugTitle.png'),
+                                //Image.asset('assets/seaTitle.png'),
                                   Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
@@ -136,14 +136,14 @@ class _BugListPageState extends State<BugList>{
                                         }(),
                                         child: CupertinoTextField(
                                           onTap: (){
-                                            searchBug='';
+                                            searchSea='';
                                           },
                                           maxLength: 15,
                                           placeholder: (){
-                                            if (searchBug==''){
+                                            if (searchSea==''){
                                               return 'Search';
                                             } else {
-                                              return searchBug;
+                                              return searchSea;
                                             }
                                           }(),
                                           decoration: BoxDecoration(
@@ -160,7 +160,7 @@ class _BugListPageState extends State<BugList>{
                                           ),
                                           onChanged: (string){
                                             setState(() {
-                                              searchBug = string;
+                                              searchSea = string;
                                             });
                                           },
                                         ),
@@ -176,7 +176,7 @@ class _BugListPageState extends State<BugList>{
                       
                     ),
                     //Add the sliverlist parsed in future function above
-                    bugListSliver,
+                    seaListSliver,
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child:Container(
@@ -195,7 +195,7 @@ class _BugListPageState extends State<BugList>{
 }
 
 
-Widget bugContainer(double percentScale, bool caught,snapshot){
+Widget seaContainer(double percentScale, bool caught,var snapshot){
   return Center(
     child: new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) { 
@@ -203,7 +203,7 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
           visible: (){
             if(!showListOnlyActive)
               return true;
-            else if(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)=='NA'&&searchBug=="")
+            else if(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)=='NA'&&searchSea=="")
               return false;
             else
               return true;
@@ -221,21 +221,21 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
                     child: new Container(
                       child: new Material(
                         child: new InkWell(
-                          highlightColor: colorBugAccent,
-                          splashColor: colorBugAccent,
+                          highlightColor: colorSeaAccent,
+                          splashColor: colorSeaAccent,
                           enableFeedback: true,
                           onLongPress: (){
                             setState(() {
                               caught = !caught;
-                              saveBool("bugCheckList"+snapshot.name, false, caught);
+                              saveBool("seaCheckList"+snapshot.name, false, caught);
                               if (caught)
-                                saveInt("totalCollectedBugs", 0, totalCollectedBugs++);
+                                saveInt("totalCollectedSea", 0, totalCollectedSea++);
                               else
-                                saveInt("totalCollectedBugs", 0, totalCollectedBugs--);
+                                saveInt("totalCollectedSea", 0, totalCollectedSea--);
                             });
                           },
                           onTap: (){
-                            currentCaughtBug = caught;
+                            currentCaughtSea = caught;
                             FocusScope.of(context).requestFocus(new FocusNode());
                             Future<void> future = showModalBottomSheet(
                               //by setting this to true, we can avoid the half screen limit
@@ -245,12 +245,12 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
                                 return Container(
                                   height: 400*percentScale,
                                     child: Container(
-                                      child: bugPopUp(percentScale, currentCaughtBug, snapshot),
+                                      child: seaPopUp(percentScale, currentCaughtSea, snapshot),
                                   ),
                                 );
                             });
                             future.then((void value)=> setState(() {
-                              getStoredBool("bugCheckList"+snapshot.name, false).then((indexResult){
+                              getStoredBool("seaCheckList"+snapshot.name, false).then((indexResult){
                                   caught = indexResult;
                               });
                             }));
@@ -275,7 +275,7 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
                           height: 55*percentScale,
                           decoration: new BoxDecoration(
                             shape: BoxShape.circle,
-                            color: colorBugAccent,
+                            color: colorSeaAccent,
                           )
                         ),
                         Container(
@@ -317,7 +317,7 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
                           child: new Text(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec),
                             style: TextStyle(
                             fontFamily: 'ArialRoundedBold',
-                            color: colorBugTextDarkGreen,
+                            color: colorFishTextDarkBlue,
                             fontSize: 14*percentScale,
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
@@ -327,10 +327,10 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
                         Container(
                           width: 200*percentScale,
                           transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
-                          child: new Text(snapshot.whereHow,
+                          child: new Text(snapshot.shadow,
                             style: TextStyle(
                             fontFamily: 'ArialRoundedBold',
-                            color: colorBugTextDarkGreen,
+                            color: colorFishTextDarkBlue,
                             fontSize: 14*percentScale,
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
@@ -388,11 +388,11 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
                               onChanged: (bool value) {
                                 setState(() {
                                   caught = value;
-                                  saveBool("bugCheckList"+snapshot.name, false, caught);
+                                  saveBool("seaCheckList"+snapshot.name, false, caught);
                                   if (caught)
-                                    saveInt("totalCollectedBugs", 0, totalCollectedBugs++);
+                                    saveInt("totalCollectedSea", 0, totalCollectedSea++);
                                   else
-                                    saveInt("totalCollectedBugs", 0, totalCollectedBugs--);
+                                    saveInt("totalCollectedSea", 0, totalCollectedSea--);
                                   HapticFeedback.mediumImpact();
                               });
                             },

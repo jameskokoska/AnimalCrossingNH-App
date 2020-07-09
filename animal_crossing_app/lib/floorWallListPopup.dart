@@ -9,7 +9,7 @@ import 'gridList.dart';
 
 final bellsPrice = new NumberFormat("#,##0");
 
-Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotData, bool recipe){
+Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotData){
   String buyPriceConverted;
   String buyPriceConvertedType;
   if (snapshotData.buy=='NFS'){
@@ -144,7 +144,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotDa
                                     onChanged: (bool value) {
                                       setState(() {
                                         popupCollectedGrid = value;
-                                        saveBool(getKey(snapshotData, "Floor & Wall", recipe), false, popupCollectedGrid);
+                                        saveBool(getKey(snapshotData, "Floor & Wall"), false, popupCollectedGrid);
                                         HapticFeedback.mediumImpact();
                                       });
                                     },
@@ -168,13 +168,7 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotDa
                         ),
                         Container(
                           width: 250*percentScale,
-                          child: new Text(
-                            (){
-                              if(recipe==false)
-                                return capitalize(snapshotData.name);
-                              else
-                                return capitalize(snapshotData.name + " recipe");
-                            }(),
+                          child: new Text(capitalize(snapshotData.name),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'ArialRoundedBold',

@@ -67,7 +67,7 @@ class _CreditsListPageState extends State<CreditsList>{
                       child: Text("Credits",
                         style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
-                          color: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+                          color: darkModeColor(darkMode,colorTextBlack,colorTextBlack),
                           fontSize: 30*percentScale,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -86,6 +86,7 @@ class _CreditsListPageState extends State<CreditsList>{
                     delegate: SliverChildListDelegate([
                       creditsContainer(percentScale, "James", "Team Lead",'earth'),
                       creditsContainer(percentScale, "Ryan", "Graphics Lead",'earth'),
+                      creditsContainer(percentScale, "Andrew", "Supporter",'earth'),
                     ],),
                   ),
                 ),
@@ -112,7 +113,7 @@ class _CreditsListPageState extends State<CreditsList>{
                             child: Text(
                               'About...',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: colorTextBlack,
                                 fontFamily: 'ArialRoundedBold'
                               ),
                             ),
