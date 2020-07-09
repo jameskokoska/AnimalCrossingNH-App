@@ -588,7 +588,7 @@ Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack,
                               value: snapshot.data,
                               onChanged: (bool value) {
                                 setState(() {
-                                  increaseCount(title, value);
+                                  //increaseCount(title, value);
                                   saveBool(getKey(snapshotContainerData, title), false, value);
                                   //HapticFeedback.mediumImpact();
                                 });
