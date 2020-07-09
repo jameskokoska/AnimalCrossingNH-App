@@ -2091,8 +2091,6 @@ Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
         seaData.add(seaDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
         seaData.add(seaDatum);
-      } else if (u["Where/How"].toLowerCase().contains(search.toLowerCase())){
-        seaData.add(seaDatum);
       }
     });
   }
@@ -2102,7 +2100,11 @@ Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
 
 bool determineActiveNow(String time){
   final now = DateTime.now();
-  if(now.hour<=int.parse(time.substring(time.length-5,time.length-3))+12 || now.hour>=int.parse(time.substring(0,2)))
+  if(time=="All day")
+    return true;
+  else if (time=="NA")
+    return false;
+  else if(now.hour<=int.parse(time.substring(time.length-5,time.length-3))+12 || now.hour>=int.parse(time.substring(0,2)))
     return true;
   else  
     return false;

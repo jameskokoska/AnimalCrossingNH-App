@@ -119,6 +119,35 @@ List<Future<List>> getFutureFunctions(String title, String searchGrid){
   }
 }
 
+// increaseCount(String title, bool caught){
+//   switch(title){
+//     case "Fish" : 
+//       if (caught)
+//         saveInt("totalCollectedFish", 0, totalCollectedFish++);
+//       else
+//         saveInt("totalCollectedFish", 0, totalCollectedFish--);
+//     break;
+
+//     case "Sea Creatures" : 
+//       if (caught)
+//         saveInt("totalCollectedSea", 0, totalCollectedSea++);
+//       else
+//         saveInt("totalCollectedSea", 0, totalCollectedSea--);
+//     break;
+
+//     case "Bugs" : 
+//       if (caught)
+//         saveInt("totalCollectedBugs", 0, totalCollectedBugs++);
+//       else
+//         saveInt("totalCollectedBugs", 0, totalCollectedBugs--);
+//     break;
+
+//     default:
+//     break;
+//   }
+  
+// }
+
 String getCraftableGroup(String craftableTitle){
   switch(craftableTitle){
     case "Furniture" : return "Furniture";
@@ -386,12 +415,15 @@ class _GridListPageState extends State<GridList>{
                       );
                     } else if (index%2==1){
                       return SliverToBoxAdapter(
-                        child:Container(
-                          height:20*percentScale,
-                          color: Colors.black,
+                        child:Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height:15,
+                            ),
+                          ],
                         )
                       );
-                    } else {
+                    }else {
                       return sliverList[(index/2-1).round()];
                     }
                   }),
@@ -443,6 +475,7 @@ Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack,
                         enableFeedback: true,
                         onLongPress: (){
                           setState(() {
+                            //increaseCount(title, !snapshot.data);
                             saveBool(getKey(snapshotContainerData, title), false, !snapshot.data);
                           });
                         },
@@ -555,6 +588,7 @@ Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack,
                               value: snapshot.data,
                               onChanged: (bool value) {
                                 setState(() {
+                                  increaseCount(title, value);
                                   saveBool(getKey(snapshotContainerData, title), false, value);
                                   //HapticFeedback.mediumImpact();
                                 });

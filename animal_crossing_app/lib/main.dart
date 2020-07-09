@@ -73,7 +73,6 @@ int totalCollectedFish = 0;
 int totalCollectedSea = 0;
 int totalCollectedMusic = 0;
 
-
 var currentDate = DateTime.now();
 
 
@@ -212,21 +211,21 @@ class _MainPageState extends State<Main> {
       lastCaughtWarning = indexResult;
     });
 
-    getStoredInt('totalCollectedFossils', 0).then((indexResult){
-      totalCollectedFossils = indexResult;
-    });
-    getStoredInt('totalCollectedBugs', 0).then((indexResult){
-      totalCollectedBugs = indexResult;
-    });
-    getStoredInt('totalCollectedFish', 0).then((indexResult){
-      totalCollectedFish = indexResult;
-    });
-     getStoredInt('totalCollectedSea', 0).then((indexResult){
-      totalCollectedSea = indexResult;
-    });
-    getStoredInt('totalCollectedMusic', 0).then((indexResult){
-      totalCollectedMusic = indexResult;
-    });
+    // getStoredInt('totalCollectedFossils', 0).then((indexResult){
+    //   totalCollectedFossils = indexResult;
+    // });
+    // getStoredInt('totalCollectedBugs', 0).then((indexResult){
+    //   totalCollectedBugs = indexResult;
+    // });
+    // getStoredInt('totalCollectedFish', 0).then((indexResult){
+    //   totalCollectedFish = indexResult;
+    // });
+    //  getStoredInt('totalCollectedSea', 0).then((indexResult){
+    //   totalCollectedSea = indexResult;
+    // });
+    // getStoredInt('totalCollectedMusic', 0).then((indexResult){
+    //   totalCollectedMusic = indexResult;
+    // });
     
     currentPageWidget = homepage;
     
