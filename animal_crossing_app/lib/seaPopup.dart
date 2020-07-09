@@ -4,13 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'gridList.dart';
 
 
 final bellsPrice = new NumberFormat("#,##0");
 bool currentCaughtSea = false;
 
 
-Widget seaPopUp(double percentScale,bool caught,String name,String iconImage,String sell,String shadow,String speed,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec){
+Widget seaPopUp(double percentScale,bool caught, var snapshot, [bool gridView=false]){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Scaffold(
@@ -56,7 +57,7 @@ Widget seaPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: iconImage,
+                          imageUrl: snapshot.iconImage,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => new Icon(Icons.error),
                           fadeInDuration: Duration(milliseconds:800),
@@ -159,12 +160,19 @@ Widget seaPopUp(double percentScale,bool caught,String name,String iconImage,Str
                                   child: new Checkbox(
                                     activeColor: Color(0x0499F9A9),
                                     checkColor: colorWhite,
-                                    value: currentCaughtSea,
+                                    value: (){
+                                      if(gridView)
+                                        return popupCollectedGrid;
+                                      else
+                                        return currentCaughtSea;
+                                    }(),
                                     onChanged: (bool value) {
                                       setState(() {
                                         caught = value;
                                         currentCaughtSea = value;
-                                        saveBool("seaCheckList"+name, false, caught);
+                                        if(gridView)
+                                          popupCollectedGrid = !popupCollectedGrid;
+                                        saveBool("seaCheckList"+snapshot.name, false, caught);
                                         if (caught)
                                           saveInt("totalCollectedSea", 0, totalCollectedSea++);
                                         else
@@ -204,7 +212,7 @@ Widget seaPopUp(double percentScale,bool caught,String name,String iconImage,Str
                           ),
                           // ---------- Card Centre Name ----------
                           Container(
-                            child: new Text(capitalize(name),
+                            child: new Text(capitalize(snapshot.name),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'ArialRoundedBold',
@@ -218,9 +226,9 @@ Widget seaPopUp(double percentScale,bool caught,String name,String iconImage,Str
                           SizedBox(
                             height:20*percentScale,
                           ),
-                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(sell))+" bells"),
-                          infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', shadow),
-                          infoContainerDoubleLined(percentScale, 'speed.png', speed),
+                          infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
+                          infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', snapshot.shadow),
+                          infoContainerDoubleLined(percentScale, 'speed.png', snapshot.movementSpeed),
                         ],
                       ),
                     ),

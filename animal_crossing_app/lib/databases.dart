@@ -1058,11 +1058,9 @@ Future<List<FishData>> getFishData(String search, [bool active=false]) async{
   return fishData;
 }
 
-bool determineActiveNow(String time){
-  return false;
-}
 
-Future<List<BugData>> getBugData(String search) async{
+
+Future<List<BugData>> getBugData(String search, [bool active = false]) async{
   String data = await rootBundle.loadString("assets/bug.json");
 
   final jsonData = json.decode(data);
@@ -1072,7 +1070,11 @@ Future<List<BugData>> getBugData(String search) async{
     getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
-      if(search == ''){
+       if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
+        bugData.add(bugDatum);
+      } else if (active == true){
+        
+      } else if(search == ''){
         bugData.add(bugDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
         bugData.add(bugDatum);
@@ -2071,7 +2073,7 @@ class SeaData{
   
 }
 
-Future<List<SeaData>> getSeaData(String search) async{
+Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
   String data = await rootBundle.loadString("assets/seaCreatures.json");
 
   final jsonData = json.decode(data);
@@ -2081,7 +2083,11 @@ Future<List<SeaData>> getSeaData(String search) async{
     getStoredBool("seaCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       SeaData seaDatum = SeaData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Shadow"],u["Movement Speed"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Size"],u["Surface"],u["HHA Base Points"],u["Color 1"],u["Color 2"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],caught);
-      if(search == ''){
+      if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
+        seaData.add(seaDatum);
+      } else if (active == true){
+        
+      } else if(search == ''){
         seaData.add(seaDatum);
       } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
         seaData.add(seaDatum);
@@ -2091,4 +2097,13 @@ Future<List<SeaData>> getSeaData(String search) async{
     });
   }
   return seaData;
+}
+
+
+bool determineActiveNow(String time){
+  final now = DateTime.now();
+  if(now.hour<=int.parse(time.substring(time.length-5,time.length-3))+12 || now.hour>=int.parse(time.substring(0,2)))
+    return true;
+  else  
+    return false;
 }

@@ -1,4 +1,7 @@
+import 'package:animal_crossing_app/fishPopup.dart';
 import 'package:animal_crossing_app/floorWallListPopup.dart';
+import 'package:animal_crossing_app/seaPopup.dart';
+import 'package:animal_crossing_app/bugPopup.dart';
 import 'package:animal_crossing_app/villagerPopup.dart';
 
 import 'main.dart';
@@ -35,6 +38,16 @@ String getKey(var snapshotContainerData, String title){
     break;
 
     case "Recipes" : return("recipesCheckList"+snapshotContainerData.name);
+    break;
+
+    case "Fish" : return("fishCheckList"+snapshotContainerData.name);
+    break;
+
+    case "Sea Creatures" : return("seaCheckList"+snapshotContainerData.name);
+    break;
+
+    case "Bugs" : return("bugCheckList"+snapshotContainerData.name);
+    break;
 
     default: return("");
     break;
@@ -56,8 +69,25 @@ Widget getPopupFunction(String title, percentScale, colorTextBlack,snapshotConta
     break;
 
     case "Villagers" : return villagerPopUp(percentScale, colorTextBlack, snapshotContainerData);
+    break;
 
     case "Recipes" : return recipesPopUp(percentScale, colorTextBlack, snapshotContainerData);
+    break;
+
+    case "Fish" : 
+      currentCaughtFish = popupCollectedGrid;
+      return fishPopUp(percentScale, popupCollectedGrid, snapshotContainerData, true);
+    break;
+
+    case "Sea Creatures" : 
+      currentCaughtSea = popupCollectedGrid;
+      return seaPopUp(percentScale, popupCollectedGrid, snapshotContainerData, true);
+    break;
+
+    case "Bugs" : 
+      currentCaughtBug = popupCollectedGrid;
+      return bugPopUp(percentScale, popupCollectedGrid, snapshotContainerData, true);
+    break;
     
     default: return(Container());
     break;
@@ -376,7 +406,7 @@ class _GridListPageState extends State<GridList>{
 }
 
 
-Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack, Color accentColor, Color checkmarkColor, String title, bool checkmark, var snapshotContainerData){
+Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack, Color accentColor, Color checkmarkColor, String title, bool checkmark, var snapshotContainerData, [bool creature=false]){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
@@ -461,7 +491,13 @@ Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack,
                                     image: imageProvider, fit: BoxFit.cover),
                                 ),
                               ),
-                              imageUrl: snapshotContainerData.image,
+                              imageUrl: (){
+                                if(creature){
+                                  return snapshotContainerData.iconImage;
+                                } else {
+                                  return snapshotContainerData.image;
+                                }
+                              }(),
                               //placeholder: (context, url) => CircularProgressIndicator(),
                               errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 70*percentScale,height:70*percentScale),
                               height:70*percentScale,

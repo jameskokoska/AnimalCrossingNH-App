@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'databases.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'fishList.dart';
+import 'gridList.dart';
 
 
 
@@ -311,6 +311,7 @@ class _HomePageState extends State<Home>{
   String weekday;
 
   var futureEvents;
+
   
   @override
   void initState() {
@@ -319,6 +320,27 @@ class _HomePageState extends State<Home>{
     super.initState();
     getTime();
     futureEvents = getEventsData();
+
+    getStoredInt('totalCollectedFossils', 0).then((indexResult){
+      totalCollectedFossils = indexResult;
+      setState(() {});
+    });
+    getStoredInt('totalCollectedBugs', 0).then((indexResult){
+      totalCollectedBugs = indexResult;
+      setState(() {});
+    });
+    getStoredInt('totalCollectedFish', 0).then((indexResult){
+      totalCollectedFish = indexResult;
+      setState(() {});
+    });
+     getStoredInt('totalCollectedSea', 0).then((indexResult){
+      totalCollectedSea = indexResult;
+      setState(() {});
+    });
+    getStoredInt('totalCollectedMusic', 0).then((indexResult){
+      totalCollectedMusic = indexResult;
+      setState(() {});
+    });
   }
 
   void getTime() {
@@ -334,6 +356,7 @@ class _HomePageState extends State<Home>{
 
   @override 
   Widget build(BuildContext context){
+
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -1073,7 +1096,7 @@ class _HomePageState extends State<Home>{
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: List.generate(todayEvents.length, (index){
-                                                  print(todayEvents);
+                                                  //print(todayEvents);
                                                     return eventContainer(darkMode, percentScale, "true",todayEvents[index].name, todayEvents[index].time, todayEvents[index].dayStart, todayEvents[index].month, todayEvents[index].image);
                                                 }),
                                               ),
@@ -1201,13 +1224,27 @@ class _HomePageState extends State<Home>{
                                   ) ],
                                 ),
                                 child: FutureBuilder(
-                                  future: getFishData(searchFish, true),
+                                  future: Future.wait([getBugData("", true),getFishData("", true),getSeaData("", true)]),
                                   builder: (context,snapshot){
                                     if(snapshot.hasData){
-                                      return Column(
-                                        children: List.generate(snapshot.data.length, (index){
-                                          return fishContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
-                                        })
+                                      return GridView.count(
+                                        primary: false,
+                                        padding: const EdgeInsets.all(20),
+                                        crossAxisCount: 3,
+                                        mainAxisSpacing: 13,
+                                        crossAxisSpacing: 17,
+                                        childAspectRatio: 0.85,
+                                        shrinkWrap: true,
+                                        children: List.generate(snapshot.data[0].length+snapshot.data[1].length+snapshot.data[2].length, (index){
+                                          if(index < snapshot.data[0].length)
+                                            return gridContainer(percentScale, 400, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
+                                          else if (index < snapshot.data[0].length + snapshot.data[1].length)
+                                             return gridContainer(percentScale, 400, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
+                                          else if (index < snapshot.data[0].length + snapshot.data[1].length + snapshot.data[2].length)
+                                            return gridContainer(percentScale, 400, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
+                                          else 
+                                            return Container();
+                                        }),
                                       );
                                     } else {
                                       return Container();

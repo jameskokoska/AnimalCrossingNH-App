@@ -65,7 +65,7 @@ class _FishListPageState extends State<FishList>{
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return fishContainer(percentScale, index, snapshot.data[index].caught, snapshot.data[index].name,snapshot.data[index].iconImage,snapshot.data[index].sell,snapshot.data[index].whereHow,snapshot.data[index].shadow,snapshot.data[index].nhJan,snapshot.data[index].nhFeb,snapshot.data[index].nhMar,snapshot.data[index].nhApr,snapshot.data[index].nhMay,snapshot.data[index].nhJun,snapshot.data[index].nhJul,snapshot.data[index].nhAug,snapshot.data[index].nhSep,snapshot.data[index].nhOct,snapshot.data[index].nhNov,snapshot.data[index].nhDec,snapshot.data[index].shJan,snapshot.data[index].shFeb,snapshot.data[index].shMar,snapshot.data[index].shApr,snapshot.data[index].shMay,snapshot.data[index].shJun,snapshot.data[index].shJul,snapshot.data[index].shAug,snapshot.data[index].shSep,snapshot.data[index].shOct,snapshot.data[index].shNov,snapshot.data[index].shDec,snapshot.data[index].catchphrase);
+                          return fishContainer(percentScale, snapshot.data[index].caught, snapshot.data[index]);
                         }, 
                         childCount: snapshot.data.length,
                       ),
@@ -195,7 +195,7 @@ class _FishListPageState extends State<FishList>{
 }
 
 
-Widget fishContainer(double percentScale, int index, bool caught,String name,String iconImage,String sell,String whereHow,String shadow,String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec,String catchphrase){
+Widget fishContainer(double percentScale, bool caught,snapshot){
   return Center(
     child: new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) { 
@@ -203,7 +203,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
           visible: (){
             if(!showListOnlyActive)
               return true;
-            else if(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)=='NA'&&searchFish=="")
+            else if(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)=='NA'&&searchFish=="")
               return false;
             else
               return true;
@@ -226,7 +226,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                         onLongPress: (){
                           setState(() {
                             caught = !caught;
-                            saveBool("fishCheckList"+name, false, caught);
+                            saveBool("fishCheckList"+snapshot.name, false, caught);
                             if (caught)
                               saveInt("totalCollectedFish", 0, totalCollectedFish++);
                             else
@@ -244,12 +244,12 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                               return Container(
                                 height: 400*percentScale,
                                   child: Container(
-                                    child: fishPopUp(percentScale, currentCaughtFish, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
+                                    child: fishPopUp(percentScale, currentCaughtFish, snapshot),
                                 ),
                               );
                           });
                           future.then((void value)=> setState(() {
-                            getStoredBool("fishCheckList"+name, false).then((indexResult){
+                            getStoredBool("fishCheckList"+snapshot.name, false).then((indexResult){
                                 caught = indexResult;
                             });
                           }));
@@ -259,7 +259,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                           height: 75*percentScale,
                         ),
                       ),
-                      color: determineBackgroundColor(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
+                      color: determineBackgroundColor(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec),
                     ),
                     
                   ),
@@ -299,7 +299,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                                 image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          imageUrl: iconImage,
+                          imageUrl: snapshot.iconImage,
                           //placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => Container(child: new Icon(Icons.error), width: 45*percentScale,height:45*percentScale),
                           height:45*percentScale,
@@ -309,7 +309,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       ),
                       Container(
                         transform: Matrix4.translationValues((80)*percentScale,(10)*percentScale,0),
-                        child: new Text((capitalize(name)),
+                        child: new Text((capitalize(snapshot.name)),
                           style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
                           color: colorTextBlack,
@@ -321,7 +321,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       ),
                       Container(
                         transform: Matrix4.translationValues((80)*percentScale,(32)*percentScale,0),
-                        child: new Text(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
+                        child: new Text(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec),
                           style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
                           color: colorFishTextDarkBlue,
@@ -333,7 +333,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       ),
                       Container(
                         transform: Matrix4.translationValues((80)*percentScale,(49)*percentScale,0),
-                        child: new Text(whereHow,
+                        child: new Text(snapshot.whereHow,
                           style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
                           color: colorFishTextDarkBlue,
@@ -375,7 +375,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                       Container(
                          transform: Matrix4.translationValues((190)*percentScale,(22)*percentScale,0),
                          child: Image.asset(
-                           'assets/shadow'+determineShadowImage(shadow, whereHow)+'.png',
+                           'assets/shadow'+determineShadowImage(snapshot.shadow, snapshot.whereHow)+'.png',
                            height:60*percentScale,
                            width:70*percentScale,
                         ),
@@ -401,11 +401,11 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                             onChanged: (bool value) {
                               setState(() {
                                 caught = value;
-                                saveBool("fishCheckList"+name, false, caught);
+                                saveBool("fishCheckList"+snapshot.name, false, caught);
                                 if (caught)
-                                  saveInt("totalCollectedBugs", 0, totalCollectedFish++);
+                                  saveInt("totalCollectedFish", 0, totalCollectedFish++);
                                 else
-                                  saveInt("totalCollectedBugs", 0, totalCollectedFish--);
+                                  saveInt("totalCollectedFish", 0, totalCollectedFish--);
                                 HapticFeedback.mediumImpact();
                             });
                           },
