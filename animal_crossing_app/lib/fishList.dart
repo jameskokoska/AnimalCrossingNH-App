@@ -238,7 +238,7 @@ Widget fishContainer(double percentScale, int index, bool caught,String name,Str
                             context: context, 
                             builder: (context){
                               return Container(
-                                height: 400*percentScale,
+                                height: 520*percentScale,
                                   child: Container(
                                     child: fishPopUp(percentScale, currentCaughtFish, name, iconImage, sell, whereHow, shadow, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec,shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec, catchphrase),
                                 ),

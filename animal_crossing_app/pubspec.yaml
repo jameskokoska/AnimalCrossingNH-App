@@ -50,6 +50,8 @@ dev_dependencies:
   #slide_popup_dialog: ^0.0.2
   #transparent_image: ^1.0.0
   optimized_cached_image: ^0.1.13
+  percent_indicator: ^2.1.5
+  vector_math: ^2.0.8
   
 
 

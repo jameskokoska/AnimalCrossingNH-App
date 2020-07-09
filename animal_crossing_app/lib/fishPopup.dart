@@ -5,6 +5,8 @@ import 'fishList.dart';
 import 'package:intl/intl.dart';
 import 'popupFunctions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'dart:math' as math;
 
 
 final bellsPrice = new NumberFormat("#,##0");
@@ -32,7 +34,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 ),
                 Container(
                   transform: Matrix4.translationValues(0, 20*percentScale, 0),
-                  height:340*percentScale,
+                  height:500*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: colorWhite,
@@ -183,8 +185,8 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                 
                   Center(
                     child: Container(
-                      transform: Matrix4.translationValues(0, 50*percentScale, 0),
-                      height: 340*percentScale,
+                      transform: Matrix4.translationValues(0, 10*percentScale, 0),
+                      height: 500*percentScale,
                       width: 360*percentScale,
                       child: Column(
                         children: [
@@ -213,7 +215,7 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                             ),
                           ),
                           SizedBox(
-                            height:20*percentScale,
+                            height:10*percentScale,
                           ),
                           //Shadow
                           Stack(
@@ -247,6 +249,53 @@ Widget fishPopUp(double percentScale,bool caught,String name,String iconImage,St
                           infoContainer(percentScale, 'magnifyingGlass.png', capitalize(shadow)),
                           //Shadow size
                           infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(sell))+" bells"),
+                          // ---------- Clock ----------
+                          Container(
+                            height: 180*percentScale,
+                            width: 180*percentScale,
+                            child: Stack(
+                              children: <Widget>[
+                                // ---------- Availability Indicator Bar ----------
+                                Center(
+                                  child: new RotationTransition(
+                                    turns: new AlwaysStoppedAnimation(0 / 360),
+                                    child: new CircularPercentIndicator(
+                                      radius: 160.0,
+                                      lineWidth: 15.0,
+                                      circularStrokeCap: CircularStrokeCap.butt,
+                                      percent: 0 / 360,
+                                      progressColor: Colors.green,
+                                    ),
+                                  ),
+                                ),
+                                // ---------- Clock Body ----------
+                                Center(
+                                  child: new Image.asset(
+                                    "assets/clock.png",
+                                    height: 150*percentScale,
+                                    width: 150*percentScale,
+                                  ),
+                                ),
+                                // ---------- Time Indicator Dot ----------
+                                Center(
+                                  child: Transform.rotate(
+                                    angle: (0 + 7) * math.pi / 180,
+                                    child: new Transform (
+                                      child: Container(
+                                        child: new Image.asset(
+                                          "assets/indicator.png",
+                                          height: 10*percentScale,
+                                          width: 10*percentScale,
+                                        ),
+                                      ),
+                                      alignment: FractionalOffset.center, // set transform origin
+                                      transform: new Matrix4.translationValues(0, -72, 0), // rotate -10 deg
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
