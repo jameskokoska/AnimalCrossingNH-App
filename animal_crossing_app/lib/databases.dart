@@ -2107,3 +2107,12 @@ bool determineActiveNow(String time){
   else  
     return false;
 }
+
+//Takes a string in the format "10 AM - 9 PM" for example
+int determineActiveTimeStart(String time){
+  return int.parse(time.substring(0,2));
+}
+
+int determineActiveTimeEnd(String time){
+  return int.parse(time.substring(time.length-5,time.length-3))+12;
+}

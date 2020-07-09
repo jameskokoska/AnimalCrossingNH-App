@@ -1223,34 +1223,44 @@ class _HomePageState extends State<Home>{
                                     spreadRadius: 0
                                   ) ],
                                 ),
-                                child: FutureBuilder(
-                                  future: Future.wait([getBugData("", true),getFishData("", true),getSeaData("", true)]),
-                                  builder: (context,snapshot){
-                                    if(snapshot.hasData){
-                                      return GridView.count(
-                                        primary: false,
-                                        padding: const EdgeInsets.all(20),
-                                        crossAxisCount: 3,
-                                        mainAxisSpacing: 13,
-                                        crossAxisSpacing: 17,
-                                        childAspectRatio: 0.85,
-                                        shrinkWrap: true,
-                                        children: List.generate(snapshot.data[0].length+snapshot.data[1].length+snapshot.data[2].length, (index){
-                                          if(index < snapshot.data[0].length)
-                                            return gridContainer(percentScale, 400, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
-                                          else if (index < snapshot.data[0].length + snapshot.data[1].length)
-                                             return gridContainer(percentScale, 400, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
-                                          else if (index < snapshot.data[0].length + snapshot.data[1].length + snapshot.data[2].length)
-                                            return gridContainer(percentScale, 400, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
-                                          else 
-                                            return Container();
-                                        }),
-                                      );
-                                    } else {
-                                      return Container();
-                                    }
-                                  }
-                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    SizedBox(
+                                      height:25*percentScale,
+                                    ),
+                                    FutureBuilder(
+                                      future: Future.wait([getBugData("", true),getFishData("", true),getSeaData("", true)]),
+                                      builder: (context,snapshot){
+                                        if(snapshot.hasData){
+                                          return GridView.count(
+                                            primary: false,
+                                            padding: const EdgeInsets.all(20),
+                                            crossAxisCount: 3,
+                                            mainAxisSpacing: 13,
+                                            crossAxisSpacing: 17,
+                                            childAspectRatio: 0.85,
+                                            shrinkWrap: true,
+                                            children: List.generate(snapshot.data[0].length+snapshot.data[1].length+snapshot.data[2].length, (index){
+                                              if(index < snapshot.data[0].length)
+                                                return gridContainer(percentScale, 400, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
+                                              else if (index < snapshot.data[0].length + snapshot.data[1].length)
+                                                return gridContainer(percentScale, 400, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
+                                              else if (index < snapshot.data[0].length + snapshot.data[1].length + snapshot.data[2].length)
+                                                return gridContainer(percentScale, 400, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
+                                              else 
+                                                return Container();
+                                            }),
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      }
+                                    ),
+                                    SizedBox(
+                                      height:65*percentScale,
+                                    ),
+                                  ],
+                                )
                               ),
                               //Text bubble
                               new Container(
