@@ -143,20 +143,29 @@ Widget infoContainer(double percentScale, String imageIcon, String displayString
                 width: 25*percentScale,
               );
             }else{
-              return CachedNetworkImage(
-                errorWidget: (context, url, error) => new Icon(Icons.error),
-                fadeInDuration: Duration(milliseconds:800),
-                imageUrl: imageIcon,
-                imageBuilder: (context, imageProvider) => Container(
-                  width: 38*percentScale,
-                  height: 38*percentScale,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4*percentScale),
-                    image: DecorationImage(
-                      image: imageProvider, fit: BoxFit.cover),
-                  ),
-                )
-              );
+              try{
+                return CachedNetworkImage(
+                  errorWidget: (context, url, error) => new Icon(Icons.error),
+                  fadeInDuration: Duration(milliseconds:800),
+                  imageUrl: imageIcon,
+                  imageBuilder: (context, imageProvider) => Container(
+                    width: 38*percentScale,
+                    height: 38*percentScale,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4*percentScale),
+                      image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  )
+                );
+              }
+              catch (error){
+                return new Image.asset(
+                  'assets/'+imageIcon,
+                  height: 25*percentScale,
+                  width: 25*percentScale,
+                );
+              }
             }
           }()
         ),
