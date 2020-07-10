@@ -245,10 +245,10 @@ class _MusicListPageState extends State<MusicList>{
                   child: WaveWidget(
                     config: CustomConfig(
                       gradients: [
-                        [Color(0x59e8eaf6), Color(0x59e8eaf6)],
-                        [Color(0xafc5cae9), Color(0x59c5cae9)],
-                        [Color(0x599fa8da), Color(0x599fa8da)],
-                        [Color(0x597986cb), Color(0x597986cb)]
+                        [darkModeColor(!darkMode, Color(0x59928989),Color(0x59e8eaf6)), darkModeColor(!darkMode, Color(0x59928989),Color(0x59e8eaf6))],
+                        [darkModeColor(!darkMode, Color(0xAF4B4E61),Color(0xafc5cae9)), darkModeColor(!darkMode, Color(0xAF4B4E61),Color(0xafc5cae9))],
+                        [darkModeColor(!darkMode, Color(0x5942465E),Color(0x599fa8da)), darkModeColor(!darkMode, Color(0x5942465E),Color(0x599fa8da))],
+                        [darkModeColor(!darkMode, Color(0x59363E6B),Color(0x597986cb)), darkModeColor(!darkMode, Color(0x59363E6B),Color(0x597986cb))]
                       ],
                       durations: [13000, 25000, 9000, 32000],
                       heightPercentages: [0.10, 0.12, 0.14, 0.16],
@@ -269,10 +269,10 @@ class _MusicListPageState extends State<MusicList>{
                   child: WaveWidget(
                     config: CustomConfig(
                       gradients: [
-                        [Color(0x59e8eaf6), Color(0x59e8eaf6)],
-                        [Color(0xafc5cae9), Color(0x59c5cae9)],
-                        [Color(0x599fa8da), Color(0x599fa8da)],
-                        [Color(0x597986cb), Color(0x597986cb)]
+                        [darkModeColor(!darkMode, Color(0x59928989),Color(0x59e8eaf6)), darkModeColor(!darkMode, Color(0x59928989),Color(0x59e8eaf6))],
+                        [darkModeColor(!darkMode, Color(0xAF4B4E61),Color(0xafc5cae9)), darkModeColor(!darkMode, Color(0xAF4B4E61),Color(0xafc5cae9))],
+                        [darkModeColor(!darkMode, Color(0x5942465E),Color(0x599fa8da)), darkModeColor(!darkMode, Color(0x5942465E),Color(0x599fa8da))],
+                        [darkModeColor(!darkMode, Color(0x59363E6B),Color(0x597986cb)), darkModeColor(!darkMode, Color(0x59363E6B),Color(0x597986cb))]
                       ],
                       durations: [30000, 20000, 11000, 8000],
                       heightPercentages: [0.10, 0.11, 0.12, 0.13],

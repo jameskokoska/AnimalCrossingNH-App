@@ -168,6 +168,7 @@ class _EmojiListPageState extends State<EmojiList>{
                                             onChanged: (string){
                                               setState(() {
                                                 searchEmoji = string;
+                                                futureEmoji=getEmojiData(searchEmoji);
                                               });
                                             },
                                           ),
@@ -184,7 +185,7 @@ class _EmojiListPageState extends State<EmojiList>{
                     ),
                     SliverToBoxAdapter(
                       child:Container(
-                        height:20*percentScale,
+                        height:15*percentScale,
                       )
                     ),
                     emojiListSliver,

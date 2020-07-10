@@ -78,7 +78,7 @@ class _FossilsListPageState extends State<FossilList>{
                           height:100*percentScale,
                         ),
                         SpinKitThreeBounce(
-                          color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                          color: colorFossilAccent,
                           size:80,
                         )
                       ],
@@ -117,7 +117,7 @@ class _FossilsListPageState extends State<FossilList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/fishTitle.png'),
+                                Image.asset('assets/fossilTitle'+darkExtension+'.png'),
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(

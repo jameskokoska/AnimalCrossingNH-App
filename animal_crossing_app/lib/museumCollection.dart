@@ -37,6 +37,8 @@ class _MuseumPageState extends State<MuseumPage>{
   Widget shoesListSliver;
   Widget umbrellasListSliver;
   Widget bagsListSliver;
+  Widget wetsuitListSliver;
+  Widget dressupListSliver;
 
   Widget toolsListSliver;
 
@@ -89,6 +91,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 500,
+                    smallContainer: false
                   ),
                   SeaList(),
                   BugList(),
@@ -105,16 +108,18 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 500,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Clothing",
-                    sliverList: <Widget>[headwearListSliver,accessoriesListSliver,topsListSliver,bottomsListSliver,socksListSliver,shoesListSliver,umbrellasListSliver,bagsListSliver],
+                    sliverList: <Widget>[headwearListSliver,accessoriesListSliver,topsListSliver,bottomsListSliver,socksListSliver,shoesListSliver,umbrellasListSliver,bagsListSliver,wetsuitListSliver,dressupListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorClothingAppBar,
                     accentColor: colorClothingAccent,
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 450,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Tools",
@@ -125,6 +130,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 400,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Floor & Wall",
@@ -135,6 +141,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 450,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Villagers",
@@ -145,6 +152,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: false,
                     checkmarkColor: colorVillagerCheck,
                     popupHeight: 450,
+                    smallContainer: true
                   ),
                   CreditsList(),
                 ],

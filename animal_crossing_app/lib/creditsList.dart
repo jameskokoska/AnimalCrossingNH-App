@@ -84,8 +84,8 @@ class _CreditsListPageState extends State<CreditsList>{
                   padding: EdgeInsets.only(top:10*percentScale),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate([
-                      creditsContainer(percentScale, "James", "Team Lead",'earth'),
-                      creditsContainer(percentScale, "Ryan", "Graphics Lead",'earth'),
+                      creditsContainer(percentScale, "James", "Team Lead",'James'),
+                      creditsContainer(percentScale, "Ryan", "Graphics Lead",'Ryan'),
                       creditsContainer(percentScale, "Andrew", "Supporter",'earth'),
                     ],),
                   ),
@@ -97,7 +97,7 @@ class _CreditsListPageState extends State<CreditsList>{
                         HapticFeedback.mediumImpact();
                         return showAboutDialog(
                           context: context,
-                          applicationLegalese: "This application was created using Flutter, 'free and open source'. Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. This application and contents are NOT affiliated with Nintendo. All local artwork recreated/licensed. This application is not made for commercial use. All application source code is of property to repective owners/contributors listed on the Credits page and/or licenses listed within the view licenses page. Twemoji Icons Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/. View licenses for source libraries used.",
+                          applicationLegalese: "This application was created using Flutter, 'free and open source'. Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. This application and contents are NOT affiliated with Nintendo. All local artwork recreated/licensed. This application is not made for commercial use. All application source code is of property to repective owners/contributors listed on the Credits page and/or licenses listed within the view licenses page. Twemoji Icons Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/. View licenses for source libraries used. Data taken from https://tinyurl.com/acnh-sheet. Thank you for all the hard work and for making the spreadsheet!",
                           applicationVersion: '1.0.0',
                         );
                       },
@@ -156,8 +156,8 @@ Widget creditsContainer(double percentScale, String creditName, String creditDes
                       child: new Container(
                         child: new Material(
                           child: new InkWell(
-                            highlightColor: Color(0xFFcfd8dc),
-                            splashColor: Color(0xFFb3e5fc),
+                            highlightColor: colorCreditsAppBar,
+                            splashColor: colorCreditsAppBar,
                             enableFeedback: true,
                             onTap: (){
                             },

@@ -79,7 +79,7 @@ class _FishListPageState extends State<FishList>{
                           height:100*percentScale,
                         ),
                         SpinKitThreeBounce(
-                          color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                          color: colorFishAccent,
                           size:80,
                         )
                       ],
@@ -118,7 +118,7 @@ class _FishListPageState extends State<FishList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/fishTitle.png'),
+                                Image.asset('assets/fishTitle'+darkExtension+'.png'),
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(

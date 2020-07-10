@@ -143,20 +143,29 @@ Widget infoContainer(double percentScale, String imageIcon, String displayString
                 width: 25*percentScale,
               );
             }else{
-              return CachedNetworkImage(
-                errorWidget: (context, url, error) => new Icon(Icons.error),
-                fadeInDuration: Duration(milliseconds:800),
-                imageUrl: imageIcon,
-                imageBuilder: (context, imageProvider) => Container(
-                  width: 38*percentScale,
-                  height: 38*percentScale,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4*percentScale),
-                    image: DecorationImage(
-                      image: imageProvider, fit: BoxFit.cover),
-                  ),
-                )
-              );
+              try{
+                return CachedNetworkImage(
+                  errorWidget: (context, url, error) => new Icon(Icons.error),
+                  fadeInDuration: Duration(milliseconds:800),
+                  imageUrl: imageIcon,
+                  imageBuilder: (context, imageProvider) => Container(
+                    width: 38*percentScale,
+                    height: 38*percentScale,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4*percentScale),
+                      image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  )
+                );
+              }
+              catch (error){
+                return new Image.asset(
+                  'assets/'+imageIcon,
+                  height: 25*percentScale,
+                  width: 25*percentScale,
+                );
+              }
             }
           }()
         ),
@@ -380,7 +389,7 @@ Widget quoteContainer(double percentScale, Color stringColor, String quotedText)
   );
 }
 
-Widget circleContainer(double percentScale, Color imageBG, Color stringColor, String text){
+Widget circleContainer(double percentScale, Color imageBG, Color stringColor, String text, [bool bug =false]){
   return new Container(
     transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
     width: 80*percentScale,
@@ -417,7 +426,7 @@ Widget circleContainer(double percentScale, Color imageBG, Color stringColor, St
           child: Container(
             width: 55*percentScale,
             height: 55*percentScale,
-            child: Center(child: getIconName(text, percentScale))
+            child: Center(child: getIconName(text, percentScale, bug))
           ),
         ),
       ],
@@ -425,12 +434,12 @@ Widget circleContainer(double percentScale, Color imageBG, Color stringColor, St
   );
 }
 
-Widget getIconName(String source, double percentScale) {
+Widget getIconName(String source, double percentScale, [bool bug=false]) {
   if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
     return new Image.asset(
       'assets/' + 'nookCraft.png',
-      height: 55*percentScale,
-      width: 55*percentScale,
+      height: 40*percentScale,
+      width: 40*percentScale,
     );
   }
   else if(source.contains("Nook's Cranny")) {
@@ -522,6 +531,83 @@ Widget getIconName(String source, double percentScale) {
       'assets/' + 'digIcon.png',
       height: 40*percentScale,
       width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('shoreline')){
+    return new Image.asset(
+      'assets/' + 'oceanIcon.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('turnip')){
+    return new Image.asset(
+      'assets/' + 'turnip.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('fruit')){
+    return new Image.asset(
+      'assets/' + 'fruitTreeIcon.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('palm')){
+    return new Image.asset(
+      'assets/' + 'palmTreeIcon.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&(source.contains('rock')||source.contains('underground'))){
+    return new Image.asset(
+      'assets/' + 'digIcon.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('stump')){
+    return new Image.asset(
+      'assets/' + 'stumpIcon.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('flower')){
+    return new Image.asset(
+      'assets/' + 'flower.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('tree')){
+    return new Image.asset(
+      'assets/' + 'treeIcon.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if (bug==true&&(source.contains('water')||source.contains('river')||source.contains('pond'))){
+    return new Image.asset(
+      'assets/' + 'pondIcon.png',
+      height: 55*percentScale,
+      width: 55*percentScale,
+    );
+  }
+  else if (bug==true&&source.contains('stump')){
+    return new Image.asset(
+      'assets/' + 'stumpIcon.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
+  else if(bug==true){
+    return new Image.asset(
+      'assets/' + 'airIcon.png',
+      height: 50*percentScale,
+      width: 50*percentScale,
     );
   }
   else {

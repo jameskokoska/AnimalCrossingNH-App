@@ -180,7 +180,7 @@ Widget toolsPopUp(double percentScale,Color colorTextBlack,var snapshotData){
                       )
                   ),
                 ),
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
+                circleContainer(percentScale, colorToolsAccent, colorCircleContainerPopUp, snapshotData.source),
                 // ---------- Card Centre Content ----------
                 Center(
                   child: Container(

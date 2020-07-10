@@ -31,7 +31,7 @@ Widget seaPopUp(double percentScale,bool caught, var snapshot, [bool gridView=fa
                   )
                 ),
                 Container(
-                  transform: Matrix4.translationValues(0, 20*percentScale, 0),
+                  transform: Matrix4.translationValues(0, 200*percentScale, 0),
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),

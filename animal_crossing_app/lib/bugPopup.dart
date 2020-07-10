@@ -31,7 +31,7 @@ Widget bugPopUp(double percentScale,bool caught, var snapshot, [bool gridView = 
                   )
                 ),
                 Container(
-                  transform: Matrix4.translationValues(0, 20*percentScale, 0),
+                  transform: Matrix4.translationValues(0, 200*percentScale, 0),
                   height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
@@ -78,7 +78,7 @@ Widget bugPopUp(double percentScale,bool caught, var snapshot, [bool gridView = 
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshot.whereHow),
+                circleContainer(percentScale, colorBugAccent, colorCircleContainerPopUp, snapshot.whereHow, true),
                 // ---------- Card Caught ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),

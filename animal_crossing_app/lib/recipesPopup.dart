@@ -31,6 +31,14 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                             color: colorWhite,
                         )
                       ),
+                      Container(
+                        transform: Matrix4.translationValues(0, 200*percentScale, 0),
+                        height:340*percentScale,
+                        decoration: new BoxDecoration(
+                            borderRadius: BorderRadius.circular(30*percentScale),
+                            color: colorWhite,
+                        )
+                      ),
                       new Center(
                         child: new Container(
                           transform: Matrix4.translationValues(0, -90*percentScale, 0),
@@ -57,7 +65,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                           ),
                           decoration: new BoxDecoration(
                             borderRadius: BorderRadius.circular(100*percentScale),
-                            color:colorBugAccent,
+                            color:colorFurnitureAccent,
                             boxShadow: [BoxShadow(
                               color: colorShadowPopUp,
                               offset: Offset(0,3),
@@ -68,7 +76,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                         ),
                       ),
                       
-                      circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
+                      circleContainer(percentScale, colorFurnitureAccent, colorCircleContainerPopUp, snapshotData.source),
                       new Container(
                         transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                         child: Container(
@@ -183,7 +191,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                 }
                               ),
                               (){
-                                if(snapshot.data.number2 != null)
+                                if(snapshot.data.number2 != null && snapshot.data.number2 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material2),
                                     builder: (context,snapshotOther){
@@ -198,7 +206,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number3 != null)
+                                if(snapshot.data.number3 != null && snapshot.data.number3 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material3),
                                     builder: (context,snapshotOther){
@@ -213,7 +221,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number4 != null)
+                                if(snapshot.data.number4 != null && snapshot.data.number4 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material4),
                                     builder: (context,snapshotOther){
@@ -228,7 +236,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number5 != null)
+                                if(snapshot.data.number5 != null && snapshot.data.number5 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material5),
                                     builder: (context,snapshotOther){
@@ -243,7 +251,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number6 != null)
+                                if(snapshot.data.number6 != null && snapshot.data.number6 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material6),
                                     builder: (context,snapshotOther){

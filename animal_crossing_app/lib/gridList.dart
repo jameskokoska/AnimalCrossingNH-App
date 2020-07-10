@@ -99,7 +99,7 @@ List<Future<List>> getFutureFunctions(String title, String searchGrid){
     case "Furniture" : return [getHousewaresData(searchGrid),getMiscellaneousData(searchGrid),getWallmountedData(searchGrid),getPhotosData(searchGrid),getPostersData(searchGrid)];
     break;
 
-    case "Clothing" : return [getHeadwearData(searchGrid), getAccessoriesData(searchGrid),getTopsData(searchGrid),getBottomsData(searchGrid),getSocksData(searchGrid),getShoesData(searchGrid),getUmbrellasData(searchGrid),getBagsData(searchGrid)];
+    case "Clothing" : return [getHeadwearData(searchGrid), getAccessoriesData(searchGrid),getTopsData(searchGrid),getBottomsData(searchGrid),getSocksData(searchGrid),getShoesData(searchGrid),getUmbrellasData(searchGrid),getBagsData(searchGrid),getWetsuitData(searchGrid),getDressupData(searchGrid)];
     break;
 
     case "Tools" : return [getToolsData(searchGrid)];
@@ -170,6 +170,17 @@ String getCraftableGroup(String craftableTitle){
   }
 }
 
+Widget determineImageBackground(String title){
+  switch(title){
+
+    case "Villagers" : return Image.asset('assets/villagerbackground'+darkExtension+'.png');
+    break;
+
+    default: return Container();
+    break;
+  }
+}
+
 class GridList extends StatefulWidget {
   final String title;
   final futureFunctions;
@@ -180,6 +191,7 @@ class GridList extends StatefulWidget {
   final bool checkmark;
   final Color checkmarkColor;
   final int popupHeight;
+  final bool smallContainer;
 
   GridList({
     this.title, 
@@ -191,6 +203,7 @@ class GridList extends StatefulWidget {
     this.checkmark,
     this.checkmarkColor,
     this.popupHeight,
+    this.smallContainer,
   });
 
   @override
@@ -204,6 +217,7 @@ class GridList extends StatefulWidget {
     checkmark:checkmark,
     checkmarkColor: checkmarkColor,
     popupHeight: popupHeight,
+    smallContainer: smallContainer,
   );
 }
 
@@ -218,6 +232,7 @@ class _GridListPageState extends State<GridList>{
     this.checkmark,
     this.checkmarkColor,
     this.popupHeight,
+    this.smallContainer,
   });
   final String title;
   var futureFunctions;
@@ -228,6 +243,7 @@ class _GridListPageState extends State<GridList>{
   final bool checkmark;
   final Color checkmarkColor;
   final int popupHeight;
+  final bool smallContainer;
 
   final debouncerGrid = Debouncer(milliseconds: 300);
   
@@ -286,7 +302,12 @@ class _GridListPageState extends State<GridList>{
                         maxCrossAxisExtent: 130,
                         mainAxisSpacing: 13,
                         crossAxisSpacing: 17,
-                        childAspectRatio: 0.78,
+                        childAspectRatio: (){
+                          if(smallContainer)
+                            return 0.83;
+                          else
+                            return 0.8;
+                        }(),
                       ),
                       delegate: 
                         SliverChildBuilderDelegate(
@@ -325,7 +346,7 @@ class _GridListPageState extends State<GridList>{
                 return CustomScrollView(
                   // controller: scrollController,
                   physics: BouncingScrollPhysics(),
-                  slivers: List.generate(1+sliverList.length*2, (index){
+                  slivers: List.generate(1+sliverList.length*2+1, (index){
                     if(index==0){
                       return SliverAppBar(
                         expandedHeight: 219*percentScale,
@@ -353,7 +374,8 @@ class _GridListPageState extends State<GridList>{
                               titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                               background: Stack(
                                 children: <Widget>[
-                                    Align(
+                                  determineImageBackground(title),
+                                  Align(
                                     alignment: Alignment.bottomCenter,
                                     child: Container(
                                       child: Padding(
@@ -362,6 +384,8 @@ class _GridListPageState extends State<GridList>{
                                           opacity: (){
                                             if(top<280&&top>190){
                                               return 1-((280-top)/90);
+                                            } else if (top>280){
+                                              return 1.0;
                                             } else {
                                               return 0.0;
                                             }
@@ -413,15 +437,17 @@ class _GridListPageState extends State<GridList>{
                           },
                         ),
                       );
-                    } else if (index%2==1){
+                    } else if (index == 1+sliverList.length*2) {
                       return SliverToBoxAdapter(
-                        child:Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height:15,
-                            ),
-                          ],
-                        )
+                        child: SizedBox(
+                          height:105,
+                        ),
+                      );
+                    }else if (index%2==1){
+                      return SliverToBoxAdapter(
+                        child: SizedBox(
+                          height:15,
+                        ),
                       );
                     }else {
                       return sliverList[(index/2-1).round()];

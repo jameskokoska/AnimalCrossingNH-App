@@ -2013,9 +2013,21 @@ Future<List<EventData>> getEventsData() async{
 
   final jsonData = json.decode(data);
   List<EventData> eventData = [];
+  bool favourite;
   for(var u in jsonData){
-    EventData eventDatum = EventData(u["Name"],u["Month"],u["Day Start"],u["Day End"],u["Special Day"],u["Special Occurrence"],u["Hemisphere"],u["Time"],u["Image"]);
-    eventData.add(eventDatum);
+    if(u["Name"].contains("Birthday")){
+      getStoredBool("villagerCheckList"+u["Name"].substring(0, u["Name"].indexOf("'")), false).then((indexResult){
+        favourite = indexResult;
+        if(favourite){
+          EventData eventDatum = EventData(u["Name"],u["Month"],u["Day Start"],u["Day End"],u["Special Day"],u["Special Occurrence"],u["Hemisphere"],u["Time"],u["Image"]);
+          eventData.add(eventDatum);
+        }
+      });
+    } else {
+      EventData eventDatum = EventData(u["Name"],u["Month"],u["Day Start"],u["Day End"],u["Special Day"],u["Special Occurrence"],u["Hemisphere"],u["Time"],u["Image"]);
+      eventData.add(eventDatum);
+    }
+    
   }
   return eventData;
 }
@@ -2097,6 +2109,116 @@ Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
   return seaData;
 }
 
+class DressupData{
+  final String name;
+  final String image;
+  final String storageImage;
+  final String variation;
+  final String diy;
+  final String buy;
+  final String sell;
+  final String color1;
+  final String color2;
+  final String size;
+  String milesPrice ="NA";
+  final String source;
+  final String sourceNotes;
+  final String seasonalAvailability;
+  final String mannequinPiece;
+  final String version;
+  final String style;
+  final String labelThemes;
+  final String type;
+  final String villagerEquippable;
+  final String catalog;
+  final String filename;
+  final String internalId;
+  final String uniqueEntryId;
+
+
+  DressupData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
+  this.version,this.style,this.labelThemes,this.type,this.villagerEquippable,this.catalog,this.filename,this.internalId,
+  this.uniqueEntryId);
+}
+
+Future<List<DressupData>> getDressupData(String search) async{
+  String data = await rootBundle.loadString("assets/dressup.json");
+
+  final jsonData = json.decode(data);
+  List<DressupData> dressupData = [];
+  String previousName="";
+  
+  for(var u in jsonData){
+    DressupData dressupDatum = DressupData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],"NA",u["Source"],u["Source Notes"],u["Seasonal Availability"],u["Mannequin Piece"],"NA",u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        dressupData.add(dressupDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        dressupData.add(dressupDatum);
+      } else if (u["Style"].toLowerCase().contains(search.toLowerCase())){
+        dressupData.add(dressupDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+  return dressupData;
+}
+
+class WetsuitData{
+  final String name;
+  final String image;
+  final String storageImage;
+  final String variation;
+  final String diy;
+  final String buy;
+  final String sell;
+  final String color1;
+  final String color2;
+  final String size;
+  final String milesPrice;
+  final String source;
+  String sourceNotes = "NA";
+  final String seasonalAvailability;
+  final String mannequinPiece;
+  String version = "NA";
+  final String style;
+  final String labelThemes;
+  final String type;
+  final String villagerEquippable;
+  final String catalog;
+  final String filename;
+  final String internalId;
+  final String uniqueEntryId;
+
+
+  WetsuitData(this.name, this.image,this.storageImage,this.variation,this.diy,this.buy,this.sell,
+  this.color1,this.color2,this.size,this.milesPrice,this.source,this.sourceNotes,this.seasonalAvailability,this.mannequinPiece,
+  this.version,this.style,this.labelThemes,this.type,this.villagerEquippable,this.catalog,this.filename,this.internalId,
+  this.uniqueEntryId);
+}
+
+Future<List<WetsuitData>> getWetsuitData(String search) async{
+  String data = await rootBundle.loadString("assets/wetsuits.json");
+
+  final jsonData = json.decode(data);
+  List<WetsuitData> wetsuitData = [];
+  String previousName="";
+  for(var u in jsonData){
+    WetsuitData wetsuitDatum = WetsuitData(u["Name"],u["Closet Image"],u["Storage Image"],u["Variation"],u["DIY"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Miles Price"],u["Source"],"NA",u["Seasonal Availability"],u["Mannequin Piece"],"NA",u["Style"],u["Label Themes"],u["Type"],u["Villager Equippable"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    if(u["Name"]!=previousName||showListVariations==true){
+      if(search == ''){
+        wetsuitData.add(wetsuitDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+        wetsuitData.add(wetsuitDatum);
+      } else if (u["Style"].toLowerCase().contains(search.toLowerCase())){
+        wetsuitData.add(wetsuitDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+  return wetsuitData;
+}
 
 bool determineActiveNow(String time){
   final now = DateTime.now();
@@ -2104,8 +2226,12 @@ bool determineActiveNow(String time){
     return true;
   else if (time=="NA")
     return false;
-  else if(now.hour<=int.parse(time.substring(time.length-5,time.length-3))+12 || now.hour>=int.parse(time.substring(0,2)))
-    return true;
-  else  
+  else if(time.substring(time.length-2,time.length)=="PM"){
+    if(now.hour<int.parse(time.substring(time.length-5,time.length-3))+12 && now.hour>=int.parse(time.substring(0,2)))
+      return true;
+  } else if(time.substring(time.length-2,time.length)=="AM"){
+    if(now.hour<int.parse(time.substring(time.length-5,time.length-3)) || now.hour>=int.parse(time.substring(0,2))+12)
+      return true;
+  }
     return false;
 }

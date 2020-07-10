@@ -79,7 +79,7 @@ class _BugListPageState extends State<BugList>{
                           height:100*percentScale,
                         ),
                         SpinKitThreeBounce(
-                          color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                          color: colorBugAccent,
                           size:80,
                         )
                       ],
@@ -118,8 +118,8 @@ class _BugListPageState extends State<BugList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/bugTitle.png'),
-                                  Align(
+                                Image.asset('assets/bugTitle'+darkExtension+'.png'),
+                                Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom:20,right:10),

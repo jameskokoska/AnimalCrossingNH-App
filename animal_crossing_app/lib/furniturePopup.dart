@@ -47,6 +47,14 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                       color: colorWhite,
                   )
                 ),
+                Container(
+                  transform: Matrix4.translationValues(0, 200*percentScale, 0),
+                  height:340*percentScale,
+                  decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(30*percentScale),
+                      color: colorWhite,
+                  )
+                ),
                 new Center(
                   child: new Container(
                     transform: Matrix4.translationValues(0, -90*percentScale, 0),
@@ -84,7 +92,7 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                   ),
                 ),
                 
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
+                circleContainer(percentScale, colorFurnitureAccent, colorCircleContainerPopUp, snapshotData.source),
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                   child: Container(
@@ -199,9 +207,9 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                                     return infoContainer(percentScale, currencyIcon, currencyAmount + currencyType);
                                   }
                                 } else {
-                                  return infoContainer(percentScale, "leaf.png", "None" + "");
+                                  //return infoContainer(percentScale, "leaf.png", "None" + "");
+                                  return Container();
                                 }
-                                return Container();
                               }(),
                               (){
                                 if(currencyType!="None"){
