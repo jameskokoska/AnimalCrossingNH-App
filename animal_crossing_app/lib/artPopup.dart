@@ -75,14 +75,9 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                           )
                       ),
                     ),
-
                     // ---------- Card Location ----------
-                    new Container(
-                      transform: Matrix4.translationValues(15*percentScale, -15*percentScale, 0),
-                      width: 80*percentScale,
-                      height: 80*percentScale,
-                    ),
-                    // ---------- Card favorite ----------
+                    circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, "Treasure Trawler"),
+                    // ---------- Card Collected ----------
                     new Container(
                       transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                       // ---------- Card Body favorite Image ----------
@@ -197,11 +192,20 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                     // ---------- Card Centre Content ----------
                     Center(
                       child: Container(
-                        transform: Matrix4.translationValues(0, 60*percentScale, 0),
+                        transform: Matrix4.translationValues(0, 70*percentScale, 0),
                         height: 340*percentScale,
                         width: 360*percentScale,
                         child: Column(
                           children: [
+                            // ---------- Card Centre Quote ----------
+                            AnimatedOpacity(
+                              duration: Duration(milliseconds:200),
+                              opacity: collected||showCatchPhraseNow ? 1 : 0,
+                              child: quoteContainer(percentScale, colorTextBlack, artist),
+                            ),
+                            SizedBox(
+                              height:10*percentScale,
+                            ),
                             Container(
                               child: new Text(capitalize(name),
                                   style: TextStyle(
@@ -216,29 +220,19 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             SizedBox(
                               height:10*percentScale,
                             ),
-                            quoteContainer(percentScale, colorTextBlack, artist),
-                            SizedBox(
-                              height:30*percentScale,
-                            ),
                           ],
                         ),
                       ),
                     ),
                     Center(
                       child: Container(
-                        transform: Matrix4.translationValues(0, 60*percentScale, 0),
+                        transform: Matrix4.translationValues(0, 40*percentScale, 0),
                         height: 340*percentScale,
                         width: 360*percentScale,
                         child: Row(
                           children: <Widget>[
-                            //birthday
-                            infoContainer(percentScale, 'birthdayCake.png', ''),
-                            //species
-                            infoContainer(percentScale, 'cat.png', ''),
-                            //personaility
-                            infoContainer(percentScale, 'personailityEmoji.png', ''),
-                            //colours
-                            infoContainer(percentScale, 'colorPalette.png',color1 + ", " + color2),
+                            Expanded(child: infoContainerHHA(percentScale, 'house.png', capitalize(hhaSeries), capitalize(hhaConcept1), capitalize(hhaConcept2))),
+                            Expanded(child: infoContainer(percentScale, 'tag.png', tag)),
                           ],
                         ),
                       ),

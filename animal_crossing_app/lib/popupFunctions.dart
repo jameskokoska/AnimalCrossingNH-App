@@ -615,8 +615,6 @@ int determineActiveTimeEnd(String time){
 
 double timeToAngle(int hour){
   double angle = hour * 15.0;
-  print(hour);
-  print(angle);
   return angle;
 }
 
