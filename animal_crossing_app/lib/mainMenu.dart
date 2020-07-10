@@ -386,7 +386,7 @@ class _HomePageState extends State<Home>{
             physics: BouncingScrollPhysics(),
             child: Column(
               children: <Widget>[
-                  TimerBuilder.periodic(Duration(seconds: 1), builder: (BuildContext context) { 
+                  TimerBuilder.periodic(Duration(seconds: 60), builder: (BuildContext context) { 
                     String time = DateFormat.jm().format(new DateTime.now()).toString();
                     currentTime = time.substring(0,time.length-3);
                     afternoonString = time.substring(time.length-2,time.length);
@@ -1017,7 +1017,7 @@ class _HomePageState extends State<Home>{
                             return new Container(
                               //Background
                               width: deviceWidth,
-                              height: (35*percentScale+70*percentScale) + numEvents*(7+68)*percentScale + numDays*(25+7+16)*percentScale,
+                              height: (35*percentScale+40*percentScale) + numEvents*(7+68)*percentScale + numDays*(25+7+16)*percentScale,
                               decoration: new BoxDecoration(
                               color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xff202020)),
                               borderRadius: BorderRadius.circular(30*percentScale),
@@ -1198,94 +1198,6 @@ class _HomePageState extends State<Home>{
                           }
                         }
                       ),
-
-                      //Active Creatures Section
-                      new Container(
-                        child:Stack(
-                          //Background
-                          children: <Widget>[
-                            new Container(
-                              width: deviceWidth,
-                              decoration: new BoxDecoration(
-                                color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF0D0D0D)),
-                                borderRadius: BorderRadius.circular(30*percentScale),
-                                boxShadow: [BoxShadow(
-                                  color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FF8181)),
-                                  offset: Offset(0,3),
-                                  blurRadius: 10,
-                                  spreadRadius: 0
-                                ) ],
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(
-                                    height:25*percentScale,
-                                  ),
-                                  FutureBuilder(
-                                    future: Future.wait([getBugData("", true),getFishData("", true),getSeaData("", true)]),
-                                    builder: (context,snapshot){
-                                      if(snapshot.hasData){
-                                        return GridView.count(
-                                          primary: false,
-                                          padding: const EdgeInsets.all(20),
-                                          crossAxisCount: 3,
-                                          mainAxisSpacing: 13,
-                                          crossAxisSpacing: 17,
-                                          childAspectRatio: 0.85,
-                                          shrinkWrap: true,
-                                          children: List.generate(snapshot.data[0].length+snapshot.data[1].length+snapshot.data[2].length, (index){
-                                            if(index < snapshot.data[0].length)
-                                              return gridContainer(percentScale, 400, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
-                                            else if (index < snapshot.data[0].length + snapshot.data[1].length)
-                                              return gridContainer(percentScale, 400, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
-                                            else if (index < snapshot.data[0].length + snapshot.data[1].length + snapshot.data[2].length)
-                                              return gridContainer(percentScale, 400, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
-                                            else 
-                                              return Container();
-                                          }),
-                                        );
-                                      } else {
-                                        return Container();
-                                      }
-                                    }
-                                  ),
-                                  SizedBox(
-                                    height:65*percentScale,
-                                  ),
-                                ],
-                              )
-                            ),
-                            //Text bubble
-                            new Container(
-                              transform: Matrix4.translationValues(21*percentScale,-18*percentScale,0),
-                              width: 159*percentScale,
-                              height: 35*percentScale,
-                              decoration: new BoxDecoration(
-                                color: darkModeColor(darkMode,Color( 0xffff8181),Color(0xFF0D0D0D)),
-                                borderRadius: BorderRadius.circular(30*percentScale),
-                                boxShadow: [BoxShadow(
-                                    color: darkModeColor(darkMode,Color( 0x28000000),Color(0x40FF8181)),
-                                    offset: Offset(0,3),
-                                    blurRadius: 6,
-                                    spreadRadius: 0
-                                ) ],
-                              ),
-                              child: Center(
-                                child: Text("Active Creatures",
-                                  style: TextStyle(
-                                  fontFamily: 'ArialRoundedBold',
-                                  color: darkModeColor(darkMode,Color(0xff000000),Color(0xFFFF8181)),
-                                  fontSize: 16*percentScale,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  )
-                                ),
-                              ),
-                            ),
-                          ]
-                        ),
-                      ),
-
                       //Store Hours Section
                       new Container(
                         child:Stack(
@@ -1293,9 +1205,9 @@ class _HomePageState extends State<Home>{
                           children: <Widget>[
                             new Container(
                               width: deviceWidth,
-                              height: 302*percentScale,
+                              height: 350*percentScale,
                               decoration: new BoxDecoration(
-                                color: darkModeColor(!darkMode,colorLightDarkAccent,Color(0xFFDEFEFF)),
+                                color:colorLightDarkAccent,
                                 borderRadius: BorderRadius.circular(30*percentScale),
                                 boxShadow: [BoxShadow(
                                   color: darkModeColor(darkMode,Color( 0x40000000),Color(0xc095C8F5)),
@@ -1351,7 +1263,101 @@ class _HomePageState extends State<Home>{
                           ]
                         ),
                       ),
-                      new SizedBox(height: (150+22)*percentScale),
+                      //Active Creatures Section
+                      new Container(
+                        child:Stack(
+                          //Background
+                          children: <Widget>[
+                            new Container(
+                              width: deviceWidth,
+                              decoration: new BoxDecoration(
+                                color: darkModeColor(darkMode,colorLightDarkAccent,Color(0xFF0D0D0D)),
+                                borderRadius: BorderRadius.circular(30*percentScale),
+                                boxShadow: [BoxShadow(
+                                  color: darkModeColor(darkMode,Color(0x40000000),Color(0x80FF8181)),
+                                  offset: Offset(0,3),
+                                  blurRadius: 10,
+                                  spreadRadius: 0
+                                ) ],
+                              ),
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    height:30*percentScale,
+                                  ),
+                                  FutureBuilder(
+                                    future: Future.wait([getBugData("", true),getFishData("", true),getSeaData("", true)]),
+                                    builder: (context,snapshot){
+                                      if(snapshot.hasData){
+                                        return Padding(
+                                          padding: const EdgeInsets.only(left:20.0, right: 20),
+                                          child: Container(
+                                            height:550*percentScale,
+                                            child: GridView.builder(
+                                              physics: BouncingScrollPhysics(),
+                                              itemCount: snapshot.data[0].length+snapshot.data[1].length+snapshot.data[2].length,
+                                              gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
+                                                maxCrossAxisExtent: 130,
+                                                mainAxisSpacing: 15,
+                                                crossAxisSpacing: 10,
+                                                childAspectRatio: 0.8,
+                                              ),
+                                            primary: false,
+                                            padding: const EdgeInsets.all(20),
+                                            itemBuilder: (context, index){
+                                              if(index < snapshot.data[0].length)
+                                                return gridContainer(percentScale, 520, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
+                                              else if (index < snapshot.data[0].length + snapshot.data[1].length)
+                                                return gridContainer(percentScale, 520, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
+                                              else if (index < snapshot.data[0].length + snapshot.data[1].length + snapshot.data[2].length)
+                                                return gridContainer(percentScale, 520, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
+                                              else 
+                                                return Container();
+                                            }                                            
+                                          )),
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
+                                    }
+                                  ),
+                                  SizedBox(
+                                    height:15*percentScale,
+                                  ),
+                                ],
+                              )
+                            ),
+                            //Text bubble
+                            new Container(
+                              transform: Matrix4.translationValues(21*percentScale,-18*percentScale,0),
+                              width: 159*percentScale,
+                              height: 35*percentScale,
+                              decoration: new BoxDecoration(
+                                color: darkModeColor(darkMode,Color( 0xffff8181),Color(0xFF0D0D0D)),
+                                borderRadius: BorderRadius.circular(30*percentScale),
+                                boxShadow: [BoxShadow(
+                                    color: darkModeColor(darkMode,Color( 0x28000000),Color(0x40FF8181)),
+                                    offset: Offset(0,3),
+                                    blurRadius: 6,
+                                    spreadRadius: 0
+                                ) ],
+                              ),
+                              child: Center(
+                                child: Text("Active Creatures",
+                                  style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: darkModeColor(darkMode,Color(0xff000000),Color(0xFFFF8181)),
+                                  fontSize: 16*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                  )
+                                ),
+                              ),
+                            ),
+                          ]
+                        ),
+                      ),
+                      new SizedBox(height: (150)*percentScale),
                       new Center(
                         child: Text("This application is NOT endorsed or afiliated with Nintendo",
                           style: TextStyle(
@@ -1363,7 +1369,7 @@ class _HomePageState extends State<Home>{
                           )
                         ),
                       ),
-                      SizedBox(height: (190+22)*percentScale),
+                      SizedBox(height: (190)*percentScale),
                       new Container(
                         transform: Matrix4.translationValues(0,553*percentScale,0),
                         child: Text("Plz dont sue",

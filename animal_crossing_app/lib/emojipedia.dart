@@ -168,6 +168,7 @@ class _EmojiListPageState extends State<EmojiList>{
                                             onChanged: (string){
                                               setState(() {
                                                 searchEmoji = string;
+                                                futureEmoji=getEmojiData(searchEmoji);
                                               });
                                             },
                                           ),

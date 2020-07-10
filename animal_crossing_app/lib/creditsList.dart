@@ -84,8 +84,8 @@ class _CreditsListPageState extends State<CreditsList>{
                   padding: EdgeInsets.only(top:10*percentScale),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate([
-                      creditsContainer(percentScale, "James", "Team Lead",'earth'),
-                      creditsContainer(percentScale, "Ryan", "Graphics Lead",'earth'),
+                      creditsContainer(percentScale, "James", "Team Lead",'James'),
+                      creditsContainer(percentScale, "Ryan", "Graphics Lead",'Ryan'),
                       creditsContainer(percentScale, "Andrew", "Supporter",'earth'),
                     ],),
                   ),

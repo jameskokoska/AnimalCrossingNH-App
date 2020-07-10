@@ -37,6 +37,8 @@ class _MuseumPageState extends State<MuseumPage>{
   Widget shoesListSliver;
   Widget umbrellasListSliver;
   Widget bagsListSliver;
+  Widget wetsuitListSliver;
+  Widget dressupListSliver;
 
   Widget toolsListSliver;
 
@@ -108,7 +110,7 @@ class _MuseumPageState extends State<MuseumPage>{
                   ),
                   GridList(
                     title: "Clothing",
-                    sliverList: <Widget>[headwearListSliver,accessoriesListSliver,topsListSliver,bottomsListSliver,socksListSliver,shoesListSliver,umbrellasListSliver,bagsListSliver],
+                    sliverList: <Widget>[headwearListSliver,accessoriesListSliver,topsListSliver,bottomsListSliver,socksListSliver,shoesListSliver,umbrellasListSliver,bagsListSliver,wetsuitListSliver,dressupListSliver],
                     titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
                     mainColor: colorClothingAppBar,
                     accentColor: colorClothingAccent,

@@ -99,7 +99,7 @@ List<Future<List>> getFutureFunctions(String title, String searchGrid){
     case "Furniture" : return [getHousewaresData(searchGrid),getMiscellaneousData(searchGrid),getWallmountedData(searchGrid),getPhotosData(searchGrid),getPostersData(searchGrid)];
     break;
 
-    case "Clothing" : return [getHeadwearData(searchGrid), getAccessoriesData(searchGrid),getTopsData(searchGrid),getBottomsData(searchGrid),getSocksData(searchGrid),getShoesData(searchGrid),getUmbrellasData(searchGrid),getBagsData(searchGrid)];
+    case "Clothing" : return [getHeadwearData(searchGrid), getAccessoriesData(searchGrid),getTopsData(searchGrid),getBottomsData(searchGrid),getSocksData(searchGrid),getShoesData(searchGrid),getUmbrellasData(searchGrid),getBagsData(searchGrid),getWetsuitData(searchGrid),getDressupData(searchGrid)];
     break;
 
     case "Tools" : return [getToolsData(searchGrid)];
@@ -325,7 +325,7 @@ class _GridListPageState extends State<GridList>{
                 return CustomScrollView(
                   // controller: scrollController,
                   physics: BouncingScrollPhysics(),
-                  slivers: List.generate(1+sliverList.length*2, (index){
+                  slivers: List.generate(1+sliverList.length*2+1, (index){
                     if(index==0){
                       return SliverAppBar(
                         expandedHeight: 219*percentScale,
@@ -413,15 +413,17 @@ class _GridListPageState extends State<GridList>{
                           },
                         ),
                       );
-                    } else if (index%2==1){
+                    } else if (index == 1+sliverList.length*2) {
                       return SliverToBoxAdapter(
-                        child:Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height:15,
-                            ),
-                          ],
-                        )
+                        child: SizedBox(
+                          height:105,
+                        ),
+                      );
+                    }else if (index%2==1){
+                      return SliverToBoxAdapter(
+                        child: SizedBox(
+                          height:15,
+                        ),
                       );
                     }else {
                       return sliverList[(index/2-1).round()];

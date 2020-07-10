@@ -199,9 +199,9 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                                     return infoContainer(percentScale, currencyIcon, currencyAmount + currencyType);
                                   }
                                 } else {
-                                  return infoContainer(percentScale, "leaf.png", "None" + "");
+                                  //return infoContainer(percentScale, "leaf.png", "None" + "");
+                                  return Container();
                                 }
-                                return Container();
                               }(),
                               (){
                                 if(currencyType!="None"){

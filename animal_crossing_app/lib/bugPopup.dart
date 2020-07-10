@@ -78,7 +78,7 @@ Widget bugPopUp(double percentScale,bool caught, var snapshot, [bool gridView = 
                 ),
                 
                 // ---------- Card Location ----------
-                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshot.whereHow),
+                circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshot.whereHow, true),
                 // ---------- Card Caught ----------
                 new Container(
                   transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),

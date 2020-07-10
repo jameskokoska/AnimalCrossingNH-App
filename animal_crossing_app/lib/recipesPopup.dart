@@ -183,7 +183,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                 }
                               ),
                               (){
-                                if(snapshot.data.number2 != null)
+                                if(snapshot.data.number2 != null && snapshot.data.number2 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material2),
                                     builder: (context,snapshotOther){
@@ -198,7 +198,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number3 != null)
+                                if(snapshot.data.number3 != null && snapshot.data.number3 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material3),
                                     builder: (context,snapshotOther){
@@ -213,7 +213,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number4 != null)
+                                if(snapshot.data.number4 != null && snapshot.data.number4 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material4),
                                     builder: (context,snapshotOther){
@@ -228,7 +228,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number5 != null)
+                                if(snapshot.data.number5 != null && snapshot.data.number5 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material5),
                                     builder: (context,snapshotOther){
@@ -243,7 +243,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   return Container();
                               }(),
                               (){
-                                if(snapshot.data.number6 != null)
+                                if(snapshot.data.number6 != null && snapshot.data.number6 != "")
                                   return FutureBuilder(
                                     future: getOtherData(snapshot.data.material6),
                                     builder: (context,snapshotOther){
