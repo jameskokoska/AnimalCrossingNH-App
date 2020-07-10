@@ -67,7 +67,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                           ),
                           decoration: new BoxDecoration(
                             borderRadius: BorderRadius.circular(100*percentScale),
-                            color:colorBugAccent,
+                            color:colorClothingAccent,
                             boxShadow: [BoxShadow(
                                 color: colorShadowPopUp,
                                 offset: Offset(0,3),

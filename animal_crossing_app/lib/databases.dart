@@ -2226,8 +2226,12 @@ bool determineActiveNow(String time){
     return true;
   else if (time=="NA")
     return false;
-  else if(now.hour<=int.parse(time.substring(time.length-5,time.length-3))+12 || now.hour>=int.parse(time.substring(0,2)))
-    return true;
-  else  
+  else if(time.substring(time.length-2,time.length)=="PM"){
+    if(now.hour<int.parse(time.substring(time.length-5,time.length-3))+12 && now.hour>=int.parse(time.substring(0,2)))
+      return true;
+  } else if(time.substring(time.length-2,time.length)=="AM"){
+    if(now.hour<int.parse(time.substring(time.length-5,time.length-3)) || now.hour>=int.parse(time.substring(0,2))+12)
+      return true;
+  }
     return false;
 }
