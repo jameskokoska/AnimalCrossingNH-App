@@ -536,8 +536,8 @@ Widget getIconName(String source, double percentScale, [bool bug=false]) {
   else if (bug==true&&source.contains('shoreline')){
     return new Image.asset(
       'assets/' + 'oceanIcon.png',
-      height: 40*percentScale,
-      width: 40*percentScale,
+      height: 55*percentScale,
+      width: 55*percentScale,
     );
   }
   else if (bug==true&&source.contains('turnip')){
