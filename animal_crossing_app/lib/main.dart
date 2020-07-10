@@ -242,7 +242,7 @@ class _MainPageState extends State<Main> {
       if(index == 0){
         currentPageWidget = homepage;
       } else if (index == 1){
-        currentPageWidget = settingList;
+        currentPageWidget = morepage;
       } else if (index == 2){
         currentPageWidget = artList;
       } else {

@@ -26,12 +26,20 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                 Stack(
                   children: [
                     Container(
-                        transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                        height:450*percentScale,
-                        decoration: new BoxDecoration(
+                      transform: Matrix4.translationValues(0, -30*percentScale, 0),
+                      height:450*percentScale,
+                      decoration: new BoxDecoration(
+                        borderRadius: BorderRadius.circular(30*percentScale),
+                        color: colorWhite,
+                      )
+                    ),
+                    Container(
+                      transform: Matrix4.translationValues(0, 200*percentScale, 0),
+                      height:340*percentScale,
+                      decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(30*percentScale),
                           color: colorWhite,
-                        )
+                      )
                     ),
                     new Center(
                       child: new Container(
@@ -70,7 +78,7 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                       ),
                     ),
 
-                    circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, snapshotData.source),
+                    circleContainer(percentScale, colorClothingAccent, colorCircleContainerPopUp, snapshotData.source),
                     new Container(
                       transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
                       child: Container(

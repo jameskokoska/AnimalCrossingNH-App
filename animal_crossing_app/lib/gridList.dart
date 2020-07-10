@@ -304,9 +304,9 @@ class _GridListPageState extends State<GridList>{
                         crossAxisSpacing: 17,
                         childAspectRatio: (){
                           if(smallContainer)
-                            return 0.82;
+                            return 0.83;
                           else
-                            return 0.78;
+                            return 0.8;
                         }(),
                       ),
                       delegate: 

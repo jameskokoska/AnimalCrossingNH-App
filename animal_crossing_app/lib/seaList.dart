@@ -79,7 +79,7 @@ class _SeaListPageState extends State<SeaList>{
                           height:100*percentScale,
                         ),
                         SpinKitThreeBounce(
-                          color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                          color: colorSeaAccent,
                           size:80,
                         )
                       ],

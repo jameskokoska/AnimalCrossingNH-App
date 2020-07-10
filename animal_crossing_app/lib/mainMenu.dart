@@ -1224,7 +1224,6 @@ class _HomePageState extends State<Home>{
                                 new Container(
                                   transform: Matrix4.translationValues(percentScale,30*percentScale,0),
                                   child: Column(
-
                                       children: <Widget>[
                                         SizedBox(height: 10*percentScale),
                                         storeContainer(darkMode, percentScale, "Nook's Cranny", "nook",8, 22),

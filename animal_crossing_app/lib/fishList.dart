@@ -79,7 +79,7 @@ class _FishListPageState extends State<FishList>{
                           height:100*percentScale,
                         ),
                         SpinKitThreeBounce(
-                          color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                          color: colorFishAccent,
                           size:80,
                         )
                       ],

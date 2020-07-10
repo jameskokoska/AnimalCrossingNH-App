@@ -79,7 +79,7 @@ class _BugListPageState extends State<BugList>{
                           height:100*percentScale,
                         ),
                         SpinKitThreeBounce(
-                          color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                          color: colorBugAccent,
                           size:80,
                         )
                       ],

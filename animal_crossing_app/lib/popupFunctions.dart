@@ -429,8 +429,8 @@ Widget getIconName(String source, double percentScale, [bool bug=false]) {
   if(source.contains("Nook's Cranny") && source.contains("Crafting")) {
     return new Image.asset(
       'assets/' + 'nookCraft.png',
-      height: 55*percentScale,
-      width: 55*percentScale,
+      height: 40*percentScale,
+      width: 40*percentScale,
     );
   }
   else if(source.contains("Nook's Cranny")) {
