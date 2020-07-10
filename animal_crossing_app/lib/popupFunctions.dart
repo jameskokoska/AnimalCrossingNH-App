@@ -607,7 +607,7 @@ int determineActiveTimeStart(String time){
 
 int determineActiveTimeEnd(String time){
   if (time == "All day") {
-    return 23;
+    return 24;
   } else {
     return int.parse(time.substring(time.length - 5, time.length - 3)) + 12;
   }

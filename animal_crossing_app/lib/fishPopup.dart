@@ -194,7 +194,6 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                   ),
                 ),
                 // ---------- Card Centre Content ----------
-                
                   Center(
                     child: Container(
                       transform: Matrix4.translationValues(0, 10*percentScale, 0),
@@ -203,7 +202,7 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                       child: Column(
                         children: [
                           SizedBox(
-                            height:10*percentScale,
+                            height:40*percentScale,
                           ),
                           // ---------- Card Centre Quote ----------
                           AnimatedOpacity(
@@ -212,7 +211,7 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                             child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+snapshot.catchphrase+"”"),
                           ),
                           SizedBox(
-                            height:10*percentScale,
+                            height:30*percentScale,
                           ),
                           // ---------- Card Centre Name ----------
                           Container(
@@ -258,9 +257,17 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                           SizedBox(
                             height:8*percentScale,
                           ),
-                          infoContainer(percentScale, 'magnifyingGlass.png', capitalize(snapshot.shadow)),
-                          //Shadow size
-                          infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                  child: infoContainer(percentScale, 'magnifyingGlass.png', capitalize(snapshot.shadow))
+                              ),
+                              //Shadow size
+                              Expanded(
+                                  child: infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(snapshot.sell))+" bells")
+                              ),
+                            ],
+                          ),
                           // ---------- Clock ----------
                           Container(
                             height: 180*percentScale,
