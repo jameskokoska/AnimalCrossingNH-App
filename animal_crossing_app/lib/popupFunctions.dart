@@ -598,11 +598,19 @@ Widget paintingContainerLayout(String dimensions, String imageLinkReal, String i
 
 //Takes a string in the format "10 AM - 9 PM" for example
 int determineActiveTimeStart(String time){
-  return int.parse(time.substring(0,2));
+  if (time == "All day") {
+    return 0;
+  } else {
+    return int.parse(time.substring(0, 2));
+  }
 }
 
 int determineActiveTimeEnd(String time){
-  return int.parse(time.substring(time.length-5,time.length-3))+12;
+  if (time == "All day") {
+    return 23;
+  } else {
+    return int.parse(time.substring(time.length - 5, time.length - 3)) + 12;
+  }
 }
 
 double timeToAngle(int hour){
