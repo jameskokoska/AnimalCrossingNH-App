@@ -118,8 +118,8 @@ class _BugListPageState extends State<BugList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/bugTitle.png'),
-                                  Align(
+                                Image.asset('assets/bugTitle'+darkExtension+'.png'),
+                                Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom:20,right:10),

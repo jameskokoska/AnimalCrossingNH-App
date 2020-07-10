@@ -118,7 +118,7 @@ class _FishListPageState extends State<FishList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/fishTitle.png'),
+                                Image.asset('assets/fishTitle'+darkExtension+'.png'),
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(

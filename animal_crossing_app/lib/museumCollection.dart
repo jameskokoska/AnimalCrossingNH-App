@@ -91,6 +91,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 500,
+                    smallContainer: false
                   ),
                   SeaList(),
                   BugList(),
@@ -107,6 +108,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 500,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Clothing",
@@ -117,6 +119,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 450,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Tools",
@@ -127,6 +130,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 400,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Floor & Wall",
@@ -137,6 +141,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: true,
                     checkmarkColor: colorCheckGreen,
                     popupHeight: 450,
+                    smallContainer: false
                   ),
                   GridList(
                     title: "Villagers",
@@ -147,6 +152,7 @@ class _MuseumPageState extends State<MuseumPage>{
                     checkmark: false,
                     checkmarkColor: colorVillagerCheck,
                     popupHeight: 450,
+                    smallContainer: true
                   ),
                   CreditsList(),
                 ],

@@ -117,7 +117,7 @@ class _FossilsListPageState extends State<FossilList>{
                             titlePadding: EdgeInsets.only(left: 30*percentScale, bottom: 20),
                             background: Stack(
                               children: <Widget>[
-                                //Image.asset('assets/fishTitle.png'),
+                                Image.asset('assets/fossilTitle'+darkExtension+'.png'),
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(

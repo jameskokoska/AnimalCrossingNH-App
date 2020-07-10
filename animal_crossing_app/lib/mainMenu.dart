@@ -166,141 +166,115 @@ Widget eventContainer(bool darkMode, double percentScale, String enable, String 
   );
 }
 
-Widget storeContainer(String enable, double percentScale, bool darkMode, String storeName, bool nook) {
+Widget storeContainer(bool darkMode, double percentScale, String storeName, String imagePath, int timeHourOpen, int timeHourClose) {
   String storeState;
-  String storeTitle;
-  String storeHours;
-  bool enableBool;
-  bool nookSunday = false;
-  Color bubble;
-  String date = DateFormat.jm().format(new DateTime.now()).toString();
-  String timeStr = date.substring(0,date.length-3);
-  String meridian = date.substring(date.length-2,date.length);
-  String day = DateFormat.E().format(new DateTime.now()).toString();
-  String timeHr;
-  String timeMin;
-  int timeHour;
-  int timeMinute;
-
-  if(timeStr[1] == ":") {
-    timeHr = timeStr.substring(0,1);
-    timeMin = timeStr.substring(2,);
-  }else {
-    timeHr = timeStr.substring(0,2);
-    timeMin = timeStr.substring(3,);
-  }
-  timeHour = int.parse(timeHr);
-  timeMinute = int.parse(timeMin);
-
-  if(nook) {
-    storeHours = "8 AM - 10 PM";
-    if((timeHour == 12 && meridian == "PM") || (timeHour >= 8 && timeHour != 12 && meridian == "AM") || (timeHour < 10 && meridian == "PM")) {
-      storeState = "Open";
-      bubble = Color(0xffB9FBC8);
-      if(timeHour == 9 && meridian == "PM") {
-        storeState = "Open (Closing Soon)";
-        bubble = Color(0xfffdcd2e);
-      }
-    }else {
-      storeState = "Closed";
-      bubble = Color(0xffFFC9CE);
-    }
-    storeTitle = "Nook's Cranny";
-  }else {
-    storeHours = "9 AM - 9 PM";
-    if((timeHour == 12 && meridian == "PM") || (timeHour >= 9 && timeHour != 12 && meridian == "AM") || (timeHour < 9 && meridian == "PM")) {
-      storeState = "Open";
-      bubble = Color(0xffB9FBC8);
-      if(timeHour == 8 && meridian == "PM") {
-        storeState = "Open";
-        bubble = Color(0xfffdcd2e);
-      }
-    }else {
-      storeState = "Closed";
-      bubble = Color(0xffFFC9CE);
-    }
-    storeTitle = "Able Sisters";
-  }
-
-  if(nook) {
-    if(day == "Sun") {
-      nookSunday = true;
-    }
-  }
-
-  if(enable=="true"){
-    enableBool = true;
+  String storeHourString;
+  Color bgColor;
+  Color bgColorDark;
+  if (DateTime.now().hour+1==timeHourClose){
+    storeState = "Open";
+    bgColor = Color(0xfffdcd2e);
+    bgColorDark = Color(0xFF806920);
+  } else if(DateTime.now().hour > timeHourOpen && DateTime.now().hour < timeHourClose){
+    storeState = "Open";
+    bgColor = Color(0xffB9FBC8);
+    bgColorDark = Color(0xFF74A780);
   } else {
-    enableBool = false;
+    storeState = "Closed";
+    bgColor = Color(0xffFFC9CE);
+    bgColorDark = Color(0xFF634549);
   }
+
+  if(timeHourClose > 12){
+    storeHourString = timeHourOpen.toString() + " AM - " + (timeHourClose-12).toString() + " PM";
+  } else {
+    storeHourString = timeHourOpen.toString() + " AM - " + (timeHourClose).toString() + " AM";
+  }
+  
 
   return Column(
     children: <Widget>[
-      Visibility(
-        visible: enableBool,
-        child: Stack(
-          children: <Widget>[
-            Center(
-              child: Container(
-                width: 344*percentScale,
-                height: 101*percentScale,
-                //margin: const EdgeInsets.all(15.0),
-                decoration: new BoxDecoration(
-                    color: darkModeColor(!darkMode, colorWhite, bubble),
-                    borderRadius: BorderRadius.circular(18),
-                ),
-              ),
-            ),
-            Container(
-              transform: Matrix4.translationValues((388/20)*percentScale, -29*percentScale, 0),
-              child: new Image.asset(
-                'assets/' + storeName + '.png',
-                height: 150*percentScale,
-                width: 80*percentScale,
-              ),
-            ),
-            new Container(
-              transform: Matrix4.translationValues((788/20)*percentScale,34*percentScale,0),
-              child: Center(
-                child: new Text(
-                  storeState + ": " + storeTitle + "\n" + storeHours,
-                  style: TextStyle(
-                    fontFamily: 'ArialRoundedBold',
-                    color: Color(0xff373737),
-                    fontSize: 20*percentScale,
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                  ),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: nookSunday,
-              child: Stack(
+      Center(
+        child: Container(
+          width: 344*percentScale,
+          height: 101*percentScale,
+          decoration: new BoxDecoration(
+            color: darkModeColor(!darkMode, bgColorDark, bgColor),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Stack(
+            children: <Widget>[
+              Row(
                 children: <Widget>[
-                  Container(
-                    transform: Matrix4.translationValues((788/20)*percentScale, 34*percentScale,0),
-                    child: Center(
-                      child: new Text(
-                        "\n\nTurnips cannot be sold on Sundays",
-                        style: TextStyle(
-                          fontFamily: 'ArialRoundedBold',
-                          color: Color(0xff373737),
-                          fontSize: 12*percentScale,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                        ),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: new Image.asset(
+                      'assets/' + imagePath + '.png',
+                      height: 150*percentScale,
+                      width: 80*percentScale,
+                    ),
+                  ),
+                  new Text(
+                    storeState + ": " + storeName + "\n" + storeHourString,
+                    style: TextStyle(
+                      fontFamily: 'ArialRoundedBold',
+                      color: colorTextBlack,
+                      fontSize: 18*percentScale,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+            ]
+          )
         ),
       ),
     ],
   );
+            
+  //           new Container(
+  //             transform: Matrix4.translationValues((788/20)*percentScale,34*percentScale,0),
+  //             child: Center(
+  //               child: new Text(
+  //                 storeState + ": " + storeTitle + "\n" + storeHours,
+  //                 style: TextStyle(
+  //                   fontFamily: 'ArialRoundedBold',
+  //                   color: Color(0xff373737),
+  //                   fontSize: 20*percentScale,
+  //                   fontWeight: FontWeight.w400,
+  //                   fontStyle: FontStyle.normal,
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           Visibility(
+  //             visible: nookSunday,
+  //             child: Stack(
+  //               children: <Widget>[
+  //                 Container(
+  //                   transform: Matrix4.translationValues((788/20)*percentScale, 34*percentScale,0),
+  //                   child: Center(
+  //                     child: new Text(
+  //                       "\n\nTurnips cannot be sold on Sundays",
+  //                       style: TextStyle(
+  //                         fontFamily: 'ArialRoundedBold',
+  //                         color: Color(0xff373737),
+  //                         fontSize: 12*percentScale,
+  //                         fontWeight: FontWeight.w400,
+  //                         fontStyle: FontStyle.normal,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   ],
+  // );
 }
 
 
@@ -1250,11 +1224,12 @@ class _HomePageState extends State<Home>{
                                 new Container(
                                   transform: Matrix4.translationValues(percentScale,30*percentScale,0),
                                   child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                                       children: <Widget>[
-                                        storeContainer("true", percentScale, false, "nook", true),
-                                        storeContainer("true", percentScale, false, "able", false),
+                                        SizedBox(height: 10*percentScale),
+                                        storeContainer(darkMode, percentScale, "Nook's Cranny", "nook",8, 10),
+                                        SizedBox(height: 10*percentScale),
+                                        storeContainer(darkMode, percentScale, "Able Sisters", "able",9, 9),
                                       ],
                                   ),
                                 ),

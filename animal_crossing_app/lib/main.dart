@@ -58,6 +58,7 @@ Color colorArtAppBar;
 Color colorArtAccent;
 Color colorArtTextDarkGreen;
 
+String darkExtension = "";
 //---------------------------
 //----------Globals----------
 bool northernHemisphere = true;
@@ -256,6 +257,7 @@ class _MainPageState extends State<Main> {
   Widget build(BuildContext context) {
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     if(!darkMode){
+      darkExtension = "";
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0x63DFDFDF);
       colorSearchbarIcon = Color(0x48000000);
@@ -296,6 +298,7 @@ class _MainPageState extends State<Main> {
       colorSeaAppBar = Color(0xFFA2D0F7);
       colorSeaAccent = Color(0xFFE3F2FD);
     } else if(darkMode){
+      darkExtension = "Dark";
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
       colorSearchbarIcon = Color(0xADFFFFFF);
