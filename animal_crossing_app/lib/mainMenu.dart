@@ -1227,9 +1227,9 @@ class _HomePageState extends State<Home>{
 
                                       children: <Widget>[
                                         SizedBox(height: 10*percentScale),
-                                        storeContainer(darkMode, percentScale, "Nook's Cranny", "nook",8, 10),
+                                        storeContainer(darkMode, percentScale, "Nook's Cranny", "nook",8, 22),
                                         SizedBox(height: 10*percentScale),
-                                        storeContainer(darkMode, percentScale, "Able Sisters", "able",9, 9),
+                                        storeContainer(darkMode, percentScale, "Able Sisters", "able",9, 21),
                                       ],
                                   ),
                                 ),
