@@ -356,8 +356,37 @@ class _MainPageState extends State<Main> {
     } else {
       percentScale = percentHeight;
     }
+    var scaffoldKey = GlobalKey<ScaffoldState>();
+
 
     return Scaffold(
+      key: scaffoldKey,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      
       resizeToAvoidBottomPadding: false,
       body: Stack(
         children: <Widget>[
@@ -365,6 +394,15 @@ class _MainPageState extends State<Main> {
             duration: const Duration(milliseconds:200),
             child: currentPageWidget,
           ),
+          Positioned(
+              left: 10,
+              top: 20,
+              child: IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () => scaffoldKey.currentState.openDrawer(),
+              ),
+            ),
+          
           new Align(
             alignment: Alignment.bottomCenter,
             child: Container(
