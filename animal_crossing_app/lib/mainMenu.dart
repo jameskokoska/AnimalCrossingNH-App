@@ -1187,7 +1187,7 @@ class _HomePageState extends State<Home>{
                               )
                             );
                           } else {
-                            return Container();
+                            return SizedBox(height:60*percentScale);
                           }
                         }
                       ),
