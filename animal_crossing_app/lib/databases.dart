@@ -1338,6 +1338,9 @@ Future<List<CraftableData>> getCraftableData(String search) async{
   String dataTools = await rootBundle.loadString("assets/tools.json");
   final jsonDataTools = json.decode(dataTools);
 
+  String dataFence = await rootBundle.loadString("assets/fence.json");
+  final jsonDataFence = json.decode(dataFence);
+
 
   List<CraftableData> craftableData = [];
 
@@ -1934,6 +1937,26 @@ Future<List<CraftableData>> getCraftableData(String search) async{
     previousName = u["Name"];
   }
 
+  previousName="";
+  for(var u in jsonDataFence){
+    CraftableData craftableDatum = CraftableData(
+      craftableGroup:"Fence",
+      name:u["Name"],
+      image:u["Image"],
+      buy: u["Buy"],
+      sell: u["Sell"],
+      source: u["Source"]
+    );
+    if(u["Name"]!=previousName){
+      if(search == '' && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      } else if (u["Name"].toLowerCase().contains(search.toLowerCase()) && u["Source"]!=null && u["Source"].toLowerCase().contains("crafting")){
+        craftableData.add(craftableDatum);
+      }
+    }
+    previousName = u["Name"];
+  }
+
   return craftableData;
 }
 
@@ -1965,6 +1988,7 @@ Future<RecipeData> getRecipeData(String search) async{
 
   final jsonData = json.decode(data);
   for(var u in jsonData){
+    print(u["Name"]);
     RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Sources"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
     if (u["Name"].toLowerCase().contains(search.toLowerCase())){
       return recipeDatum;

@@ -55,6 +55,7 @@ dev_dependencies:
   #flare_flutter: ^2.0.5
   flare_loading: ^2.1.1
   sk_onboarding_screen: ^1.0.1
+  table_sticky_headers: ^1.1.2
   
   
 

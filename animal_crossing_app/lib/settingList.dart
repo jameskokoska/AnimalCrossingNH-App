@@ -44,6 +44,7 @@ class _SettingListPageState extends State<SettingList>{
     }
 
     return Scaffold(
+      floatingActionButton: floatingActionButton(percentScale, context),
       body: GestureDetector(
         child: Stack(
           children: <Widget>[
@@ -85,13 +86,13 @@ class _SettingListPageState extends State<SettingList>{
                   padding: EdgeInsets.only(top:10*percentScale),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate([
-                      settingContainer(percentScale, 'Northern hemisphere', 'northernHemisphere', northernHemisphere, 'earth'),
+                      settingContainer(percentScale, 'Northern hemisphere', 'northernHemisphere', northernHemisphere, 'earth', "Select your hemisphere location, for accurate creature times."),
                       //settingContainer(percentScale, 'Splash Screen', 'skipSplash', skipSplash, 'phone'),
-                      settingContainer(percentScale, 'Always show catchphrase', 'showCatchPhraseNow', showCatchPhraseNow, 'speechBubble'),
-                      settingContainer(percentScale, 'List only active creatures', 'showListOnlyActive', showListOnlyActive, 'clockIcon'),
-                      settingContainer(percentScale, 'Show variations in lists', 'showListVariations', showListVariations, 'dice'),
-                      settingContainer(percentScale, 'Creatures leaving warning', 'lastCaughtWarning', lastCaughtWarning, 'alarmClock'),
-                      settingContainer(percentScale, 'Show floating menu button', 'showButton', showButton, 'buttonIcon'),
+                      settingContainer(percentScale, 'Always show catchphrase', 'showCatchPhraseNow', showCatchPhraseNow, 'speechBubble', "Within the pop-up of each creature, show the catchphrase even if it has not been caught."),
+                      settingContainer(percentScale, 'List only active creatures', 'showListOnlyActive', showListOnlyActive, 'clockIcon', "Show only creatures that are active within the month in the list, hide the others."),
+                      settingContainer(percentScale, 'Show variations in lists', 'showListVariations', showListVariations, 'dice', "Show all variations and colours of furniture and customizable items in the list."),
+                      settingContainer(percentScale, 'Creatures leaving warning', 'lastCaughtWarning', lastCaughtWarning, 'alarmClock', "Highlight creatures that will be disappearing next month in a differernt colour."),
+                      settingContainer(percentScale, 'Show floating menu button', 'showButton', showButton, 'buttonIcon', "Show the floating menu button in the bottom right corner all the time. The side menu can still be opened with a swipe."),
                     ],),
                   ),
                 ),
@@ -215,7 +216,7 @@ class _SettingListPageState extends State<SettingList>{
   }
 }
 
-Widget settingContainer(double percentScale, String settingTitle, String settingKey, bool currentValue, String imageAsset){
+Widget settingContainer(double percentScale, String settingTitle, String settingKey, bool currentValue, String imageAsset, String description){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return Column(
@@ -235,6 +236,44 @@ Widget settingContainer(double percentScale, String settingTitle, String setting
                         splashColor: colorSettingsAppBar,
                         enableFeedback: true,
                         onTap: (){
+                          showDialog<void>(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              return BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                child: CupertinoAlertDialog(
+                                  title:  Text(
+                                    settingTitle,
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  content: Text(
+                                    description,
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRounded',
+                                      fontWeight: FontWeight.w100,
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    CupertinoDialogAction(
+                                      child: Text(
+                                        'OK',
+                                        style: TextStyle(
+                                          fontFamily: 'ArialRounded'
+                                        ),
+                                      ),
+                                      onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ]
+                                ),
+                              );
+                            }
+                          );
                         },
                         child: new Container(
                           width: 334*percentScale,
