@@ -18,6 +18,8 @@ import 'toolsPopup.dart';
 import 'floorWallListPopup.dart';
 import 'recipesPopup.dart';
 
+import 'popupFunctions.dart';
+
 bool popupCollectedGrid;
 
 String getKey(var snapshotContainerData, String title){
@@ -281,6 +283,12 @@ class _GridListPageState extends State<GridList>{
     double top = 0;
 
     return Scaffold(
+      floatingActionButton: (){
+        if(checkmark==false)
+          return floatingActionButton(percentScale, context);
+        else 
+          return Container();
+      }(),
       resizeToAvoidBottomPadding: false,
       body: GestureDetector(
         onTap: (){FocusScope.of(context).requestFocus(new FocusNode());},
@@ -304,7 +312,7 @@ class _GridListPageState extends State<GridList>{
                         crossAxisSpacing: 17,
                         childAspectRatio: (){
                           if(smallContainer)
-                            return 0.83;
+                            return 0.81;
                           else
                             return 0.8;
                         }(),
@@ -464,7 +472,7 @@ class _GridListPageState extends State<GridList>{
 }
 
 
-Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack, Color accentColor, Color checkmarkColor, String title, bool checkmark, var snapshotContainerData, [bool creature=false]){
+Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack, Color accentColor, Color checkmarkColor, String title, bool checkmark, var snapshotContainerData, [bool creature=false, Color specialBG]){
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
@@ -479,7 +487,12 @@ Widget gridContainer(double percentScale, int popupHeight, Color colorTextBlack,
                     width: 300*percentScale,
                     height: 300*percentScale,
                     decoration: new BoxDecoration(
-                      color: colorWhite,
+                      color: (){
+                        if(creature)
+                          return determineBackgroundColor(snapshotContainerData.nhJan, snapshotContainerData.nhFeb, snapshotContainerData.nhMar, snapshotContainerData.nhApr, snapshotContainerData.nhMay, snapshotContainerData.nhJun, snapshotContainerData.nhJul, snapshotContainerData.nhAug, snapshotContainerData.nhSep, snapshotContainerData.nhOct, snapshotContainerData.nhNov, snapshotContainerData.nhDec, snapshotContainerData.shJan, snapshotContainerData.shFeb, snapshotContainerData.shMar, snapshotContainerData.shApr, snapshotContainerData.shMay, snapshotContainerData.shJun, snapshotContainerData.shJul, snapshotContainerData.shAug, snapshotContainerData.shSep, snapshotContainerData.shOct, snapshotContainerData.shNov, snapshotContainerData.shDec);
+                        else
+                          return colorWhite;
+                      }(),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [BoxShadow(
                           color: colorShadow,

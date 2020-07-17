@@ -87,9 +87,10 @@ class _SettingListPageState extends State<SettingList>{
                       settingContainer(percentScale, 'Northern hemisphere', 'northernHemisphere', northernHemisphere, 'earth'),
                       //settingContainer(percentScale, 'Splash Screen', 'skipSplash', skipSplash, 'phone'),
                       settingContainer(percentScale, 'Always show catchphrase', 'showCatchPhraseNow', showCatchPhraseNow, 'speechBubble'),
-                      settingContainer(percentScale, 'List only active creatures', 'showListOnlyActive', showListOnlyActive, 'alarmClock'),
+                      settingContainer(percentScale, 'List only active creatures', 'showListOnlyActive', showListOnlyActive, 'clockIcon'),
                       settingContainer(percentScale, 'Show variations in lists', 'showListVariations', showListVariations, 'dice'),
                       settingContainer(percentScale, 'Creatures leaving warning', 'lastCaughtWarning', lastCaughtWarning, 'alarmClock'),
+                      settingContainer(percentScale, 'Show floating menu button', 'showButton', showButton, 'buttonIcon'),
                     ],),
                   ),
                 ),
@@ -249,6 +250,9 @@ Widget settingContainer(double percentScale, String settingTitle, String setting
                           currentValue = state;
                         }else if(settingKey == 'lastCaughtWarning') {
                           lastCaughtWarning = state;
+                          currentValue = state;
+                        } else if(settingKey == 'showButton') {
+                          showButton = state;
                           currentValue = state;
                         }
                         HapticFeedback.mediumImpact();
