@@ -18,13 +18,11 @@ class ArtList extends StatefulWidget {
 }
 
 String searchArt = '';
-var futureArt;
 
 class _ArtListPageState extends State<ArtList>{
   @override
   void initState(){
     super.initState();
-    futureArt = getArtData(searchArt);
     searchArt = '';
   }
   
@@ -62,7 +60,7 @@ class _ArtListPageState extends State<ArtList>{
                 color: colorLightDarkAccent,
               ),
               FutureBuilder(
-                  future: futureArt,
+                  future: getArtData(searchArt),
                   builder: (context,snapshot){
                     Widget artListSliver;
                     if(snapshot.hasData){
@@ -92,7 +90,7 @@ class _ArtListPageState extends State<ArtList>{
                                 height:100*percentScale,
                               ),
                               SpinKitThreeBounce(
-                                color: darkModeColor(darkMode, Color(0xFF2DA6F7), Color(0xFF8BBADA)),
+                                color: colorArtAppBar,
                                 size:80,
                               )
                             ],

@@ -2235,3 +2235,53 @@ bool determineActiveNow(String time){
   }
     return false;
 }
+
+class FenceData{
+  final String name;
+  final String image;
+  final String sell;
+  final String buy;
+
+  FenceData(this.name,this.image,this.sell, this.buy);
+}
+
+Future<List<FenceData>> getFenceData(String search) async{
+  String data = await rootBundle.loadString("assets/fence.json");
+
+  final jsonData = json.decode(data);
+  List<FenceData> fenceData = [];
+  for(var u in jsonData){
+    FenceData fenceDatum = FenceData(u["Name"],u["Image"],u["Sell"],u["Buy"]);
+    if(search == ''){
+      fenceData.add(fenceDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      fenceData.add(fenceDatum);
+    }
+  }
+  return fenceData;
+}
+
+class ConstructionData{
+  final String name;
+  final String image;
+  final String buy;
+  final String category;
+
+  ConstructionData(this.name,this.image,this.buy,this.category);
+}
+
+Future<List<ConstructionData>> getConstructionData(String search) async{
+  String data = await rootBundle.loadString("assets/construction.json");
+
+  final jsonData = json.decode(data);
+  List<ConstructionData> constructionData = [];
+  for(var u in jsonData){
+    ConstructionData constructionDatum = ConstructionData(u["Name"],u["Image"],u["Buy"],u["Vategory"]);
+    if(search == ''){
+      constructionData.add(constructionDatum);
+    } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
+      constructionData.add(constructionDatum);
+    }
+  }
+  return constructionData;
+}

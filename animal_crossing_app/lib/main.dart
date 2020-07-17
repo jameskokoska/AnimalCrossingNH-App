@@ -10,6 +10,7 @@ import 'settingList.dart';
 import 'creditsList.dart';
 import 'gridList.dart';
 import 'emojipedia.dart';
+import 'constructionList.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:ui';
 
@@ -51,6 +52,7 @@ Color colorCreditsAppBar;
 Color colorWarningBackground;
 Color colorSeaAppBar;
 Color colorSeaAccent;
+Color colorConstructionAppBar;
 Color colorSelectedAccent;
 
 Color colorArtAppBar;
@@ -251,8 +253,10 @@ class _MainPageState extends State<Main> {
           smallContainer: true
         );
       } else if (index == 7){
-        currentPageWidget = SettingList();
+        currentPageWidget = ConstructionList();
       } else if (index == 8){
+        currentPageWidget = SettingList();
+      } else if (index == 9){
         currentPageWidget = CreditsList();
       } else {
         currentPageWidget = Home();
@@ -307,6 +311,7 @@ class _MainPageState extends State<Main> {
       colorWarningBackground = Color(0xFFffccbc);
       colorSeaAppBar = Color(0xFFA2D0F7);
       colorSeaAccent = Color(0xFFE3F2FD);
+      colorConstructionAppBar = Color(0xFFffa726);
     } else if(darkMode){
       darkExtension = "Dark";
       colorSelectedAccent = Color(0xE77C8D96);
@@ -331,7 +336,7 @@ class _MainPageState extends State<Main> {
       colorBugTextDarkGreen = Color(0xFF729E75);
       colorFossilAppBar = Color(0xFF4E463B);
       colorFossilAccent = Color(0xFF726A5F);
-      colorArtAppBar = Color(0xFF730000);
+      colorArtAppBar = Color(0xFF630000);
       colorArtAccent = Color(0xFF5A4043);
       colorVillagerAppBar = Color(0xFF4B6E70);
       colorVillagerAccent = Color(0xFF71807F);
@@ -349,6 +354,7 @@ class _MainPageState extends State<Main> {
       colorWarningBackground = Color(0xFF4d2a2c);
       colorSeaAppBar = Color(0xFF536991);
       colorSeaAccent = Color(0xFF434C53);
+      colorConstructionAppBar = Color(0xFF8F6200);
     }
 
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -407,9 +413,10 @@ class _MainPageState extends State<Main> {
             drawerItem(context, selectedNavBar, selectedIndex, 4, "Emoticons", colorEmojipediaAppBar, "emote.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 5, "Crafting + Tools", colorToolsAccent, "crafting.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 6, "Villagers", colorVillagerAppBar, "cat.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 7, "Construction", colorVillagerAppBar, "construction.png"),
             drawerBreak(),
-            drawerItem(context, selectedNavBar, selectedIndex, 7, "Settings", colorSettingsAppBar, "gear.png"),
-            drawerItem(context, selectedNavBar, selectedIndex, 8, "About", colorCreditsAppBar, "magnifyingGlass.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 8, "Settings", colorSettingsAppBar, "gear.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 9, "About", colorCreditsAppBar, "magnifyingGlass.png"),
           ],
         ),
       ),
