@@ -10,6 +10,9 @@ import 'settingList.dart';
 import 'creditsList.dart';
 import 'gridList.dart';
 import 'emojipedia.dart';
+import 'constructionList.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 
 
 //----------Global Colours-----------
@@ -49,11 +52,11 @@ Color colorCreditsAppBar;
 Color colorWarningBackground;
 Color colorSeaAppBar;
 Color colorSeaAccent;
+Color colorConstructionAppBar;
 Color colorSelectedAccent;
 
 Color colorArtAppBar;
 Color colorArtAccent;
-Color colorArtTextDarkGreen;
 
 String darkExtension = "";
 //---------------------------
@@ -250,8 +253,10 @@ class _MainPageState extends State<Main> {
           smallContainer: true
         );
       } else if (index == 7){
-        currentPageWidget = SettingList();
+        currentPageWidget = ConstructionList();
       } else if (index == 8){
+        currentPageWidget = SettingList();
+      } else if (index == 9){
         currentPageWidget = CreditsList();
       } else {
         currentPageWidget = Home();
@@ -263,6 +268,7 @@ class _MainPageState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () => chooseHemisphere(context));
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     if(!darkMode){
       darkExtension = "";
@@ -300,12 +306,12 @@ class _MainPageState extends State<Main> {
       colorFloorWallAccent = Color(0xFFe3f2fd);
       colorEmojipediaAppBar = Color(0xFFFFF176);
       colorArtAppBar = Color(0xFF730000);
-      colorArtAccent = Color(0xFFe8f5e9);
-      colorArtTextDarkGreen = Color(0xFF1b5e20);
+      colorArtAccent = Color(0xFFFFF0F5);
       colorCreditsAppBar = Color(0xFFFFF176);
       colorWarningBackground = Color(0xFFffccbc);
       colorSeaAppBar = Color(0xFFA2D0F7);
       colorSeaAccent = Color(0xFFE3F2FD);
+      colorConstructionAppBar = Color(0xFFffa726);
     } else if(darkMode){
       darkExtension = "Dark";
       colorSelectedAccent = Color(0xE77C8D96);
@@ -330,9 +336,8 @@ class _MainPageState extends State<Main> {
       colorBugTextDarkGreen = Color(0xFF729E75);
       colorFossilAppBar = Color(0xFF4E463B);
       colorFossilAccent = Color(0xFF726A5F);
-      colorArtAppBar = Color(0xFF730000);
-      colorArtAccent = Color(0xFFe8f5e9);
-      colorArtTextDarkGreen = Color(0xFF1b5e20);
+      colorArtAppBar = Color(0xFF630000);
+      colorArtAccent = Color(0xFF5A4043);
       colorVillagerAppBar = Color(0xFF4B6E70);
       colorVillagerAccent = Color(0xFF71807F);
       colorVillagerCheck = Color(0xFFE2B0B0);
@@ -349,6 +354,7 @@ class _MainPageState extends State<Main> {
       colorWarningBackground = Color(0xFF4d2a2c);
       colorSeaAppBar = Color(0xFF536991);
       colorSeaAccent = Color(0xFF434C53);
+      colorConstructionAppBar = Color(0xFF8F6200);
     }
 
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -401,15 +407,16 @@ class _MainPageState extends State<Main> {
             ),
             SizedBox(height:10*percentScale),
             drawerItem(context, selectedNavBar, selectedIndex, 0, "Home", Colors.orange, "house.png"),
-            drawerItem(context, selectedNavBar, selectedIndex, 1, "Museum + Creatures", colorFishAppBar, "bugs.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 1, "Creatures + Museum", colorFishAppBar, "bugs.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 2, "Items", colorFurnitureAppBar, "leaf.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 3, "Songs", Colors.blue, "music.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 4, "Emoticons", colorEmojipediaAppBar, "emote.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 5, "Crafting + Tools", colorToolsAccent, "crafting.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 6, "Villagers", colorVillagerAppBar, "cat.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 7, "Construction", colorVillagerAppBar, "construction.png"),
             drawerBreak(),
-            drawerItem(context, selectedNavBar, selectedIndex, 7, "Settings", colorSettingsAppBar, "gear.png"),
-            drawerItem(context, selectedNavBar, selectedIndex, 8, "About", colorCreditsAppBar, "magnifyingGlass.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 8, "Settings", colorSettingsAppBar, "gear.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 9, "About", colorCreditsAppBar, "magnifyingGlass.png"),
           ],
         ),
       ),
@@ -520,6 +527,7 @@ Widget drawerBreak(){
 }
 
 Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), int currentSelectedIndex, int index, String name, Color accentColor, String imagePath){
+  
   return Padding(
     padding: const EdgeInsets.only(left:20,right:20, top:3, bottom:3),
     child: Container(
@@ -539,24 +547,38 @@ Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), 
               return Color(0x00000000);
           }(),
           offset: Offset(0,0),
-          blurRadius: 2,
-          spreadRadius: -2
+          blurRadius: 0,
+          spreadRadius: -0.5
           ) 
         ],
       ),
       child: ListTile(
-        leading: Image.asset(
-          'assets/'+imagePath,
-          height: 25,
-          width: 25,
+        leading: Stack(
+          children: [
+            Opacity(
+              child: Image.asset(
+                'assets/'+imagePath, color: Colors.black, height:25, width:25
+              ), 
+              opacity: (){
+                if(currentSelectedIndex==index)
+                  return 0.2;
+                else
+                  return 0.0;
+              }(),
+            ),
+            ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                child: Image.asset('assets/'+imagePath, height:25, width:25)
+              )
+            )
+          ]   
         ),
         title: Text(name),
         onTap: () {
           if(currentSelectedIndex!=index){
             selectedNavBar(index, context);
-            Future.delayed(const Duration(milliseconds: 100), () {
-              Navigator.pop(context);
-            });
+            Navigator.pop(context);
           }
         },
       ),
@@ -564,9 +586,9 @@ Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), 
   );
 }
 
-Widget floatingActionButton(percentScale, var context, [bool offset=false]){
+Widget floatingActionButton(percentScale, var context, [bool offset=false, bool alwaysShow=false]){
   bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-  if(showButton==true){
+  if(showButton==true||alwaysShow==true){
     return Theme(
       data: ThemeData (
         primaryColor: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
@@ -597,4 +619,67 @@ Widget floatingActionButton(percentScale, var context, [bool offset=false]){
     return Container();
   }
   
+}
+
+
+chooseHemisphere(var context) async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstLoaded = prefs.getBool("firstLoad");
+    if (isFirstLoaded == null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+           return BackdropFilter(
+             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+             child: CupertinoAlertDialog(
+              title:  Text(
+                'Which hemisphere?',
+                style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              content: Text(
+                'This can be changed in settings',
+                style: TextStyle(
+                  fontFamily: 'ArialRounded',
+                ),
+              ),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: Text(
+                    'Southern',
+                    style: TextStyle(
+                      fontFamily: 'ArialRounded'
+                    ),
+                  ),
+                  onPressed: (){
+                    HapticFeedback.mediumImpact();
+                    Navigator.of(context).pop();
+                    prefs.setBool("firstLoad", false);
+                    northernHemisphere = false;
+                    saveBool("northernHemisphere", true, false);
+                  },
+                ),
+                 CupertinoDialogAction(
+                  child: Text(
+                    'Northern',
+                    style: TextStyle(
+                      fontFamily: 'ArialRounded'
+                    ),
+                  ),
+                  onPressed: (){
+                    HapticFeedback.mediumImpact();
+                    Navigator.of(context).pop();
+                    prefs.setBool("firstLoad", false);
+                    northernHemisphere = true;
+                    saveBool("northernHemisphere", true, true);
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
 }

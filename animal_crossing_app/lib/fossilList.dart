@@ -20,6 +20,11 @@ String searchFossil = '';
 
 
 class _FossilsListPageState extends State<FossilList>{
+  @override
+  void initState() {
+    super.initState();
+    searchFossil = '';
+  }
 
   @override
   Widget build(BuildContext context){

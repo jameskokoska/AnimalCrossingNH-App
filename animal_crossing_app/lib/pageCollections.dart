@@ -44,7 +44,7 @@ class _MuseumPageState extends State<MuseumPage>{
 
     return MaterialApp(
       home: DefaultTabController(
-        length: 4,
+        length: 5,
         child: Scaffold(
           floatingActionButton: floatingActionButton(percentScale, context, true),
           body: Stack(
@@ -54,6 +54,7 @@ class _MuseumPageState extends State<MuseumPage>{
                   FishList(),
                   BugList(),
                   SeaList(),
+                  FossilList(),
                   ArtList(),
                 ],
               ),
@@ -81,6 +82,7 @@ class _MuseumPageState extends State<MuseumPage>{
                         Tab(text:'Fish',),
                         Tab(text:'Bugs'),
                         Tab(text:'Sea'),
+                        Tab(text:'Fossils'),
                         Tab(text:'Artwork'),
                       ],
                     ),

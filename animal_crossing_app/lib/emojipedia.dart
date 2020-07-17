@@ -27,6 +27,7 @@ class _EmojiListPageState extends State<EmojiList>{
 
   @override
   Widget build(BuildContext context){
+    searchEmoji = '';
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     double deviceWidth = MediaQuery.of(context).size.width;

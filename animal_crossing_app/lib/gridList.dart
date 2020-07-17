@@ -259,6 +259,7 @@ class _GridListPageState extends State<GridList>{
       showListVariations = indexResult;
     });
     futureGrid = Future.wait(getFutureFunctions(title, searchGrid));
+    searchGrid = '';
   }
   
   @override
@@ -312,7 +313,7 @@ class _GridListPageState extends State<GridList>{
                         crossAxisSpacing: 17,
                         childAspectRatio: (){
                           if(smallContainer)
-                            return 0.81;
+                            return 0.8;
                           else
                             return 0.8;
                         }(),
