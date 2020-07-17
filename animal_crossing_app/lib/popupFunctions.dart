@@ -729,28 +729,141 @@ int activeDuration(int startTime, int endTime){
   return duration;
 }
 
-List<Widget> circularMonths(double percentScale) {
+List<Widget> circularMonthText(double percentScale, String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec) {
   List<String> months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  List<String> rotations = ["0", "30", "60", "0", "-60", "-30", "0", "30", "60", "0", "-60", "-30"];
+  List<int> textRotations = [0, 30, 60, 0, -60, -30, 0, 30, 60, 0, -60, -30];
+  int currentRotation = 0;
   List<Widget> list = new List();
   for (int i = 0; i < months.length; i++) {
-    list.add(new Text(months[i]));
-    Center(
-      child: Transform.rotate(
-        angle: (timeToAngle(DateTime.now().hour) + 172.5) * math.pi / 180,
-        child: new Transform (
-          child: Container(
-            child: new Image.asset(
-              "assets/indicator.png",
-              height: 10*percentScale,
-              width: 10*percentScale,
+    list.add(
+      new Center(
+        child: Transform.rotate(
+          angle: (currentRotation) * math.pi / 180,
+          child: new Transform (
+            child: Transform.rotate(
+              angle: (-currentRotation + textRotations[i]) * math.pi / 180,
+              child: monthText(percentScale, i, months)
             ),
+            alignment: FractionalOffset.center,
+            transform: new Matrix4.translationValues(0, -65, 0),
           ),
-          alignment: FractionalOffset.center, // set transform origin
-          transform: new Matrix4.translationValues(0, -72, 0), // rotate -10 deg
         ),
       ),
     );
+    currentRotation += 30;
   }
   return list;
+}
+
+Widget monthText(double percentScale, int month, months) {
+  if (month == currentDate.month) {
+    return Text(months[month],
+        style: TextStyle(
+          fontFamily: 'ArialRoundedBold',
+          fontSize: 12*percentScale,
+          color: Colors.black,
+        )
+    );
+  } else {
+    return Text(months[month],
+        style: TextStyle(
+          fontFamily: 'ArialRoundedBold',
+          fontSize: 12*percentScale,
+          color: Colors.white,
+        )
+    );
+  }
+}
+
+List<Widget> circularMonthActive(double percentScale, String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec) {
+  determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec);
+  int currentRotation = 0;
+  List<Widget> list = new List();
+  for (int i = 0; i < 12; i++) {
+    list.add(
+      new Center(
+        child: Transform.rotate(
+          angle: (currentRotation) * math.pi / 180,
+          child: new Transform (
+            child: Transform.rotate(
+              angle: -(0) * math.pi / 180,
+              child: new Image.asset(
+                activeMonth(monthTime(i, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)),
+                height: 35*percentScale,
+                width: 35*percentScale,
+              ),
+            ),
+            alignment: FractionalOffset.center,
+            transform: new Matrix4.translationValues(0, -80, 0),
+          ),
+        ),
+      ),
+    );
+    currentRotation += 30;
+  }
+  return list;
+}
+
+String monthTime(int currentMonth, String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec) {
+  if(northernHemisphere){
+    if(currentMonth==1){
+      return nhJan;
+    }else if (currentMonth+1==2){
+      return nhFeb;
+    }else if (currentMonth+1==3){
+      return nhMar;
+    }else if (currentMonth+1==4){
+      return nhApr;
+    }else if (currentMonth+1==5){
+      return nhMay;
+    }else if (currentMonth+1==6){
+      return nhJun;
+    }else if (currentMonth+1==7){
+      return nhJul;
+    }else if (currentMonth+1==8){
+      return nhAug;
+    }else if (currentMonth+1==9){
+      return nhSep;
+    }else if (currentMonth+1==10){
+      return nhOct;
+    }else if (currentMonth+1==11){
+      return nhNov;
+    }else{
+      return nhDec;
+    }
+  }else{
+    if(currentMonth+1==1){
+      return shJan;
+    }else if (currentMonth+1==2){
+      return shFeb;
+    }else if (currentMonth+1==3){
+      return shMar;
+    }else if (currentMonth+1==4){
+      return shApr;
+    }else if (currentMonth+1==5){
+      return shMay;
+    }else if (currentMonth+1==6){
+      return shJun;
+    }else if (currentMonth+1==7){
+      return shJul;
+    }else if (currentMonth+1==8){
+      return shAug;
+    }else if (currentMonth+1==9){
+      return shSep;
+    }else if (currentMonth+1==10){
+      return shOct;
+    }else if (currentMonth+1==11){
+      return shNov;
+    }else {
+      return shDec;
+    }
+  }
+}
+
+String activeMonth(String time) {
+  if (time == "NA"){
+    return "assets/Inactive.png";
+  } else {
+    return "assets/Active.png";
+  }
 }
