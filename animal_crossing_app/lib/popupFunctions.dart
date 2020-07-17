@@ -484,6 +484,13 @@ Widget getIconName(String source, double percentScale, [bool bug=false]) {
       width: 40*percentScale,
     );
   }
+  else if(source.contains("Treasure Trawler")) {
+    return new Image.asset(
+      'assets/' + 'pirate.png',
+      height: 40*percentScale,
+      width: 40*percentScale,
+    );
+  }
   else if(source.contains("Bug Off")) {
     return new Image.asset(
       'assets/' + 'leaf.png',
