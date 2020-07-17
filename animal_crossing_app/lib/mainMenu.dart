@@ -175,7 +175,7 @@ Widget storeContainer(bool darkMode, double percentScale, String storeName, Stri
   Color bgColorDark;
   if (DateTime.now().hour+1==timeHourClose){
     storeState = "Open";
-    bgColor = Color(0xfffdcd2e);
+    bgColor = Color(0xFFFFE695);
     bgColorDark = Color(0xFF806920);
   } else if(DateTime.now().hour > timeHourOpen && DateTime.now().hour < timeHourClose){
     storeState = "Open";
@@ -183,7 +183,7 @@ Widget storeContainer(bool darkMode, double percentScale, String storeName, Stri
     bgColorDark = Color(0xFF74A780);
   } else {
     storeState = "Closed";
-    bgColor = Color(0xffFFC9CE);
+    bgColor = Color(0xFFFFD4D9);
     bgColorDark = Color(0xFF634549);
   }
 
@@ -378,7 +378,7 @@ class _HomePageState extends State<Home>{
             ),
             Container(
               width: deviceWidth,
-              height: deviceHeight-300*percentScale,
+              height: deviceHeight-280*percentScale,
               decoration: new BoxDecoration(
                 color: darkModeColor(darkMode,Color(0xffb8e299),Color(0xff4D6839)),
               )
