@@ -149,13 +149,6 @@
             </list>
           </value>
         </entry>
-        <entry key="flutter_image_compress">
-          <value>
-            <list>
-              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_image_compress-0.7.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="flutter_launcher_icons">
           <value>
             <list>
@@ -244,13 +237,6 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/meta-1.1.8/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="optimized_cached_image">
-          <value>
-            <list>
-              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/optimized_cached_image-0.1.14/lib" />
             </list>
           </value>
         </entry>
@@ -529,7 +515,6 @@
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flare_loading-2.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flare_splash_screen-3.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_cache_manager-1.4.1/lib" />
-      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_image_compress-0.7.0/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.7.5/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_staggered_animations-0.1.2/lib" />
@@ -541,7 +526,6 @@
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/matcher-0.12.6/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/matrix4_transform-1.1.4/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/meta-1.1.8/lib" />
-      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/optimized_cached_image-0.1.14/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/path-1.6.4/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.11/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2/lib" />

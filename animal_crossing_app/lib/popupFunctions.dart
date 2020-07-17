@@ -686,6 +686,9 @@ Widget paintingContainerLayout(String dimensions, String imageLinkReal, String i
 int determineActiveTimeStart(String time){
   if (time == "All day") {
     return 0;
+  }
+  else if (time == "NA") {
+    return 0;
   } else {
     return int.parse(time.substring(0, 2));
   }
@@ -694,6 +697,9 @@ int determineActiveTimeStart(String time){
 int determineActiveTimeEnd(String time){
   if (time == "All day") {
     return 24;
+  }
+  else if (time == "NA") {
+    return 0;
   } else {
     return int.parse(time.substring(time.length - 5, time.length - 3)) + 12;
   }
@@ -705,7 +711,7 @@ double timeToAngle(int hour){
 }
 
 int activeDuration(int startTime, int endTime){
-  int duration;
+  int duration = 0;
   if (startTime < endTime){
     duration = endTime - startTime;
   }
