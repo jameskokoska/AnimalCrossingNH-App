@@ -315,6 +315,11 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                               ],
                             ),
                           ),
+                          // ---------- Seasons ----------
+                          Container(
+                            child: new Stack(
+                              children: circularMonths(percentScale)),
+                            ),
                         ],
                       ),
                     ),

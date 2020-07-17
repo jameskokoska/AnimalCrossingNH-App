@@ -2,6 +2,7 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:math' as math;
 
 
 final priceFormat = new NumberFormat("#,##0");
@@ -721,6 +722,28 @@ int activeDuration(int startTime, int endTime){
   return duration;
 }
 
-Widget circularMonths() {
+List<Widget> circularMonths(double percentScale) {
   List<String> months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  List<String> rotations = ["0", "30", "60", "0", "-60", "-30", "0", "30", "60", "0", "-60", "-30"];
+  List<Widget> list = new List();
+  for (int i = 0; i < months.length; i++) {
+    list.add(new Text(months[i]));
+    Center(
+      child: Transform.rotate(
+        angle: (timeToAngle(DateTime.now().hour) + 172.5) * math.pi / 180,
+        child: new Transform (
+          child: Container(
+            child: new Image.asset(
+              "assets/indicator.png",
+              height: 10*percentScale,
+              width: 10*percentScale,
+            ),
+          ),
+          alignment: FractionalOffset.center, // set transform origin
+          transform: new Matrix4.translationValues(0, -72, 0), // rotate -10 deg
+        ),
+      ),
+    );
+  }
+  return list;
 }
