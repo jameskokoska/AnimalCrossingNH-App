@@ -64,6 +64,7 @@ bool showListOnlyActive = true;     //only list fish you can catch
 bool showListVariations = true;     //Show variations of furniture, clothing etc all colours in item lists
 bool skipSplash = false;
 bool lastCaughtWarning = false;
+bool showButton = true;
 
 int totalCollectedFossils = 0;
 int totalCollectedBugs = 0;
@@ -191,6 +192,9 @@ class _MainPageState extends State<Main> {
     });
     getStoredBool('lastCaughtWarning', false).then((indexResult){
       lastCaughtWarning = indexResult;
+    });
+     getStoredBool('hideButton', true).then((indexResult){
+      showButton = indexResult;
     });
 
     // getStoredInt('totalCollectedFossils', 0).then((indexResult){
@@ -404,7 +408,7 @@ class _MainPageState extends State<Main> {
             drawerItem(context, selectedNavBar, selectedIndex, 5, "Crafting + Tools", colorToolsAccent, "crafting.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 6, "Villagers", colorVillagerAppBar, "cat.png"),
             drawerBreak(),
-            drawerItem(context, selectedNavBar, selectedIndex, 7, "Settings", colorSettingsAppBar, "settings.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 7, "Settings", colorSettingsAppBar, "gear.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 8, "About", colorCreditsAppBar, "magnifyingGlass.png"),
           ],
         ),
@@ -558,4 +562,39 @@ Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), 
       ),
     ),
   );
+}
+
+Widget floatingActionButton(percentScale, var context, [bool offset=false]){
+  bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+  if(showButton==true){
+    return Theme(
+      data: ThemeData (
+        primaryColor: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
+        accentColor: darkModeColor(darkMode,Color(0xFFF0F0F0),Color(0xFF414141)),
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            bottom: (){
+              if(offset)
+                return 35.0*percentScale;
+              else
+                return 0.0;
+            }(),
+            right: 0,
+            child: FloatingActionButton(
+              child: Icon(Icons.menu),
+              onPressed: (){
+                Scaffold.of(context).openDrawer();
+                HapticFeedback.mediumImpact(); 
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  } else {
+    return Container();
+  }
+  
 }

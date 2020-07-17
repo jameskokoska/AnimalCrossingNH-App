@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  bubble_bottom_bar:
-    dependency: "direct dev"
-    description:
-      name: bubble_bottom_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
   cached_network_image:
     dependency: "direct dev"
     description:
@@ -114,7 +107,7 @@ packages:
     source: hosted
     version: "2.3.4"
   flare_flutter:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: flare_flutter
       url: "https://pub.dartlang.org"

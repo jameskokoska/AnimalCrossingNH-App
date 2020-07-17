@@ -73,6 +73,7 @@ class _MusicListPageState extends State<MusicList>{
     double top = 0;
     
     return Scaffold(
+      floatingActionButton: floatingActionButton(percentScale, context, true),
       resizeToAvoidBottomPadding: false,
       body: GestureDetector(
         onTap: (){FocusScope.of(context).requestFocus(new FocusNode());},

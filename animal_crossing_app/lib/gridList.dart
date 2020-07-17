@@ -283,6 +283,12 @@ class _GridListPageState extends State<GridList>{
     double top = 0;
 
     return Scaffold(
+      floatingActionButton: (){
+        if(checkmark==false)
+          return floatingActionButton(percentScale, context);
+        else 
+          return Container();
+      }(),
       resizeToAvoidBottomPadding: false,
       body: GestureDetector(
         onTap: (){FocusScope.of(context).requestFocus(new FocusNode());},
@@ -306,7 +312,7 @@ class _GridListPageState extends State<GridList>{
                         crossAxisSpacing: 17,
                         childAspectRatio: (){
                           if(smallContainer)
-                            return 0.83;
+                            return 0.81;
                           else
                             return 0.8;
                         }(),

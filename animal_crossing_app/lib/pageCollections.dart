@@ -46,6 +46,7 @@ class _MuseumPageState extends State<MuseumPage>{
       home: DefaultTabController(
         length: 4,
         child: Scaffold(
+          floatingActionButton: floatingActionButton(percentScale, context, true),
           body: Stack(
             children: <Widget>[
               TabBarView(
@@ -152,6 +153,7 @@ class _ItemsPageState extends State<ItemsPage>{
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
+          floatingActionButton: floatingActionButton(percentScale, context, true),
           body: Stack(
             children: <Widget>[
               TabBarView(
@@ -268,6 +270,7 @@ class _CraftingToolsPageState extends State<CraftingToolsPage>{
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          floatingActionButton: floatingActionButton(percentScale, context, true),
           body: Stack(
             children: <Widget>[
               TabBarView(

@@ -49,6 +49,7 @@ class _EmojiListPageState extends State<EmojiList>{
     double top = 0;
 
     return Scaffold(
+      floatingActionButton: floatingActionButton(percentScale, context),
       resizeToAvoidBottomPadding: false,
       body: GestureDetector(
         onTap: (){FocusScope.of(context).requestFocus(new FocusNode());},

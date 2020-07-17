@@ -350,13 +350,7 @@ class _HomePageState extends State<Home>{
     String weekday;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.menu),
-        onPressed: (){
-          Scaffold.of(context).openDrawer();
-          HapticFeedback.mediumImpact(); 
-        },
-      ),
+      floatingActionButton: floatingActionButton(percentScale, context),
       body: Stack(
         children: <Widget>[
           new Container(
