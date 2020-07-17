@@ -96,7 +96,7 @@ class _SettingListPageState extends State<SettingList>{
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child:Container(
-                    height:335*percentScale,
+                    height:135*percentScale,
                   )
                 ),
                 SliverList(
@@ -180,7 +180,7 @@ class _SettingListPageState extends State<SettingList>{
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child:Container(
-                    height:85*percentScale,
+                    height:20*percentScale,
                   )
                 ),
               ],

@@ -7,6 +7,8 @@ import 'databases.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'gridList.dart';
 import 'package:timer_builder/timer_builder.dart';
+import 'package:flare_loading/flare_loading.dart';
+import 'package:flutter/services.dart';
 
 
 
@@ -173,7 +175,7 @@ Widget storeContainer(bool darkMode, double percentScale, String storeName, Stri
   Color bgColorDark;
   if (DateTime.now().hour+1==timeHourClose){
     storeState = "Open";
-    bgColor = Color(0xfffdcd2e);
+    bgColor = Color(0xFFFFE695);
     bgColorDark = Color(0xFF806920);
   } else if(DateTime.now().hour > timeHourOpen && DateTime.now().hour < timeHourClose){
     storeState = "Open";
@@ -181,7 +183,7 @@ Widget storeContainer(bool darkMode, double percentScale, String storeName, Stri
     bgColorDark = Color(0xFF74A780);
   } else {
     storeState = "Closed";
-    bgColor = Color(0xffFFC9CE);
+    bgColor = Color(0xFFFFD4D9);
     bgColorDark = Color(0xFF634549);
   }
 
@@ -348,157 +350,85 @@ class _HomePageState extends State<Home>{
     String weekday;
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.menu),
+        onPressed: (){
+          Scaffold.of(context).openDrawer();
+          HapticFeedback.mediumImpact(); 
+        },
+      ),
       body: Stack(
         children: <Widget>[
           new Container(
             height: deviceHeight,
             width: deviceWidth,
-            color: darkModeColor(darkMode, Color( 0xff70c1ee), Color( 0xff1A1A1A)),
+            color: darkModeColor(darkMode, Color( 0xFFAFD8EE), Color( 0xff1A1A1A)),
           ),
-          
+          Column(children: <Widget>[
+            SizedBox(height: 30*percentScale,),
+            Container(
+              height: 250*percentScale,
+              child: FlareLoading(
+                name: "assets/mainMenu3.flr", 
+                loopAnimation: "Home",
+                startAnimation:"Home",
+                onSuccess: (){return;}(),
+                onError: (){return;}(),
+              ),
+            ),
+            Container(
+              width: deviceWidth,
+              height: deviceHeight-280*percentScale,
+              decoration: new BoxDecoration(
+                color: darkModeColor(darkMode,Color(0xffb8e299),Color(0xff4D6839)),
+              )
+            ),
+          ],),
           SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
               children: <Widget>[
-                  TimerBuilder.periodic(Duration(seconds: 60), builder: (BuildContext context) { 
-                    String time = DateFormat.jm().format(new DateTime.now()).toString();
-                    currentTime = time.substring(0,time.length-3);
-                    afternoonString = time.substring(time.length-2,time.length);
-                    date = DateFormat.MMMMd().format(new DateTime.now()).toString();
-                    weekday = DateFormat.E().format(new DateTime.now()).toString();
-                    return Container(
-                      transform: Matrix4.translationValues(0, 69*percentScale, 0),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(currentTime,
-                                  style: TextStyle(
-                                    fontFamily: 'ArialRoundedBold',
-                                    color: Colors.white,
-                                    fontSize: 56*percentScale,
-                                    fontWeight: FontWeight.w400,
-                                    fontStyle: FontStyle.normal,
-                                    shadows: <Shadow>[
-                                      Shadow(
-                                        offset: Offset(0, 3),
-                                        blurRadius: 7,
-                                        color: Color(0x2F000000),
-                                      ),
-                                    ]
-                                  )
-                                ),
-                                SizedBox(
-                                  width: 6*percentScale,
-                                ),
-                                Container(
-                                  transform: Matrix4.translationValues(0, 8*percentScale, 0),
-                                  child: Text(afternoonString,
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold',
-                                      color: Colors.white,
-                                      fontSize: 32*percentScale,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                      shadows: <Shadow>[
-                                        Shadow(
-                                          offset: Offset(0, 3),
-                                          blurRadius: 7,
-                                          color: Color(0x2F000000),
-                                        ),
-                                      ]
-                                    )
-                                  ),
-                                ),
-                              ]
-                            ),
-                            //Line separation
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                              Container(
-                                height: 4*percentScale,
-                                decoration: new BoxDecoration(
-                                    color: Color(0xFFFFFFFF),
-                                    borderRadius: BorderRadius.circular(40),
-                                    boxShadow: [BoxShadow(
+                TimerBuilder.periodic(Duration(seconds: 60), builder: (BuildContext context) { 
+                  String time = DateFormat.jm().format(new DateTime.now()).toString();
+                  currentTime = time.substring(0,time.length-3);
+                  afternoonString = time.substring(time.length-2,time.length);
+                  date = DateFormat.MMMMd().format(new DateTime.now()).toString();
+                  weekday = DateFormat.E().format(new DateTime.now()).toString();
+                  return Container(
+                    transform: Matrix4.translationValues(0, 69*percentScale, 0),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(currentTime,
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: Colors.white,
+                                  fontSize: 56*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(0, 3),
+                                      blurRadius: 7,
                                       color: Color(0x2F000000),
-                                      offset: Offset(0,3),
-                                      blurRadius: 7,
-                                      spreadRadius: 0
-                                      ) 
-                                    ],
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10,
-                                      right: 10,
-                                      top: 4,
-                                      bottom: 4,
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text(date,
-                                          style: TextStyle(
-                                            fontFamily: 'ArialRoundedBold',
-                                            color: Color(0x00FFFFFF),
-                                            fontSize: 28*percentScale,
-                                            fontWeight: FontWeight.w400,
-                                            fontStyle: FontStyle.normal,
-                                            
-                                          )
-                                        ),
-                                        SizedBox(
-                                          width:16,
-                                        ),
-                                        Container(
-                                          decoration: new BoxDecoration(
-                                            color: Color(0x00FFFFFF),
-                                            borderRadius: BorderRadius.circular(40),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 10,
-                                              right: 10,
-                                              top: 4,
-                                              bottom: 4,
-                                            ),
-                                            child: Center(
-                                              child: Text(weekday + ".",
-                                                style: TextStyle(
-                                                  fontFamily: 'ArialRoundedBold',
-                                                  color: Colors.transparent,
-                                                  fontSize: 23*percentScale,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontStyle: FontStyle.normal,
-                                                )
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ]
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height:13,
-                            ),
-                            //Actual date
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(date,
+                                  ]
+                                )
+                              ),
+                              SizedBox(
+                                width: 6*percentScale,
+                              ),
+                              Container(
+                                transform: Matrix4.translationValues(0, 8*percentScale, 0),
+                                child: Text(afternoonString,
                                   style: TextStyle(
                                     fontFamily: 'ArialRoundedBold',
                                     color: Colors.white,
-                                    fontSize: 28*percentScale,
+                                    fontSize: 32*percentScale,
                                     fontWeight: FontWeight.w400,
                                     fontStyle: FontStyle.normal,
                                     shadows: <Shadow>[
@@ -510,94 +440,192 @@ class _HomePageState extends State<Home>{
                                     ]
                                   )
                                 ),
-                                SizedBox(
-                                  width:16,
+                              ),
+                            ]
+                          ),
+                          //Line separation
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                            Container(
+                              height: 4*percentScale,
+                              decoration: new BoxDecoration(
+                                  color: Color(0xFFFFFFFF),
+                                  borderRadius: BorderRadius.circular(40),
+                                  boxShadow: [BoxShadow(
+                                    color: Color(0x2F000000),
+                                    offset: Offset(0,3),
+                                    blurRadius: 7,
+                                    spreadRadius: 0
+                                    ) 
+                                  ],
                                 ),
-                                Container(
-                                  decoration: new BoxDecoration(
-                                    color: Color(0xffffffff),
-                                    borderRadius: BorderRadius.circular(40),
-                                    boxShadow: [BoxShadow(
-                                      color: Color(0x23000000),
-                                      offset: Offset(0,3),
-                                      blurRadius: 7,
-                                      spreadRadius: 0
-                                      ) 
-                                    ],
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                    top: 4,
+                                    bottom: 4,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 12,
-                                      right: 12,
-                                      top: 5,
-                                      bottom: 6,
-                                    ),
-                                    child: Center(
-                                      child: Text(weekday + ".",
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(date,
                                         style: TextStyle(
                                           fontFamily: 'ArialRoundedBold',
-                                          color: Colors.black,
-                                          fontSize: 21*percentScale,
+                                          color: Color(0x00FFFFFF),
+                                          fontSize: 28*percentScale,
                                           fontWeight: FontWeight.w400,
                                           fontStyle: FontStyle.normal,
+                                          
                                         )
                                       ),
+                                      SizedBox(
+                                        width:16,
+                                      ),
+                                      Container(
+                                        decoration: new BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                          borderRadius: BorderRadius.circular(40),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 10,
+                                            right: 10,
+                                            top: 4,
+                                            bottom: 4,
+                                          ),
+                                          child: Center(
+                                            child: Text(weekday + ".",
+                                              style: TextStyle(
+                                                fontFamily: 'ArialRoundedBold',
+                                                color: Colors.transparent,
+                                                fontSize: 23*percentScale,
+                                                fontWeight: FontWeight.w400,
+                                                fontStyle: FontStyle.normal,
+                                              )
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height:13,
+                          ),
+                          //Actual date
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            //crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(date,
+                                style: TextStyle(
+                                  fontFamily: 'ArialRoundedBold',
+                                  color: Colors.white,
+                                  fontSize: 28*percentScale,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.normal,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(0, 3),
+                                      blurRadius: 7,
+                                      color: Color(0x2F000000),
+                                    ),
+                                  ]
+                                )
+                              ),
+                              SizedBox(
+                                width:16,
+                              ),
+                              Container(
+                                decoration: new BoxDecoration(
+                                  color: Color(0xffffffff),
+                                  borderRadius: BorderRadius.circular(40),
+                                  boxShadow: [BoxShadow(
+                                    color: Color(0x23000000),
+                                    offset: Offset(0,3),
+                                    blurRadius: 7,
+                                    spreadRadius: 0
+                                    ) 
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 12,
+                                    right: 12,
+                                    top: 5,
+                                    bottom: 6,
+                                  ),
+                                  child: Center(
+                                    child: Text(weekday + ".",
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRoundedBold',
+                                        color: Colors.black,
+                                        fontSize: 21*percentScale,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                      )
                                     ),
                                   ),
-                                )
-                              ],
-                            )
-                          ],
-                        )
-                      ),
-                    );
-                  }
-                ),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      )
+                    ),
+                  );
+                }
+              ),
                 Center(
                   child: ColumnSuper(
-                    innerDistance: -60,
+                    innerDistance: -60*percentScale,
                     children: <Widget>[
-                      SizedBox(height: 182*percentScale),
+                      SizedBox(height: 262*percentScale),
                       //Top Section
-                      new Stack(
-                      children: <Widget>[
-                          new Container(
-                            width: deviceWidth,
-                            height: 127*percentScale,
-                            decoration: new BoxDecoration(
-                              color: darkModeColor(darkMode,Color(0xffb8e299),Color(0xff4D6839)),
-                            )
-                          ),
-                          // new Center(
-                          //   child: new Container(
-                          //     width: 230*percentScale,
-                          //     height: 30*percentScale,
-                          //     child: Center(
-                          //       child: Text(
-                          //         "Nate's Birthday",
-                          //         style: TextStyle(
-                          //           fontFamily: 'ArialRoundedBold',
-                          //           color: Color(0xff4e4e4e),
-                          //           fontSize: 15*percentScale,
-                          //           fontWeight: FontWeight.w400,
-                          //           fontStyle: FontStyle.normal,
-                          //         )
-                          //       )
-                          //     ),
-                          //     decoration: new BoxDecoration(
-                          //       color: Color(0xa6ffffff),
-                          //       borderRadius: BorderRadius.circular(30*percentScale),
-                          //       boxShadow: [BoxShadow(
-                          //         color: Color(0x29000000),
-                          //         offset: Offset(0,3),
-                          //         blurRadius: 6,
-                          //         spreadRadius: 0
-                          //       ) ],
-                          //     )
-                          //   ),
-                          // ),
-                        ], 
-                      ),
+                      // new Stack(
+                      // children: <Widget>[
+                      //     new Container(
+                      //       width: deviceWidth,
+                      //       height: 127*percentScale,
+                      //       decoration: new BoxDecoration(
+                      //         color: darkModeColor(darkMode,Color(0xffb8e299),Color(0xff4D6839)),
+                      //       )
+                      //     ),
+                      //     // new Center(
+                      //     //   child: new Container(
+                      //     //     width: 230*percentScale,
+                      //     //     height: 30*percentScale,
+                      //     //     child: Center(
+                      //     //       child: Text(
+                      //     //         "Nate's Birthday",
+                      //     //         style: TextStyle(
+                      //     //           fontFamily: 'ArialRoundedBold',
+                      //     //           color: Color(0xff4e4e4e),
+                      //     //           fontSize: 15*percentScale,
+                      //     //           fontWeight: FontWeight.w400,
+                      //     //           fontStyle: FontStyle.normal,
+                      //     //         )
+                      //     //       )
+                      //     //     ),
+                      //     //     decoration: new BoxDecoration(
+                      //     //       color: Color(0xa6ffffff),
+                      //     //       borderRadius: BorderRadius.circular(30*percentScale),
+                      //     //       boxShadow: [BoxShadow(
+                      //     //         color: Color(0x29000000),
+                      //     //         offset: Offset(0,3),
+                      //     //         blurRadius: 6,
+                      //     //         spreadRadius: 0
+                      //     //       ) ],
+                      //     //     )
+                      //     //   ),
+                      //     // ),
+                      //   ], 
+                      // ),
 
                       //Progress Section
                       // new Stack(
@@ -949,7 +977,6 @@ class _HomePageState extends State<Home>{
                       //     ),
                       //   ],
                       // ),
-
                       //Events Section 
                       FutureBuilder(
                         future: futureEvents,
@@ -1168,7 +1195,7 @@ class _HomePageState extends State<Home>{
                               )
                             );
                           } else {
-                            return Container();
+                            return SizedBox(height:60*percentScale);
                           }
                         }
                       ),
@@ -1336,7 +1363,7 @@ class _HomePageState extends State<Home>{
                         child: Text("This application is NOT endorsed or afiliated with Nintendo",
                           style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
-                          color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
+                          color:  darkModeColor(darkMode,Color( 0xFF84D68A),Color(0xaF757575)),
                           fontSize: 10*percentScale,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -1349,7 +1376,7 @@ class _HomePageState extends State<Home>{
                         child: Text("Plz dont sue",
                           style: TextStyle(
                           fontFamily: 'ArialRoundedBold',
-                          color:  darkModeColor(darkMode,Color( 0xFFB7E3FF),Color(0xaF757575)),
+                          color:  darkModeColor(darkMode,Color( 0xFFFFFFFF),Color(0xaF757575)),
                           fontSize: 10*percentScale,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -1389,9 +1416,7 @@ List<EventData> getEventsDay(String currentMonth, String currentDay, String curr
     } else if(snapshot.data[i].dayStart=="NA"){
       eventDay = getSpecialOccurenceDate(currentYear, i, snapshot);
       if(eventDay.day.toString()==currentDay && currentMonth==compareMonth.toString()){
-        print(currentDay);
-        print(eventDay.day.toString());
-        eventDatum = EventData(snapshot.data[i].name,snapshot.data[i].month,snapshot.data[i].dayStart,snapshot.data[i].dayEnd,snapshot.data[i].specialDay,snapshot.data[i].specialOccurence,snapshot.data[i].hemisphere,snapshot.data[i].time,snapshot.data[i].image);
+        eventDatum = EventData(snapshot.data[i].name,snapshot.data[i].month,eventDay.day.toString(),snapshot.data[i].dayEnd,snapshot.data[i].specialDay,snapshot.data[i].specialOccurence,snapshot.data[i].hemisphere,snapshot.data[i].time,snapshot.data[i].image);
         totalEvents.add(eventDatum);
       }
     } else if(currentDay==snapshot.data[i].dayStart && currentMonth==compareMonth.toString()){

@@ -280,7 +280,7 @@ class _MusicListPageState extends State<MusicList>{
                       gradientEnd: Alignment.topRight,
                     ),
                     backgroundColor: Colors.transparent,
-                    size: Size(360*percentScale, 114*percentScale),
+                    size: Size(360*percentScale, 50*percentScale),
                     waveAmplitude: 7*percentScale,
                   ),
                 ),

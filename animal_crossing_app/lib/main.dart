@@ -1,19 +1,15 @@
-import 'package:animal_crossing_app/museumCollection.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
-import 'more.dart';
 import 'mainMenu.dart';
-import 'fishList.dart';
-import 'bugList.dart';
 import 'music.dart';
-import 'museumCollection.dart';
+import 'pageCollections.dart';
 import 'settingList.dart';
-import 'artList.dart';
 import 'creditsList.dart';
+import 'gridList.dart';
+import 'emojipedia.dart';
 
 
 //----------Global Colours-----------
@@ -53,6 +49,7 @@ Color colorCreditsAppBar;
 Color colorWarningBackground;
 Color colorSeaAppBar;
 Color colorSeaAccent;
+Color colorSelectedAccent;
 
 Color colorArtAppBar;
 Color colorArtAccent;
@@ -131,13 +128,15 @@ class MyApp extends StatelessWidget {
       title: 'ACNH Pocket Guide',
       theme: ThemeData (
         primaryColor: Color(0xFFFFFFFF),
-        accentColor: Colors.red,
+        accentColor: Color(0xFFF0F0F0),
         brightness: Brightness.light,
+        fontFamily: 'ArialRoundedBold',
       ),
       darkTheme: ThemeData (
         primaryColor: Color(0xFF313131),
-        accentColor: Colors.red[50],
+        accentColor: Color(0xFF414141),
         brightness: Brightness.dark,
+        fontFamily: 'ArialRoundedBold',
       ),
       home: (){
         if(skipSplash == true){
@@ -167,30 +166,12 @@ class Main extends StatefulWidget {
 
 class _MainPageState extends State<Main> {
   int selectedIndex = 0;
-
-  Home homepage;
-  MorePage morepage;
-  FishList fishlist;
-  BugList buglist;
-  MusicList musiclist;
-  SettingList settingList;
-  MuseumPage museumPage;
-  ArtList artList;
-  CreditsList creditsList;
   Widget currentPageWidget;
 
+  Widget villagerListSliver;
   
   @override
   void initState(){
-    homepage = Home();
-    morepage = MorePage();
-    fishlist = FishList();
-    buglist = BugList();
-    musiclist = MusicList();
-    settingList = SettingList();
-    museumPage = MuseumPage();
-    artList = ArtList();
-
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
     getStoredBool('northernHemisphere', true).then((indexResult){
@@ -228,25 +209,48 @@ class _MainPageState extends State<Main> {
     //   totalCollectedMusic = indexResult;
     // });
     
-    currentPageWidget = homepage;
+    currentPageWidget = Home();
     
     //Remove status bar
     SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
   
-  void selectedNavBar(int index){
+  void selectedNavBar(int index, BuildContext context){
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     setState(() {
       if(index!=selectedIndex)
         HapticFeedback.mediumImpact(); 
       if(index == 0){
-        currentPageWidget = homepage;
+        currentPageWidget = Home();
       } else if (index == 1){
-        currentPageWidget = morepage;
+        currentPageWidget = MuseumPage();
       } else if (index == 2){
-        currentPageWidget = artList;
+        currentPageWidget = ItemsPage();
+      } else if (index == 3){
+        currentPageWidget = MusicList();
+      } else if (index == 4){
+        currentPageWidget = EmojiList();
+      } else if (index == 5){
+        currentPageWidget = CraftingToolsPage();
+      } else if (index == 6){
+        currentPageWidget = GridList(
+          title: "Villagers",
+          sliverList: <Widget>[villagerListSliver],
+          titleColor: darkModeColor(darkMode,colorTextWhite,colorTextBlack),
+          mainColor: colorVillagerAppBar,
+          accentColor: colorVillagerAccent,
+          checkmark: false,
+          checkmarkColor: colorVillagerCheck,
+          popupHeight: 450,
+          smallContainer: true
+        );
+      } else if (index == 7){
+        currentPageWidget = SettingList();
+      } else if (index == 8){
+        currentPageWidget = CreditsList();
       } else {
-        currentPageWidget = museumPage;
+        currentPageWidget = Home();
       }
     });
     selectedIndex = index;
@@ -258,6 +262,7 @@ class _MainPageState extends State<Main> {
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     if(!darkMode){
       darkExtension = "";
+      colorSelectedAccent = Color(0xE5D0DBE0);
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0x63DFDFDF);
       colorSearchbarIcon = Color(0x48000000);
@@ -299,6 +304,7 @@ class _MainPageState extends State<Main> {
       colorSeaAccent = Color(0xFFE3F2FD);
     } else if(darkMode){
       darkExtension = "Dark";
+      colorSelectedAccent = Color(0xE77C8D96);
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
       colorSearchbarIcon = Color(0xADFFFFFF);
@@ -320,6 +326,7 @@ class _MainPageState extends State<Main> {
       colorBugTextDarkGreen = Color(0xFF729E75);
       colorFossilAppBar = Color(0xFF4E463B);
       colorFossilAccent = Color(0xFF726A5F);
+      colorArtAppBar = Color(0xFF730000);
       colorArtAccent = Color(0xFFe8f5e9);
       colorArtTextDarkGreen = Color(0xFF1b5e20);
       colorVillagerAppBar = Color(0xFF4B6E70);
@@ -356,8 +363,53 @@ class _MainPageState extends State<Main> {
     } else {
       percentScale = percentHeight;
     }
+    var scaffoldKey = GlobalKey<ScaffoldState>();
+
 
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              margin: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    bottom: 12,
+                    left: 15,
+                    child: new Text("ACNH Pocket",
+                      style: TextStyle(
+                        fontFamily: 'ArialRoundedBold',
+                        color: colorTextBlack,
+                        fontSize: 30*percentScale,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                      )
+                    ),
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: colorBugAccent,
+              ),
+            ),
+            SizedBox(height:10*percentScale),
+            drawerItem(context, selectedNavBar, selectedIndex, 0, "Home", Colors.orange, "house.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 1, "Museum + Creatures", colorFishAppBar, "bugs.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 2, "Items", colorFurnitureAppBar, "leaf.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 3, "Songs", Colors.blue, "music.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 4, "Emoticons", colorEmojipediaAppBar, "emote.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 5, "Crafting + Tools", colorToolsAccent, "crafting.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 6, "Villagers", colorVillagerAppBar, "cat.png"),
+            drawerBreak(),
+            drawerItem(context, selectedNavBar, selectedIndex, 7, "Settings", colorSettingsAppBar, "settings.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 8, "About", colorCreditsAppBar, "magnifyingGlass.png"),
+          ],
+        ),
+      ),
+      
       resizeToAvoidBottomPadding: false,
       body: Stack(
         children: <Widget>[
@@ -365,50 +417,51 @@ class _MainPageState extends State<Main> {
             duration: const Duration(milliseconds:200),
             child: currentPageWidget,
           ),
-          new Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 70*percentScale,
-              decoration: new BoxDecoration(
-                borderRadius: BorderRadius.only(topRight:Radius.circular(30*percentScale),topLeft:Radius.circular(30*percentScale)),
-                color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
-                boxShadow: [BoxShadow(
-                  color: Color(0x10000000),
-                  offset: Offset(0,-3*percentScale),
-                  blurRadius: 5*percentScale,
-                  spreadRadius: 0
-                ) ],
-              ),
-            )
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 70*percentScale,
-              child: Center(
-                child: new Align(
-                  alignment: Alignment.center,
-                  child: BubbleBottomBar(
-                    opacity: .2,
-                    currentIndex: selectedIndex,
-                    onTap: selectedNavBar,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(30*percentScale)),
-                    elevation: 0,
-                    hasNotch: false,
-                    hasInk: true,
-                    inkColor: Colors.blueGrey[50],
-                    backgroundColor: Colors.transparent,
-                    items: <BubbleBottomBarItem>[
-                        BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
-                        BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
-                        BubbleBottomBarItem(backgroundColor: Colors.yellow, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Fish')),
-                        BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs')),
-                    ],
-                  ),
-                ),
-              )
-            ),
-          )
+          
+          // new Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: Container(
+          //     height: 70*percentScale,
+          //     decoration: new BoxDecoration(
+          //       borderRadius: BorderRadius.only(topRight:Radius.circular(30*percentScale),topLeft:Radius.circular(30*percentScale)),
+          //       color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
+          //       boxShadow: [BoxShadow(
+          //         color: Color(0x10000000),
+          //         offset: Offset(0,-3*percentScale),
+          //         blurRadius: 5*percentScale,
+          //         spreadRadius: 0
+          //       ) ],
+          //     ),
+          //   )
+          // ),
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: Container(
+          //     height: 70*percentScale,
+          //     child: Center(
+          //       child: new Align(
+          //         alignment: Alignment.center,
+          //         child: BubbleBottomBar(
+          //           opacity: .2,
+          //           currentIndex: selectedIndex,
+          //           onTap: selectedNavBar,
+          //           borderRadius: BorderRadius.vertical(top: Radius.circular(30*percentScale)),
+          //           elevation: 0,
+          //           hasNotch: false,
+          //           hasInk: true,
+          //           inkColor: Colors.blueGrey[50],
+          //           backgroundColor: Colors.transparent,
+          //           items: <BubbleBottomBarItem>[
+          //               BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
+          //               BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
+          //               BubbleBottomBarItem(backgroundColor: Colors.yellow, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Fish')),
+          //               BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs')),
+          //           ],
+          //         ),
+          //       ),
+          //     )
+          //   ),
+          // )
         ],
       ),
     );
@@ -445,4 +498,64 @@ class Debouncer{
     }
     timer = Timer(Duration(milliseconds: milliseconds),action);
   }
+}
+
+Widget drawerBreak(){
+  return Padding(
+    padding: const EdgeInsets.all(14.0),
+    child: Container(
+      height:4,
+      decoration: new BoxDecoration(
+        color: colorLightDarkAccent,
+        borderRadius: new BorderRadius.all(
+          Radius.circular(20.0),
+        )
+      ),
+    ),
+  );
+}
+
+Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), int currentSelectedIndex, int index, String name, Color accentColor, String imagePath){
+  return Padding(
+    padding: const EdgeInsets.only(left:20,right:20, top:3, bottom:3),
+    child: Container(
+      decoration: new BoxDecoration (
+        borderRadius: BorderRadius.circular(15),
+        color: (){
+          if(currentSelectedIndex==index)
+            return colorSelectedAccent;
+          else
+            return Color(0x00000000);
+        }(),
+        boxShadow: [BoxShadow(
+          color: (){
+            if(currentSelectedIndex==index)
+              return accentColor;
+            else
+              return Color(0x00000000);
+          }(),
+          offset: Offset(0,0),
+          blurRadius: 2,
+          spreadRadius: -2
+          ) 
+        ],
+      ),
+      child: ListTile(
+        leading: Image.asset(
+          'assets/'+imagePath,
+          height: 25,
+          width: 25,
+        ),
+        title: Text(name),
+        onTap: () {
+          if(currentSelectedIndex!=index){
+            selectedNavBar(index, context);
+            Future.delayed(const Duration(milliseconds: 100), () {
+              Navigator.pop(context);
+            });
+          }
+        },
+      ),
+    ),
+  );
 }

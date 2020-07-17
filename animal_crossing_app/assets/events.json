@@ -19,7 +19,7 @@
         "Special Occurrence": "3",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Bug-Off",
@@ -30,7 +30,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "Southern",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Fishing Tourney",
@@ -41,7 +41,7 @@
         "Special Occurrence": "2",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Valentine's Day",
@@ -63,7 +63,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "Southern",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Festival",
@@ -85,7 +85,7 @@
         "Special Occurrence": "3",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Bunny Day",
@@ -118,7 +118,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Nature Day",
@@ -184,7 +184,7 @@
         "Special Occurrence": "3",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Wedding Season",
@@ -206,7 +206,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "Northern",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Father’s Day",
@@ -239,7 +239,7 @@
         "Special Occurrence": "3",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Bug-Off",
@@ -250,7 +250,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "Northern",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Fireworks Show",
@@ -316,7 +316,7 @@
         "Special Occurrence": "3",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Bug-Off",
@@ -327,7 +327,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "Northern",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Fishing Tourney",
@@ -338,7 +338,7 @@
         "Special Occurrence": "3",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Bug-Off",
@@ -349,7 +349,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Autumn Moon",
@@ -371,7 +371,7 @@
         "Special Occurrence": "2",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Halloween",
@@ -393,7 +393,7 @@
         "Special Occurrence": "3",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Bug-Off",
@@ -404,7 +404,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "Southern",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Harvest Festival",
@@ -426,7 +426,7 @@
         "Special Occurrence": "2",
         "Hemisphere": "NA",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "fish.png"
     },
     {
         "Name": "Bug-Off",
@@ -437,7 +437,7 @@
         "Special Occurrence": "NA",
         "Hemisphere": "Southern",
         "Time" : "9 AM - 6 PM",
-        "Image" : "leaf.png"
+        "Image" : "bugs.png"
     },
     {
         "Name": "Snow Boy",
