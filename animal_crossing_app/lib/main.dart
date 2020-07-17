@@ -413,7 +413,7 @@ class _MainPageState extends State<Main> {
             drawerItem(context, selectedNavBar, selectedIndex, 4, "Emoticons", colorEmojipediaAppBar, "emote.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 5, "Crafting + Tools", colorToolsAccent, "crafting.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 6, "Villagers", colorVillagerAppBar, "cat.png"),
-            drawerItem(context, selectedNavBar, selectedIndex, 7, "Construction", colorVillagerAppBar, "construction.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 7, "Construction", colorConstructionAppBar, "construction.png"),
             drawerBreak(),
             drawerItem(context, selectedNavBar, selectedIndex, 8, "Settings", colorSettingsAppBar, "gear.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 9, "About", colorCreditsAppBar, "magnifyingGlass.png"),
