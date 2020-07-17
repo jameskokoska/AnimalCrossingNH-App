@@ -8,6 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'gridList.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:flare_loading/flare_loading.dart';
+import 'package:flutter/services.dart';
 
 
 
@@ -349,6 +350,13 @@ class _HomePageState extends State<Home>{
     String weekday;
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.menu),
+        onPressed: (){
+          Scaffold.of(context).openDrawer();
+          HapticFeedback.mediumImpact(); 
+        },
+      ),
       body: Stack(
         children: <Widget>[
           new Container(
@@ -1408,9 +1416,7 @@ List<EventData> getEventsDay(String currentMonth, String currentDay, String curr
     } else if(snapshot.data[i].dayStart=="NA"){
       eventDay = getSpecialOccurenceDate(currentYear, i, snapshot);
       if(eventDay.day.toString()==currentDay && currentMonth==compareMonth.toString()){
-        print(currentDay);
-        print(eventDay.day.toString());
-        eventDatum = EventData(snapshot.data[i].name,snapshot.data[i].month,snapshot.data[i].dayStart,snapshot.data[i].dayEnd,snapshot.data[i].specialDay,snapshot.data[i].specialOccurence,snapshot.data[i].hemisphere,snapshot.data[i].time,snapshot.data[i].image);
+        eventDatum = EventData(snapshot.data[i].name,snapshot.data[i].month,eventDay.day.toString(),snapshot.data[i].dayEnd,snapshot.data[i].specialDay,snapshot.data[i].specialOccurence,snapshot.data[i].hemisphere,snapshot.data[i].time,snapshot.data[i].image);
         totalEvents.add(eventDatum);
       }
     } else if(currentDay==snapshot.data[i].dayStart && currentMonth==compareMonth.toString()){

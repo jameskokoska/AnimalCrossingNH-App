@@ -126,7 +126,7 @@ class _CreditsListPageState extends State<CreditsList>{
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child:Container(
-                    height:455*percentScale,
+                    height:20*percentScale,
                   )
                 ),
               ],
