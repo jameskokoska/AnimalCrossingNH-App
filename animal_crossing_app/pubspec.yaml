@@ -89,6 +89,9 @@ flutter:
      - family: ArialRoundedBold
        fonts:
          - asset: fonts/ARLRDBD.ttf
+     - family: ArialRounded
+       fonts:
+         - asset: fonts/ARLRD.ttf
   assets:
      - assets/
   #       - asset: fonts/Schyler-Italic.ttf

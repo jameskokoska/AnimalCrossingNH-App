@@ -3,6 +3,7 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:ui';
 
 
 class SettingList extends StatefulWidget {
@@ -109,49 +110,52 @@ class _SettingListPageState extends State<SettingList>{
                           context: context,
                           barrierDismissible: false,
                           builder: (BuildContext context) {
-                            return CupertinoAlertDialog(
-                              title:  Text(
-                                'Would you like to delete all data?',
-                                style: TextStyle(
-                                  fontFamily: 'ArialRoundedBold',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              content: Text(
-                                'This action cannot be undone',
-                                style: TextStyle(
-                                  fontFamily: 'ArialRoundedBold',
-                                  fontWeight: FontWeight.w100,
-                                ),
-                              ),
-                              actions: <Widget>[
-                                CupertinoDialogAction(
-                                  child: Text(
-                                    'Cancel',
-                                    style: TextStyle(
-                                      fontFamily: 'ArialRoundedBold'
-                                    ),
+                            return BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                              child: CupertinoAlertDialog(
+                                title:  Text(
+                                  'Would you like to delete all data?',
+                                  style: TextStyle(
+                                    fontFamily: 'ArialRoundedBold',
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                  onPressed: (){
-                                    Navigator.of(context).pop();
-                                  },
                                 ),
-                                CupertinoDialogAction(
-                                  child: Text(
-                                    'Delete',
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontFamily: 'ArialRoundedBold'
-                                    ),
+                                content: Text(
+                                  'This action cannot be undone',
+                                  style: TextStyle(
+                                    fontFamily: 'ArialRounded',
+                                    fontWeight: FontWeight.w100,
                                   ),
-                                  onPressed: (){
-                                    HapticFeedback.mediumImpact();
-                                    resetData();
-                                    resetGlobals();
-                                    Navigator.of(context).pop();
-                                  },
                                 ),
-                              ],
+                                actions: <Widget>[
+                                  CupertinoDialogAction(
+                                    child: Text(
+                                      'Cancel',
+                                      style: TextStyle(
+                                        fontFamily: 'ArialRounded'
+                                      ),
+                                    ),
+                                    onPressed: (){
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  CupertinoDialogAction(
+                                    child: Text(
+                                      'Delete',
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontFamily: 'ArialRoundedBold'
+                                      ),
+                                    ),
+                                    onPressed: (){
+                                      HapticFeedback.mediumImpact();
+                                      resetData();
+                                      resetGlobals();
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              ),
                             );
                           },
                         );

@@ -10,6 +10,8 @@ import 'settingList.dart';
 import 'creditsList.dart';
 import 'gridList.dart';
 import 'emojipedia.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 
 
 //----------Global Colours-----------
@@ -263,6 +265,7 @@ class _MainPageState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () => chooseHemisphere(context));
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     if(!darkMode){
       darkExtension = "";
@@ -554,9 +557,7 @@ Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), 
         onTap: () {
           if(currentSelectedIndex!=index){
             selectedNavBar(index, context);
-            Future.delayed(const Duration(milliseconds: 100), () {
-              Navigator.pop(context);
-            });
+            Navigator.pop(context);
           }
         },
       ),
@@ -597,4 +598,67 @@ Widget floatingActionButton(percentScale, var context, [bool offset=false, bool 
     return Container();
   }
   
+}
+
+
+chooseHemisphere(var context) async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstLoaded = prefs.getBool("firstLoad");
+    if (isFirstLoaded == null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+           return BackdropFilter(
+             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+             child: CupertinoAlertDialog(
+              title:  Text(
+                'Which hemisphere?',
+                style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              content: Text(
+                'This can be changed in settings',
+                style: TextStyle(
+                  fontFamily: 'ArialRounded',
+                ),
+              ),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: Text(
+                    'Southern',
+                    style: TextStyle(
+                      fontFamily: 'ArialRounded'
+                    ),
+                  ),
+                  onPressed: (){
+                    HapticFeedback.mediumImpact();
+                    Navigator.of(context).pop();
+                    prefs.setBool("firstLoad", false);
+                    northernHemisphere = false;
+                    saveBool("northernHemisphere", true, false);
+                  },
+                ),
+                 CupertinoDialogAction(
+                  child: Text(
+                    'Northern',
+                    style: TextStyle(
+                      fontFamily: 'ArialRounded'
+                    ),
+                  ),
+                  onPressed: (){
+                    HapticFeedback.mediumImpact();
+                    Navigator.of(context).pop();
+                    prefs.setBool("firstLoad", false);
+                    northernHemisphere = true;
+                    saveBool("northernHemisphere", true, true);
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
 }
