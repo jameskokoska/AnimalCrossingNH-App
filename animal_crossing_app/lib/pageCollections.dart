@@ -83,7 +83,7 @@ class _MuseumPageState extends State<MuseumPage>{
                         Tab(text:'Bugs'),
                         Tab(text:'Sea'),
                         Tab(text:'Fossils'),
-                        Tab(text:'Artwork'),
+                        Tab(text:'Art'),
                       ],
                     ),
                   ],

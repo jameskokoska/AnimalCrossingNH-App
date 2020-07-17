@@ -627,6 +627,7 @@ chooseHemisphere(var context) async{
     bool isFirstLoaded = prefs.getBool("firstLoad");
     if (isFirstLoaded == null) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
            return BackdropFilter(
