@@ -21,6 +21,11 @@ String searchFish = '';
 
 
 class _FishListPageState extends State<FishList>{
+  @override
+  void initState() {
+    super.initState();
+    searchFish = '';
+  }
 
   @override
   Widget build(BuildContext context){

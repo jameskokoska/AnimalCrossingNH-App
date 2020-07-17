@@ -23,19 +23,19 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                     // ---------- Cheaty Background and curved card ----------
                     Container(
                         transform: Matrix4.translationValues(0, -30*percentScale, 0),
-                        height:340*percentScale,
+                        height:300*percentScale,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(30*percentScale),
                           color: colorWhite,
                         )
                     ),
                     Container(
-                        transform: Matrix4.translationValues(0, 40*percentScale, 0),
-                        height:440*percentScale,
-                        decoration: new BoxDecoration(
+                      transform: Matrix4.translationValues(0, 200*percentScale, 0),
+                      height:340*percentScale,
+                      decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(30*percentScale),
                           color: colorWhite,
-                        )
+                      )
                     ),
                     // ---------- Card Tab ----------
                     new Center(
@@ -76,7 +76,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                       ),
                     ),
                     // ---------- Card Location ----------
-                    circleContainer(percentScale, Color(0xffB9F4FB), colorCircleContainerPopUp, "Treasure Trawler"),
+                    circleContainer(percentScale, colorBugAccent, colorCircleContainerPopUp, "Treasure Trawler"),
                     // ---------- Card Collected ----------
                     new Container(
                       transform: Matrix4.translationValues(290*percentScale, -15*percentScale, 0),
@@ -218,21 +218,26 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                               ),
                             ),
                             SizedBox(
-                              height:10*percentScale,
+                              height:20*percentScale,
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Container(
-                        transform: Matrix4.translationValues(0, 40*percentScale, 0),
-                        height: 340*percentScale,
-                        width: 360*percentScale,
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(child: infoContainerHHA(percentScale, 'house.png', capitalize(hhaSeries), capitalize(hhaConcept1), capitalize(hhaConcept2))),
-                            Expanded(child: infoContainer(percentScale, 'tag.png', tag)),
+                            IntrinsicWidth(
+                              child: Row(
+                                children: <Widget>[
+                                  infoContainer(percentScale, 'bellBag.png', priceFormat.format(int.parse(buy))+" bells"),
+                                  SizedBox(width: 20*percentScale,),
+                                  infoContainer(percentScale, 'coin.png', priceFormat.format(int.parse(sell))+" bells"),
+                                ]
+                              )
+                            ),
+                            IntrinsicWidth(
+                              child: Row(
+                                children: <Widget>[
+                                  infoContainerHHA(percentScale, 'house.png', capitalize(hhaSeries), capitalize(hhaConcept1), capitalize(hhaConcept2)),
+                                  SizedBox(width: 20*percentScale,),
+                                  infoContainer(percentScale, 'tag.png', tag)
+                                ]
+                              )
+                            ),
                           ],
                         ),
                       ),

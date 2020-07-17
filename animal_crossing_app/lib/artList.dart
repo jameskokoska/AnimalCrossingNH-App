@@ -25,6 +25,7 @@ class _ArtListPageState extends State<ArtList>{
   void initState(){
     super.initState();
     futureArt = getArtData(searchArt);
+    searchArt = '';
   }
   
   @override
@@ -157,14 +158,14 @@ class _ArtListPageState extends State<ArtList>{
                                                 }(),
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(8.0),
-                                                  color: colorSearchbarIcon,
+                                                  color: colorSearchbarBG,
                                                 ),
                                                 prefix: Padding(
                                                   padding:
                                                   const EdgeInsets.only(right:13, left:7),
                                                   child: Icon(
                                                     Icons.search,
-                                                    color:colorSearchbarBG,
+                                                    color:colorSearchbarIcon,
                                                   ),
                                                 ),
                                                 onChanged: (string){
@@ -257,7 +258,7 @@ Widget artContainer(double percentScale,int index,String name,String image,Strin
                                   context: context,
                                   builder: (context){
                                     return Container(
-                                      height: 450*percentScale,
+                                      height: 340*percentScale,
                                       child: Container(
                                           child: artPopUp(percentScale, currentCollectedArt, name, image, genuine, category, buy, sell, color1,  color2, size, realArtworkTitle, artist, museumDescription, source, version,  hhaConcept1, hhaConcept2, hhaSeries, hhaSet, interact, tag, speakerType, lightingType, catalog, filename, internalID, uniqueEntryID)
                                       ),

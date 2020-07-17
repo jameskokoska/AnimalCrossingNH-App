@@ -21,6 +21,11 @@ String searchSea = '';
 
 
 class _SeaListPageState extends State<SeaList>{
+  @override
+  void initState() {
+    super.initState();
+    searchSea = '';
+  }
 
   @override
   Widget build(BuildContext context){

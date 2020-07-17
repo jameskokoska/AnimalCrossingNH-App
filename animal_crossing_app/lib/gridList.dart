@@ -259,6 +259,7 @@ class _GridListPageState extends State<GridList>{
       showListVariations = indexResult;
     });
     futureGrid = Future.wait(getFutureFunctions(title, searchGrid));
+    searchGrid = '';
   }
   
   @override

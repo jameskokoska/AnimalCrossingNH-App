@@ -31,6 +31,11 @@ class MusicData{
 }
 
 class _MusicListPageState extends State<MusicList>{
+  @override
+  void initState() {
+    super.initState();
+    searchMusic = '';
+  }
 
   Future<List<MusicData>> getMusicData(String search) async{
     bool collected = false;

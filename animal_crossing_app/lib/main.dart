@@ -55,7 +55,6 @@ Color colorSelectedAccent;
 
 Color colorArtAppBar;
 Color colorArtAccent;
-Color colorArtTextDarkGreen;
 
 String darkExtension = "";
 //---------------------------
@@ -303,8 +302,7 @@ class _MainPageState extends State<Main> {
       colorFloorWallAccent = Color(0xFFe3f2fd);
       colorEmojipediaAppBar = Color(0xFFFFF176);
       colorArtAppBar = Color(0xFF730000);
-      colorArtAccent = Color(0xFFe8f5e9);
-      colorArtTextDarkGreen = Color(0xFF1b5e20);
+      colorArtAccent = Color(0xFFFFF0F5);
       colorCreditsAppBar = Color(0xFFFFF176);
       colorWarningBackground = Color(0xFFffccbc);
       colorSeaAppBar = Color(0xFFA2D0F7);
@@ -334,8 +332,7 @@ class _MainPageState extends State<Main> {
       colorFossilAppBar = Color(0xFF4E463B);
       colorFossilAccent = Color(0xFF726A5F);
       colorArtAppBar = Color(0xFF730000);
-      colorArtAccent = Color(0xFFe8f5e9);
-      colorArtTextDarkGreen = Color(0xFF1b5e20);
+      colorArtAccent = Color(0xFF5A4043);
       colorVillagerAppBar = Color(0xFF4B6E70);
       colorVillagerAccent = Color(0xFF71807F);
       colorVillagerCheck = Color(0xFFE2B0B0);
@@ -523,6 +520,7 @@ Widget drawerBreak(){
 }
 
 Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), int currentSelectedIndex, int index, String name, Color accentColor, String imagePath){
+  
   return Padding(
     padding: const EdgeInsets.only(left:20,right:20, top:3, bottom:3),
     child: Container(
@@ -542,16 +540,32 @@ Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), 
               return Color(0x00000000);
           }(),
           offset: Offset(0,0),
-          blurRadius: 2,
-          spreadRadius: -2
+          blurRadius: 0,
+          spreadRadius: -0.5
           ) 
         ],
       ),
       child: ListTile(
-        leading: Image.asset(
-          'assets/'+imagePath,
-          height: 25,
-          width: 25,
+        leading: Stack(
+          children: [
+            Opacity(
+              child: Image.asset(
+                'assets/'+imagePath, color: Colors.black, height:25, width:25
+              ), 
+              opacity: (){
+                if(currentSelectedIndex==index)
+                  return 0.2;
+                else
+                  return 0.0;
+              }(),
+            ),
+            ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                child: Image.asset('assets/'+imagePath, height:25, width:25)
+              )
+            )
+          ]   
         ),
         title: Text(name),
         onTap: () {
