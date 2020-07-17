@@ -401,7 +401,7 @@ class _MainPageState extends State<Main> {
             ),
             SizedBox(height:10*percentScale),
             drawerItem(context, selectedNavBar, selectedIndex, 0, "Home", Colors.orange, "house.png"),
-            drawerItem(context, selectedNavBar, selectedIndex, 1, "Museum + Creatures", colorFishAppBar, "bugs.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 1, "Creatures + Museum", colorFishAppBar, "bugs.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 2, "Items", colorFurnitureAppBar, "leaf.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 3, "Songs", Colors.blue, "music.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 4, "Emoticons", colorEmojipediaAppBar, "emote.png"),
