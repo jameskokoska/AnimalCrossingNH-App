@@ -152,6 +152,24 @@ class _SettingListPageState extends State<SettingList>{
                                       resetData();
                                       resetGlobals();
                                       Navigator.of(context).pop();
+                                      showDialog<void>(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) {
+                                          return BackdropFilter(
+                                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                            child: CupertinoAlertDialog(
+                                              title:  Text(
+                                                'Data deleted. Please restart the app.',
+                                                style: TextStyle(
+                                                  fontFamily: 'ArialRoundedBold',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                      );
                                     },
                                   ),
                                 ],
