@@ -102,17 +102,20 @@ class _ConstructionListPageState extends State<ConstructionList>{
                       );
                     } else {
                       fenceListSliver = SliverToBoxAdapter(
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height:100*percentScale,
-                              ),
-                              SpinKitThreeBounce(
-                                color: colorConstructionAppBar,
-                                size:80,
-                              )
-                            ],
-                          )
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height:100*percentScale,
+                            ),
+                            SpinKitThreeBounce(
+                              color: colorConstructionAppBar,
+                              size:80,
+                            )
+                          ],
+                        )
+                      );
+                      constructionListSliver = SliverToBoxAdapter(
+                        child:Container()
                       );
                     }
                     return CustomScrollView(

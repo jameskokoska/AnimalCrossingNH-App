@@ -13,6 +13,8 @@ import 'emojipedia.dart';
 import 'constructionList.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:ui';
+import 'package:sk_onboarding_screen/sk_onboarding_screen.dart';
+import 'package:sk_onboarding_screen/flutter_onboarding.dart';
 
 
 //----------Global Colours-----------
@@ -61,6 +63,7 @@ Color colorArtAccent;
 String darkExtension = "";
 //---------------------------
 //----------Globals----------
+bool firstLoad = false;
 bool northernHemisphere = true;
 bool showCatchPhraseNow = false;    //always show the catchphrase
 bool showListOnlyActive = true;     //only list fish you can catch
@@ -173,9 +176,11 @@ class _MainPageState extends State<Main> {
   Widget currentPageWidget;
 
   Widget villagerListSliver;
+  bool finish;
   
   @override
   void initState(){
+    finish = false;
     //Retrieve data for settings from sharedpreferences storage
     super.initState();
     getStoredBool('northernHemisphere', true).then((indexResult){
@@ -196,8 +201,14 @@ class _MainPageState extends State<Main> {
     getStoredBool('lastCaughtWarning', false).then((indexResult){
       lastCaughtWarning = indexResult;
     });
-     getStoredBool('hideButton', true).then((indexResult){
+    getStoredBool('hideButton', true).then((indexResult){
       showButton = indexResult;
+    });
+    getStoredBool('hideButton', true).then((indexResult){
+      showButton = indexResult;
+    });
+    getStoredBool('firstLoad', false).then((indexResult){
+      firstLoad = indexResult;
     });
 
     // getStoredInt('totalCollectedFossils', 0).then((indexResult){
@@ -222,6 +233,7 @@ class _MainPageState extends State<Main> {
     SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
+  
   
   void selectedNavBar(int index, BuildContext context){
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -268,7 +280,6 @@ class _MainPageState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () => chooseHemisphere(context));
     bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     if(!darkMode){
       darkExtension = "";
@@ -314,7 +325,7 @@ class _MainPageState extends State<Main> {
       colorConstructionAppBar = Color(0xFFffa726);
     } else if(darkMode){
       darkExtension = "Dark";
-      colorSelectedAccent = Color(0xE77C8D96);
+      colorSelectedAccent = Color(0xDA7C8D96);
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
       colorSearchbarIcon = Color(0xADFFFFFF);
@@ -373,7 +384,6 @@ class _MainPageState extends State<Main> {
     } else {
       percentScale = percentHeight;
     }
-    var scaffoldKey = GlobalKey<ScaffoldState>();
 
 
     return Scaffold(
@@ -413,7 +423,7 @@ class _MainPageState extends State<Main> {
             drawerItem(context, selectedNavBar, selectedIndex, 4, "Emoticons", colorEmojipediaAppBar, "emote.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 5, "Crafting + Tools", colorToolsAccent, "crafting.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 6, "Villagers", colorVillagerAppBar, "cat.png"),
-            drawerItem(context, selectedNavBar, selectedIndex, 7, "Construction", colorVillagerAppBar, "construction.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 7, "Construction", colorConstructionAppBar, "construction.png"),
             drawerBreak(),
             drawerItem(context, selectedNavBar, selectedIndex, 8, "Settings", colorSettingsAppBar, "gear.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 9, "About", colorCreditsAppBar, "magnifyingGlass.png"),
@@ -422,59 +432,70 @@ class _MainPageState extends State<Main> {
       ),
       
       resizeToAvoidBottomPadding: false,
-      body: Stack(
-        children: <Widget>[
-          new AnimatedSwitcher(
-            duration: const Duration(milliseconds:200),
-            child: currentPageWidget,
-          ),
-          
-          // new Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: Container(
-          //     height: 70*percentScale,
-          //     decoration: new BoxDecoration(
-          //       borderRadius: BorderRadius.only(topRight:Radius.circular(30*percentScale),topLeft:Radius.circular(30*percentScale)),
-          //       color: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
-          //       boxShadow: [BoxShadow(
-          //         color: Color(0x10000000),
-          //         offset: Offset(0,-3*percentScale),
-          //         blurRadius: 5*percentScale,
-          //         spreadRadius: 0
-          //       ) ],
-          //     ),
-          //   )
-          // ),
-          // Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: Container(
-          //     height: 70*percentScale,
-          //     child: Center(
-          //       child: new Align(
-          //         alignment: Alignment.center,
-          //         child: BubbleBottomBar(
-          //           opacity: .2,
-          //           currentIndex: selectedIndex,
-          //           onTap: selectedNavBar,
-          //           borderRadius: BorderRadius.vertical(top: Radius.circular(30*percentScale)),
-          //           elevation: 0,
-          //           hasNotch: false,
-          //           hasInk: true,
-          //           inkColor: Colors.blueGrey[50],
-          //           backgroundColor: Colors.transparent,
-          //           items: <BubbleBottomBarItem>[
-          //               BubbleBottomBarItem(backgroundColor: Colors.red, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Home')),
-          //               BubbleBottomBarItem(backgroundColor: Colors.green, icon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.bug_report,size:20,color:Theme.of(context).accentColor), title: Text('Music')),
-          //               BubbleBottomBarItem(backgroundColor: Colors.yellow, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Fish')),
-          //               BubbleBottomBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), activeIcon: Icon(Icons.home,size:20,color:Theme.of(context).accentColor), title: Text('Bugs')),
-          //           ],
-          //         ),
-          //       ),
-          //     )
-          //   ),
-          // )
-        ],
-      ),
+      body: (){
+        return FutureBuilder(
+          future:getStoredBool("firstLoad", false),
+          builder: (context,snapshot) {
+            if(snapshot.hasData){
+              if(finish==false&&snapshot.data==false){
+                return SKOnboardingScreen(
+                  bgColor: colorWhite,
+                  themeColor: colorFishTextDarkBlue,
+                  pages: [
+                    SkOnboardingModel(
+                      title: 'Welcome to ACNH Pocket Guide',
+                      description:
+                          'This app has been in development for a very long time. We hope you enjoy!',
+                      titleColor: colorTextBlack,
+                      descripColor: Color(0xFFA7A7A7),
+                      imagePath: 'assets/palmIcon.png'
+                    ),
+                    SkOnboardingModel(
+                      title: 'Track creatures and events',
+                      description:
+                          'With a user friendly and modern user interface and design.',
+                      titleColor: colorTextBlack,
+                      descripColor: Color(0xFFA7A7A7),
+                      imagePath: 'assets/airIcon.png'
+                    ),
+                    SkOnboardingModel(
+                      title: 'Enjoy!',
+                      description:
+                          'Please report any bugs. We will add more content soon!',
+                      titleColor: colorTextBlack,
+                      descripColor: Color(0xFFA7A7A7),
+                      imagePath: 'assets/emote.png'
+                    ),
+                  ],
+                  skipClicked: (value) {
+                    setState(() {
+                      finish=true;
+                      Future.delayed(Duration.zero, () => chooseHemisphere(context));
+                    });
+                  },
+                  getStartedClicked: (value) {
+                    setState(() {
+                      finish=true;
+                      Future.delayed(Duration.zero, () => chooseHemisphere(context));
+                    });
+                  },
+                );
+              } else {
+                return Stack(
+                  children: <Widget>[
+                    new AnimatedSwitcher(
+                      duration: const Duration(milliseconds:200),
+                      child: currentPageWidget,
+                    ),
+                  ],
+                );
+              }
+            } else {
+              return Container();
+            }
+          }
+        );
+      }(),
     );
   }
 }
@@ -527,7 +548,6 @@ Widget drawerBreak(){
 }
 
 Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), int currentSelectedIndex, int index, String name, Color accentColor, String imagePath){
-  
   return Padding(
     padding: const EdgeInsets.only(left:20,right:20, top:3, bottom:3),
     child: Container(
@@ -578,7 +598,9 @@ Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), 
         onTap: () {
           if(currentSelectedIndex!=index){
             selectedNavBar(index, context);
-            Navigator.pop(context);
+            Future.delayed(const Duration(milliseconds: 100), () {
+              Navigator.pop(context);
+            });
           }
         },
       ),
@@ -625,8 +647,9 @@ Widget floatingActionButton(percentScale, var context, [bool offset=false, bool 
 chooseHemisphere(var context) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isFirstLoaded = prefs.getBool("firstLoad");
-    if (isFirstLoaded == null) {
+    if (isFirstLoaded == null||isFirstLoaded==false) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
            return BackdropFilter(
@@ -656,7 +679,7 @@ chooseHemisphere(var context) async{
                   onPressed: (){
                     HapticFeedback.mediumImpact();
                     Navigator.of(context).pop();
-                    prefs.setBool("firstLoad", false);
+                    prefs.setBool("firstLoad", true);
                     northernHemisphere = false;
                     saveBool("northernHemisphere", true, false);
                   },
@@ -671,7 +694,7 @@ chooseHemisphere(var context) async{
                   onPressed: (){
                     HapticFeedback.mediumImpact();
                     Navigator.of(context).pop();
-                    prefs.setBool("firstLoad", false);
+                    prefs.setBool("firstLoad", true);
                     northernHemisphere = true;
                     saveBool("northernHemisphere", true, true);
                   },
