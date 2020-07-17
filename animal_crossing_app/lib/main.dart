@@ -564,9 +564,9 @@ Widget drawerItem(var context, selectedNavBar(int index, BuildContext context), 
   );
 }
 
-Widget floatingActionButton(percentScale, var context, [bool offset=false]){
+Widget floatingActionButton(percentScale, var context, [bool offset=false, bool alwaysShow=false]){
   bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-  if(showButton==true){
+  if(showButton==true||alwaysShow==true){
     return Theme(
       data: ThemeData (
         primaryColor: darkModeColor(darkMode,Color(0xFFFFFFFF),Color(0xFF313131)),
