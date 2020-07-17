@@ -314,7 +314,7 @@ class _MainPageState extends State<Main> {
       colorConstructionAppBar = Color(0xFFffa726);
     } else if(darkMode){
       darkExtension = "Dark";
-      colorSelectedAccent = Color(0xE77C8D96);
+      colorSelectedAccent = Color(0xDA7C8D96);
       colorCircleContainerPopUp = Color(0xff90a4ae); //text
       colorSearchbarBG = Color(0xC4A3A3A3);
       colorSearchbarIcon = Color(0xADFFFFFF);
