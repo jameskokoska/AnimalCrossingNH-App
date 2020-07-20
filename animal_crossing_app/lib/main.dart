@@ -267,7 +267,7 @@ class _MainPageState extends State<Main> {
       } else if (index == 7){
         currentPageWidget = ConstructionList();
       } else if (index == 8){
-        currentPageWidget = SeasonsPage();
+        currentPageWidget = MiscPage();
       } else if (index == 20){
         currentPageWidget = SettingList();
       } else if (index == 21){
@@ -426,7 +426,7 @@ class _MainPageState extends State<Main> {
             drawerItem(context, selectedNavBar, selectedIndex, 5, "Crafting + Tools", colorToolsAccent, "crafting.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 6, "Villagers", colorVillagerAppBar, "cat.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 7, "Construction", colorConstructionAppBar, "construction.png"),
-            drawerItem(context, selectedNavBar, selectedIndex, 8, "Seasons", colorFurnitureAppBar, "season.png"),
+            drawerItem(context, selectedNavBar, selectedIndex, 8, "Misc. Timetables", colorFurnitureAppBar, "season.png"),
             drawerBreak(),
             drawerItem(context, selectedNavBar, selectedIndex, 20, "Settings", colorSettingsAppBar, "gear.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 21, "About", colorCreditsAppBar, "magnifyingGlass.png"),
