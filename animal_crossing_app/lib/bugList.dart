@@ -243,7 +243,7 @@ Widget bugContainer(double percentScale, bool caught,snapshot){
                               context: context, 
                               builder: (context){
                                 return Container(
-                                  height: 400*percentScale,
+                                  height: 480*percentScale,
                                     child: Container(
                                       child: bugPopUp(percentScale, currentCaughtBug, snapshot),
                                   ),

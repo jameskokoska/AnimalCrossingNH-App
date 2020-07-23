@@ -34,8 +34,8 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                   )
                 ),
                 Container(
-                  transform: Matrix4.translationValues(0, 20*percentScale, 0),
-                  height:500*percentScale,
+                  transform: Matrix4.translationValues(0, 200*percentScale, 0),
+                  height:340*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: colorWhite,
@@ -194,160 +194,160 @@ Widget fishPopUp(double percentScale,bool caught, var snapshot, [bool gridView =
                   ),
                 ),
                 // ---------- Card Centre Content ----------
-                  Center(
-                    child: Container(
-                      transform: Matrix4.translationValues(0, 10*percentScale, 0),
-                      height: 500*percentScale,
-                      width: 360*percentScale,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height:40*percentScale,
+                Center(
+                  child: Container(
+                    transform: Matrix4.translationValues(0, -10*percentScale, 0),
+                    height: 480*percentScale,
+                    width: 360*percentScale,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height:70*percentScale,
+                        ),
+                        // ---------- Card Centre Quote ----------
+                        AnimatedOpacity(
+                          duration: Duration(milliseconds:200),
+                          opacity: caught||showCatchPhraseNow ? 1 : 0,
+                          child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+snapshot.catchphrase+"”"),
+                        ),
+                        SizedBox(
+                          height:20*percentScale,
+                        ),
+                        // ---------- Card Centre Name ----------
+                        Container(
+                          child: new Text(capitalize(snapshot.name),
+                            style: TextStyle(
+                              fontFamily: 'ArialRoundedBold',
+                              color: colorTextBlack,
+                              fontSize: 31*percentScale,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                            )
                           ),
-                          // ---------- Card Centre Quote ----------
-                          AnimatedOpacity(
-                            duration: Duration(milliseconds:200),
-                            opacity: caught||showCatchPhraseNow ? 1 : 0,
-                            child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+snapshot.catchphrase+"”"),
-                          ),
-                          SizedBox(
-                            height:30*percentScale,
-                          ),
-                          // ---------- Card Centre Name ----------
-                          Container(
-                            child: new Text(capitalize(snapshot.name),
-                              style: TextStyle(
-                                fontFamily: 'ArialRoundedBold',
-                                color: colorTextBlack,
-                                fontSize: 31*percentScale,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              )
-                            ),
-                          ),
-                          SizedBox(
-                            height:10*percentScale,
-                          ),
-                          //Shadow
-                          Stack(
-                            children: <Widget>[
-                              Center(
-                                child: Container(
-                                  width: 120*percentScale,
-                                  height: 55*percentScale,
-                                  decoration: new BoxDecoration(
-                                    color: colorLightDarkAccent,
-                                    borderRadius:  BorderRadius.circular(15*percentScale)
-                                  ),
+                        ),
+                        SizedBox(
+                          height:10*percentScale,
+                        ),
+                        //Shadow
+                        Stack(
+                          children: <Widget>[
+                            Center(
+                              child: Container(
+                                width: 120*percentScale,
+                                height: 55*percentScale,
+                                decoration: new BoxDecoration(
+                                  color: colorLightDarkAccent,
+                                  borderRadius:  BorderRadius.circular(15*percentScale)
                                 ),
                               ),
-                              Center(
-                                child: Container(
-                                  width: 90*percentScale,
-                                  height: 55*percentScale,
-                                  child: new Image.asset(
-                                    'assets/shadowNormal'+determineShadowImage(snapshot.shadow, snapshot.whereHow)+'.png',
-                                    height: 70*percentScale,
-                                    width: 100*percentScale,
-                                  ),
+                            ),
+                            Center(
+                              child: Container(
+                                width: 90*percentScale,
+                                height: 55*percentScale,
+                                child: new Image.asset(
+                                  'assets/shadowNormal'+determineShadowImage(snapshot.shadow, snapshot.whereHow)+'.png',
+                                  height: 70*percentScale,
+                                  width: 100*percentScale,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height:8*percentScale,
+                        ),
+                        IntrinsicWidth(
+                          child: Row(
+                            children: <Widget>[
+                              infoContainer(percentScale, 'magnifyingGlass.png', capitalize(snapshot.shadow)),
+                              SizedBox(width: 30*percentScale),
+                              infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
+                            ],
+                          ),
+                        ),
+                        IntrinsicWidth(
+                          child: Row(
+                            children: <Widget>[
+                              // ---------- Clock ----------
+                              Container(
+                                height: 180*percentScale,
+                                width: 180*percentScale,
+                                child: Stack(
+                                  children: <Widget>[
+                                    // ---------- Availability Indicator Bar ----------
+                                    Center(
+                                      child: new RotationTransition(
+                                        turns: new AlwaysStoppedAnimation((timeToAngle(determineActiveTimeStart(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec))) + 180) / 360),
+                                        child: new CircularPercentIndicator(
+                                          radius: 160.0*percentScale,
+                                          lineWidth: 15.0*percentScale,
+                                          circularStrokeCap: CircularStrokeCap.butt,
+                                          percent: timeToAngle(activeDuration(determineActiveTimeStart(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)), determineActiveTimeEnd(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)))) / 360,
+                                          progressColor: Colors.green,
+                                        ),
+                                      ),
+                                    ),
+                                    // ---------- Clock Body ----------
+                                    Center(
+                                      child: new Image.asset(
+                                        "assets/clock.png",
+                                        height: 150*percentScale,
+                                        width: 150*percentScale,
+                                      ),
+                                    ),
+                                    // ---------- Time Indicator Dot ----------
+                                    Center(
+                                      child: Transform.rotate(
+                                        angle: (timeToAngle(DateTime.now().hour) + 172.5) * math.pi / 180,
+                                        child: new Transform (
+                                          child: Container(
+                                            child: new Image.asset(
+                                              "assets/indicator.png",
+                                              height: 10*percentScale,
+                                              width: 10*percentScale,
+                                            ),
+                                          ),
+                                          alignment: FractionalOffset.center, // set transform origin
+                                          transform: new Matrix4.translationValues(0, -72, 0), // rotate -10 deg
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 0 * percentScale,),
+                              // ---------- Seasons ----------
+                              Container(
+                                height: 180*percentScale,
+                                width: 180*percentScale,
+                                child: Stack(
+                                  children: <Widget>[
+                                    Center(
+                                      child: new Image.asset(
+                                        'assets/months.png',
+                                        height: 160*percentScale,
+                                        width: 160*percentScale,
+                                      ),
+                                    ),
+                                    Center(
+                                      child: new Stack(
+                                          children: circularMonthText(percentScale, snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)),
+                                    ),
+                                    Center(
+                                      child: new Stack(
+                                          children: circularMonthActive(percentScale, snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height:8*percentScale,
-                          ),
-                          IntrinsicWidth(
-                            child: Row(
-                              children: <Widget>[
-                                infoContainer(percentScale, 'magnifyingGlass.png', capitalize(snapshot.shadow)),
-                                SizedBox(width: 30*percentScale),
-                                infoContainer(percentScale, 'coin.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
-                              ],
-                            ),
-                          ),
-                          IntrinsicWidth(
-                            child: Row(
-                              children: <Widget>[
-                                // ---------- Clock ----------
-                                Container(
-                                  height: 180*percentScale,
-                                  width: 180*percentScale,
-                                  child: Stack(
-                                    children: <Widget>[
-                                      // ---------- Availability Indicator Bar ----------
-                                      Center(
-                                        child: new RotationTransition(
-                                          turns: new AlwaysStoppedAnimation((timeToAngle(determineActiveTimeStart(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec))) + 180) / 360),
-                                          child: new CircularPercentIndicator(
-                                            radius: 160.0*percentScale,
-                                            lineWidth: 15.0*percentScale,
-                                            circularStrokeCap: CircularStrokeCap.butt,
-                                            percent: timeToAngle(activeDuration(determineActiveTimeStart(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)), determineActiveTimeEnd(determineTime(snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)))) / 360,
-                                            progressColor: Colors.green,
-                                          ),
-                                        ),
-                                      ),
-                                      // ---------- Clock Body ----------
-                                      Center(
-                                        child: new Image.asset(
-                                          "assets/clock.png",
-                                          height: 150*percentScale,
-                                          width: 150*percentScale,
-                                        ),
-                                      ),
-                                      // ---------- Time Indicator Dot ----------
-                                      Center(
-                                        child: Transform.rotate(
-                                          angle: (timeToAngle(DateTime.now().hour) + 172.5) * math.pi / 180,
-                                          child: new Transform (
-                                            child: Container(
-                                              child: new Image.asset(
-                                                "assets/indicator.png",
-                                                height: 10*percentScale,
-                                                width: 10*percentScale,
-                                              ),
-                                            ),
-                                            alignment: FractionalOffset.center, // set transform origin
-                                            transform: new Matrix4.translationValues(0, -72, 0), // rotate -10 deg
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(width: 0 * percentScale,),
-                                // ---------- Seasons ----------
-                                Container(
-                                  height: 180*percentScale,
-                                  width: 180*percentScale,
-                                  child: Stack(
-                                    children: <Widget>[
-                                      Center(
-                                        child: new Image.asset(
-                                          'assets/months.png',
-                                          height: 160*percentScale,
-                                          width: 160*percentScale,
-                                        ),
-                                      ),
-                                      Center(
-                                        child: new Stack(
-                                            children: circularMonthText(percentScale, snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)),
-                                      ),
-                                      Center(
-                                        child: new Stack(
-                                            children: circularMonthActive(percentScale, snapshot.nhJan, snapshot.nhFeb, snapshot.nhMar, snapshot.nhApr, snapshot.nhMay, snapshot.nhJun, snapshot.nhJul, snapshot.nhAug, snapshot.nhSep, snapshot.nhOct, snapshot.nhNov, snapshot.nhDec, snapshot.shJan, snapshot.shFeb, snapshot.shMar, snapshot.shApr, snapshot.shMay, snapshot.shJun, snapshot.shJul, snapshot.shAug, snapshot.shSep, snapshot.shOct, snapshot.shNov, snapshot.shDec)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  )
+                  ),
+                )
               ],
             ),
           ],
