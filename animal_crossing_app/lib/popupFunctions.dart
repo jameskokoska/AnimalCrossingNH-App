@@ -2,6 +2,7 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'dart:math' as math;
 
 
@@ -866,4 +867,84 @@ String activeMonth(String time) {
   } else {
     return "assets/Active.png";
   }
+}
+
+Widget creatureActiveTimes(double percentScale, String nhJan, String nhFeb, String nhMar, String nhApr, String nhMay, String nhJun, String nhJul, String nhAug, String nhSep, String nhOct, String nhNov, String nhDec, String shJan, String shFeb, String shMar, String shApr, String shMay, String shJun, String shJul, String shAug, String shSep, String shOct, String shNov, String shDec) {
+  // ---------- Clock ----------
+  return Container(
+    height: 180*percentScale,
+    width: 180*percentScale,
+    child: Stack(
+      children: <Widget>[
+        // ---------- Availability Indicator Bar ----------
+        Center(
+          child: new RotationTransition(
+            turns: new AlwaysStoppedAnimation((timeToAngle(determineActiveTimeStart(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec))) + 180) / 360),
+            child: new CircularPercentIndicator(
+              radius: 160.0*percentScale,
+              lineWidth: 15.0*percentScale,
+              circularStrokeCap: CircularStrokeCap.butt,
+              percent: timeToAngle(activeDuration(determineActiveTimeStart(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)), determineActiveTimeEnd(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)))) / 360,
+              progressColor: Colors.green,
+            ),
+          ),
+        ),
+        // ---------- Clock Body ----------
+        Center(
+          child: new Image.asset(
+            "assets/clock.png",
+            height: 150*percentScale,
+            width: 150*percentScale,
+          ),
+        ),
+        // ---------- Time Indicator Dot ----------
+        Center(
+          child: Transform.rotate(
+            angle: (timeToAngle(DateTime.now().hour) + 172.5) * math.pi / 180,
+            child: new Transform (
+              child: Container(
+                child: new Image.asset(
+                  "assets/indicator.png",
+                  height: 10*percentScale,
+                  width: 10*percentScale,
+                ),
+              ),
+              alignment: FractionalOffset.center, // set transform origin
+              transform: new Matrix4.translationValues(0, -72, 0), // rotate -10 deg
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget creatureActiveMonths(double percentScale, String nhJan, String nhFeb, String nhMar, String nhApr, String nhMay, String nhJun, String nhJul, String nhAug, String nhSep, String nhOct, String nhNov, String nhDec, String shJan, String shFeb, String shMar, String shApr, String shMay, String shJun, String shJul, String shAug, String shSep, String shOct, String shNov, String shDec) {
+  // ---------- Seasons ----------
+  return Container(
+    height: 180*percentScale,
+    width: 180*percentScale,
+    child: Stack(
+      children: <Widget>[
+        // ---------- Base Image ----------
+        Center(
+          child: new Image.asset(
+            'assets/months.png',
+            height: 160*percentScale,
+            width: 160*percentScale,
+          ),
+        ),
+        // ---------- Month Text ----------
+        Center(
+          child: new Stack(
+              children: circularMonthText(percentScale, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)),
+        ),
+        // ---------- Active Indicators ----------
+        Center(
+          child: new Stack(
+              children: circularMonthActive(percentScale, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)),
+        ),
+      ],
+    ),
+  );
 }
