@@ -206,7 +206,7 @@ Widget seaPopUp(double percentScale,bool caught, var snapshot, [bool gridView=fa
                         AnimatedOpacity(
                           duration: Duration(milliseconds:200),
                           opacity: caught||showCatchPhraseNow ? 1 : 0,
-                          //child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+"”"),
+                          child: quoteContainer(percentScale, colorFishTextDarkBlue, "“"+snapshot.catchPhrase+"”"),
                         ),
                         SizedBox(
                           height:10*percentScale,

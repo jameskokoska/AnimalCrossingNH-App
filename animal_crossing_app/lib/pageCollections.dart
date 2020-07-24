@@ -218,8 +218,8 @@ class _ItemsPageState extends State<ItemsPage>{
                       labelColor: colorTextBlack,
                       tabs: <Widget>[
                         Tab(text:'Furniture',),
-                        Tab(text:'Floor & Walls'),
                         Tab(text:'Clothing'),
+                        Tab(text:'Floor & Walls'),
                       ],
                     ),
                   ],
@@ -540,6 +540,8 @@ class TVPage extends StatefulWidget {
   _TVPageState createState() => _TVPageState();
 }
 
+bool highlightedTime;
+
 class _TVPageState extends State<TVPage>{
   List timeRow;
   List dayCol;
@@ -547,6 +549,7 @@ class _TVPageState extends State<TVPage>{
 
   @override
   void initState(){
+    highlightedTime = false;
     timeRow = ["00:00", "00:57", "01:00", "02:45", "03:00", "03:34", "04:00", "05:00", "05:55", "06:00", "06:15", "06:59", "07:00", "07:29", 
     "07:30", "07:45", "07:59", "08:00", "08:29", "08:30", "08:59", "09:00", "09:18", "09:19", "09:20", 
     "09:29", "09:30", "09:59", "10:00", "10:29", "10:30", "10:59", "11:00", "11:29", "11:30", "11:45", "11:59", "12:00", "12:29", 
@@ -732,9 +735,8 @@ class _TVPageState extends State<TVPage>{
   }
 }
 
-bool highlightedTime = false;
+
 determineTVColor(String tvString, [bool stickyBar = false, bool keyCell = false, bool time=false]){
-  highlightedTime = false;
   if(tvString.contains("news"))
     return Color(0xFFffcc80).withOpacity(0.4);
   else if(tvString.contains("weather"))
@@ -744,18 +746,164 @@ determineTVColor(String tvString, [bool stickyBar = false, bool keyCell = false,
   else if(DateTime.now().weekday==1&&tvString.contains("Monday")||DateTime.now().weekday==2&&tvString.contains("Tuesday")||DateTime.now().weekday==3&&tvString.contains("Wednesday")||DateTime.now().weekday==4&&tvString.contains("Thursday")||DateTime.now().weekday==5&&tvString.contains("Friday")||DateTime.now().weekday==6&&tvString.contains("Saturday")||DateTime.now().weekday==7&&tvString.contains("Sunday"))
     return Color(0xFFFF511C).withOpacity(0.4);
   else if(time==true&&DateTime.now().hour==int.parse(tvString.substring(0,2))&&DateTime.now().minute>=int.parse(tvString.substring(3,5))){
-    highlightedTime=true;
     return Color(0xFFFF511C).withOpacity(0.4);
-  } else if (highlightedTime==false&&time==true&&DateTime.now().hour-1==int.parse(tvString.substring(0,2))&&DateTime.now().minute>=int.parse(tvString.substring(3,5))){
-    highlightedTime=true;
-    return Color(0xFFFF511C).withOpacity(0.4);
-  }
+  } 
   else if(stickyBar&&!keyCell)
     return colorSelectedAccent.withOpacity(0.5);
   else if(keyCell)
     return colorSelectedAccent;
   else
     return colorLightDarkAccent;
+}
+
+class WeatherPage extends StatefulWidget {
+  WeatherPage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _WeatherPageState createState() => _WeatherPageState();
+}
+
+class _WeatherPageState extends State<WeatherPage>{
+  List typeRow;
+  List dayCol;
+  List weatherData;
+
+  @override
+  void initState(){
+    typeRow = ["Sunny", "Sunny then Cloudy", "Other (Sunny)", "Rain", "Occasional Rain", "Rainy then Cloudy", "Cloudy", "Cloudy then Sunny", "Cloudy then Rainy"];
+    dayCol = ['''Jan 5 - 
+    Feb 23''', 
+"Feb 24", 
+'''Feb 25 - 
+Mar 31''', 
+'''Apr 1 - 
+Apr 10''', 
+'''Apr 11 - 
+Jun 15''', 
+'''Jun 16 - 
+July 5''', 
+'''July 6 - 
+July 31''', 
+'''Aug 1 - 
+Aug 31''', 
+'''Spet 1 - 
+Sept 15''', 
+'''Sept 16 - 
+Sept 30''', 
+'''Oct 1 - 
+Nov 14''', 
+'''Nov 15 - 
+Nov 24''', 
+'''Nov 25''', 
+'''Nov 25 - 
+Dec 9''', 
+'''Dev 10''', 
+'''Dec 11 - 
+Dec 23''', 
+'''Dec 24 - 
+Dec 30''', 
+'''Dec 31 - 
+Jan 4'''
+];
+    weatherData = [
+      [60, 6, 0, 12, 0, 6, 4, 6, 6], 
+      [63, 0, 7, 0, 0, 0, 0, 30, 0], 
+      [57, 6, 7, 6, 0, 6, 6, 6, 6], 
+      [100, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [54, 0, 10, 9, 0, 6, 15, 0, 6], 
+      [10, 6, 3, 36, 0, 9, 21, 6, 9], 
+      [54, 6, 7, 6, 16, 0, 5, 6, 0], 
+      [55, 0, 7, 0, 26, 3, 3, 6, 0], 
+      [33, 0, 0, 15, 46, 3, 0, 0, 3], 
+      [56, 3, 7, 9, 8, 3, 5, 6, 3], 
+      [66, 6, 10, 0, 6, 0, 6, 6, 0], 
+      [72, 6, 12, 0, 0, 0, 4, 6, 0], 
+      [67, 0, 13, 0, 0, 0, 0, 30, 0], 
+      [51, 6, 10, 9, 0, 6, 6, 6, 6], 
+      [0, 0, 0, 100, 0, 0, 0, 0, 0], 
+      [34, 6, 6, 24, 0, 9, 6, 6, 9], 
+      [0, 0, 0, 40, 0, 30, 0, 0, 30], 
+      [93, 0, 0, 0, 0, 0, 0, 0, 0]
+    ];
+  }
+  Widget buildCell(var data, [bool stickyBar=false, bool keyCell=false, bool percent=false]) {
+    return Container(
+      width: 200,
+      height: 130,
+      alignment: Alignment.center,
+      decoration: new BoxDecoration(
+        color: determineSeasonColor(data, stickyBar, keyCell),
+        borderRadius: new BorderRadius.all(
+          Radius.circular(15.0),
+        )
+      ),
+      margin: EdgeInsets.all(5),
+      child: Center(
+        child: Text((){
+            if(percent)
+              return data.toString()+"%";
+            else
+              return capitalize(data);
+          }(),
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'ArialRoundedBold',
+            color: colorTextBlack,
+            fontSize: 27,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+        )
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double designedWidth = 360;
+
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double designedHeight = 640;
+
+    double percentWidth = deviceWidth/designedWidth;
+    double percentHeight = deviceHeight/designedHeight;
+
+    double percentScale;
+
+    if(percentWidth < percentHeight){
+      percentScale = percentWidth;
+    } else {
+      percentScale = percentHeight;
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Weather Percentages",
+        ),
+      ),
+      bottomNavigationBar: SizedBox(height:48),
+      body: StickyHeadersTable(
+        columnsLength: typeRow.length,
+        rowsLength: dayCol.length,
+        columnsTitleBuilder: (i) => buildCell(typeRow[i].toString(),true),
+        rowsTitleBuilder: (i) => buildCell(dayCol[i].toString(),true, false),
+        contentCellBuilder: (i, j) => buildCell(weatherData[j][i].toString(), false, false, true),
+        legendCell: buildCell('Date',true,true),
+        cellDimensions: CellDimensions(
+          contentCellHeight: 70,
+          contentCellWidth: 100,
+          stickyLegendHeight: 70,
+          stickyLegendWidth: 100,
+        ),
+      ),
+    );
+  }
 }
 
 class MiscPage extends StatefulWidget {
@@ -791,7 +939,7 @@ class _MiscPageState extends State<MiscPage>{
 
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         floatingActionButton: floatingActionButton(percentScale, context, true),
         body: Stack(
@@ -799,6 +947,7 @@ class _MiscPageState extends State<MiscPage>{
             TabBarView(
               children: <Widget>[
                 TVPage(),
+                WeatherPage(),
                 SeasonsPage(),
               ],
             ),
@@ -824,6 +973,7 @@ class _MiscPageState extends State<MiscPage>{
                     labelColor: colorTextBlack,
                     tabs: <Widget>[
                       Tab(text:'Television',),
+                      Tab(text:'Weather'),
                       Tab(text:'Seasons'),
                     ],
                   ),
