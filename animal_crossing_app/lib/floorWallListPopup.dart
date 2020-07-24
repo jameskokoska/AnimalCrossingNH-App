@@ -194,6 +194,8 @@ Widget floorWallsPopUp(double percentScale, Color colorTextBlack, var snapshotDa
                           child: Row(
                             children: <Widget>[
                               (){
+                                if(buyPriceConverted==""||buyPriceConverted==null)
+                                  return Container();
                                 if(snapshotData.milesPrice!="NA"){
                                   return infoContainer(percentScale, 'miles.png', bellsPrice.format(int.parse(buyPriceConverted))+buyPriceConvertedType);
                                 } else if(buyPriceConverted!="None") {

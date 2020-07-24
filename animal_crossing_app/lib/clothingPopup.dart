@@ -185,14 +185,20 @@ Widget clothingPopup(double percentScale, Color colorTextBlack, var snapshotData
                             IntrinsicWidth(
                               child: Row(
                                 children: <Widget>[
-                                      (){
-                                    if(snapshotData.milesPrice!="NA"){
-                                      return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
-                                    } else if(currencyType!="None") {
-                                      return infoContainer(percentScale, currencyIcon, currencyAmount+currencyType);
-                                    }
-                                    return Container();
-                                  }(),
+                                    (){
+                                      if(currencyType==""||currencyType==null)
+                                        return Container();
+                                      if (snapshotData.milesPrice != null) {
+                                        if (snapshotData.milesPrice != "NA") {
+                                          return infoContainer(percentScale, currencyIcon, currencyAmount + currencyType);
+                                        } else if (currencyType != "None") {
+                                          return infoContainer(percentScale, currencyIcon, currencyAmount + currencyType);
+                                        }
+                                      } else {
+                                        //return infoContainer(percentScale, "leaf.png", "None" + "");
+                                        return Container();
+                                      }
+                                    }(),
                                       (){
                                     if(currencyType!="None"){
                                       return SizedBox(width: 20*percentScale,);

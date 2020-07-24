@@ -1989,7 +1989,7 @@ Future<RecipeData> getRecipeData(String search) async{
   final jsonData = json.decode(data);
   for(var u in jsonData){
     //print(u["Name"]);
-    RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Sources"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
+    RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Source"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
     if (u["Name"].toLowerCase().contains(search.toLowerCase())){
       return recipeDatum;
     }
