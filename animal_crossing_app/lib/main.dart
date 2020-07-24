@@ -446,7 +446,7 @@ class _MainPageState extends State<Main> {
                   themeColor: colorFishTextDarkBlue,
                   pages: [
                     SkOnboardingModel(
-                      title: 'Welcome to ACNH Pocket Guide',
+                      title: 'Welcome to ACNH Pocket',
                       description:
                           'This app has been in development for a very long time. We hope you enjoy!',
                       titleColor: colorTextBlack,
