@@ -699,7 +699,14 @@ int determineActiveTimeStart(String time){
   else if (time == "NA") {
     return 0;
   } else {
-    return int.parse(time.substring(0, 2));
+    print(time.substring(2, 4));
+    if (time.substring(2, 4) == "AM") {
+      print(int.parse(time.substring(0, 2)));
+      return int.parse(time.substring(0, 2));
+    } else {
+      print(int.parse(time.substring(0, 2)) + 12);
+      return int.parse(time.substring(0, 2)) + 12;
+    }
   }
 }
 
@@ -710,7 +717,13 @@ int determineActiveTimeEnd(String time){
   else if (time == "NA") {
     return 0;
   } else {
-    return int.parse(time.substring(time.length - 5, time.length - 3)) + 12;
+    if (time.substring(9, 11) == "AM") {
+      print(int.parse(time.substring(time.length - 5, time.length - 3)));
+      return int.parse(time.substring(time.length - 5, time.length - 3));
+    } else {
+      print(int.parse(time.substring(time.length - 5, time.length - 3)) + 12);
+      return int.parse(time.substring(time.length - 5, time.length - 3)) + 12;
+    }
   }
 }
 
@@ -725,9 +738,10 @@ int activeDuration(int startTime, int endTime){
     duration = endTime - startTime;
   }
   else if (startTime > endTime){
-    duration = 24 - startTime + endTime;
+    duration = 24 - (startTime - endTime);
   }
-  return duration;
+  print(duration.abs());
+  return duration.abs();
 }
 
 List<Widget> circularMonthText(double percentScale, String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec) {
@@ -869,6 +883,29 @@ String activeMonth(String time) {
   }
 }
 
+List<Widget> circularTimeActive(double percentScale, String nhJan,String nhFeb,String nhMar,String nhApr,String nhMay,String nhJun,String nhJul,String nhAug,String nhSep,String nhOct,String nhNov,String nhDec,String shJan,String shFeb,String shMar,String shApr,String shMay,String shJun,String shJul,String shAug,String shSep,String shOct,String shNov,String shDec) {
+  List<String> timeList = determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec).split("; ");
+  List<Widget> activeList = new List();
+  for (String time in timeList) {
+    activeList.add(
+      new Center(
+        child: new RotationTransition(
+          turns: new AlwaysStoppedAnimation((timeToAngle(determineActiveTimeStart(time)) + 180) / 360),
+          child: new CircularPercentIndicator(
+            radius: 160.0*percentScale,
+            lineWidth: 15.0*percentScale,
+            circularStrokeCap: CircularStrokeCap.butt,
+            percent: timeToAngle(activeDuration(determineActiveTimeStart(time), determineActiveTimeEnd(time))) / 360,
+            progressColor: Colors.green,
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+      ),
+    );
+  }
+  return activeList;
+}
+
 Widget creatureActiveTimes(double percentScale, String nhJan, String nhFeb, String nhMar, String nhApr, String nhMay, String nhJun, String nhJul, String nhAug, String nhSep, String nhOct, String nhNov, String nhDec, String shJan, String shFeb, String shMar, String shApr, String shMay, String shJun, String shJul, String shAug, String shSep, String shOct, String shNov, String shDec) {
   // ---------- Clock ----------
   return Container(
@@ -878,15 +915,8 @@ Widget creatureActiveTimes(double percentScale, String nhJan, String nhFeb, Stri
       children: <Widget>[
         // ---------- Availability Indicator Bar ----------
         Center(
-          child: new RotationTransition(
-            turns: new AlwaysStoppedAnimation((timeToAngle(determineActiveTimeStart(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec))) + 180) / 360),
-            child: new CircularPercentIndicator(
-              radius: 160.0*percentScale,
-              lineWidth: 15.0*percentScale,
-              circularStrokeCap: CircularStrokeCap.butt,
-              percent: timeToAngle(activeDuration(determineActiveTimeStart(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)), determineActiveTimeEnd(determineTime(nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec)))) / 360,
-              progressColor: Colors.green,
-            ),
+          child: new Stack(
+              children: circularTimeActive(percentScale, nhJan, nhFeb, nhMar, nhApr, nhMay, nhJun, nhJul, nhAug, nhSep, nhOct, nhNov, nhDec, shJan, shFeb, shMar, shApr, shMay, shJun, shJul, shAug, shSep, shOct, shNov, shDec),
           ),
         ),
         // ---------- Clock Body ----------
