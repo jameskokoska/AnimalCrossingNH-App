@@ -741,8 +741,9 @@ class ArtData{
   final String filename;
   final String internalID;
   final String uniqueEntryID;
+  final String buyerTip;
 
-  ArtData(this.name,this.image,this.genuine,this.category,this.buy,this.sell,this.color1,this.color2,this.size,this.realArtworkTitle,this.artist,this.museumDescription,this.source,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.hhaSet,this.interact,this.tag,this.speakerType,this.lightingType,this.catalog,this.filename,this.internalID,this.uniqueEntryID);
+  ArtData(this.name,this.image,this.genuine,this.category,this.buy,this.sell,this.color1,this.color2,this.size,this.realArtworkTitle,this.artist,this.museumDescription,this.source,this.version,this.hhaConcept1,this.hhaConcept2,this.hhaSeries,this.hhaSet,this.interact,this.tag,this.speakerType,this.lightingType,this.catalog,this.filename,this.internalID,this.uniqueEntryID,this.buyerTip);
 
 }
 
@@ -1178,7 +1179,7 @@ Future<List<ArtData>> getArtData(String search) async{
   List<ArtData> artData = [];
   String previousName="";
   for(var u in jsonData){
-    ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"]);
+    ArtData artDatum = ArtData(u["Name"],u["Image"],u["Genuine"],u["Category"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Real Artwork Title"],u["Artist"],u["Museum Description"],u["Source"],u["Version"],u["HHA Concept 1"],u["HHA Concept 2"],u["HHA Series"],u["HHA Set"],u["Interact"],u["Tag"],u["Speaker Type"],u["Lighting Type"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"],u["Buyer Tip"]);
     if(u["Name"]!=previousName){
       if(search == ''){
         if(u["Name"]!=previousName)
