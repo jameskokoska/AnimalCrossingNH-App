@@ -1293,9 +1293,9 @@ class _HomePageState extends State<Home>{
                                               itemCount: snapshot.data[0].length+snapshot.data[1].length+snapshot.data[2].length,
                                               gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
                                                 maxCrossAxisExtent: 130,
-                                                mainAxisSpacing: 15,
-                                                crossAxisSpacing: 10,
-                                                childAspectRatio: 0.8,
+                                                mainAxisSpacing: 13,
+                                                crossAxisSpacing: 17,
+                                                childAspectRatio: 0.75,
                                               ),
                                             primary: false,
                                             padding: const EdgeInsets.all(20),

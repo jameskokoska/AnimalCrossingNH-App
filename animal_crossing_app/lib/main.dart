@@ -448,7 +448,7 @@ class _MainPageState extends State<Main> {
                     SkOnboardingModel(
                       title: 'Welcome to ACNH Pocket',
                       description:
-                          'This app has been in development for a very long time. We hope you enjoy!',
+                          'This has been in development for a very long time. Hope you enjoy!',
                       titleColor: colorTextBlack,
                       descripColor: Color(0xFFA7A7A7),
                       imagePath: 'assets/palmIcon.png'
