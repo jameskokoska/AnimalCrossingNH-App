@@ -76,7 +76,7 @@ class _ArtListPageState extends State<ArtList>{
                           delegate:
                           SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
-                              return artContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].image, snapshot.data[index].genuine, snapshot.data[index].category, snapshot.data[index].buy, snapshot.data[index].sell, snapshot.data[index].color1,  snapshot.data[index].color2, snapshot.data[index].size, snapshot.data[index].realArtworkTitle, snapshot.data[index].artist, snapshot.data[index].museumDescription, snapshot.data[index].source, snapshot.data[index].version, snapshot.data[index].hhaConcept1, snapshot.data[index].hhaConcept2, snapshot.data[index].hhaSeries, snapshot.data[index].hhaSet, snapshot.data[index].interact, snapshot.data[index].tag, snapshot.data[index].speakerType, snapshot.data[index].lightingType, snapshot.data[index].catalog, snapshot.data[index].filename, snapshot.data[index].internalID, snapshot.data[index].uniqueEntryID, snapshot.data[index].buyerTip);
+                              return artContainer(percentScale, index, snapshot.data[index].name, snapshot.data[index].image, snapshot.data[index].genuine, snapshot.data[index].category, snapshot.data[index].buy, snapshot.data[index].sell, snapshot.data[index].color1,  snapshot.data[index].color2, snapshot.data[index].size, snapshot.data[index].realArtworkTitle, snapshot.data[index].artist, snapshot.data[index].museumDescription, snapshot.data[index].source, snapshot.data[index].version, snapshot.data[index].hhaConcept1, snapshot.data[index].hhaConcept2, snapshot.data[index].hhaSeries, snapshot.data[index].hhaSet, snapshot.data[index].interact, snapshot.data[index].tag, snapshot.data[index].speakerType, snapshot.data[index].lightingType, snapshot.data[index].catalog, snapshot.data[index].filename, snapshot.data[index].internalID, snapshot.data[index].uniqueEntryID, snapshot.data[index].identification);
                             },
                             childCount: snapshot.data.length,
                           ),
@@ -206,7 +206,7 @@ class _ArtListPageState extends State<ArtList>{
 }
 
 
-Widget artContainer(double percentScale,int index,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID,String buyerTip){
+Widget artContainer(double percentScale,int index,String name,String image,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID,String identification){
   return new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
         return FutureBuilder(
@@ -258,7 +258,7 @@ Widget artContainer(double percentScale,int index,String name,String image,Strin
                                     return Container(
                                       height: 340*percentScale,
                                       child: Container(
-                                          child: artPopUp(percentScale, currentCollectedArt, name, image, genuine, category, buy, sell, color1,  color2, size, realArtworkTitle, artist, museumDescription, source, version,  hhaConcept1, hhaConcept2, hhaSeries, hhaSet, interact, tag, speakerType, lightingType, catalog, filename, internalID, uniqueEntryID, buyerTip)
+                                          child: artPopUp(percentScale, currentCollectedArt, name, image, genuine, category, buy, sell, color1,  color2, size, realArtworkTitle, artist, museumDescription, source, version,  hhaConcept1, hhaConcept2, hhaSeries, hhaSet, interact, tag, speakerType, lightingType, catalog, filename, internalID, uniqueEntryID, identification)
                                       ),
                                     );
                                   });

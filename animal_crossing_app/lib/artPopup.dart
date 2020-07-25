@@ -10,7 +10,7 @@ final bellsPrice = new NumberFormat("#,##0");
 bool currentCollectedArt = false;
 
 
-Widget artPopUp(double percentScale,bool collected,String name,String imageLink,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID,String buyerTip){
+Widget artPopUp(double percentScale,bool collected,String name,String imageLink,String genuine,String category,String buy,String sell,String color1, String color2,String size,String realArtworkTitle,String artist,String museumDescription,String source,String version, String hhaConcept1,String hhaConcept2,String hhaSeries,String hhaSet,String interact,String tag,String speakerType,String lightingType,String catalog,String filename,String internalID,String uniqueEntryID,String identification){
   return new StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
         return Scaffold(
@@ -237,6 +237,10 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                                   infoContainer(percentScale, 'tag.png', tag)
                                 ]
                               )
+                            ),
+                            SizedBox(height: 10*percentScale),
+                            Center(
+                                child: infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', identification)
                             ),
                           ],
                         ),
