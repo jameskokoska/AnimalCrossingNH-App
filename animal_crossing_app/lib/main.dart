@@ -430,6 +430,7 @@ class _MainPageState extends State<Main> {
             drawerBreak(),
             drawerItem(context, selectedNavBar, selectedIndex, 20, "Settings", colorSettingsAppBar, "gear.png"),
             drawerItem(context, selectedNavBar, selectedIndex, 21, "About", colorCreditsAppBar, "magnifyingGlass.png"),
+            SizedBox(height: 10)
           ],
         ),
       ),
