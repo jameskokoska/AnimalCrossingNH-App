@@ -1,7 +1,7 @@
 [
     {
         "Name": "academic painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtVitruvianMan.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtVitruvianMan.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -32,7 +32,7 @@
     },
     {
         "Name": "academic painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtVitruvianManFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtVitruvianManFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -63,7 +63,7 @@
     },
     {
         "Name": "amazing painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtNightWatch.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtNightWatch.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -94,7 +94,7 @@
     },
     {
         "Name": "amazing painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtNightWatchFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtNightWatchFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -125,7 +125,7 @@
     },
     {
         "Name": "ancient statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureDoguu.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureDoguu.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Miscellaneous",
@@ -157,7 +157,7 @@
     },
     {
         "Name": "ancient statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureDoguuFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureDoguuFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Miscellaneous",
@@ -189,7 +189,7 @@
     },
     {
         "Name": "basic painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtBlueBoy.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtBlueBoy.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -220,7 +220,7 @@
     },
     {
         "Name": "basic painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtBlueBoyFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtBlueBoyFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -251,7 +251,7 @@
     },
     {
         "Name": "beautiful statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureMilo.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureMilo.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -283,7 +283,7 @@
     },
     {
         "Name": "beautiful statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureMiloFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureMiloFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -315,7 +315,7 @@
     },
     {
         "Name": "calm painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtSundayOn.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtSundayOn.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -346,7 +346,7 @@
     },
     {
         "Name": "common painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtGleaners.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtGleaners.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -377,7 +377,7 @@
     },
     {
         "Name": "detailed painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtAjisaisoukeizu.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtAjisaisoukeizu.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -408,7 +408,7 @@
     },
     {
         "Name": "detailed painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtAjisaisoukeizuFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtAjisaisoukeizuFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -439,7 +439,7 @@
     },
     {
         "Name": "dynamic painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtKanagawaOki.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtKanagawaOki.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -470,7 +470,7 @@
     },
     {
         "Name": "familiar statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureThinker.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureThinker.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -502,7 +502,7 @@
     },
     {
         "Name": "famous painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtMonaLisa.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtMonaLisa.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -533,7 +533,7 @@
     },
     {
         "Name": "famous painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtMonaLisaFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtMonaLisaFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -564,7 +564,7 @@
     },
     {
         "Name": "flowery painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtSunflower.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtSunflower.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -595,7 +595,7 @@
     },
     {
         "Name": "gallant statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureDavid.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureDavid.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -627,7 +627,7 @@
     },
     {
         "Name": "gallant statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureDavidFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureDavidFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -659,7 +659,7 @@
     },
     {
         "Name": "glowing painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtFightingTemeraire.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtFightingTemeraire.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -690,7 +690,7 @@
     },
     {
         "Name": "graceful painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtMikaeri.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtMikaeri.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -721,7 +721,7 @@
     },
     {
         "Name": "graceful painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtMikaeriFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtMikaeriFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -752,7 +752,7 @@
     },
     {
         "Name": "great statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureKamehameha.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureKamehameha.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -784,7 +784,7 @@
     },
     {
         "Name": "informative statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureRosettaStone.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureRosettaStone.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -816,7 +816,7 @@
     },
     {
         "Name": "informative statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureRosettaStoneFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureRosettaStoneFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -848,7 +848,7 @@
     },
     {
         "Name": "jolly painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtSummer.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtSummer.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -879,7 +879,7 @@
     },
     {
         "Name": "jolly painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtSummerFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtSummerFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -910,7 +910,7 @@
     },
     {
         "Name": "moody painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtSlower.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtSlower.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -941,7 +941,7 @@
     },
     {
         "Name": "motherly statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureCapitolini.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureCapitolini.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -973,7 +973,7 @@
     },
     {
         "Name": "motherly statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureCapitoliniFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureCapitoliniFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -1005,7 +1005,7 @@
     },
     {
         "Name": "moving painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtBirthVenus.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtBirthVenus.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1036,7 +1036,7 @@
     },
     {
         "Name": "moving painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtBirthVenusFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtBirthVenusFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1067,7 +1067,7 @@
     },
     {
         "Name": "mysterious painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtIsleOfDead.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtIsleOfDead.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1098,7 +1098,7 @@
     },
     {
         "Name": "mystic statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureNefertiti.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureNefertiti.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Miscellaneous",
@@ -1130,7 +1130,7 @@
     },
     {
         "Name": "mystic statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureNefertitiFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureNefertitiFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Miscellaneous",
@@ -1162,7 +1162,7 @@
     },
     {
         "Name": "nice painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtFifePlayer.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtFifePlayer.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1193,7 +1193,7 @@
     },
     {
         "Name": "perfect painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtAppleOrange.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtAppleOrange.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1224,7 +1224,7 @@
     },
     {
         "Name": "proper painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtBarFB.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtBarFB.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1255,7 +1255,7 @@
     },
     {
         "Name": "quaint painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtMilkmaid.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtMilkmaid.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1286,7 +1286,7 @@
     },
     {
         "Name": "quaint painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtMilkmaidFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtMilkmaidFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1317,7 +1317,7 @@
     },
     {
         "Name": "robust statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureDiskobolos.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureDiskobolos.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -1349,7 +1349,7 @@
     },
     {
         "Name": "robust statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureDiskobolosFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureDiskobolosFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -1381,7 +1381,7 @@
     },
     {
         "Name": "rock-head statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureOlmecaHead.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureOlmecaHead.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -1413,7 +1413,7 @@
     },
     {
         "Name": "rock-head statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureOlmecaHeadFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureOlmecaHeadFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -1445,7 +1445,7 @@
     },
     {
         "Name": "scary painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtOotaniOniji.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtOotaniOniji.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1476,7 +1476,7 @@
     },
     {
         "Name": "scary painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtOotaniOnijiFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtOotaniOnijiFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1507,7 +1507,7 @@
     },
     {
         "Name": "scenic painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtHunterSnow.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtHunterSnow.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1538,7 +1538,7 @@
     },
     {
         "Name": "scenic painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtHunterSnowFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtHunterSnowFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1569,7 +1569,7 @@
     },
     {
         "Name": "serene painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtPortraitCecilia.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtPortraitCecilia.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1600,7 +1600,7 @@
     },
     {
         "Name": "serene painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtPortraitCeciliaFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtPortraitCeciliaFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1631,7 +1631,7 @@
     },
     {
         "Name": "sinking painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtOphelia.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtOphelia.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1662,7 +1662,7 @@
     },
     {
         "Name": "solemn painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtLasMeninas.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtLasMeninas.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1693,7 +1693,7 @@
     },
     {
         "Name": "solemn painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtLasMeninasFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtLasMeninasFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1724,7 +1724,7 @@
     },
     {
         "Name": "tremendous statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureHoumuwuDing.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureHoumuwuDing.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -1756,7 +1756,7 @@
     },
     {
         "Name": "tremendous statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureHoumuwuDingFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureHoumuwuDingFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -1788,7 +1788,7 @@
     },
     {
         "Name": "twinkling painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtStarryNight.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtStarryNight.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1819,7 +1819,7 @@
     },
     {
         "Name": "valiant statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureSamothrace.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureSamothrace.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -1851,7 +1851,7 @@
     },
     {
         "Name": "valiant statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureSamothraceFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureSamothraceFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -1883,7 +1883,7 @@
     },
     {
         "Name": "warm painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtClothedMaja.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtClothedMaja.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -1914,7 +1914,7 @@
     },
     {
         "Name": "warrior statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureHeibayo.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureHeibayo.png",
         "High-Res Texture": "NA",
         "Genuine": "Yes",
         "Category": "Housewares",
@@ -1946,7 +1946,7 @@
     },
     {
         "Name": "warrior statue",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrSculptureHeibayoFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrSculptureHeibayoFake.png",
         "High-Res Texture": "NA",
         "Genuine": "No",
         "Category": "Housewares",
@@ -1978,7 +1978,7 @@
     },
     {
         "Name": "wild painting left half",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtRaijin.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtRaijin.png",
         "Genuine": "Yes",
         "Category": "Housewares",
         "Buy": "4980",
@@ -2009,7 +2009,7 @@
     },
     {
         "Name": "wild painting left half",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtRaijinFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtRaijinFake.png",
         "Genuine": "No",
         "Category": "Housewares",
         "Buy": "4980",
@@ -2040,7 +2040,7 @@
     },
     {
         "Name": "wild painting right half",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtFuujin.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtFuujin.png",
         "Genuine": "Yes",
         "Category": "Housewares",
         "Buy": "4980",
@@ -2071,7 +2071,7 @@
     },
     {
         "Name": "wild painting right half",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtFuujinFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtFuujinFake.png",
         "Genuine": "No",
         "Category": "Housewares",
         "Buy": "4980",
@@ -2102,7 +2102,7 @@
     },
     {
         "Name": "wistful painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtPearlEarring.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtPearlEarring.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -2133,7 +2133,7 @@
     },
     {
         "Name": "wistful painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtPearlEarringFake.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtPearlEarringFake.png",
         "Genuine": "No",
         "Category": "Wall-mounted",
         "Buy": "4980",
@@ -2164,7 +2164,7 @@
     },
     {
         "Name": "worthy painting",
-        "Image": "(\"https://acnhcdn.com/latest/FtrIcon/FtrArtLibertyLeading.png",
+        "Image": "https://acnhcdn.com/latest/FtrIcon/FtrArtLibertyLeading.png",
         "Genuine": "Yes",
         "Category": "Wall-mounted",
         "Buy": "4980",
