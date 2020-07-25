@@ -1990,8 +1990,8 @@ Future<RecipeData> getRecipeData(String search) async{
 
   final jsonData = json.decode(data);
   for(var u in jsonData){
-    print(u["Name"]);
-    RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Sources"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
+    //print(u["Name"]);
+    RecipeData recipeDatum = RecipeData(u["Name"],u["#1"],u["Material 1"],u["#2"],u["Material 2"],u["#3"],u["Material 3"],u["#4"],u["Material 4"],u["#5"],u["Material 5"],u["#6"],u["Material 6"],u["Source"],u["Source Notes"],u["Category"],u["Unique Entry ID"]);
     if (u["Name"].toLowerCase().contains(search.toLowerCase())){
       return recipeDatum;
     }
@@ -2093,6 +2093,7 @@ class SeaData{
   final String shDec;
   final String size;
   final String surface;
+  final String catchPhrase;
   final String hhaBasePoints;
   final String color1;
   final String color2;
@@ -2107,7 +2108,7 @@ class SeaData{
   SeaData(this.id, this.name,this.iconImage,this.critterpediaImage,this.furnitureImage,this.sell,this.shadow,this.movementSpeed, this.totalCatchesToUnlock,
   this.nhJan,this.nhFeb,this.nhMar,this.nhApr,this.nhMay,this.nhJun,this.nhJul,this.nhAug,this.nhSep,this.nhOct,this.nhNov,this.nhDec,
   this.shJan,this.shFeb,this.shMar,this.shApr,this.shMay,this.shJun,this.shJul,this.shAug,this.shSep,this.shOct,this.shNov,this.shDec,
-  this.size, this.surface, this.hhaBasePoints, this.color1,this.color2,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.caught);
+  this.size, this.surface, this.catchPhrase, this.hhaBasePoints, this.color1,this.color2,this.lightingType,this.iconFilename,this.critterpediaFilename,this.furnitureFilename,this.internalId,this.uniqueEntryId, this.caught);
   
 }
 
@@ -2120,7 +2121,7 @@ Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
   for(var u in jsonData){
     getStoredBool("seaCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
-      SeaData seaDatum = SeaData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Shadow"],u["Movement Speed"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Size"],u["Surface"],u["HHA Base Points"],u["Color 1"],u["Color 2"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],caught);
+      SeaData seaDatum = SeaData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Shadow"],u["Movement Speed"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Size"],u["Surface"],u["Catch phrase"],u["HHA Base Points"],u["Color 1"],u["Color 2"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],caught);
       if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
         seaData.add(seaDatum);
       } else if (active == true){

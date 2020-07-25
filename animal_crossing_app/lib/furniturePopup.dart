@@ -200,6 +200,8 @@ Widget furniturePopUp(double percentScale, Color colorTextBlack, var snapshotDat
                           child: Row(
                             children: <Widget>[
                               (){
+                                if(currencyType==""||currencyType==null)
+                                  return Container();
                                 if (snapshotData.milesPrice != null) {
                                   if (snapshotData.milesPrice != "NA") {
                                     return infoContainer(percentScale, currencyIcon, currencyAmount + currencyType);

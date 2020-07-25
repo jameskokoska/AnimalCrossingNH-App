@@ -699,12 +699,12 @@ int determineActiveTimeStart(String time){
   else if (time == "NA") {
     return 0;
   } else {
-    print(time.substring(2, 4));
+    //print(time.substring(2, 4));
     if (time.substring(2, 4) == "AM") {
-      print(int.parse(time.substring(0, 2)));
+      //print(int.parse(time.substring(0, 2)));
       return int.parse(time.substring(0, 2));
     } else {
-      print(int.parse(time.substring(0, 2)) + 12);
+      //print(int.parse(time.substring(0, 2)) + 12);
       return int.parse(time.substring(0, 2)) + 12;
     }
   }
@@ -718,10 +718,10 @@ int determineActiveTimeEnd(String time){
     return 0;
   } else {
     if (time.substring(9, 11) == "AM") {
-      print(int.parse(time.substring(time.length - 5, time.length - 3)));
+      //print(int.parse(time.substring(time.length - 5, time.length - 3)));
       return int.parse(time.substring(time.length - 5, time.length - 3));
     } else {
-      print(int.parse(time.substring(time.length - 5, time.length - 3)) + 12);
+      //print(int.parse(time.substring(time.length - 5, time.length - 3)) + 12);
       return int.parse(time.substring(time.length - 5, time.length - 3)) + 12;
     }
   }
@@ -740,7 +740,7 @@ int activeDuration(int startTime, int endTime){
   else if (startTime > endTime){
     duration = 24 - (startTime - endTime);
   }
-  print(duration.abs());
+  //print(duration.abs());
   return duration.abs();
 }
 
