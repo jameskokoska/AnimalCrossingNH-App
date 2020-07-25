@@ -1295,10 +1295,10 @@ class _HomePageState extends State<Home>{
                                                 maxCrossAxisExtent: 130,
                                                 mainAxisSpacing: 13,
                                                 crossAxisSpacing: 17,
-                                                childAspectRatio: 0.75,
+                                                childAspectRatio: 0.8,
                                               ),
                                             primary: false,
-                                            padding: const EdgeInsets.all(20),
+                                            padding: const EdgeInsets.all(10),
                                             itemBuilder: (context, index){
                                               if(index < snapshot.data[0].length)
                                                 return gridContainer(percentScale, 480, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);

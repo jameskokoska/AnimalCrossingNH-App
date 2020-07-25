@@ -190,11 +190,16 @@ Widget infoContainer(double percentScale, String imageIcon, String displayString
   );
 }
 
-Widget infoContainerDoubleLined(double percentScale, String imageIcon, String displayString){
+Widget infoContainerDoubleLined(double percentScale, String imageIcon, String displayString, [bool larger=true]){
   return Padding(
     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
     child: Container(
-      height: 45*percentScale,
+      height: (){
+        if(larger)
+          return 85*percentScale;
+        else
+          return 45*percentScale;
+      }(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

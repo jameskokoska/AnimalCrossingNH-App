@@ -240,7 +240,7 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                             ),
                             SizedBox(height: 10*percentScale),
                             Center(
-                                child: infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', identification)
+                                child: infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', identification, true)
                             ),
                           ],
                         ),
