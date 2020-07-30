@@ -247,7 +247,7 @@ Widget fishContainer(double percentScale, bool caught,snapshot){
                             context: context, 
                             builder: (context){
                               return Container(
-                                height: 480*percentScale,
+                                height: 530*percentScale,
                                   child: Container(
                                     child: fishPopUp(percentScale, currentCaughtFish, snapshot),
                                 ),
