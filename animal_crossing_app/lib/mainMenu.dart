@@ -1301,11 +1301,11 @@ class _HomePageState extends State<Home>{
                                             padding: const EdgeInsets.all(10),
                                             itemBuilder: (context, index){
                                               if(index < snapshot.data[0].length)
-                                                return gridContainer(percentScale, 480, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
+                                                return gridContainer(percentScale, 530, colorTextBlack, colorBugAccent, colorCheckGreen, "Bugs", true,snapshot.data[0][index], true);
                                               else if (index < snapshot.data[0].length + snapshot.data[1].length)
-                                                return gridContainer(percentScale, 480, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
+                                                return gridContainer(percentScale, 530, colorTextBlack, colorFishAccent, colorCheckGreen, "Fish", true,snapshot.data[1][index-snapshot.data[0].length], true);
                                               else if (index < snapshot.data[0].length + snapshot.data[1].length + snapshot.data[2].length)
-                                                return gridContainer(percentScale, 480, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
+                                                return gridContainer(percentScale, 530, colorTextBlack, colorSeaAccent, colorCheckGreen, "Sea Creatures", true,snapshot.data[2][index-snapshot.data[0].length-snapshot.data[1].length], true);
                                               else 
                                                 return Container();
                                             }                                            

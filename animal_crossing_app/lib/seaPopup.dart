@@ -228,8 +228,8 @@ Widget seaPopUp(double percentScale,bool caught, var snapshot, [bool gridView=fa
                           height:20*percentScale,
                         ),
                         infoContainer(percentScale, 'bellBag.png', bellsPrice.format(int.parse(snapshot.sell))+" bells"),
-                        infoContainerDoubleLined(percentScale, 'magnifyingGlass.png', snapshot.shadow),
-                        infoContainerDoubleLined(percentScale, 'speed.png', snapshot.movementSpeed),
+                        infoContainer(percentScale, 'magnifyingGlass.png', snapshot.shadow),
+                        infoContainer(percentScale, 'speed.png', snapshot.movementSpeed),
                         IntrinsicWidth(
                           child: Row(
                             children: <Widget>[

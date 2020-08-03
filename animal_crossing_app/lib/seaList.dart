@@ -248,7 +248,7 @@ Widget seaContainer(double percentScale, bool caught,var snapshot){
                               context: context, 
                               builder: (context){
                                 return Container(
-                                  height: 480*percentScale,
+                                  height: 530*percentScale,
                                     child: Container(
                                       child: seaPopUp(percentScale, currentCaughtSea, snapshot),
                                   ),

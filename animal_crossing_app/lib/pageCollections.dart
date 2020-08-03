@@ -788,7 +788,7 @@ July 5''',
 July 31''', 
 '''Aug 1 - 
 Aug 31''', 
-'''Spet 1 - 
+'''Sept 1 - 
 Sept 15''', 
 '''Sept 16 - 
 Sept 30''', 
