@@ -111,11 +111,29 @@ Widget villagerPopUp(double percentScale, Color colorTextBlack, snapshotData){
                           ),
                           AnimatedOpacity(
                             duration: Duration(milliseconds:200),
-                            opacity: !popupCollectedGrid ? 0 : 1,
+                            opacity: popupCollectedGrid ? 0 : 1,
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
                                 child: Text("Favorite",
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      color: colorCircleContainerPopUp,
+                                      fontSize: 11*percentScale,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    )
+                                ),
+                              ),
+                            ),
+                          ),
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds:200),
+                            opacity: !popupCollectedGrid ? 0 : 1,
+                            child: Center(
+                              child: Container(
+                                transform: Matrix4.translationValues(0,(37)*percentScale,0),
+                                child: Text("Favorited!",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: colorCircleContainerPopUp,

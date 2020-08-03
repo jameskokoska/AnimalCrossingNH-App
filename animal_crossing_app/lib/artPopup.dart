@@ -106,11 +106,29 @@ Widget artPopUp(double percentScale,bool collected,String name,String imageLink,
                               ),
                               AnimatedOpacity(
                                 duration: Duration(milliseconds:200),
+                                opacity: collected ? 0 : 1,
+                                child: Center(
+                                  child: Container(
+                                    transform: Matrix4.translationValues(0,(37)*percentScale,0),
+                                    child: Text("Missing",
+                                        style: TextStyle(
+                                          fontFamily: 'ArialRoundedBold',
+                                          color: colorCircleContainerPopUp,
+                                          fontSize: 11*percentScale,
+                                          fontWeight: FontWeight.w400,
+                                          fontStyle: FontStyle.normal,
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              AnimatedOpacity(
+                                duration: Duration(milliseconds:200),
                                 opacity: !collected ? 0 : 1,
                                 child: Center(
                                   child: Container(
                                     transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                    child: Text("Collected",
+                                    child: Text("Collected!",
                                         style: TextStyle(
                                           fontFamily: 'ArialRoundedBold',
                                           color: colorCircleContainerPopUp,
