@@ -776,7 +776,9 @@ List<Widget> circularMonthText(double percentScale, String nhJan,String nhFeb,St
 }
 
 Widget monthText(double percentScale, int month, months) {
-  if (month == currentDate.month) {
+  if (month == currentDate.month - 1) {
+    print(month);
+    print(currentDate.month);
     return Text(months[month],
         style: TextStyle(
           fontFamily: 'ArialRoundedBold',
