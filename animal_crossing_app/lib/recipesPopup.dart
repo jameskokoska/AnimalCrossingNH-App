@@ -108,7 +108,7 @@ Widget recipesPopUp(double percentScale, Color colorTextBlack, var snapshotData)
                                   child: Center(
                                     child: Container(
                                       transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                      child: Text("Crafted!",
+                                      child: Text("Crafted",
                                           style: TextStyle(
                                             fontFamily: 'ArialRoundedBold',
                                             color: colorCircleContainerPopUp,

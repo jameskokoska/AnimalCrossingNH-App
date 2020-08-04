@@ -709,9 +709,11 @@ class VillagerData{
   final String color2;
   final String filename;
   final String uniqueEntryID;
+  final String favoriteSaying;
+  final String hobby;
 
   VillagerData(this.name,this.image,this.species,this.gender,this.personality,this.birthday,this.catchphrase,this.style1,this.style2,
-  this.color1,this.color2,this.filename,this.uniqueEntryID);
+  this.color1,this.color2,this.filename,this.uniqueEntryID, this.favoriteSaying, this.hobby);
 }
 
 class ArtData{
@@ -794,7 +796,7 @@ Future<List<MiscellaneousData>> getMiscellaneousData(String search) async{
 }
 
 Future<List<WallmountedData>> getWallmountedData(String search) async{
-  String data = await rootBundle.loadString("assets/wallmounted.json");
+  String data = await rootBundle.loadString("assets/wall-mounted.json");
 
   final jsonData = json.decode(data);
   List<WallmountedData> wallmountedData = [];
@@ -1019,7 +1021,7 @@ Future<List<BagsData>> getBagsData(String search) async{
 }
   
 Future<List<EmojiData>> getEmojiData(String search) async{
-  String data = await rootBundle.loadString("assets/emojis.json");
+  String data = await rootBundle.loadString("assets/reactions.json");
 
   final jsonData = json.decode(data);
   List<EmojiData> emojiData = [];
@@ -1043,7 +1045,7 @@ Future<List<FishData>> getFishData(String search, [bool active=false]) async{
   for(var u in jsonData){
     getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
-      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+      FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catch phrase"],u["Museum"],caught);
       if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
         fishData.add(fishDatum);
       } else if (active == true){
@@ -1063,7 +1065,7 @@ Future<List<FishData>> getFishData(String search, [bool active=false]) async{
 
 
 Future<List<BugData>> getBugData(String search, [bool active = false]) async{
-  String data = await rootBundle.loadString("assets/bug.json");
+  String data = await rootBundle.loadString("assets/insects.json");
 
   final jsonData = json.decode(data);
   bool caught = false;
@@ -1071,7 +1073,7 @@ Future<List<BugData>> getBugData(String search, [bool active = false]) async{
   for(var u in jsonData){
     getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
-      BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catchphrase"],u["Museum"],caught);
+      BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catch phrase"],u["Museum"],caught);
        if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
         bugData.add(bugDatum);
       } else if (active == true){
@@ -1105,7 +1107,7 @@ Future<List<RugsData>> getRugsData(String search) async{
 }
 
 Future<List<FloorsData>> getFloorsData(String search) async{
-  String data = await rootBundle.loadString("assets/flooring.json");
+  String data = await rootBundle.loadString("assets/floors.json");
 
   final jsonData = json.decode(data);
   List<FloorsData> floorsData = [];
@@ -1163,7 +1165,7 @@ Future<List<VillagerData>> getVillagerData(String search) async{
   final jsonData = json.decode(data);
   List<VillagerData> villagerData = [];
   for(var u in jsonData){
-    VillagerData villagerDatum = VillagerData(u["Name"],u["Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"]);
+    VillagerData villagerDatum = VillagerData(u["Name"],u["Icon Image"],u["Species"],u["Gender"],u["Personality"],u["Birthday"],u["Catchphrase"],u["Style 1"],u["Style 2"],u["Color 1"],u["Color 2"],u["Filename"],u["Unique Entry ID"], u["Favorite Saying"], u["Hobby"]);
     if(search == ''){
       villagerData.add(villagerDatum);
     } else if (u["Name"].toLowerCase().contains(search.toLowerCase())){
@@ -1217,7 +1219,7 @@ class FossilData{
 }
 
 Future<List<FossilData>> getFossilData(String search) async{
-  String data = await rootBundle.loadString("assets/fossil.json");
+  String data = await rootBundle.loadString("assets/fossils.json");
 
   final jsonData = json.decode(data);
   bool collected = false;
@@ -1301,7 +1303,7 @@ Future<List<CraftableData>> getCraftableData(String search) async{
   String dataMiscellaneous = await rootBundle.loadString("assets/miscellaneous.json");
   final jsonDataMiscellaneous = json.decode(dataMiscellaneous);
 
-  String dataWallmounted = await rootBundle.loadString("assets/wallmounted.json");
+  String dataWallmounted = await rootBundle.loadString("assets/wall-mounted.json");
   final jsonDataWallmounted = json.decode(dataWallmounted);
 
   String dataHeadwear = await rootBundle.loadString("assets/headwear.json");
@@ -1331,7 +1333,7 @@ Future<List<CraftableData>> getCraftableData(String search) async{
   String dataRugs = await rootBundle.loadString("assets/rugs.json");
   final jsonDataRugs = json.decode(dataRugs);
 
-  String dataFloors = await rootBundle.loadString("assets/flooring.json");
+  String dataFloors = await rootBundle.loadString("assets/floors.json");
   final jsonDataFloors = json.decode(dataFloors);
 
   String dataWallpapers = await rootBundle.loadString("assets/wallpaper.json");
@@ -1340,7 +1342,7 @@ Future<List<CraftableData>> getCraftableData(String search) async{
   String dataTools = await rootBundle.loadString("assets/tools.json");
   final jsonDataTools = json.decode(dataTools);
 
-  String dataFence = await rootBundle.loadString("assets/fence.json");
+  String dataFence = await rootBundle.loadString("assets/fencing.json");
   final jsonDataFence = json.decode(dataFence);
 
 
@@ -2011,7 +2013,7 @@ Future<OtherData> getOtherData(String search) async{
 
   final jsonData = json.decode(data);
   for(var u in jsonData){
-    OtherData otherDatum = OtherData(u["Name"],u["Image"]);
+    OtherData otherDatum = OtherData(u["Name"],u["Inventory Image"]);
     if (u["Name"]!=null&&search!=null&&u["Name"].toLowerCase().contains(search.toLowerCase())){
       return otherDatum;
     }
@@ -2113,7 +2115,7 @@ class SeaData{
 }
 
 Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
-  String data = await rootBundle.loadString("assets/seaCreatures.json");
+  String data = await rootBundle.loadString("assets/seacreatures.json");
 
   final jsonData = json.decode(data);
   bool caught = false;
@@ -2170,7 +2172,7 @@ class DressupData{
 }
 
 Future<List<DressupData>> getDressupData(String search) async{
-  String data = await rootBundle.loadString("assets/dressup.json");
+  String data = await rootBundle.loadString("assets/dress-up.json");
 
   final jsonData = json.decode(data);
   List<DressupData> dressupData = [];
@@ -2226,7 +2228,7 @@ class WetsuitData{
 }
 
 Future<List<WetsuitData>> getWetsuitData(String search) async{
-  String data = await rootBundle.loadString("assets/wetsuits.json");
+  String data = await rootBundle.loadString("assets/clothingother.json");
 
   final jsonData = json.decode(data);
   List<WetsuitData> wetsuitData = [];
@@ -2273,7 +2275,7 @@ class FenceData{
 }
 
 Future<List<FenceData>> getFenceData(String search) async{
-  String data = await rootBundle.loadString("assets/fence.json");
+  String data = await rootBundle.loadString("assets/fencing.json");
 
   final jsonData = json.decode(data);
   List<FenceData> fenceData = [];

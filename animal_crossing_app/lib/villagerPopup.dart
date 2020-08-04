@@ -31,7 +31,7 @@ Widget villagerPopUp(double percentScale, Color colorTextBlack, snapshotData){
                 ),
                 Container(
                   transform: Matrix4.translationValues(0, 20*percentScale, 0),
-                  height:440*percentScale,
+                  height:480*percentScale,
                   decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(30*percentScale),
                       color: colorWhite,
@@ -133,7 +133,7 @@ Widget villagerPopUp(double percentScale, Color colorTextBlack, snapshotData){
                             child: Center(
                               child: Container(
                                 transform: Matrix4.translationValues(0,(37)*percentScale,0),
-                                child: Text("Favorited!",
+                                child: Text("Favorited",
                                     style: TextStyle(
                                       fontFamily: 'ArialRoundedBold',
                                       color: colorCircleContainerPopUp,
@@ -216,7 +216,7 @@ Widget villagerPopUp(double percentScale, Color colorTextBlack, snapshotData){
                 Center(
                   child: Container(
                     transform: Matrix4.translationValues(0, 40*percentScale, 0),
-                    height: 340*percentScale,
+                    height: 460*percentScale,
                     width: 360*percentScale,
                     child: Column(
                       children: [
@@ -258,7 +258,10 @@ Widget villagerPopUp(double percentScale, Color colorTextBlack, snapshotData){
                           }()
                         ),
                         //colours
+                        infoContainer(percentScale, 'dice.png', snapshotData.hobby),
                         infoContainer(percentScale, 'colorPalette.png',snapshotData.color1 + ", " +snapshotData. color2),
+                        infoContainerDoubleLined(percentScale, 'speechBubble.png', snapshotData.favoriteSaying),
+                        
                       ],
                     ),
                   ),

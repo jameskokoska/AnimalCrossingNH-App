@@ -1,6 +1,4 @@
-
-    
-    [
+[
         {
             "Name": "acid-washed jeans",
             "Closet Image": "https://acnhcdn.com/latest/ClosetIcon/BottomsTexPantsNormalChemical1.png",
@@ -14715,7 +14713,7 @@
             "Unique Entry ID": "vLCToaQtCvuvRFmqj"
         },
         {
-            "Name": "polka-dot mini skirt",
+            "Name": "polka-dot miniskirt",
             "Closet Image": "https://acnhcdn.com/latest/ClosetIcon/BottomsTexSkirtAlineDot3.png",
             "Storage Image": "https://acnhcdn.com/latest/FtrIcon/BottomsTexSkirtAlineDot3.png",
             "Variation": "Gray",
@@ -14743,7 +14741,7 @@
             "Unique Entry ID": "33jjvbydtzk72BH8m"
         },
         {
-            "Name": "polka-dot mini skirt",
+            "Name": "polka-dot miniskirt",
             "Closet Image": "https://acnhcdn.com/latest/ClosetIcon/BottomsTexSkirtAlineDot1.png",
             "Storage Image": "https://acnhcdn.com/latest/FtrIcon/BottomsTexSkirtAlineDot1.png",
             "Variation": "Pink",
@@ -14771,7 +14769,7 @@
             "Unique Entry ID": "z7dHdbw4CRczuZuMu"
         },
         {
-            "Name": "polka-dot mini skirt",
+            "Name": "polka-dot miniskirt",
             "Closet Image": "https://acnhcdn.com/latest/ClosetIcon/BottomsTexSkirtAlineDot2.png",
             "Storage Image": "https://acnhcdn.com/latest/FtrIcon/BottomsTexSkirtAlineDot2.png",
             "Variation": "Blue",
@@ -14799,7 +14797,7 @@
             "Unique Entry ID": "xnauur6Y9BjK7sJSz"
         },
         {
-            "Name": "polka-dot mini skirt",
+            "Name": "polka-dot miniskirt",
             "Closet Image": "https://acnhcdn.com/latest/ClosetIcon/BottomsTexSkirtAlineDot0.png",
             "Storage Image": "https://acnhcdn.com/latest/FtrIcon/BottomsTexSkirtAlineDot0.png",
             "Variation": "Beige",
@@ -20339,4 +20337,4 @@
             "Internal ID": "8863",
             "Unique Entry ID": "FxpA7aZnQmEj9kJJb"
         }
-    ]
+]

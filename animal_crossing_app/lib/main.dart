@@ -261,7 +261,7 @@ class _MainPageState extends State<Main> {
           accentColor: colorVillagerAccent,
           checkmark: false,
           checkmarkColor: colorVillagerCheck,
-          popupHeight: 450,
+          popupHeight: 500,
           smallContainer: true
         );
       } else if (index == 7){
