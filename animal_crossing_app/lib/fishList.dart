@@ -434,7 +434,7 @@ String determineShadowImage(String shadowSize, String whereHow){
   }
   if(shadowSize.contains('Long')){
     return "Long";
-  } else if (whereHow.contains('Ocean')||whereHow.contains('Pier')){
+  } else if (whereHow.contains('Ocean')||whereHow.contains('Pier')||whereHow.contains('Sea')){
     return "Ocean-"+shadowSize;
   } else if (whereHow.contains('River')||whereHow.contains('Pond')){
     return "River-"+shadowSize;

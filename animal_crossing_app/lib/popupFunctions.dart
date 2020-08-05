@@ -519,7 +519,7 @@ Widget getIconName(String source, double percentScale, [bool bug=false]) {
       width: 55*percentScale,
     );
   }
-  else if(source.contains('Ocean')||source.contains('Pier')){
+  else if(source.contains('Ocean')||source.contains('Pier')||source.contains('Sea')){
     return new Image.asset(
       'assets/' + 'oceanIcon.png',
       height: 55*percentScale,
