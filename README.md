@@ -3,7 +3,7 @@ Writen in Flutter, supporting iOS and Android, with a modern and well polished d
 ## Release
 https://play.google.com/store/apps/details?id=com.acnh.pocket_guide
 
-##Technical Features
+## Technical Features
  - Read and save information
  - Read information from JSON database efficiently
  - Optimization of lists views and database access
@@ -11,7 +11,7 @@ https://play.google.com/store/apps/details?id=com.acnh.pocket_guide
  - Python script to easily split up spreadsheet JSON into multiple files, for easy database updating
  - UI planning done all in Adobe XD, see UI Assets folder
 
-##Features
+## Features
 
 - Dark mode
 - Modern and polished interface and design
