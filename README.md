@@ -1,5 +1,5 @@
 # ACNH Pocket Guide
-Writen in Flutter, supporting iOS and Android, with a modern and well polished design ACNH Pocket Guide is the best guide for tracking your collection as you progress through the game. View information on collectibles and creatures, as well as upcoming in game events. With the latest game information, this is the one stop for all your ACNH needs.
+Written in Flutter, supporting iOS and Android, with a modern and well polished design ACNH Pocket Guide is the best guide for tracking your collection as you progress through the game. View information on collectibles and creatures, as well as upcoming in game events. With the latest game information, this is the one stop for all your ACNH needs.
 ## Release
 https://play.google.com/store/apps/details?id=com.acnh.pocket_guide
 
@@ -38,4 +38,7 @@ https://play.google.com/store/apps/details?id=com.acnh.pocket_guide
 
 ## Screenshots
 Can be seen here: https://play.google.com/store/apps/details?id=com.acnh.pocket_guide
-or within the Promotional folder in the repo
+or below:
+| ![Screenshot 1](/Promotional/1.jpg)  | ![Screenshot 2](/Promotional/2.jpg) | ![Screenshot 3](/Promotional/3.jpg) |
+| ------------- | ------------- | ------------- |
+| ![Screenshot 4](/Promotional/1.jpg)  | ![Screenshot 5](/Promotional/2.jpg) | ![Screenshot 6](/Promotional/3.jpg) |
