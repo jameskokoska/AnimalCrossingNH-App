@@ -41,4 +41,6 @@ Can be seen here: https://play.google.com/store/apps/details?id=com.acnh.pocket_
 or below:
 | ![Screenshot 1](/Promotional/1.jpg)  | ![Screenshot 2](/Promotional/2.jpg) | ![Screenshot 3](/Promotional/3.jpg) |
 | ------------- | ------------- | ------------- |
-| ![Screenshot 4](/Promotional/1.jpg)  | ![Screenshot 5](/Promotional/2.jpg) | ![Screenshot 6](/Promotional/3.jpg) |
+| ![Screenshot 4](/Promotional/4.jpg)  | ![Screenshot 5](/Promotional/5.jpg) | ![Screenshot 6](/Promotional/6.jpg) |
+| ![Screenshot 7](/Promotional/7.jpg)  | ![Screenshot 8](/Promotional/8.jpg) | ![Screenshot 9](/Promotional/9.jpg) |
+| ![Screenshot 10](/Promotional/10.jpg)  |
