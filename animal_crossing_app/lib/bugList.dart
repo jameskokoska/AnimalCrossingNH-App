@@ -104,7 +104,7 @@ class _BugListPageState extends State<BugList>{
                           top = constraints.biggest.height;
                           return FlexibleSpaceBar(
                             title: Container(
-                              transform: Matrix4.translationValues(0,10*percentScale-(top/6.8)*percentScale,0),
+                              transform: Matrix4.translationValues(0,17*percentScale-(top/6.8)*percentScale,0),
                               child: Text("Bugs",
                                 style: TextStyle(
                                   fontFamily: 'ArialRoundedBold',

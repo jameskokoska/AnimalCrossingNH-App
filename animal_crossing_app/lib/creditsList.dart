@@ -64,7 +64,7 @@ class _CreditsListPageState extends State<CreditsList>{
                   elevation: 10,
                   flexibleSpace: FlexibleSpaceBar(
                     title: Container(
-                      transform: Matrix4.translationValues(0,-13*percentScale,0),
+                      transform: Matrix4.translationValues(0,-11*percentScale,0),
                       child: Text("Credits",
                         style: TextStyle(
                           fontFamily: 'ArialRoundedBold',

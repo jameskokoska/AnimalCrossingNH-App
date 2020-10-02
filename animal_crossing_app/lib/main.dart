@@ -229,8 +229,7 @@ class _MainPageState extends State<Main> {
     
     currentPageWidget = Home();
     
-    //Remove status bar
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
   
