@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'databases.dart';
+import 'popupFunctions.dart';
 
 class ConstructionList extends StatefulWidget {
   ConstructionList({Key key, this.title}) : super(key: key);
@@ -315,7 +316,7 @@ Widget constructionContainer(double percentScale,int index,var snapshot){
                       ),
                       SizedBox(width:4*percentScale),
                       Center(
-                        child: Text(cost +" bells",
+                        child: Text(priceFormat.format(int.parse(cost)) +" bells",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'ArialRoundedBold',

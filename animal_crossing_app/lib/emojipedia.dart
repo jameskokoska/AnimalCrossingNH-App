@@ -227,6 +227,13 @@ class _EmojiListPageState extends State<EmojiList>{
 }
 
 Widget emojiContainer(double percentScale, bool darkMode, Color colorTextBlack, String name, String imageLink, String source){
+  var specialEmoji = ["inspiration","flourish","pride","daydreaming","mischief","showmanship","love","confident"];
+  var displayName;
+  if(specialEmoji.contains(name.toLowerCase())){
+    displayName=name+"*";
+  } else {
+    displayName = name;
+  }
   return new StatefulBuilder(
     builder: (BuildContext context, StateSetter setState) { 
       return FutureBuilder(
@@ -275,11 +282,11 @@ Widget emojiContainer(double percentScale, bool darkMode, Color colorTextBlack, 
                         SizedBox(
                           height: 2*percentScale,
                         ),
-                        Text(name,
+                        Text(displayName,
                           style: TextStyle(
                             fontFamily: 'ArialRoundedBold',
                             color: colorTextBlack,
-                            fontSize: 12*percentScale,
+                            fontSize: 11*percentScale,
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                           )
