@@ -51,6 +51,18 @@ String getKey(var snapshotContainerData, String title){
     case "Bugs" : return("bugCheckList"+snapshotContainerData.name);
     break;
 
+    case "Fossils" : return("fossilCheckList"+snapshotContainerData.name);
+    break;
+
+    case "Art" : return("artCheckList"+snapshotContainerData.name+snapshotContainerData.genuine);
+    break;
+
+    case "Emojipedia" : return("emojiCheckList"+snapshotContainerData.name);
+    break;
+
+    case "K.K. Songs" : return("songCheckList"+snapshotContainerData);
+    break;
+
     default: return("");
     break;
   }

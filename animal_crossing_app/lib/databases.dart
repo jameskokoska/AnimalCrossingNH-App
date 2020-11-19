@@ -1043,7 +1043,7 @@ Future<List<FishData>> getFishData(String search, [bool active=false]) async{
   bool caught = false;
   List<FishData> fishData = [];
   for(var u in jsonData){
-    getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
+    await getStoredBool("fishCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       FishData fishDatum = FishData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Shadow"],u["Total Catches to Unlock"],u["Rain/Snow Catch Up"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Size"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catch phrase"],u["Museum"],caught);
       if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
@@ -1071,7 +1071,7 @@ Future<List<BugData>> getBugData(String search, [bool active = false]) async{
   bool caught = false;
   List<BugData> bugData = [];
   for(var u in jsonData){
-    getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
+    await getStoredBool("bugCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       BugData bugDatum = BugData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Where/How"],u["Weather"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Color 1"],u["Color 2"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],u["Catch phrase"],u["Museum"],caught);
        if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
@@ -1226,7 +1226,7 @@ Future<List<FossilData>> getFossilData(String search) async{
   List<FossilData> fossilData = [];
   String previousName="";
   for(var u in jsonData){
-    getStoredBool("fossilCheckList"+u["Name"], false).then((indexResult){
+    await getStoredBool("fossilCheckList"+u["Name"], false).then((indexResult){
       collected = indexResult;
       FossilData fossilDatum = FossilData(u["Name"],u["Image"],u["Buy"],u["Sell"],u["Color 1"],u["Color 2"],u["Size"],u["Source"],u["Museum"],u["Version"],u["Interact"],u["Catalog"],u["Filename"],u["Internal ID"],u["Unique Entry ID"], collected);
       if(u["Name"]!=previousName){
@@ -2044,7 +2044,7 @@ Future<List<EventData>> getEventsData() async{
   bool favourite;
   for(var u in jsonData){
     if(u["Name"].contains("Birthday")){
-      getStoredBool("villagerCheckList"+u["Name"].substring(0, u["Name"].indexOf("'")), false).then((indexResult){
+      await getStoredBool("villagerCheckList"+u["Name"].substring(0, u["Name"].indexOf("'")), false).then((indexResult){
         favourite = indexResult;
         if(favourite){
           EventData eventDatum = EventData(u["Name"],u["Month"],u["Day Start"],u["Day End"],u["Special Day"],u["Special Occurrence"],u["Hemisphere"],u["Time"],u["Image"]);
@@ -2121,7 +2121,7 @@ Future<List<SeaData>> getSeaData(String search, [bool active = false]) async{
   bool caught = false;
   List<SeaData> seaData = [];
   for(var u in jsonData){
-    getStoredBool("seaCheckList"+u["Name"], false).then((indexResult){
+    await getStoredBool("seaCheckList"+u["Name"], false).then((indexResult){
       caught = indexResult;
       SeaData seaDatum = SeaData(u["#"],u["Name"],u["Icon Image"],u["Critterpedia Image"],u["Furniture Image"],u["Sell"],u["Shadow"],u["Movement Speed"],u["Total Catches to Unlock"],u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"],u["Size"],u["Surface"],u["Catch phrase"],u["HHA Base Points"],u["Color 1"],u["Color 2"],u["Lighting Type"],u["Icon Filename"],u["Critterpedia Filename"],u["Furniture Filename"],u["Internal ID"],u["Unique Entry ID"],caught);
       if(active == true && (determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])=="All day" || determineActiveNow(determineTime(u["NH Jan"],u["NH Feb"],u["NH Mar"],u["NH Apr"],u["NH May"],u["NH Jun"],u["NH Jul"],u["NH Aug"],u["NH Sep"],u["NH Oct"],u["NH Nov"],u["NH Dec"],u["SH Jan"],u["SH Feb"],u["SH Mar"],u["SH Apr"],u["SH May"],u["SH Jun"],u["SH Jul"],u["SH Aug"],u["SH Sep"],u["SH Oct"],u["SH Nov"],u["SH Dec"])) == true)) {
