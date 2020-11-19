@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
-import 'package:downloads_path_provider/downloads_path_provider.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,15 +22,23 @@ class SettingList extends StatefulWidget {
 
 
 write(String filename, String content, var context) async {
+  final scaffold = Scaffold.of(context);
   var status = await Permission.storage.status;
   if (!status.isGranted) {
     await Permission.storage.request();
   }
-  final directory = await DownloadsPathProvider.downloadsDirectory;
-  final path = '${directory.path}/$filename.txt';
+  if (!status.isGranted) {
+    scaffold.showSnackBar(
+    SnackBar(
+        content: const Text('Please grant file access and try again.'),
+      ),
+    );
+    return;
+  }
+  final directory = "/storage/emulated/0/Download";
+  final path = '$directory/$filename.txt';
   final file = File(path);
   await file.writeAsString(content);
-  final scaffold = Scaffold.of(context);
   scaffold.showSnackBar(
     SnackBar(
       content: const Text('Exported file as ACNHPocketGuideData.txt in Downloads folder.'),
@@ -40,14 +47,22 @@ write(String filename, String content, var context) async {
 }
 
 read(String filename, var context) async{
+  final scaffold = Scaffold.of(context);
   var status = await Permission.storage.status;
   if (!status.isGranted) {
     await Permission.storage.request();
   }
-  final directory = await DownloadsPathProvider.downloadsDirectory;
-  final path = '${directory.path}/$filename.txt';
+  if (!status.isGranted) {
+    scaffold.showSnackBar(
+    SnackBar(
+        content: const Text('Please grant file access and try again.'),
+      ),
+    );
+    return;
+  }
+  final directory = "/storage/emulated/0/Download";
+  final path = '$directory/$filename.txt';
   final file = File(path);
-  final scaffold = Scaffold.of(context);
   scaffold.showSnackBar(
     SnackBar(
       content: Text('Importing... Looking for file: ' + path),
@@ -277,7 +292,7 @@ class _SettingListPageState extends State<SettingList>{
                             
                             scaffold.showSnackBar(
                               SnackBar(
-                                content: Text('Successfully imported ' + inputList.length.toString() + " entries."),
+                                content: Text('Successfully imported ' + (inputList.length-1).toString() + " entries."),
                               ),
                             );
                         }
