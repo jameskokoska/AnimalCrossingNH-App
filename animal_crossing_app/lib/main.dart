@@ -440,6 +440,7 @@ class _MainPageState extends State<Main> {
           future:getStoredBool("firstLoad", false),
           builder: (context,snapshot) {
             if(snapshot.hasData){
+              update(context);
               if(finish==false&&snapshot.data==false){
                 return SKOnboardingScreen(
                   bgColor: colorWhite,
@@ -700,6 +701,53 @@ chooseHemisphere(var context) async{
                     prefs.setBool("firstLoad", true);
                     northernHemisphere = true;
                     saveBool("northernHemisphere", true, true);
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
+}
+
+update(var context) async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isSecondLoaded = prefs.getBool("secondLoad");
+    if (isSecondLoaded == null||isSecondLoaded==false) {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+           return BackdropFilter(
+             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+             child: CupertinoAlertDialog(
+              title:  Text(
+                'Good news!',
+                style: TextStyle(
+                  fontFamily: 'ArialRoundedBold',
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+              content: Text(
+                'We are planning on rewriting the whole entire application! This means more content, better updates, and better layout support. Please continually backup your data through the settings page. Your data can be imported into the new version. Any questions, feel free to email us! dapperappdeveloper@gmail.com Head to settings to view this message again. The update will be released in the new year.',
+                style: TextStyle(
+                  fontFamily: 'ArialRounded',
+                ),
+              ),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: Text(
+                    'Ok',
+                    style: TextStyle(
+                      fontFamily: 'ArialRounded'
+                    ),
+                  ),
+                  onPressed: (){
+                    HapticFeedback.mediumImpact();
+                    Navigator.of(context).pop();
+                    prefs.setBool("secondLoad", true);
+                    saveBool("secondLoad", true, true);
                   },
                 ),
               ],

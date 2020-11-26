@@ -110,7 +110,7 @@ class _SettingListPageState extends State<SettingList>{
               height: MediaQuery.of(context).size.height,
               color: colorLightDarkAccent,
             ),
-
+  
             CustomScrollView(
               physics: BouncingScrollPhysics(),
               slivers: <Widget>[
@@ -138,8 +138,183 @@ class _SettingListPageState extends State<SettingList>{
                     //background: Image.asset('assets/fishTitle.png'),
                   ),
                 ),
-
+                SliverPadding(
+                  padding: EdgeInsets.only(top:10*percentScale),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      GestureDetector(
+                        onTap: (){
+                          HapticFeedback.mediumImpact();
+                          return showDialog<void>(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                child: CupertinoAlertDialog(
+                                  title:  Text(
+                                    'Update Coming soon!',
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRoundedBold',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  content: Text(
+                                    'We are planning on rewriting the whole entire application! This means more content, better updates, and better layout support. Please continually backup your data through the settings page. Your data can be imported into the new version. Any questions, feel free to email us! dapperappdeveloper@gmail.com . The update will be released in the new year.',
+                                    style: TextStyle(
+                                      fontFamily: 'ArialRounded',
+                                      fontWeight: FontWeight.w100,
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    CupertinoDialogAction(
+                                      child: Text(
+                                        'Ok',
+                                        style: TextStyle(
+                                          fontFamily: 'ArialRounded'
+                                        ),
+                                      ),
+                                      onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 120, right:120),
+                          child: Container(
+                            height: 40*percentScale,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFA770FF),
+                              border: Border.all(width: 1.00, color: Color(0xFFD1E61C),), borderRadius: BorderRadius.circular(50.00), 
+                            ), 
+                            child: Center(
+                              child: Text(
+                                'Update Information',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'ArialRoundedBold'
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ])
+                  ),
+                ),
                 //Add the sliverlist parsed in future function above
+                 SliverPadding(
+                  padding: EdgeInsets.only(top:10*percentScale),
+                  sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        GestureDetector(
+                          onTap: (){
+                            HapticFeedback.mediumImpact();
+                            var outputSave = "";
+                            Future<void> getStorage(var list, var listGroup) async {
+                              for(int i = 0; i < list.length; i++){
+                                if(await getStoredBool(getKey(list[i], listGroup), false)){
+                                  outputSave = outputSave + getKey(list[i], listGroup) + "\n";
+                                }
+                              }
+                            }
+                            Future<void> readStorage() async {
+                              var listGroup = "Furniture";
+                              await getStorage(await getHousewaresData(""), listGroup);
+                              await getStorage(await getMiscellaneousData(""), listGroup);
+                              await getStorage(await getWallmountedData(""), listGroup);
+                              await getStorage(await getPhotosData(""), listGroup);
+                              await getStorage(await getPostersData(""), listGroup);
+
+                              listGroup = "Clothing";
+                              await getStorage(await getHeadwearData(""), listGroup);
+                              await getStorage(await getAccessoriesData(""), listGroup);
+                              await getStorage(await getTopsData(""), listGroup);
+                              await getStorage(await getBottomsData(""), listGroup);
+                              await getStorage(await getSocksData(""), listGroup);
+                              await getStorage(await getShoesData(""), listGroup);
+                              await getStorage(await getUmbrellasData(""), listGroup);
+                              await getStorage(await getBagsData(""), listGroup);
+                              await getStorage(await getWetsuitData(""), listGroup);
+                              await getStorage(await getDressupData(""), listGroup);
+                              
+                              listGroup = "Tools";
+                              await getStorage(await getToolsData(""), listGroup);
+                              
+
+                              listGroup = "Floor & Wall";
+                              await getStorage(await getRugsData(""), listGroup);
+                              await getStorage(await getFloorsData(""), listGroup);
+                              await getStorage(await getWallpapersData(""), listGroup);
+
+                              listGroup = "Villagers";
+                              await getStorage(await getVillagerData(""), listGroup);
+                              
+                              listGroup = "Recipes";
+                              await getStorage(await getCraftableData(""), listGroup);
+                              
+                              listGroup = "Fish";
+                              await getStorage(await getFishData(""), listGroup);
+                              
+                              listGroup = "Sea Creatures";
+                              await getStorage(await getSeaData(""), listGroup);
+
+                              listGroup = "Bugs";
+                              await getStorage(await getBugData(""), listGroup);
+
+                              listGroup = "Fossils";
+                              await getStorage(await getFossilData(""), listGroup);
+
+                              listGroup = "Art";
+                              await getStorage(await getArtData(""), listGroup);
+
+                              listGroup = "Emojipedia";
+                              await getStorage(await getEmojiData(""), listGroup);
+
+                              List<String> albumNames = ["Agent K.K.","Aloha K.K.","*Animal City*","Bubblegum K.K.","Café K.K.","Comrade K.K.","DJ K.K.","*Drivin'*","*Farewell*","Forest Life","Go K.K. Rider","Hypno K.K.","I Love You","Imperial K.K.","K.K. Adventure","K.K. Aria","K.K. Ballad","K.K. Bazaar","K.K. Birthday","K.K. Blues","K.K. Bossa","K.K. Calypso","K.K. Casbah","K.K. Chorale","K.K. Condor","K.K. Country","K.K. Cruisin'","K.K. D&B","K.K. Dirge","K.K. Disco","K.K. Dixie","K.K. Étude","K.K. Faire","K.K. Flamenco","K.K. Folk","K.K. Fusion","K.K. Groove","K.K. Gumbo","K.K. House","K.K. Island","K.K. Jazz","K.K. Jongara","K.K. Lament","K.K. Love Song","K.K. Lullaby","K.K. Mambo","K.K. Marathon","K.K. March","K.K. Mariachi","K.K. Metal","K.K. Milonga","K.K. Moody","K.K. Oasis","K.K. Parade","K.K. Ragtime","K.K. Rally","K.K. Reggae","K.K. Rock","K.K. Rockabilly","K.K. Safari","K.K. Salsa","K.K. Samba","K.K. Ska","K.K. Sonata","K.K. Song","K.K. Soul","K.K. Steppe","K.K. Stroll","K.K. Swing","K.K. Synth","K.K. Tango","K.K. Technopop","K.K. Waltz","K.K. Western","King K.K.","Lucky K.K.","Marine Song 2001","Mountain Song","Mr. K.K.","My Place","Neapolitan","Only Me","Pondering","Rockin' K.K.","Soulful K.K.","Space K.K.","Spring Blossoms","Stale Cupcakes","Steep Hill","Surfin' K.K.","The K. Funk","To the Edge","Two Days Ago","Wandering","Welcome Horizons"];
+                              for(int i = 0; i<albumNames.length; i++){
+                                if(await getStoredBool("songCheckList"+albumNames[i], false)){
+                                  outputSave = outputSave + "songCheckList"+albumNames[i] + "\n";
+                                }
+                              }
+                            }
+                            final scaffold = Scaffold.of(context);
+                            scaffold.showSnackBar(
+                              SnackBar(
+                                content: const Text('Exporting...'),
+                              ),
+                            );
+                            readStorage().then((value) => write("ACNHPocketGuideData",outputSave, context));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 120, right:120),
+                            child: Container(
+                              height: 40*percentScale,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF70BFFF),
+                                border: Border.all(width: 1.00, color: Color(0xFF0096DC),), borderRadius: BorderRadius.circular(50.00), 
+                              ), 
+                              child: Center(
+                                child: Text(
+                                  'Export Data',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'ArialRoundedBold'
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ])
+                  )
+                ),
                 SliverPadding(
                   padding: EdgeInsets.only(top:10*percentScale),
                   sliver: SliverList(
@@ -160,165 +335,60 @@ class _SettingListPageState extends State<SettingList>{
                     height:3*percentScale,
                   )
                 ),
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    GestureDetector(
-                      onTap: (){
-                        HapticFeedback.mediumImpact();
-                        var outputSave = "";
-                        Future<void> getStorage(var list, var listGroup) async {
-                          for(int i = 0; i < list.length; i++){
-                            if(await getStoredBool(getKey(list[i], listGroup), false)){
-                              outputSave = outputSave + getKey(list[i], listGroup) + "\n";
-                            }
-                          }
-                        }
-                        Future<void> readStorage() async {
-                          var listGroup = "Furniture";
-                          await getStorage(await getHousewaresData(""), listGroup);
-                          await getStorage(await getMiscellaneousData(""), listGroup);
-                          await getStorage(await getWallmountedData(""), listGroup);
-                          await getStorage(await getPhotosData(""), listGroup);
-                          await getStorage(await getPostersData(""), listGroup);
-
-                          listGroup = "Clothing";
-                          await getStorage(await getHeadwearData(""), listGroup);
-                          await getStorage(await getAccessoriesData(""), listGroup);
-                          await getStorage(await getTopsData(""), listGroup);
-                          await getStorage(await getBottomsData(""), listGroup);
-                          await getStorage(await getSocksData(""), listGroup);
-                          await getStorage(await getShoesData(""), listGroup);
-                          await getStorage(await getUmbrellasData(""), listGroup);
-                          await getStorage(await getBagsData(""), listGroup);
-                          await getStorage(await getWetsuitData(""), listGroup);
-                          await getStorage(await getDressupData(""), listGroup);
-                          
-                          listGroup = "Tools";
-                          await getStorage(await getToolsData(""), listGroup);
-                          
-
-                          listGroup = "Floor & Wall";
-                          await getStorage(await getRugsData(""), listGroup);
-                          await getStorage(await getFloorsData(""), listGroup);
-                          await getStorage(await getWallpapersData(""), listGroup);
-
-                          listGroup = "Villagers";
-                          await getStorage(await getVillagerData(""), listGroup);
-                          
-                          listGroup = "Recipes";
-                          await getStorage(await getCraftableData(""), listGroup);
-                          
-                          listGroup = "Fish";
-                          await getStorage(await getFishData(""), listGroup);
-                          
-                          listGroup = "Sea Creatures";
-                          await getStorage(await getSeaData(""), listGroup);
-
-                          listGroup = "Bugs";
-                          await getStorage(await getBugData(""), listGroup);
-
-                          listGroup = "Fossils";
-                          await getStorage(await getFossilData(""), listGroup);
-
-                          listGroup = "Art";
-                          await getStorage(await getArtData(""), listGroup);
-
-                          listGroup = "Emojipedia";
-                          await getStorage(await getEmojiData(""), listGroup);
-
-                          List<String> albumNames = ["Agent K.K.","Aloha K.K.","*Animal City*","Bubblegum K.K.","Café K.K.","Comrade K.K.","DJ K.K.","*Drivin'*","*Farewell*","Forest Life","Go K.K. Rider","Hypno K.K.","I Love You","Imperial K.K.","K.K. Adventure","K.K. Aria","K.K. Ballad","K.K. Bazaar","K.K. Birthday","K.K. Blues","K.K. Bossa","K.K. Calypso","K.K. Casbah","K.K. Chorale","K.K. Condor","K.K. Country","K.K. Cruisin'","K.K. D&B","K.K. Dirge","K.K. Disco","K.K. Dixie","K.K. Étude","K.K. Faire","K.K. Flamenco","K.K. Folk","K.K. Fusion","K.K. Groove","K.K. Gumbo","K.K. House","K.K. Island","K.K. Jazz","K.K. Jongara","K.K. Lament","K.K. Love Song","K.K. Lullaby","K.K. Mambo","K.K. Marathon","K.K. March","K.K. Mariachi","K.K. Metal","K.K. Milonga","K.K. Moody","K.K. Oasis","K.K. Parade","K.K. Ragtime","K.K. Rally","K.K. Reggae","K.K. Rock","K.K. Rockabilly","K.K. Safari","K.K. Salsa","K.K. Samba","K.K. Ska","K.K. Sonata","K.K. Song","K.K. Soul","K.K. Steppe","K.K. Stroll","K.K. Swing","K.K. Synth","K.K. Tango","K.K. Technopop","K.K. Waltz","K.K. Western","King K.K.","Lucky K.K.","Marine Song 2001","Mountain Song","Mr. K.K.","My Place","Neapolitan","Only Me","Pondering","Rockin' K.K.","Soulful K.K.","Space K.K.","Spring Blossoms","Stale Cupcakes","Steep Hill","Surfin' K.K.","The K. Funk","To the Edge","Two Days Ago","Wandering","Welcome Horizons"];
-                          for(int i = 0; i<albumNames.length; i++){
-                            if(await getStoredBool("songCheckList"+albumNames[i], false)){
-                              outputSave = outputSave + "songCheckList"+albumNames[i] + "\n";
-                            }
-                          }
-                        }
-                        final scaffold = Scaffold.of(context);
-                        scaffold.showSnackBar(
-                          SnackBar(
-                            content: const Text('Exporting...'),
-                          ),
-                        );
-                        readStorage().then((value) => write("ACNHPocketGuideData",outputSave, context));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 120, right:120),
-                        child: Container(
-                          height: 40*percentScale,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF70BFFF),
-                            border: Border.all(width: 1.00, color: Color(0xFF0096DC),), borderRadius: BorderRadius.circular(50.00), 
-                          ), 
-                          child: Center(
-                            child: Text(
-                              'Export Data',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'ArialRoundedBold'
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ])
-                ),
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child:Container(
-                    height:3*percentScale,
-                  )
-                ),
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    GestureDetector(
-                      onTap: (){
-                        HapticFeedback.mediumImpact();
-                        Future<void> readFile() async {
-                            final scaffold = Scaffold.of(context);
-                            var inputList = await read("ACNHPocketGuideData", context);
-                            if(inputList==-1){
+                SliverPadding(
+                  padding: EdgeInsets.only(top:10*percentScale),
+                  sliver: 
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      GestureDetector(
+                        onTap: (){
+                          HapticFeedback.mediumImpact();
+                          Future<void> readFile() async {
+                              final scaffold = Scaffold.of(context);
+                              var inputList = await read("ACNHPocketGuideData", context);
+                              if(inputList==-1){
+                                scaffold.showSnackBar(
+                                  SnackBar(
+                                    content: Text('File does not exist.'),
+                                  ),
+                                );
+                                return;
+                              }
+                              inputList = inputList.split("\n");
+                              for(int i = 0; i<inputList.length; i ++){
+                                saveBool(inputList[i],false,true);
+                              }
+                              
                               scaffold.showSnackBar(
                                 SnackBar(
-                                  content: Text('File does not exist.'),
+                                  content: Text('Successfully imported ' + (inputList.length-1).toString() + " entries."),
                                 ),
                               );
-                              return;
-                            }
-                            inputList = inputList.split("\n");
-                            for(int i = 0; i<inputList.length; i ++){
-                              saveBool(inputList[i],false,true);
-                            }
-                            
-                            scaffold.showSnackBar(
-                              SnackBar(
-                                content: Text('Successfully imported ' + (inputList.length-1).toString() + " entries."),
-                              ),
-                            );
-                        }
-                        readFile();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 120, right:120),
-                        child: Container(
-                          height: 40*percentScale,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF37AC75),
-                            border: Border.all(width: 1.00, color: Color(0xFF24BB5E),), borderRadius: BorderRadius.circular(50.00), 
-                          ), 
-                          child: Center(
-                            child: Text(
-                              'Import Data',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'ArialRoundedBold'
+                          }
+                          readFile();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 120, right:120),
+                          child: Container(
+                            height: 40*percentScale,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF37AC75),
+                              border: Border.all(width: 1.00, color: Color(0xFF24BB5E),), borderRadius: BorderRadius.circular(50.00), 
+                            ), 
+                            child: Center(
+                              child: Text(
+                                'Import Data',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'ArialRoundedBold'
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  ])
+                      )
+                    ])
+                  ),
                 ),
                 SliverFillRemaining(
                   hasScrollBody: false,
