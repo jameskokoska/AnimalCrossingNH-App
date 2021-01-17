@@ -1,4 +1,5 @@
 # ACNH Pocket Guide
+This version written in Flutter is no longer maintained. See https://github.com/jameskokoska/AnimalCrossingNH-App-React for the new version written in React Native.   
 Written in Flutter, supporting iOS and Android, with a modern and well polished design ACNH Pocket Guide is the best guide for tracking your collection as you progress through the game. View information on collectibles and creatures, as well as upcoming in game events. With the latest game information, this is the one stop for all your ACNH needs.
 ## Release
 https://play.google.com/store/apps/details?id=com.acnh.pocket_guide
